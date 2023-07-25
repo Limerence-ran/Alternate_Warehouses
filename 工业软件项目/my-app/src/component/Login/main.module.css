@@ -1,0 +1,17 @@
+
+        :global(.login-form) {
+        max-width: 300px;
+        /* height: 600px; */
+    }
+
+   :global(.login-form-forgot)  {
+        float: right;
+    }
+
+   :global( .ant-col-rtl .login-form-forgot) {
+        float: left;
+    }
+
+  :global(.login-form-button) {
+        width: 100%;
+    }

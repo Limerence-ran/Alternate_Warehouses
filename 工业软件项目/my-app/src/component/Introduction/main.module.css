@@ -1,0 +1,9 @@
+.Img{
+    width: 480px;
+    height: 420px;
+}
+ img{
+    width: 400px;
+    height: 300px;
+    float: left;
+}

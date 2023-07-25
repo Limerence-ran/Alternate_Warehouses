@@ -1,0 +1,70 @@
+.header{
+    height: 64px;
+    max-width: 1920px;
+    min-width: 800px;
+    width: 100%;
+    background-color: #4480a9;
+    padding: 0 20px 0 0;
+        display: flex;
+        align-items: center;
+        grid-gap: 28px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 1001;
+        color: #93a6c0;
+}
+
+.brand{
+    font-size: 18px;
+        display: flex;
+        align-items: center;
+        height: 64px;
+        font-weight: 700;
+        color: #8db1e0;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        transition: all .3s ease;
+        padding: 0 6px;
+        width: 260px;
+}
+
+form {
+    max-width: 450px;
+    width: 100%;
+    margin-right: auto;
+}
+
+formGroup {
+    position: relative;
+}
+
+ input {
+    width: 300px;
+    background: #f7f7fa;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 10px 36px 10px 16px;
+    transition: all .3s ease;
+}
+
+/*
+.header .form-group input:focus {
+	box-shadow: unset;
+} */
+
+ .icon {
+    position: absolute;
+    top: 50%;
+    margin-left: 20px;
+    /* display: block; */
+    
+}
+.brand img{
+width: 50px;
+height: 55px;
+}

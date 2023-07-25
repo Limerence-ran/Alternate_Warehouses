@@ -1,10 +1,11 @@
 
 import React, { useRef, useEffect, useState, useLayoutEffect} from 'react';
-import './Lunbo.css'
-import img1 from '../assets/images/1.jpg'
-import img2 from '../assets/images/2.jpg'
-import img3 from '../assets/images/3.jpg'
-import img4 from '../assets/images/4.jpg'
+
+import './main.module.css'
+import img1 from '../../assets/images/1.jpg'
+import img2 from '../../assets/images/2.jpg'
+import img3 from '../../assets/images/3.jpg'
+import img4 from '../../assets/images/4.jpg'
 
 
 
@@ -12,6 +13,7 @@ const arr = [img1,img2,img3,img4]
 function Lunbo() {
    
     const [index,setIndex] = useState(0)
+    const arr1 = document.querySelector("ul");
     
     
     const nextImg = ()=> {
@@ -39,17 +41,22 @@ function Lunbo() {
     }
 
     useLayoutEffect(()=>{
-        let timer;
+        // let timer;
+        console.log(arr1)
        
-        if(!timer){
-            timer = setInterval(() => {
-                console.log(33)
-                nextImg();
-            }, 1000)
+        // if(!timer){
+        //     timer = setInterval(() => {
+        //         console.log(33)
+        //         nextImg();
+        //     }, 1000)
           
-        }
+        // }
     },[])
 
+
+   
+    
+    
 
         return (
             <>
@@ -66,9 +73,7 @@ function Lunbo() {
                     <button className="prev" onClick={preImg}>&lt;</button>
                     <button className="next" onClick={nextImg}>&gt;</button>
                 </div>
-                <div className='mom'>
-
-                </div>
+              
             </>
         )
 

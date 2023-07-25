@@ -1,11 +1,11 @@
-.slider {
+:global(.slider) {
     position: relative;
-    width: 800px;
+    width: 600px;
     height: 320px;
     overflow: hidden;
 }
 
-.slider-wrapper {
+:global(.slider-wrapper) {
     width: 100%;
     height: 320px;
     background-color:  rgb(165,  133, 255)
@@ -13,13 +13,13 @@
 
 }
 
-.slider-wrapper img {
+:global(.slider-wrapper img) {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-.prev {
+:global(.prev) {
     position: absolute;
     top: 50%;
     left: 0;
@@ -27,14 +27,14 @@
     /* text-align: center; */
 }
 
-.next {
+:global(.next) {
     position: absolute;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
 }
 
-button {
+:global(button) {
     width: 28px;
     height: 28px;
     appearance: none;
@@ -46,11 +46,11 @@ button {
 
 }
 
-.slider-footer .toggle button:hover {
+:global(.slider-footer .toggle button:hover) {
     background: rgba(85, 85, 85, 0.8);
 }
 
-.slider-indicator {
+:global(.slider-indicator) {
     position: absolute;
     bottom: 5%;
     left: 50%;
@@ -62,7 +62,7 @@ button {
     align-items: center;
 }
 
-.slider-indicator li {
+:global(.slider-indicator li) {
     width: 8px;
     height: 8px;
     margin: 4px;
@@ -72,7 +72,7 @@ button {
     cursor: pointer;
 }
 
-.slider-indicator li.active {
+:global(.slider-indicator li.active) {
     width: 12px;
     height: 12px;
     opacity: 1;
