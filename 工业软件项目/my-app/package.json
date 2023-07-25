@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "antd": "^5.7.3",
+<<<<<<< HEAD
     "axios": "^1.4.0",
+=======
+>>>>>>> 12b8faaaf2b0a89a97254950a6a4f813ec7a629c
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -23,6 +27,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.6"
   }
 }

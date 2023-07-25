@@ -5,15 +5,20 @@ import "./App.css";
 import Navigation from "./components/navigation/main";
 import Pagination from "./components/pagination/main";
 import Caro from "./components/carousel/main";
+import Lunbo from './component/Lunbo'
 
 function App() {
     return (
         <div>
             <Navigation></Navigation>
             <Caro></Caro>
-            <Pagination></Pagination>
-        </div>
-    );
+            <Lunbo/>           
+        <Pagination></Pagination>
+        </div>)
 }
 
+
+
+
 export default App;
+
