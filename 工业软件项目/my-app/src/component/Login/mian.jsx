@@ -1,10 +1,13 @@
-import React from 'react';
+import React,{useRef} from 'react';
 import { LockOutlined, UserOutlined} from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
-import './main.module.css'
+// import './main.module.css'
+import style from './main.module.css'
 
 
 const Login = () => {
+    const bTn = useRef()
+    console.log(bTn.current)
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
     };
@@ -54,10 +57,10 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
-                    Login in
+                <Button className={style.btn} ref={bTn}>
+                Login in
                 </Button>
-                Or <a href="">register now!</a>
+                <h3> Or <a href="">register now!</a></h3> 
             </Form.Item>
         </Form>
     );

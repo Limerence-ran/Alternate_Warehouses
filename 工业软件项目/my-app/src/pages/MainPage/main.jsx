@@ -15,10 +15,10 @@ function MainPage() {
         <>
             
                 <Header />
-                <Lunbo />
-                <Introduction/>
-                <Content/>
-                <Buttom/>
+            <div className={style.lunbobox}><Lunbo /></div>
+            <div className={style.profile}>  <Introduction /></div>
+            <div className={style.content}><Content /></div>
+            <div className={style.buttom}><Buttom /></div>
         </>
     )
 }

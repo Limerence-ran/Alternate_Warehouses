@@ -11,7 +11,8 @@ const Lis = (props) => {
                 <div className={style.front}>
                     <a><img src={img} alt=""  className={style.img}/></a>
                     <h3 className={style.softName}><a>翼果科技</a></h3>
-                    <h3 className={style.softName}><a>{props.dollar}</a></h3>
+                    <span>$:{props.dollar}</span>
+                    {/* <h3 className={style.softName}><a>{props.dollar}</a></h3> */}
                     {/* <h4 className={style.wordCut}>主要合伙人具有10年以上行业龙头企业管理经验以及海外工作经历,技术氛围浓、研发实力强、上升通道明确。</h4> */}
                     <h4 className={style.wordCut}>{props.text}</h4>
                 </div>

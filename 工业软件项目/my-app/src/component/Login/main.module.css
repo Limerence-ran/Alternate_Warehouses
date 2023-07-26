@@ -12,6 +12,13 @@
         float: left;
     }
 
-  :global(.login-form-button) {
-        width: 100%;
+  .btn {
+        width: 100px;
+        margin: 0 auto;
+        background-color: rgb(74, 74, 207);
+    }
+    .btn h3{
+        color: #000;
+        font-size: 12px;
+      
     }
