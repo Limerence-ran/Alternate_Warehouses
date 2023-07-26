@@ -1,13 +1,16 @@
 .form_main {
+    position: absolute;
+    top: 100px;
     transform: translate(800px, 100px);
     transition: 0.5s;
     opacity: 0.85;
     width: 350px;
     display: flex;
+    height: 360px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255, 0.4);
     padding: 30px 40px 30px 30px;
     border-radius: 30px;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.062);
@@ -76,7 +79,7 @@
     width: 255px;
     margin-left: 22px;
     margin-top: 10px;
-    background-color: #2196f3;
+    background-color: rgba(128, 68, 255, 1);
     color: #fff;
     font-size: 16px;
     height: 40px;
@@ -86,7 +89,7 @@
 }
 
 .switchModeLink {
-    color: #2196f3;
+    color: rgba(128, 68, 255, 1);
     cursor: pointer;
 }
 
@@ -94,40 +97,6 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-}
-
-/* 邮箱验证码输入框容器样式 */
-.emailCodeInputContainer {
-    position: relative;
-}
-
-/* 邮箱验证码输入框样式 */
-.emailCodeInput {
-    padding-right: 95px;
-}
-
-/* 发送邮箱验证码按钮样式 */
-.sendEmailCodeButton {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    padding: 5px 10px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.sendEmailCodeButtonActive {
-    background-color: #007bff;
-    color: white;
-}
-
-.sendEmailCodeButtonDisabled {
-    background-color: #ccc;
-    color: #666;
-    cursor: not-allowed;
 }
 
 /* 根据需要设置整体样式 */
@@ -172,50 +141,10 @@
     margin-top: 5px;
 }
 
-/* 邮箱验证码输入框容器样式 */
-.emailCodeInputContainer {
-    position: relative;
-}
-
-/* 邮箱验证码输入框样式 */
-.emailCodeInput {
-    width: 53px;
-    height: 17px;
-    margin-right: 100px;
-}
-
-/* 发送邮箱验证码按钮样式 */
-.sendEmailCodeButton {
-    float: right;
-    height: 25px;
-    text-align: center;
-    line-height: 15px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.sendEmailCodeButtonActive {
-    background-color: #007bff;
-    color: white;
-}
-
-.sendEmailCodeButtonDisabled {
-    background-color: #ccc;
-    color: #666;
-    cursor: not-allowed;
-}
-
 /* 切换登录模式提示样式 */
 .switchModeMessage {
     font-size: 14px;
     margin-top: 26px;
     text-align: center;
     margin-bottom: -10px;
-}
-
-.switchModeLink {
-    color: #007bff;
-    cursor: pointer;
 }
