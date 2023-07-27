@@ -1,6 +1,4 @@
 import { useState } from "react";
-
-
 import Lunbo from './component/Lunbo/main'
 import Login from './component/Login/mian'
 import Register from './component/Register/main'
@@ -21,8 +19,7 @@ function App() {
 
   return (
     <>
-      {/* <Lunbo/> */}
-      {/* <Header/> */}
+     
       {/* <Login /> */}
       {/* <Register /> */}
       {/* <Agreement /> */}

@@ -1,6 +1,9 @@
 import React from 'react';
 import style from './main.module.css'
 import { CaretRightOutlined } from '@ant-design/icons'
+// import Paging from '../Paging/main'
+
+
 
 function Company() {
     const companies = [
@@ -75,7 +78,6 @@ function Company() {
         
         <>
         <table className={style.table}>
-
                 {companies.map(company => (
                     <tr>
                         <td>{company.id}</td>
@@ -88,8 +90,9 @@ function Company() {
                         <td><button>Withdrawal</button></td>
                     </tr>
                 ))
-}       
+                }
         </table>
+        {/* <Paging/> */}
         </>
     );
 }
