@@ -1,10 +1,15 @@
 .spinner {
     width: 80px;
     height: 80px;
+    position: absolute;
+    top: 150px;
+    left: 255px;
     --clr: rgb(127, 207, 255);
     --clr-alpha: rgb(127, 207, 255, 0.1);
     animation: spinner 2s infinite linear;
     transform-style: preserve-3d;
+    scale: 0.7;
+    z-index: 999;
 }
 
 .spinner > div {

@@ -5,12 +5,8 @@ import Login from "./pages/Login/main";
 function App() {
     return (
         <div>
-        <Login></Login>
-        </div>)
+            <Login></Login>
+        </div>
+    );
 }
-
-
-
-
 export default App;
-

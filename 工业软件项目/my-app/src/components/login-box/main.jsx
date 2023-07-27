@@ -6,12 +6,14 @@ import {
     SendOutlined,
     ShakeOutlined,
     SafetyCertificateOutlined,
+    CheckOutlined,
 } from "@ant-design/icons";
 
 const AuthForm = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [phone, setPhone] = useState("");
     const [emailCode, setEmailCode] = useState("");
     const [isSendingEmailCode, setIsSendingEmailCode] = useState(false);
@@ -34,6 +36,10 @@ const AuthForm = () => {
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
+    };
+
+    const handleConfirmPasswordChange = (e) => {
+        setConfirmPassword(e.target.value);
     };
 
     const handlePhoneChange = (e) => {
@@ -119,6 +125,7 @@ const AuthForm = () => {
         const isUsernameValid = !isUsernameFieldEmpty;
         const isEmailValid = !isEmailFieldEmpty && validateEmail(email);
         const isPasswordValid = !isPasswordFieldEmpty;
+        const isConfirmPasswordValid = password === confirmPassword;
         const isPhoneValid = !isPhoneFieldEmpty && validatePhone(phone);
         const isEmailCodeValid =
             !isEmailCodeEmpty && validateEmailCode(emailCode);
@@ -134,17 +141,19 @@ const AuthForm = () => {
                 isUsernameValid &&
                 isEmailValid &&
                 isPasswordValid &&
+                isConfirmPasswordValid &&
                 isPhoneValid &&
                 isEmailCodeValid;
 
             isRegist ? setIsFormValid(true) : setIsFormValid(false);
         }
-    }, [username, email, password, phone, emailCode]);
+    }, [username, email, password, confirmPassword, phone, emailCode]);
 
     const resetForm = () => {
         setUsername("");
         setEmail("");
         setPassword("");
+        setConfirmPassword("");
         setPhone("");
         setEmailCode("");
         setIsSendingEmailCode(false);
@@ -258,6 +267,19 @@ const AuthForm = () => {
                                 id="password"
                                 value={password}
                                 onChange={handlePasswordChange}
+                                className={styles.formInput}
+                                required
+                            />
+                        </div>
+
+                        <div className={styles.formGroup}>
+                            <CheckOutlined />
+                            <input
+                                placeholder="确认密码"
+                                type="password"
+                                id="confirmPassword"
+                                value={confirmPassword}
+                                onChange={handleConfirmPasswordChange}
                                 className={styles.formInput}
                                 required
                             />
