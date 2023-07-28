@@ -7,9 +7,10 @@ import Content from './component/Content/main'
 import Header from './component/Header/main'
 import Buttom from './component/Buttom/main'
 import Introdunction from './component/Introduction/main'
-import MainPage from './pages/MainPage/main'
-import UserPage from './pages/UserPage/main'
-import LoginPage from './pages/Loginpage/main'
+import MainPage from './page/MainPage/main'
+import UserPage from './page/UserPage/main'
+import LoginPage from './page/Loginpage/main'
+import Caro from '../src/components/carousel/main'
 
 
 
@@ -22,7 +23,7 @@ function App() {
      
       {/* <Login /> */}
       {/* <Register /> */}
-      {/* <Agreement /> */}
+      <Agreement />
       {/* <Content/> */}
       {/* <Header /> */}
       {/* <Buttom/> */}
@@ -30,7 +31,7 @@ function App() {
       {/* <UserPage/> */}
       {/* <Introdunction/> */}
       {/* <LoginPage/> */}
-
+      {/* <Caro/> */}
     </>
   )
 }

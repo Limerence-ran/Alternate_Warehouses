@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import style from './App.module.css'
-import GroupPage from './pages/GroupPage/main'
+import GroupPage from './page/GroupPage/main'
 import Company from './component/Company/main'
-import Chartdata from './pages/Chartdata/main'
-import Chartdata2 from './pages/Chartdata2/main'
-import CancelPage from './pages/CancelPage/main'
+import Chartdata from './page/Chartdata/main'
+import Chartdata2 from './page/Chartdata2/main'
+import CancelPage from './page/CancelPage/main'
 import Slider from './component/Slider/main'
 import Page from './component/Paging/main'
 import Chart2 from './component/Chart2/main'
 import UploadForm from './component/Upload/main'
-import UploadPage from '../src/pages/UploadPage/main'
+import UploadPage from '../src/page/UploadPage/main'
 
 
 
@@ -63,7 +63,7 @@ export default App
 //   },
 // ];
 // const getRandomuserParams = (params) => ({
-//   results: params.pagination?.pageSize,
+//   results: params.pagination?.pageize,
 //   page: params.pagination?.current,
 //   ...params,
 // });
@@ -73,7 +73,7 @@ export default App
 //   const [tableParams, setTableParams] = useState({
 //     pagination: {
 //       current: 1,
-//       pageSize: 10,
+//       pageize: 10,
 //     },
 //   });
 //   const fetchData = () => {
@@ -105,8 +105,8 @@ export default App
 //       ...sorter,
 //     });
 
-//     // `dataSource` is useless since `pageSize` changed
-//     if (pagination.pageSize !== tableParams.pagination?.pageSize) {
+//     // `dataSource` is useless since `pageize` changed
+//     if (pagination.pageize !== tableParams.pagination?.pageize) {
 //       setData([]);
 //     }
 //   };
