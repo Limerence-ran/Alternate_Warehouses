@@ -1,17 +1,16 @@
 import React from "react";
-import styles from "./main.module.css.";
+import styles from "./main.module.css";
 
 export default function CheckIcon() {
     return (
-        <div class={styles.checkbox - wrapper - 12}>
-            <div class={styles.cbx}>
+        <div className={styles.checkbox}>
+            <div className={styles.cbx}>
                 <input id="cbx-12" type="checkbox" />
-                <label for="cbx-12"></label>
+                <label htmlFor="cbx-12"></label>
                 <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
                     <path d="M2 8.36364L6.23077 12L13 2"></path>
                 </svg>
             </div>
-
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <defs>
                     <filter id="goo-12">

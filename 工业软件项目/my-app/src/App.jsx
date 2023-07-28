@@ -1,16 +1,7 @@
 import { useState } from "react";
-<<<<<<< HEAD
 import "./App.css";
 import Login from "./pages/Login/main";
 
-function App() {
-    return (
-        <div>
-            <Login></Login>
-        </div>
-    );
-}
-=======
 import Lunbo from './component/Lunbo/main'
 import Login from './component/Login/mian'
 import Register from './component/Register/main'
@@ -27,15 +18,18 @@ import Caro from '../src/components/carousel/main'
 
 
 
+
 function App() {
 
 
   return (
     <>
-     
+      <div>
+        <Login></Login>
+      </div>
       {/* <Login /> */}
       {/* <Register /> */}
-      <Agreement />
+      {/* <Agreement /> */}
       {/* <Content/> */}
       {/* <Header /> */}
       {/* <Buttom/> */}
@@ -50,5 +44,4 @@ function App() {
 
 
 
->>>>>>> 3931d7c94aaf1b2589607efac10816082f38007e
 export default App;
