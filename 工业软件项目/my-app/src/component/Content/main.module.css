@@ -1,0 +1,83 @@
+.detail {
+    width: 100%;
+    
+    height: 400px;
+    /* background-color: #cd6969; */
+}
+
+ .detail ul {
+    width: 1080px;
+    overflow: hidden;
+ 
+}
+
+.detail ul li{
+    position: relative;
+     float: left; 
+    width: 305px;
+    height: 200px;
+    padding: 15px 18px 0;
+    border: 1px solid #eaeeed;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    list-style: none;
+    background-color: #fff;
+    text-align: center;
+}
+.front{
+    width: 100%;
+    height: 80px;
+    color: #339d4f;
+    position: relative;
+}
+.front h3{
+    font-size: 16px;
+    color: black;
+    margin-top: 3px;
+}
+.front span{
+position: absolute;
+float: right;
+height: 20px;
+font-size: 10px;
+color: black;
+right: 0;
+top:20px
+}
+.img{
+    display: block;
+        width: 100px;
+        height: 60px;
+        margin: 0 auto;
+}
+.wordCut{
+    font-size: 12px;
+    height: 24px;
+}
+.softName{
+    font-size: 16px;
+}
+.last {
+    width: 100%;
+    height: 50px;
+    color: black;
+    position: absolute;
+   margin: 10px 0 5px 0;
+    bottom: 0;
+}
+.btn {
+    float: right;
+    margin-right: 30px;
+   margin-top: 15px;
+    width: 60px;
+    height: 30px;
+    color: rgb(196, 218, 71);
+    background-color: #a0c6e1;
+}
+.link{
+    float: left;
+    margin-right: 30px;
+    margin-top: 30px;
+    text-decoration: none;
+    color: rgb(83, 90, 194);
+}

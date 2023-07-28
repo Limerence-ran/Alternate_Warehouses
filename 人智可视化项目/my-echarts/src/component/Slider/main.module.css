@@ -1,0 +1,140 @@
+.sidebar {
+    position: fixed;
+    width: 220px;
+    /* background: rgba(142, 181, 231, 1); */
+    top: 74px;
+    left: 0;
+    /* height: 100%; */
+    /* height: 608px; */
+    /* height: 900px; */
+    height: 640PX;
+    overflow-y: auto;
+    scrollbar-width:none;
+    scrollbar-color: transparent transparent;
+    /* overflow-x: auto; */
+    /* 隐藏滚动条  */
+    scrollbar-width: none;
+    /* scrollbar-width: none; */
+    transition: all .3s ease;
+    z-index: 20000;
+    background-color: #fff;
+    border-right: 2px solid #accae3;
+    border-radius: 6px 0px 0 0;
+    margin-left: 20PX;
+}
+
+
+.sidebar::-webkit-scrollbar {
+   display: none;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+ul {
+    list-style: none;
+    width: 190px;
+}
+
+
+.icon {
+    margin-right: 0px;
+    transition: all .3s ease;
+}
+
+.menu {
+    /* width: 260px; */
+    margin: 36px 0;
+    padding: 0 20px;
+    transition: all .3s ease;
+}
+
+.menu li {
+    width: 190px;
+}
+
+.menu ul li {
+    width: 190px;
+}
+.menu ul li a {
+    margin-left: 10px;
+}
+
+.menu a {
+    text-align: center;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    color: #6f6f6f;
+    font-size: 16px;
+    padding: 12px 16px 12px 0;
+    transition: all .3s ease;
+    border-radius: 10px;
+    margin: 4px 0;
+    white-space: nowrap;
+}
+
+.menu>li>a:hover {
+    background: #1775F1;
+    color: #fff;
+}
+
+
+.menu>li>a.active,
+.menu>li>a.subdrop:hover {
+    background: #1775F1;
+    color: #fff;
+    width: 140px;
+}
+
+.divider {
+    margin-top: 24px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #8D8D8D;
+    transition: all .3s ease;
+    white-space: nowrap;
+}
+
+.divider {
+    text-align: center;
+}
+
+
+.dropdown a.active,
+.dropdown a:hover {
+    color: #1775F1;
+}
+
+
+.title {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    background-color: #fff;
+    width: 100%;
+
+
+}
+
+.title li {
+    width: 100px;
+    margin-left: 50px;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 500;
+    color: #2c323f;
+    /* margin-bottom: 5px; */
+    background-color: aqua;
+    width: 100%;
+    height: 570px;
+}
