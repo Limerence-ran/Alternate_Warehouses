@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./main.module.css";
+import { message } from "antd";
 import {
     UserOutlined,
     UnlockOutlined,
@@ -8,6 +9,13 @@ import {
     SafetyCertificateOutlined,
     CheckOutlined,
 } from "@ant-design/icons";
+
+const showMessage = (content, type) => {
+    message[type]({
+        content: <div>{content}</div>,
+        duration: 3, // 弹框显示的时间，单位为秒
+    });
+};
 
 const AuthForm = () => {
     const [username, setUsername] = useState("");
@@ -45,25 +53,63 @@ const AuthForm = () => {
     const handlePhoneChange = (e) => {
         const phoneValue = e.target.value;
         setPhone(phoneValue);
-        setIsPhoneValid(validatePhone(phoneValue));
     };
 
     const handleEmailCodeChange = (e) => {
-        setEmailCode(e.target.value);
+        const emailCodeValue = e.target.value;
+        setEmailCode(emailCodeValue);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (isLoginMode) {
+            if (!email) {
+                showMessage("请输入邮箱", "error");
+                return;
+            }
+            if (!password) {
+                showMessage("请输入密码", "error");
+                return;
+            }
             handleLogin();
         } else if (isForgotPasswordMode) {
+            if (!email) {
+                showMessage("请输入邮箱", "error");
+                return;
+            }
             handleForgotPassword();
         } else {
+            if (!username) {
+                showMessage("请输入用户名", "error");
+                return;
+            }
+            if (!email) {
+                showMessage("请输入邮箱", "error");
+                return;
+            }
+            if (!password || password.trim().length === 0) {
+                showMessage("请输入密码", "error");
+                return;
+            }
+            if (!confirmPassword || confirmPassword.trim().length === 0) {
+                showMessage("请确认密码", "error");
+                return;
+            }
+            if (!phone) {
+                showMessage("请输入手机号", "error");
+                return;
+            }
+            if (!emailCode || emailCode.trim().length === 0) {
+                showMessage("请输入邮箱验证码", "error");
+                return;
+            }
+            if (password !== confirmPassword) {
+                showMessage("密码和确认密码不一致", "error");
+                return;
+            }
             handleRegister();
         }
     };
-
     // 登陆注册重置业务执行
     const handleLogin = () => {
         console.log("执行登录操作");
@@ -84,24 +130,14 @@ const AuthForm = () => {
     const validateEmail = (email) => {
         const re =
             /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z]{2,4})+$/;
-
         return re.test(email);
-    };
-
-    const validatePhone = (phone) => {
-        const re = /^[1][3,4,5,7,8][0-9]{9}$/;
-        return re.test(phone);
-    };
-
-    const validateEmailCode = (emailCode) => {
-        const re = /^[a-zA-Z0-9]{4}$/;
-        return re.test(emailCode);
     };
 
     const handleSendEmailCode = () => {
         if (isEmailValid && !isSendingEmailCode && !emailCodeSent) {
             setIsSendingEmailCode(true);
-            setRemainingTime(60); // 重置剩余时间为60秒
+            setRemainingTime(60);
+            // 重置剩余时间为60秒
             setTimeout(() => setEmailCodeSent(false), 1000);
             // 倒计时结束后恢复按钮状态
             setTimeout(() => {
@@ -121,14 +157,12 @@ const AuthForm = () => {
         const isPasswordFieldEmpty = password.trim() === "";
         const isPhoneFieldEmpty = phone.trim() === "";
         const isEmailCodeEmpty = emailCode.trim() === "";
-
         const isUsernameValid = !isUsernameFieldEmpty;
         const isEmailValid = !isEmailFieldEmpty && validateEmail(email);
         const isPasswordValid = !isPasswordFieldEmpty;
         const isConfirmPasswordValid = password === confirmPassword;
-        const isPhoneValid = !isPhoneFieldEmpty && validatePhone(phone);
-        const isEmailCodeValid =
-            !isEmailCodeEmpty && validateEmailCode(emailCode);
+        const isPhoneValid = !isPhoneFieldEmpty;
+        const isEmailCodeValid = !isEmailCodeEmpty;
 
         if (isLoginMode) {
             isEmailValid && isPasswordValid
@@ -144,7 +178,6 @@ const AuthForm = () => {
                 isConfirmPasswordValid &&
                 isPhoneValid &&
                 isEmailCodeValid;
-
             isRegist ? setIsFormValid(true) : setIsFormValid(false);
         }
     }, [username, email, password, confirmPassword, phone, emailCode]);
@@ -158,7 +191,6 @@ const AuthForm = () => {
         setEmailCode("");
         setIsSendingEmailCode(false);
         setIsEmailValid(false);
-        setIsPhoneValid(false);
         setEmailCodeSent(false);
         setRemainingTime(60);
     };
@@ -202,31 +234,32 @@ const AuthForm = () => {
                             登录
                         </button>
                     </form>
-
-                    <p className={styles.switchModeMessage}>
-                        还没有账号？{" "}
-                        <span
-                            className={styles.switchModeLink}
-                            onClick={() => {
-                                setIsLoginMode(false);
-                                setIsForgotPasswordMode(false);
-                            }}
-                        >
-                            注册
+                    <div className={styles.fontlink}>
+                        <span className={styles.switchModeMessage}>
+                            还没有账号？
+                            <span
+                                className={styles.switchModeLink}
+                                onClick={() => {
+                                    setIsLoginMode(false);
+                                    setIsForgotPasswordMode(false);
+                                }}
+                            >
+                                注册
+                            </span>
                         </span>
-                    </p>
-                    <p className={styles.switchModeMessage}>
-                        忘记密码？{" "}
-                        <span
-                            className={styles.switchModeLink}
-                            onClick={() => {
-                                setIsLoginMode(true);
-                                setIsForgotPasswordMode(true);
-                            }}
-                        >
-                            找回密码
+                        <span className={styles.switchModeMessage}>
+                            忘记密码？{" "}
+                            <span
+                                className={styles.switchModeLink}
+                                onClick={() => {
+                                    setIsLoginMode(false);
+                                    setIsForgotPasswordMode(true);
+                                }}
+                            >
+                                找回密码
+                            </span>
                         </span>
-                    </p>
+                    </div>
                 </>
             )}
 
@@ -362,7 +395,7 @@ const AuthForm = () => {
                 </>
             )}
 
-            {isLoginMode && isForgotPasswordMode && (
+            {!isLoginMode && isForgotPasswordMode && (
                 <>
                     <form onSubmit={handleSubmit}>
                         <div className={styles.formGroup}>

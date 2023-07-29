@@ -1,0 +1,313 @@
+/* 表单整体样式 */
+#upload-form {
+    background-color: #434141;
+    width: 100%;
+    margin-top: -350px;
+    height: 1500px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.75);
+}
+
+.son-div {
+    width: 1275px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.img-text-y {
+    width: 66%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img-text-x {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* 上传书籍 字体样式 */
+.signup {
+    color: #5b08c3;
+    font-style: italic;
+    font-size: 40px;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+/* 输入框样式 */
+.form--input {
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 0.2em;
+    font-family: "Inter", sans-serif;
+    outline: none;
+    margin: 20px 0;
+}
+
+#description {
+    width: 1275px;
+    height: 130px;
+}
+
+#category {
+    height: 47px;
+    width: 400px;
+}
+
+.form--input:focus {
+    border: 1px solid #5b08c3;
+    outline: none;
+}
+
+/* 同意协议 */
+.form--marketing {
+    display: flex;
+    margin-bottom: 1.25em;
+    align-items: center;
+}
+
+.form--marketing > input {
+    margin-right: 0.625em;
+}
+
+.form--marketing > label {
+    color: grey;
+}
+
+/* 提交按钮 */
+.form--submit {
+    width: 50%;
+    padding: 0.625em;
+    border-radius: 5px;
+    color: white;
+    background-color: #5b08c3;
+    border: 1px dashed #5b08c3;
+    cursor: pointer;
+}
+
+.form--submit:hover {
+    color: #5b08c3;
+    background-color: white;
+    border: 1px dashed #5b08c3;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+/* 书籍内容、封面图片上传区域 */
+.form-img {
+    background-color: #fff;
+    box-shadow: 0 10px 60px rgb(218, 229, 255);
+    border: 1px solid rgb(159, 159, 160);
+    border-radius: 20px;
+    padding: 2rem 0.7rem 0.7rem 0.7rem;
+    text-align: center;
+    font-size: 1.125rem;
+    max-width: 320px;
+}
+
+.form-title {
+    color: #5b08c3;
+    font-size: 1.8rem;
+    font-weight: 500;
+    font-weight: bold;
+}
+
+.form-paragraph {
+    margin-top: 10px;
+    font-size: 0.9375rem;
+    color: rgb(105, 105, 105);
+}
+
+.drop-container {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 2.1875rem;
+    border-radius: 10px;
+    border: 2px dashed rgb(91, 8, 195);
+    color: #444;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.drop-container:hover {
+    background: rgba(91, 8, 195, 0.164);
+    border-color: rgba(17, 17, 17, 0.616);
+}
+
+.drop-container:hover .drop-title {
+    color: white;
+}
+
+.drop-title {
+    color: #5b08c3;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color 0.2s ease-in-out;
+}
+
+#file-img-input-1,
+#file-img-input-2 {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 2px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(8, 8, 8, 0.288);
+}
+
+#file-img-input-1::file-selector-button,
+#file-img-input-2::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: rgb(91, 8, 195);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+#file-img-input-1::file-selector-button:hover,
+#file-img-input-1::file-selector-button:hover {
+    background: #5b08c3;
+}
+
+/* 取消上传按钮 */
+.button_reset {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+    color: #0f1923;
+    cursor: pointer;
+    position: relative;
+    padding: 8px;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.15s ease;
+}
+
+.button_reset::before,
+.button_reset::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: calc(50% - 5px);
+    border: 1px solid #7d8082;
+    transition: all 0.15s ease;
+}
+
+.button_reset::before {
+    top: 0;
+    border-bottom-width: 0;
+}
+
+.button_reset::after {
+    bottom: 0;
+    border-top-width: 0;
+}
+
+.button_reset:active,
+.button_reset:focus {
+    outline: none;
+}
+
+.button_reset:active::before,
+.button_reset:active::after {
+    right: 3px;
+    left: 3px;
+}
+
+.button_reset:active::before {
+    top: 3px;
+}
+
+.button_reset:active::after {
+    bottom: 3px;
+}
+
+.button_lg {
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #0f1923;
+    overflow: hidden;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.button_lg::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background-color: #0f1923;
+}
+
+.button_lg::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+    background-color: #0f1923;
+    transition: all 0.2s ease;
+}
+
+.button_sl {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: -8px;
+    width: 0;
+    background-color: #5b08c3;
+    transform: skew(-15deg);
+    transition: all 0.2s ease;
+}
+
+.button_text {
+    position: relative;
+}
+
+.button_reset:hover {
+    color: #0f1923;
+}
+
+.button_reset:hover .button_sl {
+    width: calc(100% + 15px);
+}
+
+.button_reset:hover .button_lg::after {
+    background-color: #fff;
+}

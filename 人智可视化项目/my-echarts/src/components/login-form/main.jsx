@@ -62,8 +62,40 @@ const LoginRegisterForm = () => {
         }
     };
 
+    const handleRegister = () => {
+        console.log("执行注册操作", username, password);
+        axios
+            .post(
+                "http://39.98.41.126:31130/users/register",
+                {
+                    username: username,
+                    type: "enterprise",
+                    password: password,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((response) => {
+                if (response.data.code === 0) {
+                    // 注册成功
+                    resetForm();
+                } else {
+                    // 注册失败
+                    showMessage(response.data.msg, "error");
+                }
+            })
+            .catch((error) => {
+                // 处理注册失败后的逻辑
+                showMessage("Registration failed, please try again", "error");
+                console.error(error);
+            });
+    };
+
     const handleLogin = () => {
-        console.log(username, password);
+        console.log("执行登陆操作", username, password);
         axios
             .post(
                 "http://39.98.41.126:31130/users/login",
@@ -78,10 +110,15 @@ const LoginRegisterForm = () => {
                 }
             )
             .then((response) => {
-                // 处理登录成功后的逻辑
-                const token = response.data.token; // 获取返回的token
-                localStorage.setItem("token", token); // 将token存储在本地
-                resetForm();
+                if (response.data.code === 0) {
+                    // 登录成功
+                    const token = response.data.token; // 获取返回的token
+                    localStorage.setItem("token", token); // 将token存储在本地
+                    resetForm();
+                } else {
+                    // 登录失败
+                    showMessage(response.data.msg, "error");
+                }
             })
             .catch((error) => {
                 // 处理登录失败后的逻辑
@@ -89,25 +126,6 @@ const LoginRegisterForm = () => {
                     "Login failed, please check username and password",
                     "error"
                 );
-                console.error(error);
-            });
-    };
-
-    const handleRegister = () => {
-        console.log("执行注册操作", username, password);
-        axios
-            .post("http://39.98.41.126:31130/users/register", {
-                username: username,
-                type: "enterprise",
-                password: password,
-            })
-            .then((response) => {
-                // 处理注册成功后的逻辑
-                resetForm();
-            })
-            .catch((error) => {
-                // 处理注册失败后的逻辑
-                showMessage("Registration failed, please try again", "error");
                 console.error(error);
             });
     };

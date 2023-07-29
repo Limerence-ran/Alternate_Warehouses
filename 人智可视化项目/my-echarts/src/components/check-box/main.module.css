@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.checkbox> svg {
+.checkbox > svg {
     position: absolute;
     top: -130%;
     left: -170%;
@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 
-.checkboxinput[type="checkbox"] {
+.checkbox input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -23,7 +23,7 @@
     margin: 0;
 }
 
-.checkboxinput[type="checkbox"]:focus {
+.checkbox input[type="checkbox"]:focus {
     outline: 0;
 }
 
@@ -75,11 +75,11 @@
     transition-delay: 0.2s;
 }
 
-.checkbox.cbx input:checked + label {
+.checkbox .cbx input:checked + label {
     animation: splash-12 0.6s ease forwards;
 }
 
-.checkbox.cbx input:checked + label + svg path {
+.checkbox .cbx input:checked + label + svg path {
     stroke-dashoffset: 0;
 }
 
