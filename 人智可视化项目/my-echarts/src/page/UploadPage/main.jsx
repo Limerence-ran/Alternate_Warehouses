@@ -1,8 +1,7 @@
 
 import style from './main.module.css'
 import Slider from '../../component/Slider/main'
-import { useState, useEffect, useRef } from 'react'
-import UploadForm from '../../component/Upload/main'
+import CreateGroup from '../../component/CreateGroup/main'
 function UploadPage() {
 
     const renderLis = (lis) => {
@@ -14,8 +13,8 @@ function UploadPage() {
                 <div className={style.content}>
                     <main>
                         <div className={style.chartbox} >
-                          <UploadForm/>
-                
+                            <CreateGroup />
+
                         </div>
                     </main>
                 </div>

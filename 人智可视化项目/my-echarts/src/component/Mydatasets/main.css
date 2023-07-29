@@ -1,0 +1,53 @@
+.ant-table-tbody {
+    height: 200px;
+    overflow: auto;
+}
+
+.Paging1 .ant-table-tbody {
+    overflow: scroll;
+    background-color: #fff;
+    height: 190px;
+}
+
+.Paging1 .ant-table::-webkit-scrollbar {
+    display: none;
+}
+
+/* Table */
+
+.Paging1 .ant-table-pagination {
+    width: 100%;
+}
+
+.Paging1 .ant-spin-container {
+    margin-right: 60px;
+    height: 40PX;
+    background-color: #fff;
+
+}
+
+.Paging1 .ant-table {
+    width: 1200px;
+    padding-left: 5px;
+    overflow: scroll;
+    background-color: #fff;
+
+}
+
+.Paging1 .ant-table::-webkit-scrollbar {
+    display: none;
+}
+
+.Paging1 table {
+    background-color: #fff;
+}
+
+.Paging1 .ant-spin-container {
+    transform: scale(0.8, 0.8);
+    margin-top: -20px;
+}
+
+.Paging1 .ant-table-tbody {
+    height: 200px;
+    overflow: scroll;
+}

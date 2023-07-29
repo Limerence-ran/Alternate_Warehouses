@@ -1,0 +1,75 @@
+.container {
+    width: 800px;
+    margin: 0 20px  ;
+    /* background-color: #cb4e4e; */
+    border-radius: 12px;
+    height: 200px;
+}
+.content {
+  
+    position: relative;
+    width: 84%;
+    left: 220px;
+    height: 639px;
+    margin-top: 11px;
+    /* background-color: #fbb0b0; */
+    transition: all .3s ease;
+
+}
+
+main {
+
+    min-width: 600px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 24px 20px 20px 20px;
+    height: 600px;
+    /* background-color: #27943f; */
+}
+.formstyle {
+    background-color: #f5f7fa;
+    /* padding: 20px; */
+    border-radius: 6px;
+    height: 300px;
+}
+
+.inputstyle {
+    width: 100%;
+    border: none;
+    /* height: 200px; */
+    background-color: #f7eded;
+}
+
+.round-radio-button {
+    border-radius: 50%;
+    width: 80px;
+    /* height: 80px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+}
+
+.textareastyle {
+    width: 100%;
+    background-color: #f9f0f0;
+}
+
+.SubmitButton {
+    width: 180PX;
+   background-color: #8c54d0;
+}
+
+.success-modal-style {
+    text-align: center;
+    font-size: 18px;
+}
+
+@media (max-width: 576px) {
+    .round-radio-button {
+        width: 60px;
+        height: 60px;
+        font-size: 14px;
+    }
+}

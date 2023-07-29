@@ -34,7 +34,7 @@
     left: calc(100px - 12px);
 }
 
-.checkbox.cbx input {
+.checkbox .cbx input {
     position: absolute;
     top: 0;
     left: 0;
@@ -44,7 +44,7 @@
     border-radius: 50%;
 }
 
-.checkbox.cbx label {
+.checkbox .cbx label {
     width: 24px;
     height: 24px;
     background: none;
