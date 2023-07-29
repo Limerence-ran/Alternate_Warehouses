@@ -4,6 +4,8 @@
     /* background-color: #a73434; */
     /* margin: 0 auto; */
 }
+
+
 .content {
     top: 64px;
     padding-top: 30pxpx;
@@ -134,4 +136,10 @@ button {
     color: aliceblue;
     border-radius: 8px;
     width: 50px;
+}
+
+.swap{
+    position: fixed;
+    width: 100%;
+    
 }

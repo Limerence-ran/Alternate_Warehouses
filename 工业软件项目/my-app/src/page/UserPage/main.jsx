@@ -1,42 +1,35 @@
-import Header from '../../component/Header/main'
-import { UserOutlined, UploadOutlined, ManOutlined } from '@ant-design/icons'
-import img from '../../assets/images/3.jpg'
+
+import { UserOutlined, UploadOutlined, ManOutlined, AppstoreOutlined, ContainerOutlined } from '@ant-design/icons'
 import style from './main.module.css'
-import Software from './software'
+import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
+import routes from '../../router/router'
 
 const User = () => {
     return (
         <>
-          <div className={style.body}>
-                <Header />
+            <div className={style.body}>
+                {/* <Header /> */}
                 <div className={style.box}>
                     <div className={style.content}>
                         <div className={style.left}>
                             <UserOutlined />
-                            <form>
-                                <h4>用户名：<i>123456789</i></h4>
-                                <h4>性别：<i><ManOutlined /></i></h4>
-                                <h4>所在地区：<i>广东省广州市</i></h4>
-                                <h4>个人介绍：<i>暂无</i></h4>
-                            </form>
+
+                            <Link to={"/MyApp"}> <div className={style.leftbox}><AppstoreOutlined /> <span>已购买的软件</span></div></Link>
+                            <Link to={"/UploadApp"}>  <div className={style.leftbox}><UploadOutlined /><span>已下载的软件</span></div></Link>
+                            <Link to={"/UserInfor"}> <div className={style.leftbox}><ContainerOutlined /><span>用户信息</span></div></Link>
                         </div>
                         <div className={style.right}>
-                            <div className={style.title}>
-                                <span>已购买的软件</span>
-                            </div>
-                            <Software/>
-                            <Software/>
-                            <Software/>
+                            <Routes>
+                                {routes.map((route, index) => (
+                                    <Route key={index} path={route.path} element={route.element} />
+                                ))}
+                            </Routes>
                         </div>
-                    
-                       
-                            
-                       
+                    </div>
                 </div>
-                </div>
-          </div>
+            </div>
         </>
 
-            )
- }
- export default User
+    )
+}
+export default User

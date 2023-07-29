@@ -1,0 +1,21 @@
+
+import style from './main.module.css'
+import Software from './software'
+
+const MyApp = () => {
+    return (
+        <>
+            <div className={style.title}>
+                <span>已购买的软件</span>
+            </div>
+            <Software />
+            <Software />
+            <Software />
+            <Software />
+            <Software />
+            <Software />
+        </>
+
+    )
+}
+export default MyApp

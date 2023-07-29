@@ -1,104 +1,31 @@
 
 import style from './main.module.css'
 import Slider from '../../component/Slider/main'
-import { FieldBinaryOutlined } from '@ant-design/icons'
-import { useState,useEffect, useRef } from 'react'
-import Chart2 from '../../component/Chart2/main'
-function Chartdata(){
-    const box = useRef(null)
-    const [which,setWhich] =useState(0)
-    // let which = 0
-    const IsChart = (index) => {
-     
-       setWhich(index)
+import Header from '../../component/Header/main'
+import React, { useState, useEffect, useRef } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
+import routes from '../../router/router'
 
-    }
-    console.log(which)
-
-
+function Chartdata() {
     const renderLis = (lis) => {
-        // console.log(lis)
     }
-    return(
+    return (
         <>
-           <div className={style.Chartbox}>
+            <div className={style.Chartbox}>
+                <Header />
                 <Slider onLiElements={renderLis} />
-                <div className={style.content}>
-                    <div className={style.header}>
-                        <ul className={style.title}>
-                            <li><button className={style.btnheader} onClick={() => IsChart(0)}>All datasets</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(1)}>All datasets</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(2)}>All datasets</button></li>
+                <div className={style.swap}>
+                    {routes.map((route, index) => (
+                        <Link key={index} to={route.path}><button>{index}</button></Link>
+                    ))}
 
-                        </ul>
-                    </div>
-                    <main>
-                        <div className={style.body}>
-                            <div className={style.chartbox} >
-                                <div className={style.box} ref={box}>
-                                    {which === 0 ? <div className={style.chart} >1</div>
-                                        : which === 1 ? <Chart2/>
-                                            : <div className={style.chart}>3</div>}
-
-                                </div>
-                                <div className={style.chartbuttom}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <th>className</th>
-                                                <th>className</th>
-                                                <th>className</th>
-                                                <th>className</th>
-                                                <th></th>
-
-                                            </tr>
-                                            <tr>
-                                                <td><FieldBinaryOutlined /></td>
-                                                <td>Outlined </td>
-                                                <td>Outlined </td>
-                                                <td>100</td>
-                                                <td><button>Get</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><FieldBinaryOutlined /></td>
-                                                <td>Outlined </td>
-                                                <td>Outlined </td>
-                                                <td>100</td>
-                                                <td><button>Get</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><FieldBinaryOutlined /></td>
-                                                <td>Outlined </td>
-                                                <td>Outlined </td>
-                                                <td>100</td>
-                                                <td><button>Get</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><FieldBinaryOutlined /></td>
-                                                <td>Outlined </td>
-                                                <td>Outlined </td>
-                                                <td>100</td>
-                                                <td><button>Get</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td><FieldBinaryOutlined /></td>
-                                                <td>Outlined </td>
-                                                <td>Outlined </td>
-                                                <td>100</td>
-                                                <td><button>Get</button></td>
-                                            </tr>
-                                        </tbody>
-
-                                    </table>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </main>
                 </div>
-           </div>
-        </>
+                <Routes>
+                    {routes.map((route, index) => (
+                        <Route key={index} path={route.path} element={route.element} />
+                    ))}
+                </Routes>
+            </div></>
     )
 }
 export default Chartdata

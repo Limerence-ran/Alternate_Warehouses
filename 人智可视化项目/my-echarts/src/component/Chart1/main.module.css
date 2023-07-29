@@ -1,0 +1,82 @@
+.content {
+    /* top: 64px; */
+  
+    position: relative;
+    width: 84%;
+    left: 220px;
+    height: 639px;
+    margin-top: 11px;
+    background-color: #fbb0b0;
+    transition: all .3s ease;
+
+}
+
+main {
+
+    min-width: 600px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 24px 20px 20px 20px;
+    height: 600px;
+    /* background-color: #27943f; */
+}
+
+.header {
+    text-align: center;
+    font-size: 14px;
+    height: 30px;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chartbox {
+    width: 100%;
+    height: 100%;
+}
+
+
+.chart {
+    width: 600px;
+    height: 300px;
+    background-color: #8bd8b5;
+    margin: 0px auto;
+}
+
+.selectbtn {
+    height: 60px;
+    width: 350px;
+    /* background-color: #964747; */
+    text-align: center;
+    font-size: 16px;
+    line-height: 16px;
+    margin-left: 460px;
+
+}
+
+.selectbtn input {
+    margin: 25px 0 10px 20px;
+}
+
+.selectbtn Radio {
+    width: 20px;
+    margin-right: 60px;
+}
+
+.chartbox .btn {
+    margin-left: 500px;
+}
+
+.chartbox .btn button {
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 30px;
+    height: 30px;
+    background-color: #76abd9;
+    border: none;
+}
+
+.chartbox .btn button:hover {
+    background-color: #3a86b9;
+}
