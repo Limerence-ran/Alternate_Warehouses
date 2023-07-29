@@ -1,13 +1,7 @@
 .content {
-    /* top: 64px; */
-   
+
     position: relative;
-    /* width: calc(100%-260px); */
-    /* min-width: 600px;
-    max-width: 1200px; */
     width: 84%;
-    /* margin: 0 auto; */
-    /* width: 100%; */
     left: 220px;
     height: 639px;
     margin-top: 11px;

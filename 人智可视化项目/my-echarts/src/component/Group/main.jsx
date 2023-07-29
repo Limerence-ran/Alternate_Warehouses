@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import style from './main.module.css';
 
-import Page from '../PageList/main'
+import Groupshow from './Groupshow/main'
 
 function Group() {
 
     return (
         <>
             <div className={style.content}>
-                <Page className={style.paging} />
+                <Groupshow className={style.paging} />
             </div>
         </>
     );

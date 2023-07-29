@@ -1,92 +1,36 @@
 import style from './main.module.css'
 import { FieldBinaryOutlined } from '@ant-design/icons'
 import { useState, useEffect, useRef } from 'react'
+import Alldatasets from '../Alldatasets/main'
+import Mydatasets from '../Mydatasets/main'
+import Aboutme from '../Aboutme/main'
+import './main.css'
 
-function Chart4(){
+function Chart4() {
     const box = useRef(null)
     const [which, setWhich] = useState(0)
     const IsChart = (index) => {
-
         setWhich(index)
-
     }
     console.log(which)
 
-    return(
+    return (
         <>
             <div className={style.content}>
                 <div className={style.header}>
                     <ul className={style.title}>
                         <li><button className={style.btnheader} onClick={() => IsChart(0)}>All datasets</button></li>
-                        <li><button className={style.btnheader} onClick={() => IsChart(1)}>All datasets</button></li>
-                        <li><button className={style.btnheader} onClick={() => IsChart(2)}>All datasets</button></li>
+                        <li><button className={style.btnheader} onClick={() => IsChart(1)}>Datasets I link to</button></li>
+                        <li><button className={style.btnheader} onClick={() => IsChart(2)}>about</button></li>
 
                     </ul>
                 </div>
-                <main>
-                    <div className={style.body}>
-                        <div className={style.chartbox} >
-                            <div className={style.box} ref={box}>
-                                {which === 0 ? <div className={style.chart} >1</div>
-                                    : which === 1 ? <div className={style.chart} >2</div>
-                                        : <div className={style.chart}>3</div>}
-
-                            </div>
-                            <div className={style.chartbuttom}>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>className</th>
-                                            <th>className</th>
-                                            <th>className</th>
-                                            <th>className</th>
-                                            <th></th>
-
-                                        </tr>
-                                        <tr>
-                                            <td><FieldBinaryOutlined /></td>
-                                            <td>Outlined </td>
-                                            <td>Outlined </td>
-                                            <td>100</td>
-                                            <td><button>Get</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><FieldBinaryOutlined /></td>
-                                            <td>Outlined </td>
-                                            <td>Outlined </td>
-                                            <td>100</td>
-                                            <td><button>Get</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><FieldBinaryOutlined /></td>
-                                            <td>Outlined </td>
-                                            <td>Outlined </td>
-                                            <td>100</td>
-                                            <td><button>Get</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><FieldBinaryOutlined /></td>
-                                            <td>Outlined </td>
-                                            <td>Outlined </td>
-                                            <td>100</td>
-                                            <td><button>Get</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><FieldBinaryOutlined /></td>
-                                            <td>Outlined </td>
-                                            <td>Outlined </td>
-                                            <td>100</td>
-                                            <td><button>Get</button></td>
-                                        </tr>
-                                    </tbody>
-
-                                </table>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </main>
+                <div ref={box}>
+                    {which === 0 ? <Alldatasets />
+                        : which === 1 ? < Mydatasets />
+                            : <Aboutme />}
+                </div>
+        
             </div>
         </>
     )

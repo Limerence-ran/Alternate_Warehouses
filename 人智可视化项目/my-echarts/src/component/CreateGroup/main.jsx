@@ -25,7 +25,7 @@ const CreateGroup = () => {
     return (
 
         <>
-        <div className={style.content}>
+        <div className={style.content} id='CreateGroup'>
                     <main>
                         <div className={style.chartbox} >
                         <div className={style.container}>

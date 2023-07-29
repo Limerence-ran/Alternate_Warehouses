@@ -1,0 +1,9 @@
+.img{
+    width: 250px;
+    height: 200px;
+}
+.imgtext{
+display: flex;
+flex-direction: column;
+align-items: center;
+}

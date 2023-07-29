@@ -1,0 +1,136 @@
+.content {
+
+    position: relative;
+    width: 84%;
+    left: 220px;
+    height: 639px;
+    margin-top: 11px;
+    background-color: #fff;
+    transition: all .3s ease;
+    /* background-color: #9c5d5d; */
+    /* position: fixed; */
+}
+
+main {
+    min-width: 600px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 24px 20px 20px 20px;
+    height: 600px;
+    /* background-color: #27943f; */
+}
+
+.title {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 30px;
+
+    height: 40px;
+    /* background-color: #fff; */
+    width: 100%;
+
+
+}
+
+.title li {
+    width: 100px;
+    margin-left: 120px;
+}
+
+.body {
+    /* display: flex; */
+    align-items: center;
+    font-size: 22px;
+    font-weight: 500;
+    color: #2c323f;
+    /* margin-bottom: 5px; */
+    /* background-color: aqua; */
+    width: 100%;
+    height: 570px;
+}
+
+
+.btnheader {
+    width: 100px;
+    height: 80%;
+    margin-top: 20px;
+    background-color: #f7f5f5;
+    color: #2c323f;
+    border: none;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.chartbox {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    /* align-items: center; */
+
+}
+
+.box {
+    width: 100%;
+    height: 250px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.chart {
+    width: 500px;
+    height: 250px;
+    background-color: #8bd8b5;
+    margin: 10px auto;
+}
+
+.chartbuttom {
+    height: 200px;
+    width: 80%;
+    /* background-color: #da5050; */
+    margin: 30px auto;
+}
+
+
+
+table {
+    color: #333;
+    width: 100%;
+    height: 260px;
+    margin-bottom: .75rem;
+    border-collapse: collapse;
+    background-color: #f2ebeb;
+    /* position: fixed;  */
+}
+
+tr,
+td,
+th {
+    /* width: 100px; */
+    height: 20px;
+    padding: 8px;
+    text-align: center;
+    border-right: 1px solid #a7a0a0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+    font-size: 14px;
+}
+button {
+    background-color: #3f37b7;
+    color: aliceblue;
+    border-radius: 8px;
+    width: 50px;
+}
+
+
+/* Table */
+.div {
+    width: 100%
+}
+
+.get {
+    width: 60px;
+    font-size: 12px;
+}

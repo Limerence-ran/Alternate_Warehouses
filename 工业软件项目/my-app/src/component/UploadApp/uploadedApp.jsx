@@ -13,7 +13,7 @@ const UploadedApp = () => {
                             <h1>抖音</h1>
                             <h4>记录美好生活</h4>
                         </div>
-
+                   <button className={style.updatebtn}>更新</button>
                     </div>
                     {/* <div className={style.appright}>
                         <div className={style.timer}>

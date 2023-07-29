@@ -41,3 +41,17 @@
 .text{
    margin-left: 30px;
 }
+
+.updatebtn{
+ width: 100px;
+ border-radius: 8px;
+ color: #000;
+ background-color: #65b6dc;
+ border: none;
+ margin-left: 110px;
+}
+.updatebtn:hover{
+    background-color: #397097;
+    color: #fff;
+
+}

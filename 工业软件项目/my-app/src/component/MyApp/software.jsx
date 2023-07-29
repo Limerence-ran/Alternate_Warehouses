@@ -41,9 +41,9 @@ const Software = () => {
                                     <option>续费两年</option>
                                 </select>
                             </button>
-                            < button className={style.btnright}>
+                            {/* < button className={style.btnright}>
                                 更新
-                            </ button>
+                            </ button> */}
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@ const Software = () => {
                                         <td>{data.id}</td>
                                         <td>{data.text}</td>
                                         <td>{data.time}</td>
-                                        <td><a href="https://example.com">{data.address}</a></td>
+                                        <td><a href={data.address}>下载</a></td>
                                     </tr>
                                 ))}   
                             </tbody>

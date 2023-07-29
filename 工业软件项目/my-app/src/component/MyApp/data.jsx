@@ -3,7 +3,7 @@
 const datas = [
     {
         id:"1.0.0",
-        text:"这是版本1.0.0的介绍",
+        text:"这是版本1.00",
         time:"2023-07-28",
         address:"https://example.com"
     },

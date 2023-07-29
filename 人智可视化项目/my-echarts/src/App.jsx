@@ -14,6 +14,12 @@ import Chart3 from './component/Chart3/main'
 import Chart4 from './component/Chart4/main'
 import Header from '../src/component/Header/main'
 import CreateGroup from './component/CreateGroup/main'
+import Alldatasets from './component/Alldatasets/main'
+import Mydatasets from './component/Mydatasets/main'
+import Aboutme from './component/Aboutme/main'
+import Chart5 from './component/Chart5/main'
+import Chart6 from './component/Chart6/main'
+import Vedio from './component/Vedio/main'
 
 
 
@@ -25,15 +31,21 @@ function App() {
       {/* <Chartdata /> */}
       {/* <UploadPage/> */}
 
+      {/* < Alldatasets/> */}
+      {/* <Mydatasets/> */}
+      {/* <Aboutme/> */}
       {/* <Group /> */}
       {/* <CreateGroup /> */}
       {/* <Slider/> */}
       {/* <Chart1/> */}
       {/* <Chart2/> */}
       {/* <Chart3/> */}
-      {/* <Chart4/> */}
+      {/* <Chart4 /> */}
       {/* <Header/> */}
       {/* <Cancel/> */}
+      {/* <Chart5/> */}
+      {/* <Chart6/> */}
+      {/* <Vedio /> */}
     </>
   );
 }

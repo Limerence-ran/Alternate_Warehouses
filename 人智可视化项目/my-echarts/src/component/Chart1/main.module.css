@@ -6,7 +6,9 @@
     left: 220px;
     height: 639px;
     margin-top: 11px;
-    background-color: #fbb0b0;
+    background-color: rgb(247,
+        249,
+        255);
     transition: all .3s ease;
 
 }
@@ -40,8 +42,11 @@ main {
 .chart {
     width: 600px;
     height: 300px;
-    background-color: #8bd8b5;
+    background-color: rgb(255,
+        255,
+        255);
     margin: 0px auto;
+    text-align: center;
 }
 
 .selectbtn {
@@ -56,7 +61,7 @@ main {
 }
 
 .selectbtn input {
-    margin: 25px 0 10px 20px;
+    margin: 25px 0 10px 10px;
 }
 
 .selectbtn Radio {
@@ -69,11 +74,13 @@ main {
 }
 
 .chartbox .btn button {
-    width: 120px;
+    width: 150px;
     margin-top: 10px;
     margin-left: 30px;
     height: 30px;
-    background-color: #76abd9;
+    background-color: rgb(60,
+        123,
+        255);
     border: none;
 }
 
