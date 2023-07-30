@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./main.module.css";
-import { Pagination, message } from "antd";
+import axios from "axios";
+import { message } from "antd";
+import { Pagination } from "antd";
 import {
     BrowserRouter as Router,
     Routes,
@@ -9,28 +11,16 @@ import {
     Outlet,
     useRoutes,
 } from "react-router-dom";
-import axios from "axios";
 
-export default function CheckUpdate(props) {
+export default function HomeBody(props) {
     const [currentPage, setCurrentPage] = useState("1");
     const [databox, setDatabox] = useState([]);
     const PageSize = "6";
 
     useEffect(() => {
-        const authorizationToken = localStorage.getItem("token"); // 从本地存储中获取授权 token
-
-        const currentPage = 1;
-        const pageSize = 6;
         axios
-
             .get(
-                `http://39.98.41.126:31132/selectProducts/${currentPage}/${PageSize}`,
-                {
-                    headers: {
-                        Authorization: authorizationToken, // 使用授权的 token
-                        "Content-Type": "application/json",
-                    },
-                }
+                `http://39.98.41.126:31132/selectProducts/${currentPage}/${PageSize}`
             )
             .then((response) => {
                 const { code, msg, data } = response;
@@ -68,17 +58,17 @@ export default function CheckUpdate(props) {
                                 <a href="#" title="nice-book">
                                     <div className={styles.panel_detail}>
                                         <div className={styles.bookface_img}>
-                                            <img src={item.picture} alt="" />
+                                            <img src={databox.picture} alt="" />
                                         </div>
                                         <span className={styles.book_price}>
                                             <i>Hot soft</i>
                                             {/* <!-- 收藏量 --> */}
                                         </span>
                                         <div className={styles.book_brief}>
-                                            <h3>{item.name}</h3>
+                                            <h3>{databox.name}</h3>
                                             <div className={styles.book_quote}>
                                                 {/* <!-- 描述 --> */}
-                                                <p>{item.d_version}</p>
+                                                <p>{databox.description}</p>
                                             </div>
                                         </div>
                                         <div className={styles.pay}>
@@ -113,7 +103,7 @@ export default function CheckUpdate(props) {
                                                             class="selected"
                                                         ></path>
                                                     </svg>
-                                                    {item.n_version}
+                                                    {databox.price}
                                                     <div
                                                         className={styles.icon}
                                                     >
@@ -147,9 +137,10 @@ export default function CheckUpdate(props) {
                 <Pagination
                     style={{ height: "500px", position: "bottomLeft" }}
                     total={85}
-                    // showTotal={(total) => `Total ${total} items`}
+                    showTotal={(total) => `Total ${total} items`}
                     defaultPageSize={20}
                     defaultCurrent={1}
+                    onChange={handlePageChange}
                 />
                 <br />
             </div>
