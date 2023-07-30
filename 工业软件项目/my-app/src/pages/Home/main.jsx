@@ -11,6 +11,7 @@ export default function Home() {
 
     return (
         <div>
+            <HomeHead/>
             <div className={styles.carous}>
                 <Carous />
             </div>

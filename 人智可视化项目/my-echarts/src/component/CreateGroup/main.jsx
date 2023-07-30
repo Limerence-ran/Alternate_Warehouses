@@ -26,6 +26,7 @@ const CreateGroup = () => {
         setIsSuccessModalVisible(false);
     };
 
+
     return (
 
         <>
@@ -69,7 +70,7 @@ const CreateGroup = () => {
                                 <Form.Item
                                     label="Dimension parameters "
                                     name="parameters"
-                                    // rules={[{ required: true, message: 'Please input parameters' }]}
+                           
                                 >
         
                                     <span>
@@ -123,33 +124,15 @@ const CreateGroup = () => {
                                 title="提交成功"
                                 centered
                                 className="success-modal-style"
-                            >
-                                <p>submit success！</p>
+                        >                         
+                           <p>submit success！</p>
                             </Modal>
-                        </div>
-                
+                        </div>            
                         </div>
                     </main>
                 </div>
                 </>
-       
     );
 };
-
 export default CreateGroup;
 
-
-{/* <Radio.Group>
-                                        <Radio value="purpose1" className="round-radio-button">
-                                            technical exchange
-                                        </Radio>
-                                        <Radio value="purpose2" className="round-radio-button">
-                                            learning and discussion
-                                        </Radio>
-                                        <Radio value="purpose3" className="round-radio-button">
-                                            learning and discussion
-                                        </Radio>
-                                        <Radio value="purpose4" className="round-radio-button">
-                                            other
-                                        </Radio>
-                                    </Radio.Group> */}

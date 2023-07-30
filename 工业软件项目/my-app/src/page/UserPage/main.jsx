@@ -2,11 +2,12 @@
 import { UserOutlined, UploadOutlined, ManOutlined, AppstoreOutlined, ContainerOutlined } from '@ant-design/icons'
 import style from './main.module.css'
 import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
-import routes from '../../router/router'
+import HomeHead from '../../components/home-head/main';
 
 const UserPage = () => {
     return (
         <>
+        <HomeHead/>
             <div className={style.body}>
                 {/* <Header /> */}
                 <div className={style.box}>

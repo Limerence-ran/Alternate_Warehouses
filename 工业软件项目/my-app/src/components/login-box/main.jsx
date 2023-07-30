@@ -65,8 +65,10 @@ const AuthForm = () => {
     };
 
     const handleSubmit = (e) => {
+       
         e.preventDefault();
         if (isLoginMode) {
+           
             if (!email) {
                 showMessage("请输入邮箱", "error");
                 return;
@@ -75,6 +77,7 @@ const AuthForm = () => {
                 showMessage("请输入密码", "error");
                 return;
             }
+            
             handleLogin();
         } else if (isForgotPasswordMode) {
             if (!email) {
@@ -128,7 +131,7 @@ const AuthForm = () => {
         axios
             .post(
                 //请求地址
-                "http://39.98.41.126:31130/users/register",
+                "http://39.98.41.126:31135/users/register",
                 {
                     emailCode: emailCode,
                     password: password,
@@ -170,9 +173,10 @@ const AuthForm = () => {
 
     //登录时的ajax请求
     const handleLogin = () => {
+        console.log(666)
         axios
             .post(
-                "http://example.com/api/login",
+                "http://39.98.41.126:31135//users/login",
                 {
                     email: email,
                     password: password,
@@ -180,15 +184,17 @@ const AuthForm = () => {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                    },
+                    }
                 }
-            )
+        ) 
             .then((response) => {
                 console.log("执行登录操作");
                 const { code, msg } = response.data;
+               
                 if (code === 1001) {
                     // 登录成功
                     showMessage(msg, "success");
+                    navigate('/Home')
                     // 在这里处理成功的逻辑
                     resetForm();
                 } else if (code === 1000) {
@@ -216,7 +222,7 @@ const AuthForm = () => {
     const handleForgotPassword = () => {
         axios
             .post(
-                "http://example.com/api/users/updatePassword",
+                "http://39.98.41.126:31135/users/updatePassword",
                 {
                     code: emailCode,
                     password: password,
@@ -259,8 +265,8 @@ const AuthForm = () => {
     //处理发送验证码的ajax请求
     const handleEmailSummit = () => {
         axios
-            .put(
-                "http://example.com/api/users/send-code",
+            .post(
+                "http://39.98.41.126:31135/users/send-code",
                 {
                     email: email,
                 },
@@ -521,14 +527,12 @@ const AuthForm = () => {
                                 {!emailCodeSent && (
                                     <button
                                         type="button"
-                                        className={`${
-                                            styles.sendEmailCodeButton
-                                        } ${
-                                            isSendingEmailCode ||
-                                            remainingTime < 60
+                                        className={`${styles.sendEmailCodeButton
+                                            } ${isSendingEmailCode ||
+                                                remainingTime < 60
                                                 ? styles.sendEmailCodeButtonDisabled
                                                 : styles.sendEmailCodeButtonActive
-                                        }`}
+                                            }`}
                                         disabled={
                                             !isEmailValid ||
                                             isSendingEmailCode ||
@@ -626,14 +630,12 @@ const AuthForm = () => {
                                 {!emailCodeSent && (
                                     <button
                                         type="button"
-                                        className={`${
-                                            styles.sendEmailCodeButton
-                                        } ${
-                                            isSendingEmailCode ||
-                                            remainingTime < 60
+                                        className={`${styles.sendEmailCodeButton
+                                            } ${isSendingEmailCode ||
+                                                remainingTime < 60
                                                 ? styles.sendEmailCodeButtonDisabled
                                                 : styles.sendEmailCodeButtonActive
-                                        }`}
+                                            }`}
                                         disabled={
                                             !isEmailValid ||
                                             isSendingEmailCode ||

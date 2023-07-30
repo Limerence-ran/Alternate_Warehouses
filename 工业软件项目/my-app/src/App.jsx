@@ -27,21 +27,23 @@ function App() {
     return (
         <>
             <div>
-                <HomeHead></HomeHead>
-               
+                {/* <HomeHead></HomeHead> */}
+              
                 {element}
                 {/* 完整页面 */}
                 {/* <Login /> */}
                 {/* <UserPage/> */}
                 {/* <Manageuser /> */}
                 {/* <Mysoftware/> */}
-
+                {/* < Update/> */}
+                {/* <CheckUpdate /> */}
+                 {/* <Home/> */}
               </div>
               </>
     )}
 
 
-
+export default App
 
 
 

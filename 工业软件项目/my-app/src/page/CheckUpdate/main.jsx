@@ -2,10 +2,12 @@ import React from "react";
 import styles from "./main.module.css";
 import { Pagination } from "antd";
 import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
+import HomeHead from "../../components/home-head/main";
 
 export default function CheckUpdate(props) {
     return (
         <div>
+            <HomeHead/>
             <div className={styles.home}>
                 <div className={styles.hometitle}>  <h1>以下软件待更新</h1></div>
                 <div

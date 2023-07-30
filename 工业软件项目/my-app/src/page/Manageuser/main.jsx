@@ -7,6 +7,7 @@ import style from './main.module.css';
 import img from '../../assets/user.png';
 import SwitchButton from '../../component/UserInfor/btn/';
 import users from './userdata/userdata';
+import HomeHead from '../../components/home-head/main';
 
 
 function Manageuser() {
@@ -38,7 +39,7 @@ function Manageuser() {
 
     return (
         <>
-            {/* <Header /> */}
+            <HomeHead/>
             <div className={style.managebox}>
                 <div className={style.users}>
                     <div className={style.usertitle}>

@@ -15,12 +15,14 @@ import App2 from '../component/App2/main'
 import App3 from '../component/App3/main'
 import Mysoftware from '../page/Mysoftware/main'
 import Login from '../pages/Login/main'
+// import MainContent from '../page/MainContent/main'
 
 export default [
     {
-        path: '*',
+        path: '',
         element: <Login />
     },
+   
     {
         path: '/Home',
         element: <Home />
