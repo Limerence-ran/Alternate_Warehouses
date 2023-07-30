@@ -1,0 +1,80 @@
+.tabbody {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 1080px;
+    max-width: 1980px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 0.7;
+}
+.tablogo {
+    position: absolute;
+    width: 400px;
+    height: 51px;
+    top: 0px;
+    left: 100px;
+    font-family: Microsoft YaHei;
+    font-size: 25px;
+    font-weight: 900;
+    line-height: 63px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgb(129 99 247);
+}
+.tabimg {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    height: 65px;
+    width: 65px;
+    background-image: url(../../assets/qg-logo.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.username {
+    font-family: Microsoft YaHei;
+    font-size: 15px;
+    font-weight: 550;
+    line-height: 63px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-right: 20px;
+}
+.userid {
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    right: -295px;
+}
+.searchbox {
+  position: absolute;
+  top: 12px;
+  left: 600px;
+    width: 800px;
+    height: 50px;
+}
+
+.input {
+    max-width: 190px;
+    background-color: #f5f5f5;
+    color: #242424;
+    padding: 0.15rem 0.5rem;
+    min-height: 40px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    line-height: 1.15;
+    box-shadow: 0px 10px 20px -18px;
+}
+
+.input:focus {
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 4px 4px 2px 2px;
+}
+
+.input:hover {
+    outline: 1px solid lightgrey;
+}
