@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./main.module.css";
 import { message } from "antd";
+import axios from "axios";
 import {
     UserOutlined,
     UnlockOutlined,
@@ -113,20 +114,189 @@ const AuthForm = () => {
             handleRegister();
         }
     };
-    // 登陆注册重置业务执行
-    const handleLogin = () => {
-        console.log("执行登录操作");
-        resetForm();
-    };
 
-    const handleForgotPassword = () => {
-        console.log("执行忘记密码操作");
-        resetForm();
-    };
-
+    //注册时的ajax请求
     const handleRegister = () => {
-        console.log("执行注册操作");
-        resetForm();
+        console.log(
+            "执行注册操作",
+            username,
+            password,
+            email,
+            emailCode,
+            phone
+        );
+        axios
+            .post(
+                //请求地址
+                "http://39.98.41.126:31130/users/register",
+                {
+                    emailCode: emailCode,
+                    password: password,
+                    userName: username,
+                    email: email,
+                    phone: phone,
+                    power: 0,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((response) => {
+                console.log();
+                const { data, msg, code } = response.data;
+                if (code === 1001) {
+                    // 注册成功
+                    showMessage(msg, "success");
+                    const token = data;
+                    // 将 token 存储在本地存储中
+                    localStorage.setItem("token", token);
+                    resetForm();
+                } else if (code === 1002) {
+                    // 注册失败
+                    showMessage(msg, "error");
+                } else {
+                    showMessage(msg, "error");
+                    // 在这里处理其他错误情况的逻辑
+                }
+            })
+            .catch((error) => {
+                // 处理注册失败后的逻辑
+                showMessage("请求出错: " + error.message, "error");
+                console.error(error);
+            });
+    };
+
+    //登录时的ajax请求
+    const handleLogin = () => {
+        axios
+            .post(
+                "http://example.com/api/login",
+                {
+                    email: email,
+                    password: password,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((response) => {
+                console.log("执行登录操作");
+                const { code, msg } = response.data;
+                if (code === 1001) {
+                    // 登录成功
+                    showMessage(msg, "success");
+                    // 在这里处理成功的逻辑
+                    resetForm();
+                } else if (code === 1000) {
+                    // 请求格式错误
+                    showMessage(msg, "error");
+                    // 在这里处理请求格式错误的逻辑
+                } else if (code === 1002) {
+                    // 服务器异常或繁忙
+                    showMessage(msg, "error");
+                    // 在这里处理服务器异常或繁忙的逻辑
+                } else {
+                    // 其他错误
+                    showMessage("未知错误: " + msg, "error");
+                    // 在这里处理其他错误情况的逻辑
+                }
+            })
+            .catch((error) => {
+                console.log("请求出错", error);
+                // 在这里处理请求出错的逻辑
+                showMessage("请求出错: " + error.message, "error");
+            });
+    };
+
+    //忘记密码时的ajax操作
+    const handleForgotPassword = () => {
+        axios
+            .post(
+                "http://example.com/api/users/updatePassword",
+                {
+                    code: emailCode,
+                    password: password,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((response) => {
+                console.log("执行登录操作");
+                const { code, msg } = response;
+                if (code === 1001) {
+                    // 更新成功
+                    showMessage(msg, "success");
+                    // 在这里处理成功的逻辑
+                    resetForm();
+                } else if (code === 1000) {
+                    // 请求格式错误
+                    showMessage(msg, "error");
+                    // 在这里处理请求格式错误的逻辑
+                } else if (code === 1002) {
+                    // 服务器异常或繁忙
+                    showMessage(msg, "error");
+                    // 在这里处理服务器异常或繁忙的逻辑
+                } else {
+                    // 其他错误
+                    showMessage("未知错误: " + msg, "error");
+                    // 在这里处理其他错误情况的逻辑
+                }
+            })
+            .catch((error) => {
+                console.log("请求出错", error);
+                // 在这里处理请求出错的逻辑
+                showMessage("请求出错: " + error.message, "error");
+            });
+    };
+
+    //处理发送验证码的ajax请求
+    const handleEmailSummit = () => {
+        axios
+            .put(
+                "http://example.com/api/users/send-code",
+                {
+                    email: email,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((response) => {
+                console.log("执行登录操作");
+                const { code, msg } = response;
+                if (code === 1001) {
+                    // 更新成功
+                    showMessage(msg, "success");
+                    // 在这里处理成功的逻辑
+                    resetForm();
+                } else if (code === 1000) {
+                    // 请求格式错误
+                    showMessage(msg, "error");
+                    // 在这里处理请求格式错误的逻辑
+                } else if (code === 1002) {
+                    // 服务器异常或繁忙
+                    showMessage(msg, "error");
+                    // 在这里处理服务器异常或繁忙的逻辑
+                } else {
+                    // 其他错误
+                    showMessage("未知错误: " + msg, "error");
+                    // 在这里处理其他错误情况的逻辑
+                }
+            })
+            .catch((error) => {
+                console.log("请求出错", error);
+                // 在这里处理请求出错的逻辑
+                showMessage("请求出错: " + error.message, "error");
+            });
     };
 
     //表单格式判断
@@ -138,6 +308,7 @@ const AuthForm = () => {
 
     const handleSendEmailCode = () => {
         if (isEmailValid && !isSendingEmailCode && !emailCodeSent) {
+            handleEmailSummit();
             setIsSendingEmailCode(true);
             setRemainingTime(60);
             // 重置剩余时间为60秒
@@ -283,19 +454,6 @@ const AuthForm = () => {
                         </div>
 
                         <div className={styles.formGroup}>
-                            <SendOutlined></SendOutlined>
-                            <input
-                                placeholder="邮箱"
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={handleEmailChange}
-                                className={styles.formInput}
-                                required
-                            />
-                        </div>
-
-                        <div className={styles.formGroup}>
                             <UnlockOutlined />
                             <input
                                 placeholder="密码"
@@ -329,6 +487,19 @@ const AuthForm = () => {
                                 id="phone"
                                 value={phone}
                                 onChange={handlePhoneChange}
+                                className={styles.formInput}
+                                required
+                            />
+                        </div>
+
+                        <div className={styles.formGroup}>
+                            <SendOutlined></SendOutlined>
+                            <input
+                                placeholder="邮箱"
+                                type="email"
+                                id="email"
+                                value={email}
+                                onChange={handleEmailChange}
                                 className={styles.formInput}
                                 required
                             />
@@ -402,6 +573,32 @@ const AuthForm = () => {
                 <>
                     <form onSubmit={handleSubmit}>
                         <div className={styles.formGroup}>
+                            <UnlockOutlined />
+                            <input
+                                placeholder="新密码"
+                                type="password"
+                                id="password"
+                                value={password}
+                                onChange={handlePasswordChange}
+                                className={styles.formInput}
+                                required
+                            />
+                        </div>
+
+                        <div className={styles.formGroup}>
+                            <CheckOutlined />
+                            <input
+                                placeholder="确认密码"
+                                type="password"
+                                id="confirmPassword"
+                                value={confirmPassword}
+                                onChange={handleConfirmPasswordChange}
+                                className={styles.formInput}
+                                required
+                            />
+                        </div>
+
+                        <div className={styles.formGroup}>
                             <SendOutlined></SendOutlined>
                             <input
                                 placeholder="邮箱"
@@ -413,7 +610,45 @@ const AuthForm = () => {
                                 required
                             />
                         </div>
-
+                        <div className={styles.formGroup}>
+                            <div className={styles.emailCodeInputContainer}>
+                                <SafetyCertificateOutlined />
+                                <input
+                                    placeholder="邮箱验证"
+                                    type="text"
+                                    id="emailCode"
+                                    value={emailCode}
+                                    onChange={handleEmailCodeChange}
+                                    className={styles.emailCodeInput}
+                                    maxLength={4}
+                                    required
+                                />
+                                {!emailCodeSent && (
+                                    <button
+                                        type="button"
+                                        className={`${
+                                            styles.sendEmailCodeButton
+                                        } ${
+                                            isSendingEmailCode ||
+                                            remainingTime < 60
+                                                ? styles.sendEmailCodeButtonDisabled
+                                                : styles.sendEmailCodeButtonActive
+                                        }`}
+                                        disabled={
+                                            !isEmailValid ||
+                                            isSendingEmailCode ||
+                                            emailCodeSent ||
+                                            remainingTime < 60
+                                        }
+                                        onClick={handleSendEmailCode}
+                                    >
+                                        {isSendingEmailCode
+                                            ? `已发送 (${remainingTime}s)`
+                                            : "发送验证码"}
+                                    </button>
+                                )}
+                            </div>
+                        </div>
                         <button
                             type="submit"
                             className={styles.authButton}
