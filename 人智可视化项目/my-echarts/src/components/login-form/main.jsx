@@ -117,8 +117,9 @@ const LoginRegisterForm = () => {
             .then((response) => {
                 if (response.data.code === 1) {
                     // 登录成功
-                    const token = response.data.token; // 获取返回的token
+                    const token = response.data.data; // 获取返回的token
                     localStorage.setItem("token", token); // 将token存储在本地
+                    console.log(response.data)
                     resetForm();
                     navigate('/Chartdata');
                     showMessage(response.data.msg, "success");
