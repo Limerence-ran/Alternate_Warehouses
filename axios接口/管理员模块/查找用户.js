@@ -2,6 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 
 const findUser = (token) => {
+    const token = localStorage.getItem("token"); // 替换为授权的 token
     axios
         .post("http://example.com/api/users", {
             headers: {
@@ -32,7 +33,4 @@ const findUser = (token) => {
         });
 };
 
-// 使用示例
-const token = localStorage.getItem("token"); // 替换为授权的 token
 
-findUser(token);

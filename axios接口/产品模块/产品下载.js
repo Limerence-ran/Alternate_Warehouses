@@ -2,13 +2,13 @@ import axios from "axios";
 import { message } from "antd";
 
 const fetchData = (mapId, authorization) => {
-    const headers = {
-        Authorization: authorization,
-        "Content-Type": "application/json",
-    };
-
     axios
-        .get(`http://example.com/api/data/${mapId}`, { headers })
+        .get(`http://example.com/api/data/${mapId}`, null, {
+            headers: {
+                Authorization: authorization,
+                "Content-Type": "application/json",
+            },
+        })
         .then((response) => {
             const { code, msg, data } = response;
             switch (code) {

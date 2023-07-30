@@ -1,7 +1,10 @@
 import { message } from "antd";
 import axios from "axios";
 
-const findAllUsers = (token, currentPage, pageSize) => {
+const findAllUsers = () => {
+    const token = localStorage.getItem("token"); // 替换为授权的 token
+    const currentPage = 0; // 替换为实际的当前页码
+    const pageSize = 10; // 替换为实际的每页数量
     axios
         .get(`http://example.com/api/users/${currentPage}/${pageSize}`, {
             headers: {
@@ -26,10 +29,3 @@ const findAllUsers = (token, currentPage, pageSize) => {
             console.log("请求出错", error);
         });
 };
-
-// 使用示例
-const token = localStorage.getItem("token"); // 替换为授权的 token
-const currentPage = 0; // 替换为实际的当前页码
-const pageSize = 10; // 替换为实际的每页数量
-
-findAllUsers(token, currentPage, pageSize);

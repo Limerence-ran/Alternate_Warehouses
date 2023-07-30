@@ -29,5 +29,3 @@ const fetchData = () => {
         });
 };
 
-// 使用示例
-fetchData();
