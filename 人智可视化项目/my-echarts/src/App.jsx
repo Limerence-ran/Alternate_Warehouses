@@ -23,6 +23,7 @@ import Chart6 from './component/Chart6/main'
 import Vedio from './component/Vedio/main'
 import HomeTab from './components/home-top/main'
 import routes from '../src/router/router'
+import HotGroup from "./component/HotGroup/main";
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
       {/* <UploadPage/> */}
       {/* < HomeTab />
       < Slider /> */}
+      {/* <HotGroup/> */}
       {element}
       {/* < Alldatasets/>
       {/* <Mydatasets/> */}

@@ -8,13 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import Cancel from '../../Cancel/main'
 import axios from "axios";
 import { message } from "antd";
+import { Button, Space } from 'antd';
 
 
-const Groupshow = () => {
+const HotTable = () => {
     const [data, setData] = useState();
-    const [detail,setDatail] = useState('')
+    const [detail, setDatail] = useState('')
     const [loading, setLoading] = useState(false);
     const [iscancel, setIscancel] = useState(false);
+    const [disable, setDisable] = useState([])
     const [tableParams, setTableParams] = useState({
         pagination: {
             current: 1,
@@ -31,20 +33,21 @@ const Groupshow = () => {
         navigate('/Chartdata/Chart4');
     }
     const fetchData = () => {
-        const token = localStorage.getItem("token"); 
-        
-            
-        
-        setLoading(true); 
-        // `https://randomuser.me/groups`
-        // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`,{headers})
-        fetch(`http://39.98.41.126:31130/groups`,{headers:{
-            Authorization: token,
-        }})
+        const token = localStorage.getItem("token");
+        const headers = {
+            Authorization: `Bearer ${token}`,
+        };
+        setLoading(true);
+        fetch(`http://39.98.41.126:31130/groups/1/10`, { headers })
+            // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`, { headers })
             .then((res) => res.json())
-            .then((res) => {
-                console.log(res)
-                setData(res.data);
+
+            .then(res => {
+                let results = res.data.data
+                console.log(res.data.data)
+                setData(results);
+                let newArr = Array(10000).fill(false)
+                setDisable(newArr)
                 setLoading(false);
                 setTableParams({
                     ...tableParams,
@@ -57,7 +60,7 @@ const Groupshow = () => {
                 });
             });
     };
-      
+
     useEffect(() => {
         fetchData();
 
@@ -79,23 +82,63 @@ const Groupshow = () => {
 
 
     const handleDelete = (record) => {
-        const groupId = record.id;
+
+
+        // setDisable(!newArr[record.id])
         console.log("record:", record)
-        console.log("record:", record.id)
-        const name = record.groupName;
-        const updatedData = data.filter((item) => item.id!== record.id);
-        setData(updatedData);
+        console.log("record:", record.groupName)
+        const name = record.groupName
+        let arr = [...disable]
+        arr[record.id] = true
+        setDisable(arr)
+        // const updatedData = data.filter((item) => item.login.uuid !== record.login.uuid);
+        // setData(updatedData);
+        // disbandGroup(groupName);
+        // const disbandGroup = (groupName) => {
+        //     const token = localStorage.getItem("token"); // 从本地存储获取 token
+        //     axios
+        //         .delete(
+        //             "http://example.com/groups",
+        //             // 要上传的群组信息
+        //             {
+        //                 groupName: groupName
+        //             },
+        //             {
+        //                 headers: {
+        //                     Authorization: token, // 使用从本地存储中获取的 token
+        //                     "Content-Type": "application/json",
+        //                 },
+        //             }
+        //         )
+        //         .then((response) => {
+        //             const { code, msg, data } = response;
+
+        //             if (code === 1) {
+
+        //                 message.success(msg);
+        //             } else {
+
+        //                 message.error("解散失败: " + msg);
+        //             }
+        //         })
+        //         .catch((error) => {
+        //             message.error("请求出错");
+        //             console.log("请求出错", error);
+        //         });
+        // };
 
 
-      
-        const disbandGroup = (groupName) => {
+
+
+        const joinGroup = (groupName) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
-                .delete(
-                    "http://39.98.41.126:31130/groups/quit",
-                    // 要上传的群组信息
+                .post(
+                    "http://39.98.41.126:31130/groups/join",
+
                     {
-                        groupName: groupName
+
+                        groupName: groupName,
                     },
                     {
                         headers: {
@@ -106,13 +149,13 @@ const Groupshow = () => {
                 )
                 .then((response) => {
                     const { code, msg, data } = response;
+                    console.log(response)
+                    if (code === 1000) {
+                        message.error("加入失败: " + msg);
 
-                    if (code === 1) {
-
-                        message.success(msg);
                     } else {
-
-                        message.error("解散失败: " + msg);
+                        console.log("data:" + data)
+                        // 在这里处理成功的逻辑
                     }
                 })
                 .catch((error) => {
@@ -120,9 +163,15 @@ const Groupshow = () => {
                     console.log("请求出错", error);
                 });
         };
-        disbandGroup(name);
-
+        joinGroup(name);
     };
+
+
+
+
+
+
+
 
 
     const getRandomuserParams = (params) => ({
@@ -135,39 +184,37 @@ const Groupshow = () => {
         {
             title: 'Group Name',
             dataIndex: 'groupName',
-            render: (dataIndex) => (<li onClick={OnclickName}>{dataIndex}</li>),
         },
         {
             title: 'Group Type',
-            render: () => (<span>Publice</span>),
+            dataIndex: 'popularity',
         },
 
         {
-            title: 'datanum',
-            dataIndex: 'resourceQuantity',
+            title: 'Group Purpose',
+            dataIndex: 'purpose',
         },
         {
-            title: 'dimension',
+            title: 'dimensions',
             dataIndex: 'dimension',
         },
         {
-            title: 'Detail',
-            dataIndex: 'description',
-            render: (e) => <CaretRightOutlined onClick={()=>Cancelbox(e)} />,
+            title: 'group datasets',
+            dataIndex: 'resourceQuantity',
         },
         {
             title: 'Withdrawal',
             render: (e, record) => (
-                <button onClick={() => handleDelete(record)} className={style.withdrawal} > Withdrawal</button >
+                <Button disabled={disable[record.id]} onClick={() => handleDelete(record)} className={style.withdrawal} > Join</Button >
             )
         },
     ];
-  
+
     return (
         <><div className='Paging' >
             <Table
                 columns={columns}
-                rowKey={(record) => record.id}
+                // rowKey={(record) => record.login.uuid}
                 dataSource={data}
                 pagination={{
                     ...tableParams.pagination,
@@ -178,11 +225,11 @@ const Groupshow = () => {
             />
         </div>
             {
-                iscancel && <Cancel className={style.cancelContainer} value={detail}/>
+                iscancel && <Cancel className={style.cancelContainer} value={detail} />
             }
         </>
     );
 };
-export default Groupshow;
+export default HotTable;
 
 

@@ -8,6 +8,7 @@ import Chartdata from '../page/Chartdata/main'
 import Group from '../component/Group/main'
 import CreateGroup from '../component/CreateGroup/main'
 import Login from '../pages/Login/main'
+import HotGroup from '../component/HotGroup/main'
 
 export default [
     {
@@ -21,6 +22,10 @@ export default [
             {
                 path: 'Group',
                 element: < Group />
+            },
+            {
+                path: 'HotGroup',
+                element: < HotGroup />
             },
             {
                 path: 'Chart1',
