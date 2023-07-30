@@ -1,34 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-<<<<<<< HEAD
-// import GroupPage from "./page/GroupPage/main";
-// import Company from "./component/Company/main";
-// import Chartdata from "./page/Chartdata/main";
-// import Chartdata2 from "./page/Chartdata2/main";
-// import CancelPage from "./page/CancelPage/main";
-// import Slider from "./component/Slider/main";
-// import Page from "./component/Paging/main";
-// import Chart2 from "./component/Chart2/main";
-// import UploadForm from "./component/Upload/main";
-// import UploadPage from "../src/page/UploadPage/main";
-import Login from "./pages/Login/main";
-// import Group from "./component/Company/main";
 
-function App() {
-    return (
-        <>
-            <div>
-                <Login></Login>
-            </div>
-            {/* <GroupPage />  */}
-            {/* <Chartdata/>  */}
-            {/* <Chartdata2/>  */}
-            {/* <CancelPage/> */}
-            {/* <UploadForm /> */}
-            {/* <UploadPage/> */}
-        </>
-    );
-=======
 
 import Login from "./pages/Login/main";
 import Chartdata from './page/Chartdata/main'
@@ -50,14 +22,12 @@ import Chart5 from './component/Chart5/main'
 import Chart6 from './component/Chart6/main'
 import Vedio from './component/Vedio/main'
 
-
-
 function App() {
   return (
     <>
       {/* 完整页面 */}
       {/* <Login/> */}
-      {/* <Chartdata /> */}
+      <Chartdata />
       {/* <UploadPage/> */}
 
       {/* < Alldatasets/> */}
@@ -77,7 +47,6 @@ function App() {
       {/* <Vedio /> */}
     </>
   );
->>>>>>> b4857907f91f42719526ea8224698ddc3ce72e96
 }
 
 export default App;

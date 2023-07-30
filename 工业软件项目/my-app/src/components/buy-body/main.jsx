@@ -76,16 +76,16 @@ function PurchasePage() {
                         size="small"
                         style={{ marginRight: 16 }}
                     >
-                        {versions.map((version, index) => (
+                        {/* {versions.map((version, index) => (
                             <Step
                                 key={index}
                                 title={`版本号：${version.versionNumber}`}
                                 description={`发布时间：${version.releaseDate}`}
                             />
-                        ))}
+                        ))} */}
                     </Steps>
                     <div>
-                        {versions.map((version, index) => (
+                        {/* {versions.map((version, index) => (
                             <div key={index}>
                                 <Button
                                     type="primary"
@@ -97,7 +97,7 @@ function PurchasePage() {
                                 </Button>
                                 <br />
                             </div>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
                 <h3>购买方式：</h3>

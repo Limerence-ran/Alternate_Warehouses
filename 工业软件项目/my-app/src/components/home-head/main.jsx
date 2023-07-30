@@ -8,11 +8,20 @@ import {
     SettingOutlined,
     IdcardOutlined,
 } from "@ant-design/icons";
+// import { useNavigate } from 'react-router-dom';
+
+import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
+
+
 
 export default function HomeHead() {
     const [searchText, setSearchText] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    // const navigate = useNavigate();
 
+    // const Upload = ()=>{
+    //     navigate('/Update');
+    // }
     const handleInputChange = (event) => {
         const searchText = event.target.value;
         setSearchText(searchText);
@@ -138,54 +147,68 @@ export default function HomeHead() {
                 {/* <!-- 首页显示 --> */}
                 <div>
                     <ul className={styles.tabul}>
-                        <li className={styles.tabli}>
-                            <span className={styles.spanicon}>
-                                <HomeOutlined />
-                            </span>
-                            <span className={styles.switchtext}>
-                                <a href="#">首页</a>
-                            </span>
-                        </li>
-                        <li className={styles.tabli}>
-                            <span className={styles.spanicon}>
-                                <FileSearchOutlined />
-                            </span>
-                            <span className={styles.switchtext}>
-                                <a href="#">查看</a>
-                            </span>
-                        </li>
-                        <li className={styles.tabli}>
-                            <span className={styles.spanicon}>
-                                <CloudUploadOutlined />
-                            </span>
-                            <span className={styles.switchtext}>
-                                <a href="#">上传</a>
-                            </span>
-                        </li>
-                        <li className={styles.tabli}>
-                            <span className={styles.spanicon}>
-                                <BellOutlined />
-                            </span>
-                            <span className={styles.switchtext}>
-                                <a href="#">更新</a>
-                            </span>
-                        </li>
-                        <li className={styles.tabli}>
+                        <Link to={"/Home"}>
+                            <li className={styles.tabli}>
+                                <span className={styles.spanicon}>
+                                    <HomeOutlined />
+                                </span>
+                                <span className={styles.switchtext}>
+                                    <a href="#">首页</a>
+                                </span>
+                            </li>
+                        </Link>
+
+                        <Link to={"/Mysoftware"}>
+                            <li className={styles.tabli}>
+                                <span className={styles.spanicon}>
+                                    <FileSearchOutlined />
+                                </span>
+                                <span className={styles.switchtext}>
+                                    <a href="#">查看</a>
+                                </span>
+                            </li>
+                        </Link>
+                     
+                        <Link to={"/Update"}>
+                            <li className={styles.tabli}>
+                                <span className={styles.spanicon}>
+                                    <CloudUploadOutlined />
+                                </span>
+                                <span className={styles.switchtext}>
+                                    <a href="#">上传</a>
+                                </span>
+                            </li>
+                        </Link>
+                        <Link to={"/CheckUpdate"}>
+                            <li className={styles.tabli}>
+                                <span className={styles.spanicon}>
+                                    <BellOutlined />
+                                </span>
+                                <span className={styles.switchtext}>
+                                    <a href="#">更新</a>
+                                </span>
+                            </li>
+                        </Link>
+                      
+                       
+                        <Link to={"/Manageuser"}> <li className={styles.tabli}>
                             <span className={styles.spanicon}>
                                 <SettingOutlined />
                             </span>
                             <span className={styles.switchtext}>
                                 <a href="#">管理</a>
                             </span>
-                        </li>
-                        <li className={styles.tabli}>
+                        </li> </Link>
+                        <Link to={"/UserPage"}> <li className={styles.tabli}>
                             <span className={styles.spanicon}>
                                 <IdcardOutlined />
                             </span>
                             <span className={styles.switchtext}>
                                 <a href="#">个人</a>
+
                             </span>
-                        </li>
+                        </li></Link>
+                       
                     </ul>
                 </div>
             </div>

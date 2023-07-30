@@ -251,7 +251,7 @@
     bottom: 3px;
 }
 
-.button_lg {
+.item-me .button_lg {
     position: relative;
     display: block;
     padding: 10px 20px;
