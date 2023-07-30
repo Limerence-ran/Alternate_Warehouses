@@ -5,8 +5,8 @@ import Header from '../../component/Header/main'
 import React, { useState, useEffect, useRef } from 'react'
 import Group from '../../component/Group/main'
 import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
-import routes from '../../router/router'
 
+import HomeTab from '../../components/home-top/main'
 function Chartdata() {
     const renderLis = (lis) => {
     }
@@ -14,22 +14,15 @@ function Chartdata() {
     return (
         <>
             <div className={style.Chartbox}>
-                <Header />
+             <HomeTab/>
                 <Slider onLiElements={renderLis} />
                 <div className={style.swap}>
                     {/* {routes.map((route, index) => (
                         <Link key={index} to={route.path}><button>{index}</button></Link>
-                    ))}
-                   */}
+                    ))} */}
+                  
                 </div>
-             
-
-                <Routes>
-                   
-                    {routes.map((route, index) => (
-                        <Route key={index} path={route.path} element={route.element} />
-                    ))}
-                </Routes>
+                <Outlet></Outlet>
             </div></>
     )
 }

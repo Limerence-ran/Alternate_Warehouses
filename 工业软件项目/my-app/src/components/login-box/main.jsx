@@ -9,6 +9,8 @@ import {
     SafetyCertificateOutlined,
     CheckOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from 'react-router-dom';
+
 
 const showMessage = (content, type) => {
     message[type]({
@@ -31,6 +33,7 @@ const AuthForm = () => {
     const [remainingTime, setRemainingTime] = useState(60);
     const [isLoginMode, setIsLoginMode] = useState(true);
     const [isForgotPasswordMode, setIsForgotPasswordMode] = useState(false);
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);

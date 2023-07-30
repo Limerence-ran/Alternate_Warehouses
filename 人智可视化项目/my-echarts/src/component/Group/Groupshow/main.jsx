@@ -5,20 +5,25 @@ import qs from 'qs';
 import "./main.css"
 import style from './main.module.css'
 import { useNavigate } from 'react-router-dom';
+import Cancel from '../../Cancel/main'
 
 
 const Groupshow = () => {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
+    const [iscancel, setIscancel] = useState(false);
     const [tableParams, setTableParams] = useState({
         pagination: {
             current: 1,
             pageSize: 10,
         },
     });
+    const Cancelbox = () => {
+        setIscancel(!iscancel);
+    }
     const navigate = useNavigate();
-    const OnclickName = ()=>{
-        navigate('/Chart4');
+    const OnclickName = () => {
+        navigate('/Chartdata/Chart4');
     }
     const fetchData = () => {
         setLoading(true);
@@ -81,14 +86,14 @@ const Groupshow = () => {
             title: 'Group Type',
             dataIndex: 'email',
         },
-      
+
         {
             title: 'datanum',
             dataIndex: 'email',
         },
         {
             title: 'Email',
-            render: () => <CaretRightOutlined />,
+            render: () => <CaretRightOutlined onClick={Cancelbox} />,
         },
         {
             title: 'Withdrawal',
@@ -112,6 +117,9 @@ const Groupshow = () => {
                 onChange={handleTableChange}
             />
         </div>
+            {
+                iscancel && <Cancel className={style.cancelContainer} />
+            }
         </>
     );
 };

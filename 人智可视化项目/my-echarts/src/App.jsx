@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-
+import { useRoutes } from "react-router-dom"
 
 import Login from "./pages/Login/main";
 import Chartdata from './page/Chartdata/main'
@@ -21,16 +21,22 @@ import Aboutme from './component/Aboutme/main'
 import Chart5 from './component/Chart5/main'
 import Chart6 from './component/Chart6/main'
 import Vedio from './component/Vedio/main'
+import HomeTab from './components/home-top/main'
+import routes from '../src/router/router'
 
 function App() {
+
+  const element = useRoutes(routes)
   return (
     <>
       {/* 完整页面 */}
       {/* <Login/> */}
-      <Chartdata />
+      {/* <Chartdata /> */}
       {/* <UploadPage/> */}
-
-      {/* < Alldatasets/> */}
+      {/* < HomeTab />
+      < Slider /> */}
+      {element}
+      {/* < Alldatasets/>
       {/* <Mydatasets/> */}
       {/* <Aboutme/> */}
       {/* <Group /> */}
@@ -45,6 +51,8 @@ function App() {
       {/* <Chart5/> */}
       {/* <Chart6/> */}
       {/* <Vedio /> */}
+      {/* <HomeTab /> */}
+      {/* <Cancel/> */}
     </>
   );
 }

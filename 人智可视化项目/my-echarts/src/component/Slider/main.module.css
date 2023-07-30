@@ -2,12 +2,12 @@
     position: fixed;
     width: 220px;
     /* background: rgba(142, 181, 231, 1); */
-    top: 74px;
+    top: 90px;
     left: 0;
     /* height: 100%; */
     /* height: 608px; */
     /* height: 900px; */
-    height: 640PX;
+    height: 84%;
     overflow-y: auto;
     scrollbar-width:none;
     scrollbar-color: transparent transparent;

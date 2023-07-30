@@ -1,19 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { TeamOutlined, CaretDownOutlined } from '@ant-design/icons'
 import style from './main.module.css';
-import CreateGroup from '../CreateGroup/main';
 import { useNavigate } from 'react-router-dom';
 function Slider() {
     const navigate = useNavigate();
-    const dropDown = useRef(null);
-    const [menu, setMenu] = useState(true);
-    const IsShow = () => {
-        setMenu(!menu);
-    };
+    // const dropDown = useRef(null);
+    // const [menu, setMenu] = useState(true);
+    // const IsShow = () => {
+    //     setMenu(!menu);
+    // };
     function CreateGroup() {
-        navigate('/CreateGroup');
+        navigate('CreateGroup');
     };
-  
+    function MyGroup() {
+        navigate('Group');
+    }
 
     return (
         <>
@@ -21,10 +22,11 @@ function Slider() {
                 <ul className={style.menu}>
                     <li onClick={CreateGroup}><a href="javascript:;"> <TeamOutlined />Create Group</a></li>
                     <li className={style.divider} >Menu</li>
-                    <li>
+                    <li onClick={MyGroup}>
                         {/* <a href="#" className={style.active} onClick={IsShow}> My Groups <CaretDownOutlined className={style.icon} /></a> */}
-                        <a href="javascript:;" className={style.active} onClick={IsShow}> My Groups <CaretDownOutlined className={style.icon} /></a>
-                        {!menu && <ul className={style.dropdown} ref={dropDown}>
+                        <a href="javascript:;" className={style.active} > My Groups </a>
+                        {/* <a href="javascript:;" className={style.active} onClick={IsShow}> My Groups <CaretDownOutlined className={style.icon} /></a> */}
+                        {/* {!menu && <ul className={style.dropdown} ref={dropDown}>
                             <li><a href="#" className={style.active}>huawei</a></li>
                             <li ><a href="#">tengxun</a></li>
                             <li ><a href="#">tengxun</a></li>
@@ -44,7 +46,7 @@ function Slider() {
                             <li ><a href="#">tengxun</a></li>
                             <li ><a href="#">tengxun</a></li>
                             <li ><a href="#">tengxun</a></li>
-                        </ul>}
+                        </ul>} */}
                     </li>
                 </ul>
             </div>
@@ -53,37 +55,3 @@ function Slider() {
 }
 export default Slider;
 
-
-// import React, { useState, useRef, useEffect } from 'react';
-// import { TeamOutlined, CaretDownOutlined } from '@ant-design/icons';
-
-// const Slider = ({ onLiElements }) => {
-//     const [menu, setMenu] = useState(false);
-//     const dropDown = useRef(null);
-
-//     const toggleMenu = () => {
-//         setMenu(!menu);
-//     };
-
-//     useEffect(() => {
-//         const lis = dropDown.current.getElementsByTagName('li');
-//         onLiElements && onLiElements(lis);
-//     }, [onLiElements]);
-
-//     return (
-//         <div className="slider">
-//             <div className="menu-icon" onClick={toggleMenu}>
-//                 <TeamOutlined />
-//             </div>
-//             <ul ref={dropDown} className={`dropdown-menu ${menu ? 'show' : ''}`}>
-//                 <li>Create Group</li>
-//                 <li onClick={toggleMenu}>
-//                     My Groups
-//                     <CaretDownOutlined />
-//                 </li>
-//             </ul>
-//         </div>
-//     );
-// };
-
-// export default Slider;

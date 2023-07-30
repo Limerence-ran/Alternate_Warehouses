@@ -4,12 +4,15 @@ import { UserOutlined, UnlockOutlined, CheckOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import axios from "axios";
 import CheckIcon from "../check-box/main";
+import { useNavigate } from 'react-router-dom';
 
 const LoginRegisterForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isLoginMode, setIsLoginMode] = useState(true);
+    const navigate = useNavigate();
+  
 
     const handleUsernameChange = (e) => {
         const value = e.target.value;
@@ -79,9 +82,11 @@ const LoginRegisterForm = () => {
                 }
             )
             .then((response) => {
-                if (response.data.code === 0) {
+                if (response.data.code === 1) {
                     // 注册成功
                     resetForm();
+                    setIsLoginMode(!isLoginMode)
+                    showMessage(response.data.msg, "success");
                 } else {
                     // 注册失败
                     showMessage(response.data.msg, "error");
@@ -110,11 +115,14 @@ const LoginRegisterForm = () => {
                 }
             )
             .then((response) => {
-                if (response.data.code === 0) {
+                if (response.data.code === 1) {
                     // 登录成功
                     const token = response.data.token; // 获取返回的token
                     localStorage.setItem("token", token); // 将token存储在本地
                     resetForm();
+                    navigate('/Chartdata');
+                    showMessage(response.data.msg, "success");
+
                 } else {
                     // 登录失败
                     showMessage(response.data.msg, "error");

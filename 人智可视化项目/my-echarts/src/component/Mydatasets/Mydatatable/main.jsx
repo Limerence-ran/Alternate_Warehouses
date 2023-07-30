@@ -18,10 +18,10 @@ const Mydatatable = () => {
         },
     });
     const navigate = useNavigate();
-  const datashow =()=>{
-          navigate('/Chart1');
-    
-  }
+    const datashow = () => {
+        navigate('/Chartdata/Chart1');
+
+    }
     const fetchData = () => {
         setLoading(true);
         fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)

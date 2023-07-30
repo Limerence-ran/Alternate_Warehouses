@@ -1,13 +1,13 @@
 import style from './main.module.css'
 import { useNavigate } from 'react-router-dom';
-import '../../router/router'
+// import '../../router/router'
 
-function Chart1(){
+function Chart1() {
     const navigate = useNavigate();
-   function nextPage(){
-        navigate('/Chart5');
+    function nextPage() {
+        navigate('/ChartData/Chart5');
     }
-    return(
+    return (
         <>
             <div className={style.content}>
                 <div className={style.header}>

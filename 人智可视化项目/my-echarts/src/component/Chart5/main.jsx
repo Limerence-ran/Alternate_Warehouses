@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 function Chart5() {
     const navigate = useNavigate();
-    const Onclickpage = ()=>{
-        navigate('/Chart6');
+    const Onclickpage = () => {
+        navigate('/ChartData/Chart6');
     }
     return (
         <>
@@ -17,9 +17,9 @@ function Chart5() {
                         <div className={style.chart}>
                             <span>Please enter your data for each dimension</span>
                         </div>
-                           <div className={style.chartbuttom}>
-                           
-                           
+                        <div className={style.chartbuttom}>
+
+
                             <div className={style.radio}>
                                 <div className={style.usedataleft}><span>Please select the iteration mode you want:</span></div>
                                 <div className={style.usedataright}>
@@ -34,18 +34,18 @@ function Chart5() {
                                     <div> <input type="checkbox" /><span>Dataset c(1noise turned on) </span></div>
                                     <div> <input type="checkbox" /><span>Dataset d(2 noise turned on)</span></div>
                                 </div>
-                             </div>
+                            </div>
                             <div className={style.dataweight}>
                                 <div className={style.usedataleft}><span>Please select the weight of the other dataset:	 </span></div>
                                 <div className={style.useright}>
-                                    <span>a<input type='text'/>%</span>
-                                    <span>b<input type='text'/>%</span>
-                                    <span>c<input type='text'/>%</span>
-                                    <span>d<input type='text'/>%</span>
+                                    <span>a<input type='text' />%</span>
+                                    <span>b<input type='text' />%</span>
+                                    <span>c<input type='text' />%</span>
+                                    <span>d<input type='text' />%</span>
                                 </div>
                             </div>
                             <button className={style.next} onClick={Onclickpage}>Next</button>
-                           </div>
+                        </div>
                     </div>
                 </main>
             </div>

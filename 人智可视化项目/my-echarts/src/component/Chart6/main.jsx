@@ -11,7 +11,7 @@ function Chart6() {
     const startIntera = () => {
        setisShow(!isshow)
         setTimeout(() => {
-            navigate('/Chart2');
+            navigate('/Chartdata/Chart2');
         }, 3000)
     }
     return (
