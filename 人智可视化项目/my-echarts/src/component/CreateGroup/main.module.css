@@ -27,15 +27,16 @@ main {
     /* background-color: #27943f; */
 }
 .formstyle {
-    background-color: #f5f7fa;
+    background-color: rgb(183, 186, 251);
     /* padding: 20px; */
     border-radius: 6px;
-    height: 300px;
+    height: 590px;
+    padding: 10px 20px;
 }
 
 .inputstyle {
-    width: 100%;
-    border: none;
+    width: 80%;
+  
     /* height: 200px; */
     background-color: #f7eded;
 }
@@ -72,4 +73,23 @@ main {
         height: 60px;
         font-size: 14px;
     }
+}
+
+.parameters{
+    margin-left: 20px;
+}
+input{
+    border: 1px solid #8c54d0;
+    background-color: #e5dfdf;
+    border-radius: 4px;
+}
+.parameters input{
+    width: 55px;
+    margin-right: 15px;
+    border:1px solid #8c54d0;
+    background-color: #e5dfdf;
+    border-radius: 4px;
+}
+input:focus{
+    outline: none;
 }

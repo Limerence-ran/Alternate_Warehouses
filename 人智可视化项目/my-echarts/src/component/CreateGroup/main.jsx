@@ -6,7 +6,11 @@ const CreateGroup = () => {
     const [form] = Form.useForm();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-
+ 
+    const [dimension, setDimension] = useState(1);
+    const [arity, setArity] = useState([]);
+    // dimension 用来追踪下拉框的选择值，初始值为 1。arity 则用来存储右边输入框的数据，初始为空数组。
+    
     const handleFinish = (values) => {
         setIsSubmitting(true);
 
@@ -54,24 +58,46 @@ const CreateGroup = () => {
                                 </Form.Item>
 
                                 <Form.Item
-                                    label="Group Purpose"
-                                    name="purpose"
-                                    rules={[{ required: true, message: 'Please input Group purpose' }]}
+                                    label="Input Dimension "
+                                    name="text"
+                                    rules={[{ required: true, message: 'Please input Dimension' }]}
+                                >    
+                                <input/>
+                                  
+                                </Form.Item>
+
+                                <Form.Item
+                                    label="Dimension parameters "
+                                    name="parameters"
+                                    // rules={[{ required: true, message: 'Please input parameters' }]}
                                 >
-                                    <Radio.Group>
-                                        <Radio value="purpose1" className="round-radio-button">
-                                            technical exchange
-                                        </Radio>
-                                        <Radio value="purpose2" className="round-radio-button">
-                                            learning and discussion
-                                        </Radio>
-                                        <Radio value="purpose3" className="round-radio-button">
-                                            learning and discussion
-                                        </Radio>
-                                        <Radio value="purpose4" className="round-radio-button">
-                                            other
-                                        </Radio>
-                                    </Radio.Group>
+        
+                                    <span>
+                                        Arity  Select: 
+            
+                                        <select  onChange={(e) => {
+                                            const selectedDimension = parseInt(e.target.value);
+                                            setDimension(selectedDimension);
+                                            setArity(Array(selectedDimension).fill(''));
+                                        }}>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </span>
+                                    <span className={style.parameters}>Please input parameters name :</span>
+                                    <span className={style.parameters}>
+                                        {arity.map((value, index) => (
+                                            <input key={index} value={value} onChange={(e) => {
+                                                const newArray = [...arity];
+                                                newArray[index] = e.target.value;
+                                                setArity(newArray);
+                                            }} />
+                                        ))}
+                                    </span>
                                 </Form.Item>
 
                                 <Form.Item
@@ -111,3 +137,19 @@ const CreateGroup = () => {
 };
 
 export default CreateGroup;
+
+
+{/* <Radio.Group>
+                                        <Radio value="purpose1" className="round-radio-button">
+                                            technical exchange
+                                        </Radio>
+                                        <Radio value="purpose2" className="round-radio-button">
+                                            learning and discussion
+                                        </Radio>
+                                        <Radio value="purpose3" className="round-radio-button">
+                                            learning and discussion
+                                        </Radio>
+                                        <Radio value="purpose4" className="round-radio-button">
+                                            other
+                                        </Radio>
+                                    </Radio.Group> */}

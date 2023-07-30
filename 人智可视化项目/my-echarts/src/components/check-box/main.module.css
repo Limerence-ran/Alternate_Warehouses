@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.checkbox> svg {
+.checkbox > svg {
     position: absolute;
     top: -130%;
     left: -170%;
@@ -75,11 +75,11 @@
     transition-delay: 0.2s;
 }
 
-.checkbox.cbx input:checked + label {
+.checkbox .cbx input:checked + label {
     animation: splash-12 0.6s ease forwards;
 }
 
-.checkbox.cbx input:checked + label + svg path {
+.checkbox .cbx input:checked + label + svg path {
     stroke-dashoffset: 0;
 }
 

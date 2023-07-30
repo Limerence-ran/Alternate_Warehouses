@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import "./App.css";
+
 
 import Login from "./pages/Login/main";
 import Chartdata from './page/Chartdata/main'
@@ -21,14 +22,12 @@ import Chart5 from './component/Chart5/main'
 import Chart6 from './component/Chart6/main'
 import Vedio from './component/Vedio/main'
 
-
-
 function App() {
   return (
     <>
       {/* 完整页面 */}
       {/* <Login/> */}
-      {/* <Chartdata /> */}
+      <Chartdata />
       {/* <UploadPage/> */}
 
       {/* < Alldatasets/> */}
@@ -51,8 +50,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-

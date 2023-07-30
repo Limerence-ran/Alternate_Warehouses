@@ -1,6 +1,6 @@
 .body{
     height: 560px;
-    background-color: #d1cae0;
+    /* background-color: #d1cae0; */
 }
  a{
     text-decoration: none;
@@ -10,7 +10,7 @@
     height: 600px;
     width: 100%;
     margin: 20px 0px;
-    margin-top: 64px;
+    /* margin-top: 64px; */
     background-color: rgb(85,
         85,
         85);

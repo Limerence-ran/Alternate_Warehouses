@@ -1,0 +1,208 @@
+/* tab栏样式 */
+.item {
+    display: block;
+}
+
+.header_tab {
+    height: 39px;
+    width: 1494px;
+    display: flex;
+    justify-content: center;
+}
+
+.tab_list {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    height: 39px;
+    background-color: rgba(85, 85, 85, 1);
+    justify-content: space-between;
+    z-index: 997;
+    top: 0;
+    left: 1px;
+}
+
+.item_info {
+    padding: 20px 0 0 20px;
+}
+
+/* QG图标样式 */
+.QG_img a img {
+    height: 39px;
+    width: 39px;
+    margin-top: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.QG_studio {
+    float: right;
+    color: white;
+    line-height: 39px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.QG_img {
+    width: 250px;
+}
+
+/* 搜索框样式 */
+.input_container {
+    width: 300px;
+    height: 10px;
+    margin-right: 25px;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    right: 100px;
+    top: calc(50% + 60px);
+    transform: translateY(calc(-50% - 3px));
+}
+
+.icon_search {
+    position: absolute;
+    right: -70px;
+    top: calc(50% + 20px);
+    transform: translateY(calc(-50% - 3px));
+}
+
+.input {
+    position: absolute;
+    top: 0;
+    left: 480px;
+    width: 300px;
+    height: 15px;
+    padding: 10px;
+    transition: 0.2s linear;
+    border: 2.5px solid #5b08c3;
+    font-size: 14px;
+    margin-left: -400px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hotwords_container {
+    display: block;
+    position: absolute;
+    top: -110px;
+    right: -83px;
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.navigation {
+    position: relative;
+}
+
+/* 加载条 */
+.nav_side {
+    position: absolute;
+    top: 1px;
+    width: 100px;
+    height: 580px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 30px;
+}
+
+.nav_left {
+    --i: 0;
+    left: 0;
+    box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), 15px 15px 30px #fff,
+        inset -5px -5px 10px rgba(0, 0, 255, 0.1),
+        inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav_right {
+    --i: 1;
+    right: 0;
+    box-shadow: -15px -15px 20px rgba(0, 0, 0, 0.1), -15px 15px 30px #fff,
+        inset 5px 5px 10px rgba(0, 0, 255, 0.1),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav_side::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.3), 0px 420px 0 400px #2697f3,
+        inset 0px 0px 0px rgba(0, 0, 0, 0.1);
+    animation: animate_2 2.5s ease-in-out infinite;
+    animation-delay: calc(-0.5s * var(--i));
+}
+
+@keyframes animate_2 {
+    0% {
+        transform: translateY(250px);
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(250px);
+        filter: hue-rotate(180deg);
+    }
+}
+.tabul {
+    width: 350px;
+}
+.spanicon {
+    width: 20px;
+    position: absolute;
+    top: -15px;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.tabli {
+    margin-left: 30px;
+    position: relative;
+    list-style-type: none;
+    white-space: nowrap;
+    display: inline-block;
+}
+.switchtext {
+    font-size: xx-small;
+    margin-left: -2px;
+}
+.switchtext a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.searchList {
+    position: absolute;
+
+    height: 200px;
+    width: 320px;
+    list-style: none;
+    padding: 0;
+    margin: 150px 0;
+    max-height: 200px; /* 设置最大高度 */
+    overflow-y: auto; /* 添加垂直滚动条 */
+    z-index: 999;
+}
+
+.searchList li {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.searchList li:last-child {
+    border-bottom: none;
+}

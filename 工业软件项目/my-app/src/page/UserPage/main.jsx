@@ -4,7 +4,7 @@ import style from './main.module.css'
 import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
 import routes from '../../router/router'
 
-const User = () => {
+const UserPage = () => {
     return (
         <>
             <div className={style.body}>
@@ -14,16 +14,17 @@ const User = () => {
                         <div className={style.left}>
                             <UserOutlined />
 
-                            <Link to={"/MyApp"}> <div className={style.leftbox}><AppstoreOutlined /> <span>已购买的软件</span></div></Link>
-                            <Link to={"/UploadApp"}>  <div className={style.leftbox}><UploadOutlined /><span>已下载的软件</span></div></Link>
-                            <Link to={"/UserInfor"}> <div className={style.leftbox}><ContainerOutlined /><span>用户信息</span></div></Link>
+                            <Link to={"MyApp"}> <div className={style.leftbox}><AppstoreOutlined /> <span>已购买的软件</span></div></Link>
+                            <Link to={"UploadApp"}>  <div className={style.leftbox}><UploadOutlined /><span>已下载的软件</span></div></Link>
+                            <Link to={"UserInfor"}> <div className={style.leftbox}><ContainerOutlined /><span>用户信息</span></div></Link>
                         </div>
                         <div className={style.right}>
-                            <Routes>
+                            {/* <Routes>
                                 {routes.map((route, index) => (
                                     <Route key={index} path={route.path} element={route.element} />
                                 ))}
-                            </Routes>
+                            </Routes> */}
+                            <Outlet></Outlet>
                         </div>
                     </div>
                 </div>
@@ -32,4 +33,4 @@ const User = () => {
 
     )
 }
-export default User
+export default UserPage
