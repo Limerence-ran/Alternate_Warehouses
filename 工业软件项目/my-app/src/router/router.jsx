@@ -13,10 +13,15 @@ import App1 from "../component/App1/main";
 import App2 from "../component/App2/main";
 import App3 from "../component/App3/main";
 import Mysoftware from "../page/Mysoftware/main";
+import Login from "../pages/Login/main";
 
 export default [
     {
         path: "*",
+        element: < Login />,
+    },
+    {
+        path: "/Home",
         element: <Home />,
     },
 

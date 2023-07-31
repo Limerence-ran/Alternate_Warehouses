@@ -26,12 +26,13 @@ import Buy from "./pages/Buy/main";
 import Update from "./pages/Update/main";
 
 function App() {
+    const element = useRoutes(routes);
     return (
-        <>
+        <>      
            
-                        <HomeHead></HomeHead>
+                        {/* <HomeHead></HomeHead> */}
 
-                        {/* {element} */}
+                        {element}
                         {/* 完整页面 */}
                         {/* <Login /> */}
                         {/* <UserPage/> */}
@@ -40,7 +41,7 @@ function App() {
                 {/* <Login></Login> */}
                 {/* <Home></Home> */}
                 {/* <Buy></Buy> */}
-                <Update></Update>
+                {/* <Update></Update> */}
                 {/* <CheckUpdate/> */}
 
            

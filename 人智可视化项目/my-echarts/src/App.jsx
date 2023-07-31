@@ -38,7 +38,7 @@ function App() {
             
       < Slider /> */}
             {/* <HotGroup/> */}
-            {/* {element} */}
+            {element}
             {/* < Alldatasets/>
       {/* <Mydatasets/> */}
             {/* <Aboutme/> */}
@@ -53,7 +53,7 @@ function App() {
             {/* <Header/> */}
             {/* <Cancel/> */}
             {/* <Chart5/> */}
-            <Chart6/>
+            {/* <Chart6/> */}
             {/* <Vedio /> */}
             {/* <HomeTab /> */}
             {/* <Cancel/> */}
