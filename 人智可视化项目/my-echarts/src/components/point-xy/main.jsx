@@ -1,7 +1,7 @@
 import React from "react";
 
 import ReactECharts from "echarts-for-react";
-export default function Pointxy() {
+export default function Pointxy(props) {
 
     // 假设有两组数据分别是 data1 和 data2
     const data1 = [
@@ -27,7 +27,7 @@ export default function Pointxy() {
         [12.0, 8.84],
         [7.08, 5.82],
         [5.02, 5.68],
-    ]; // 第一组数据的坐标点
+    ]; // 第一组数据的坐标点 props.before_data
 
     const data2 = [
         [11.0, 8.04],
@@ -52,7 +52,7 @@ export default function Pointxy() {
         [13.0, 8.84],
         [8.08, 5.82],
         [6.02, 5.68],
-    ]; // 第二组数据的坐标点
+    ]; // 第二组数据的坐标点 props.result_data
 
     // 配置散点图的基本参数
     const option = {

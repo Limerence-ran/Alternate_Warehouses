@@ -38,17 +38,16 @@ function App() {
             
       < Slider /> */}
             {/* <HotGroup/> */}
-            {element}
+            {/* {element} */}
             {/* < Alldatasets/>
-      {/* <Mydatasets/> */}
+    <Mydatasets/> */}
             {/* <Aboutme/> */}
             {/* <Group /> */}
             {/* <CreateGroup /> */}
             {/* <Slider/> */}
-            {/* <Chart1/> */}
+            <Chart1/>
             {/* <Chart2 /> */}
 
-            {/* <Chart3/> */}
             {/* <Chart4 /> */}
             {/* <Header/> */}
             {/* <Cancel/> */}
@@ -57,6 +56,10 @@ function App() {
             {/* <Vedio /> */}
             {/* <HomeTab /> */}
             {/* <Cancel/> */}
+
+
+            
+            {/* <Chart3/> */}
         </>
     );
 }

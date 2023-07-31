@@ -6,7 +6,7 @@ const createGroup = (groupName, dimension, resourceFormat, description) => {
 
     axios
         .post(
-            "http://example.com/groups",
+            "http://example.com/resource/forward/operation",
             // 要上传的群组信息
             {
                 groupName: "hmacb",
