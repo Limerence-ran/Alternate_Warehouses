@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import Vedio from "../../component/Vedio/main";
 
-const DynamicTable = () => {
+const DynamicTable = (prop) => {
+    const [dem, setDem] = useState(prop.demnum);
     const [rows, setRows] = useState(1);
     const [cols, setCols] = useState(1);
     const [data, setData] = useState([]);
@@ -12,12 +13,15 @@ const DynamicTable = () => {
     const [isshow, setisShow] = useState(false);
 
     // 处理行数和列数输入框的变化
-    const handleRowChange = (e) => {
-        const value = Number(e.target.value);
-        if (value >= 1 && value <= 6) {
-            setRows(value);
-        }
-    };
+    // const handleRowChange = (e) => {
+    //     const value = Number(e.target.value);
+    //     if (value >= 1 && value <= 6) {
+    //         setRows(value);
+    //     }
+    // };
+    useEffect(() => {
+        setRows(dem);
+    }, []);
 
     const handleColChange = (e) => {
         const value = Number(e.target.value);
@@ -52,9 +56,9 @@ const DynamicTable = () => {
         const columnsData = [];
         for (let i = 0; i < cols; i++) {
             const columnData = data.map((row) => row[`col${i}`]);
-            console.log(666);
             columnsData.push(columnData);
         }
+        console.log(columnsData);
         const tableData = {
             rows,
             cols,
@@ -92,10 +96,11 @@ const DynamicTable = () => {
                 <Input
                     type="number"
                     value={rows}
-                    onChange={handleRowChange}
+                    // onChange={handleRowChange}
                     min={1}
                     max={6}
                     style={{ width: "60px", margin: "1px 200px 1px 1px" }}
+                    disabled="true"
                 />
                 <span>Columns:</span>
                 <Input

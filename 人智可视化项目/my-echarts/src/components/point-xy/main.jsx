@@ -2,6 +2,7 @@ import React from "react";
 
 import ReactECharts from "echarts-for-react";
 export default function Pointxy() {
+
     // 假设有两组数据分别是 data1 和 data2
     const data1 = [
         [10.0, 8.04],
@@ -132,7 +133,7 @@ export default function Pointxy() {
             },
         ],
     };
-
+    
     return (
         <ReactECharts
             option={option}
