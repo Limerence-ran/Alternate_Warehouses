@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { Table } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
@@ -8,9 +9,7 @@ import axios from "axios";
 import { message } from "antd";
 
 
-
-
-const Pagetable1 = () => {
+const Pagetable1 = ({ handleAjaxChange }) => {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
     const [tableParams, setTableParams] = useState({
@@ -19,6 +18,7 @@ const Pagetable1 = () => {
             pageSize: 10,
         },
     });
+
 
    
 
@@ -43,6 +43,23 @@ const Pagetable1 = () => {
                 const { code, msg, data } = response;
                 console.log(response)
                 setData(response.data.data);
+
+    // function handleAjax() {
+    //     handleAjaxChange(data);
+    // }
+    // const fetchData = () => {
+    //     setLoading(true);
+    //     fetch(
+    //         `https://randomuser.me/api?${qs.stringify(
+    //             getRandomuserParams(tableParams)
+    //         )}`
+    //     )
+    //         .then((res) => res.json())
+    //         .then(({ results }) => {
+    //             console.log(results)
+    //             setData(results);
+    //             handleAjax();
+
                 setLoading(false);
                 setTableParams({
                     ...tableParams,
@@ -68,10 +85,14 @@ const Pagetable1 = () => {
     };
 
     useEffect(() => {
+
         // fetchData();
         let Groupid = localStorage.getItem('myGroupid');
         console.log(Groupid)
         idGroup (Groupid)
+
+        // fetchData();
+
     }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -96,6 +117,7 @@ const Pagetable1 = () => {
           axios
               .post(
                   "http://39.98.41.126:31130/users/putApplication",
+
 
                   {
                       groupId:id+'',
@@ -132,6 +154,8 @@ const Pagetable1 = () => {
   }
 
 
+
+
     const getRandomuserParams = (params) => ({
         results: params.pagination?.pageSize,
         page: params.pagination?.current,
@@ -140,6 +164,7 @@ const Pagetable1 = () => {
 
     const columns = [
         {
+
             title: 'resourceName',
             dataIndex: 'resourceName',
         },
@@ -165,6 +190,7 @@ const Pagetable1 = () => {
     ];
 
     return (
+
         <><div className='Paging1' >
             <Table
                 columns={columns}
@@ -178,7 +204,8 @@ const Pagetable1 = () => {
                 onChange={handleTableChange}
             />
         </div>
-        </>
+       </>
+      
     );
 };
 

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import { Table } from 'antd';
 import { CaretRightOutlined } from '@ant-design/icons';
@@ -8,6 +9,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { message } from "antd";
 
+
+
+// import React, { useEffect, useState, useRef } from "react";
+// import { Table } from "antd";
+// import { CaretRightOutlined } from "@ant-design/icons";
+// import qs from "qs";
+// import "./main.css";
+// import style from "./main.module.css";
+// import { useNavigate } from "react-router-dom";
 
 
 const Mydatatable = () => {
@@ -21,6 +31,7 @@ const Mydatatable = () => {
     });
     const navigate = useNavigate();
     const datashow = () => {
+
         navigate('/Chartdata/Chart5');
 
     }
@@ -35,6 +46,32 @@ const Mydatatable = () => {
                     // 要上传的群组信息
                     {
                         id: groupid
+
+//         navigate("/Chartdata/Chart1");
+//     };
+//     function handleAjax() {
+//         handleAjaxChange(data);
+//     }
+//     const fetchData = () => {
+//         setLoading(true);
+//         fetch(
+//             `https://randomuser.me/api?${qs.stringify(
+//                 getRandomuserParams(tableParams)
+//             )}`
+//         )
+//             .then((res) => res.json())
+//             .then(({ results }) => {
+//                 setData(results);
+//                 handleAjax();
+//                 setLoading(false);
+//                 setTableParams({
+//                     ...tableParams,
+//                     pagination: {
+//                         ...tableParams.pagination,
+//                         total: 200,
+//                         // 200 is mock data, you should read it from server
+//                         // total: data.totalCount,
+
                     },
                     {
                         headers: {
@@ -71,8 +108,6 @@ const Mydatatable = () => {
 
     useEffect(() => {
         fetchData();
-
-
     }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -95,6 +130,7 @@ const Mydatatable = () => {
 
     const columns = [
         {
+
             title: 'resourceName',
             dataIndex: 'data.data.resourceName',
         },
@@ -110,34 +146,41 @@ const Mydatatable = () => {
             title: 'referenceQuantity',
             dataIndex: 'data.data.referenceQuantity',
         },
+          
        
 
         {
-            title: '',
+            title: "",
             render: (e, record) => (
-                <button className={style.get2} onClick={datashow}> Use</button >
-            )
+                <button className={style.get2} onClick={datashow}>
+                    {" "}
+                    Use
+                </button>
+            ),
         },
     ];
 
     return (
-        <><div className='Paging1' >
-            <Table
-                columns={columns}
-                rowKey={(record) => record.login.uuid}
-                dataSource={data}
-                pagination={{
-                    ...tableParams.pagination,
-                    position: ['bottomRight'],
-                }}
-                loading={loading}
-                onChange={handleTableChange}
-            />
-        </div>
+        <>
+            <div className="Paging1">
+                <Table
+                    columns={columns}
+                    rowKey={(record) => record.login.uuid}
+                    dataSource={data}
+                    pagination={{
+                        ...tableParams.pagination,
+                        position: ["bottomRight"],
+                    }}
+                    loading={loading}
+                    onChange={handleTableChange}
+                />
+            </div>
         </>
     );
 };
 
 
 
+
 export default Mydatatable;
+
