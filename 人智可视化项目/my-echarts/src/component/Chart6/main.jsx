@@ -1,19 +1,11 @@
-import style from './main.module.css'
-import { useNavigate } from 'react-router-dom';
-import Vedio from '../../component/Vedio/main';
-import { useState } from 'react';
+import style from "./main.module.css";
 
+
+import { useState } from "react";
+import DynamicTable from "../../components/create-form/main";
 
 function Chart6() {
-    const navigate = useNavigate();
-  const [isshow,setisShow] =useState(false)
 
-    const startIntera = () => {
-       setisShow(!isshow)
-        setTimeout(() => {
-            navigate('/Chartdata/Chart2');
-        }, 3000)
-    }
     return (
         <>
             <div className={style.content}>
@@ -21,17 +13,15 @@ function Chart6() {
                     <span>IMDB Movie Reviews Dataset</span>
                 </div>
                 <main>
-                    <div className={style.chartbox} >
+                    <div className={style.chartbox}>
                         <div className={style.chart}>
-
-                        </div>
-                        <button onClick={startIntera}>Start iteracion</button>
-                        {isshow&&<Vedio/>}
+                            <DynamicTable></DynamicTable>
+                        </div> 
                     </div>
                 </main>
             </div>
         </>
-    )
+    );
 }
 
-export default Chart6
+export default Chart6;

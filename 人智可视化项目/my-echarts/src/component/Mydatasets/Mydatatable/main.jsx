@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Table } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
-import qs from 'qs';
-import "./main.css"
-import style from './main.module.css'
-import { useNavigate } from 'react-router-dom';
-
-
+import React, { useEffect, useState, useRef } from "react";
+import { Table } from "antd";
+import { CaretRightOutlined } from "@ant-design/icons";
+import qs from "qs";
+import "./main.css";
+import style from "./main.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Mydatatable = () => {
     const [data, setData] = useState();
@@ -19,15 +17,22 @@ const Mydatatable = () => {
     });
     const navigate = useNavigate();
     const datashow = () => {
-        navigate('/Chartdata/Chart1');
-
+        navigate("/Chartdata/Chart1");
+    };
+    function handleAjax() {
+        handleAjaxChange(data);
     }
     const fetchData = () => {
         setLoading(true);
-        fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
+        fetch(
+            `https://randomuser.me/api?${qs.stringify(
+                getRandomuserParams(tableParams)
+            )}`
+        )
             .then((res) => res.json())
             .then(({ results }) => {
                 setData(results);
+                handleAjax();
                 setLoading(false);
                 setTableParams({
                     ...tableParams,
@@ -43,8 +48,6 @@ const Mydatatable = () => {
 
     useEffect(() => {
         fetchData();
-
-
     }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -60,8 +63,6 @@ const Mydatatable = () => {
         }
     };
 
-
-
     const getRandomuserParams = (params) => ({
         results: params.pagination?.pageSize,
         page: params.pagination?.current,
@@ -70,44 +71,48 @@ const Mydatatable = () => {
 
     const columns = [
         {
-            title: 'dataset Name',
-            dataIndex: 'email',
+            title: "dataset Name",
+            dataIndex: "email",
         },
         {
-            title: 'Owners',
-            dataIndex: 'email',
+            title: "Owners",
+            dataIndex: "email",
         },
         {
-            title: 'Data Attributes',
-            dataIndex: 'email',
+            title: "Data Attributes",
+            dataIndex: "email",
         },
         {
-            title: 'Number of Users',
-            dataIndex: 'email',
+            title: "Number of Users",
+            dataIndex: "email",
         },
 
         {
-            title: '',
+            title: "",
             render: (e, record) => (
-                <button className={style.get2} onClick={datashow}> Use</button >
-            )
+                <button className={style.get2} onClick={datashow}>
+                    {" "}
+                    Use
+                </button>
+            ),
         },
     ];
 
     return (
-        <><div className='Paging1' >
-            <Table
-                columns={columns}
-                rowKey={(record) => record.login.uuid}
-                dataSource={data}
-                pagination={{
-                    ...tableParams.pagination,
-                    position: ['bottomRight'],
-                }}
-                loading={loading}
-                onChange={handleTableChange}
-            />
-        </div>
+        <>
+            <div className="Paging1">
+                <Table
+                    columns={columns}
+                    rowKey={(record) => record.login.uuid}
+                    dataSource={data}
+                    pagination={{
+                        ...tableParams.pagination,
+                        position: ["bottomRight"],
+                    }}
+                    loading={loading}
+                    onChange={handleTableChange}
+                />
+            </div>
         </>
     );
 };

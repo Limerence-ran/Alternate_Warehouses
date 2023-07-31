@@ -1,13 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Table } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
-import qs from 'qs';
-import "./main.css"
-import style from './main.module.css'
+import React, { useEffect, useState, useRef } from "react";
+import { Table } from "antd";
+import { CaretRightOutlined } from "@ant-design/icons";
+import qs from "qs";
+import "./main.css";
+import style from "./main.module.css";
 
-
-
-const Pagetable1 = () => {
+const Pagetable1 = ({ handleAjaxChange }) => {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
     const [tableParams, setTableParams] = useState({
@@ -16,13 +14,21 @@ const Pagetable1 = () => {
             pageSize: 10,
         },
     });
-
+    function handleAjax() {
+        handleAjaxChange(data);
+    }
     const fetchData = () => {
         setLoading(true);
-        fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
+        fetch(
+            `https://randomuser.me/api?${qs.stringify(
+                getRandomuserParams(tableParams)
+            )}`
+        )
             .then((res) => res.json())
             .then(({ results }) => {
+                console.log(results)
                 setData(results);
+                handleAjax();
                 setLoading(false);
                 setTableParams({
                     ...tableParams,
@@ -38,8 +44,6 @@ const Pagetable1 = () => {
 
     useEffect(() => {
         fetchData();
-
-
     }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -55,8 +59,6 @@ const Pagetable1 = () => {
         }
     };
 
-
-
     const getRandomuserParams = (params) => ({
         results: params.pagination?.pageSize,
         page: params.pagination?.current,
@@ -65,44 +67,43 @@ const Pagetable1 = () => {
 
     const columns = [
         {
-            title: 'dataset Name',
-            dataIndex: 'email',
+            title: "dataset Name",
+            dataIndex: "email",
         },
         {
-            title: 'Owners',
-            dataIndex: 'email',
+            title: "Owners",
+            dataIndex: "email",
         },
         {
-            title: 'Data Attributes',
-            dataIndex: 'email',
+            title: "Data Attributes",
+            dataIndex: "email",
         },
         {
-            title: 'Number of Users',
-            dataIndex: 'email',
+            title: "Number of Users",
+            dataIndex: "email",
         },
 
         {
-            title: '',
-            render: (e, record) => (
-                <button className={style.get} > Get</button >
-            )
+            title: "",
+            render: (e, record) => <button className={style.get}> Get</button>,
         },
     ];
 
     return (
-        <><div className='Paging1' >
-            <Table
-                columns={columns}
-                rowKey={(record) => record.login.uuid}
-                dataSource={data}
-                pagination={{
-                    ...tableParams.pagination,
-                    position: ['bottomRight'],
-                }}
-                loading={loading}
-                onChange={handleTableChange}
-            />
-        </div>
+        <>
+            <div className="Paging1">
+                <Table
+                    columns={columns}
+                    rowKey={(record) => record.login.uuid}
+                    dataSource={data}
+                    pagination={{
+                        ...tableParams.pagination,
+                        position: ["bottomRight"],
+                    }}
+                    loading={loading}
+                    onChange={handleTableChange}
+                />
+            </div>
         </>
     );
 };

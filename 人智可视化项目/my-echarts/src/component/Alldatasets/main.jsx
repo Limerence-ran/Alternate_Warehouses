@@ -1,39 +1,43 @@
-import style from './main.module.css'
-import { FieldBinaryOutlined } from '@ant-design/icons'
-import { useState, useEffect, useRef } from 'react'
-import Pagetable1 from './Pagetable/main'
-import './main.css'
+import style from "./main.module.css";
+import { FieldBinaryOutlined } from "@ant-design/icons";
+import { useState, useEffect, useRef } from "react";
+import Pagetable1 from "./Pagetable/main";
+import "./main.css";
+import RelationChart from "../../components/relationship/main";
 
 function Alldatasets() {
-    const box = useRef(null)
-    const [which, setWhich] = useState(0)
+    const box = useRef(null);
+    const [which, setWhich] = useState(0);
+    const [data, setData] = useState([]);
     const IsChart = (index) => {
-
-        setWhich(index)
-
+        setWhich(index);
+    };
+    console.log(which);
+    function onAjaxChange(data) {
+        setData(data);
     }
-    console.log(which)
 
     return (
         <>
-          
-                <main>
-                    <div className={style.body}>
-                        <div className={style.chartbox} >
-                            <div className={style.box} ref={box}>
-                                <div className={style.chart} >1</div>
+            <main>
+                <div className={style.body}>
+                    <div className={style.chartbox}>
+                        <div className={style.box} ref={box}>
+                            <div className={style.chart}>
+                                <RelationChart propdata={data}></RelationChart>
                             </div>
-                            <div className={style.chartbuttom}>
-                                <Pagetable1 className={style.paging1} />
-                            </div>
-
                         </div>
-
+                        <div className={style.chartbuttom}>
+                            <Pagetable1
+                                className={style.paging1}
+                                handleAjaxChange={onAjaxChange}
+                            />
+                        </div>
                     </div>
-                </main>
-           
+                </div>
+            </main>
         </>
-    )
+    );
 }
 
-export default Alldatasets
+export default Alldatasets;
