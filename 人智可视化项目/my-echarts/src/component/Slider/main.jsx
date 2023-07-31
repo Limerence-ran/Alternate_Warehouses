@@ -52,11 +52,7 @@ function Slider() {
                             <li ><a href="#">tengxun</a></li>
                         </ul>} */}
                     </li>
-                    <li > <a href="javascript:;"  > group A </a></li>
-                    <li > <a href="javascript:;"  > group B </a></li>
-                    <li > <a href="javascript:;"  > group C </a></li>
-                    <li > <a href="javascript:;"  > group D </a></li>
-                    <li > <a href="javascript:;"  > group E </a></li>
+                    
                 </ul>
             </div>
         </>

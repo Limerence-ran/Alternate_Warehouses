@@ -4,8 +4,8 @@ import { message } from "antd";
 const idGroup=(id) => {
 
     axios
-        .put(
-            "http://example.com/resource/page",
+        .post(
+            "http://39.98.41.126:31130/resource/page",
             // 要上传的群组信息
             {
                 relativeUsername: "string",

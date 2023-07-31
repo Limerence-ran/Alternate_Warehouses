@@ -5,6 +5,8 @@ import qs from 'qs';
 import "./main.css"
 import style from './main.module.css'
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { message } from "antd";
 
 
 
@@ -19,27 +21,53 @@ const Mydatatable = () => {
     });
     const navigate = useNavigate();
     const datashow = () => {
-        navigate('/Chartdata/Chart1');
+        navigate('/Chartdata/Chart5');
 
     }
     const fetchData = () => {
         setLoading(true);
-        fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
-            .then((res) => res.json())
-            .then(({ results }) => {
-                setData(results);
-                setLoading(false);
-                setTableParams({
-                    ...tableParams,
-                    pagination: {
-                        ...tableParams.pagination,
-                        total: 200,
-                        // 200 is mock data, you should read it from server
-                        // total: data.totalCount,
+        const groupid = localStorage.getItem('myGroupid')
+        const usedata = (groupid) => {
+            const token = localStorage.getItem("token"); // 从本地存储获取 token
+            axios
+                .post(
+                    "http://39.98.41.126:31130/resource/resource",
+                    // 要上传的群组信息
+                    {
+                        id: groupid
                     },
+                    {
+                        headers: {
+                            Authorization: token, // 使用从本地存储中获取的 token
+                            "Content-Type": "application/json",
+                        },
+                    }
+                )
+                .then((response) => {
+                    const { code, msg, data } = response;
+                    setData(response.data.data);
+                    setLoading(false);
+                    setTableParams({
+                        ...tableParams,
+                        pagination: {
+                            ...tableParams.pagination,
+                            total: 200,
+                        },
+                    });
+                    if (code === 0) {
+                        message.success(msg);
+                        console.log("data:" + data);
+                    } else {
+                        message.error("创建失败: " + msg);
+                    }
+                })
+                .catch((error) => {
+                    message.error("请求出错");
+                    console.log("请求出错", error);
                 });
-            });
-    };
+        };
+    usedata(groupid);
+    }
 
     useEffect(() => {
         fetchData();
@@ -54,13 +82,10 @@ const Mydatatable = () => {
             ...sorter,
         });
 
-        // `dataSource` is useless since `pageSize` changed
         if (pagination.pageSize !== tableParams.pagination?.pageSize) {
             setData([]);
         }
     };
-
-
 
     const getRandomuserParams = (params) => ({
         results: params.pagination?.pageSize,
@@ -70,21 +95,22 @@ const Mydatatable = () => {
 
     const columns = [
         {
-            title: 'dataset Name',
-            dataIndex: 'email',
+            title: 'resourceName',
+            dataIndex: 'data.data.resourceName',
         },
         {
             title: 'Owners',
-            dataIndex: 'email',
+            dataIndex: 'data.data.owner',
         },
         {
-            title: 'Data Attributes',
-            dataIndex: 'email',
+            title: 'Type',
+            dataIndex: 'data.data.type',
         },
         {
-            title: 'Number of Users',
-            dataIndex: 'email',
+            title: 'referenceQuantity',
+            dataIndex: 'data.data.referenceQuantity',
         },
+       
 
         {
             title: '',
@@ -111,5 +137,7 @@ const Mydatatable = () => {
         </>
     );
 };
+
+
 
 export default Mydatatable;

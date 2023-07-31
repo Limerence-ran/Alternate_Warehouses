@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Alldatasets from '../Alldatasets/main'
 import Mydatasets from '../Mydatasets/main'
 import Aboutme from '../Aboutme/main'
+import Chart1 from '../Chart1/main'
 import './main.css'
 
 function Chart4() {
@@ -22,13 +23,15 @@ function Chart4() {
                         <li><button className={style.btnheader} onClick={() => IsChart(0)}>All datasets</button></li>
                         <li><button className={style.btnheader} onClick={() => IsChart(1)}>Datasets I link to</button></li>
                         <li><button className={style.btnheader} onClick={() => IsChart(2)}>about</button></li>
+                        <li><button className={style.btnheader} onClick={() => IsChart(3)}>upload my data</button></li>
 
                     </ul>
                 </div>
                 <div ref={box}>
                     {which === 0 ? <Alldatasets />
                         : which === 1 ? < Mydatasets />
-                            : <Aboutme />}
+                            : which === 2 ? <Aboutme />
+                            : <Chart1 />}
                 </div>
         
             </div>

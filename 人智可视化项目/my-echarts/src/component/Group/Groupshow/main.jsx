@@ -27,22 +27,21 @@ const Groupshow = () => {
         setIscancel(!iscancel);
     }
     const navigate = useNavigate();
-    const OnclickName = () => {
+    const OnclickName = (record) => {
+     const groupId=record.id;
+        localStorage.setItem('myGroupid', groupId)
         navigate('/Chartdata/Chart4');
     }
     const fetchData = () => {
-        const token = localStorage.getItem("token"); 
-        
-            
-        
+        const token = localStorage.getItem("token");   
         setLoading(true); 
-        // `https://randomuser.me/groups`
-        // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`,{headers})
+    
         fetch(`http://39.98.41.126:31130/groups`,{headers:{
             Authorization: token,
         }})
             .then((res) => res.json())
             .then((res) => {
+
                 console.log(res)
                 setData(res.data);
                 setLoading(false);
@@ -51,8 +50,7 @@ const Groupshow = () => {
                     pagination: {
                         ...tableParams.pagination,
                         total: 200,
-                        // 200 is mock data, you should read it from server
-                        // total: data.totalCount,
+                        
                     },
                 });
             });
@@ -82,6 +80,7 @@ const Groupshow = () => {
         const groupId = record.id;
         console.log("record:", record)
         console.log("record:", record.id)
+        console.log("record:", record.groupName)
         const name = record.groupName;
         const updatedData = data.filter((item) => item.id!== record.id);
         setData(updatedData);
@@ -90,20 +89,18 @@ const Groupshow = () => {
       
         const disbandGroup = (groupName) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
-            axios
-                .delete(
-                    "http://39.98.41.126:31130/groups/quit",
-                    // 要上传的群组信息
-                    {
-                        groupName: groupName
+            axios.delete(
+                "http://39.98.41.126:31130/groups",
+                {
+                    headers: {
+                        Authorization: ` ${token}`, // 使用从本地存储中获取的 token，以 Bearer 认证方案传递
+                        "Content-Type": "application/json",
                     },
-                    {
-                        headers: {
-                            Authorization: token, // 使用从本地存储中获取的 token
-                            "Content-Type": "application/json",
-                        },
-                    }
-                )
+                    data: {
+                        groupName: groupName, // 要上传的群组信息
+                    },
+                }
+            )
                 .then((response) => {
                     const { code, msg, data } = response;
 
@@ -135,7 +132,7 @@ const Groupshow = () => {
         {
             title: 'Group Name',
             dataIndex: 'groupName',
-            render: (dataIndex) => (<li onClick={OnclickName}>{dataIndex}</li>),
+            render: (dataIndex, record) => (<li onClick={() => OnclickName(record)}>{dataIndex}</li>),
         },
         {
             title: 'Group Type',

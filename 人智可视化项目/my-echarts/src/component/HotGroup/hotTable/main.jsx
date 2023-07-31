@@ -38,7 +38,7 @@ const HotTable = () => {
             Authorization: `Bearer ${token}`,
         };
         setLoading(true);
-        fetch(`http://39.98.41.126:31130/groups/1/10`, { headers })
+        fetch(`http://39.98.41.126:31130/groups/page`, { headers })
             // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`, { headers })
             .then((res) => res.json())
 
@@ -54,8 +54,7 @@ const HotTable = () => {
                     pagination: {
                         ...tableParams.pagination,
                         total: 200,
-                        // 200 is mock data, you should read it from server
-                        // total: data.totalCount,
+                      
                     },
                 });
             });
@@ -91,41 +90,7 @@ const HotTable = () => {
         let arr = [...disable]
         arr[record.id] = true
         setDisable(arr)
-        // const updatedData = data.filter((item) => item.login.uuid !== record.login.uuid);
-        // setData(updatedData);
-        // disbandGroup(groupName);
-        // const disbandGroup = (groupName) => {
-        //     const token = localStorage.getItem("token"); // 从本地存储获取 token
-        //     axios
-        //         .delete(
-        //             "http://example.com/groups",
-        //             // 要上传的群组信息
-        //             {
-        //                 groupName: groupName
-        //             },
-        //             {
-        //                 headers: {
-        //                     Authorization: token, // 使用从本地存储中获取的 token
-        //                     "Content-Type": "application/json",
-        //                 },
-        //             }
-        //         )
-        //         .then((response) => {
-        //             const { code, msg, data } = response;
-
-        //             if (code === 1) {
-
-        //                 message.success(msg);
-        //             } else {
-
-        //                 message.error("解散失败: " + msg);
-        //             }
-        //         })
-        //         .catch((error) => {
-        //             message.error("请求出错");
-        //             console.log("请求出错", error);
-        //         });
-        // };
+       
 
 
 
