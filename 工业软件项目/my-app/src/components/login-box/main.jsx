@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./main.module.css";
 import { message } from "antd";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 import {
     UserOutlined,
     UnlockOutlined,
@@ -10,6 +12,7 @@ import {
     SafetyCertificateOutlined,
     CheckOutlined,
 } from "@ant-design/icons";
+
 
 const showMessage = (content, type) => {
     message[type]({
@@ -32,6 +35,7 @@ const AuthForm = () => {
     const [remainingTime, setRemainingTime] = useState(60);
     const [isLoginMode, setIsLoginMode] = useState(true);
     const [isForgotPasswordMode, setIsForgotPasswordMode] = useState(false);
+    const navigate = useNavigate();
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -125,11 +129,11 @@ const AuthForm = () => {
         axios
             .post(
                 //请求地址
-                "http://39.98.41.126:31130/users/register",
+                "http://39.98.41.126:31135/users/register",
                 {
                     emailCode: emailCode,
                     password: password,
-                    userName: username,
+                    username: username,
                     email: email,
                     phone: phone,
                     power: 0,
@@ -167,9 +171,10 @@ const AuthForm = () => {
 
     //登录时的ajax请求
     const handleLogin = () => {
+
         axios
             .post(
-                "http://example.com/api/login",
+                "http://39.98.41.126:31135/users/login",
                 {
                     email: email,
                     password: password,
@@ -182,10 +187,13 @@ const AuthForm = () => {
             )
             .then((response) => {
                 console.log("执行登录操作");
-                const { code, msg } = response.data;
+                console.log(response);
+                const { code, msg, data } = response.data;
                 if (code === 1001) {
                     // 登录成功
                     showMessage(msg, "success");
+                    localStorage.setItem("token", data);
+                    navigate('/Home')
                     // 在这里处理成功的逻辑
                     resetForm();
                 } else if (code === 1000) {
@@ -212,9 +220,10 @@ const AuthForm = () => {
     //忘记密码时的ajax操作
     const handleForgotPassword = () => {
         axios
-            .post(
-                "http://example.com/api/users/updatePassword",
+            .put(
+                "http://39.98.41.126:31135/users/updatePassword",
                 {
+                    email: email,
                     code: emailCode,
                     password: password,
                 },
@@ -225,8 +234,10 @@ const AuthForm = () => {
                 }
             )
             .then((response) => {
-                console.log("执行登录操作");
-                const { code, msg } = response;
+                // console.log("执行登录操作");
+                // console.log(response.data)
+                const { code, msg } = response.data;
+                console.log("code:", code)
                 if (code === 1001) {
                     // 更新成功
                     showMessage(msg, "success");
@@ -256,8 +267,8 @@ const AuthForm = () => {
     //处理发送验证码的ajax请求
     const handleEmailSummit = () => {
         axios
-            .put(
-                "http://example.com/api/users/send-code",
+            .post(
+                "http://39.98.41.126:31135/users/send-code",
                 {
                     email: email,
                 },
@@ -518,14 +529,12 @@ const AuthForm = () => {
                                 {!emailCodeSent && (
                                     <button
                                         type="button"
-                                        className={`${
-                                            styles.sendEmailCodeButton
-                                        } ${
-                                            isSendingEmailCode ||
-                                            remainingTime < 60
+                                        className={`${styles.sendEmailCodeButton
+                                            } ${isSendingEmailCode ||
+                                                remainingTime < 60
                                                 ? styles.sendEmailCodeButtonDisabled
                                                 : styles.sendEmailCodeButtonActive
-                                        }`}
+                                            }`}
                                         disabled={
                                             !isEmailValid ||
                                             isSendingEmailCode ||
@@ -623,14 +632,12 @@ const AuthForm = () => {
                                 {!emailCodeSent && (
                                     <button
                                         type="button"
-                                        className={`${
-                                            styles.sendEmailCodeButton
-                                        } ${
-                                            isSendingEmailCode ||
-                                            remainingTime < 60
+                                        className={`${styles.sendEmailCodeButton
+                                            } ${isSendingEmailCode ||
+                                                remainingTime < 60
                                                 ? styles.sendEmailCodeButtonDisabled
                                                 : styles.sendEmailCodeButtonActive
-                                        }`}
+                                            }`}
                                         disabled={
                                             !isEmailValid ||
                                             isSendingEmailCode ||

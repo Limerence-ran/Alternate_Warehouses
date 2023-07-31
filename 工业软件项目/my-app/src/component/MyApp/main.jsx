@@ -9,11 +9,7 @@ const MyApp = () => {
                 <span>已购买的软件</span>
             </div>
             <Software />
-            <Software />
-            <Software />
-            <Software />
-            <Software />
-            <Software />
+            
         </>
 
     )

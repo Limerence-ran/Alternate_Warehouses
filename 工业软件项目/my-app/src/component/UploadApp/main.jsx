@@ -10,14 +10,7 @@ const UploadApp = () => {
                 <span>已下载的软件</span>
             </div>
             <UploadedApp/>
-            <UploadedApp/>
-            <UploadedApp/>
-            <UploadedApp/>
-            <UploadedApp/>
-            <UploadedApp/>
-            <UploadedApp/>
-            <UploadedApp/>
-            <UploadedApp/>
+          
         </>
 
     )

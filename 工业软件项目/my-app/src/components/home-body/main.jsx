@@ -16,19 +16,20 @@ export default function HomeBody(props) {
     const [currentPage, setCurrentPage] = useState("1");
     const [databox, setDatabox] = useState([]);
     const PageSize = "6";
-
+    console.log(props)
     useEffect(() => {
-        axios
-            .get(
-                `http://39.98.41.126:31132/selectProducts/${currentPage}/${PageSize}`
+        axios.get(
+                `http://39.98.41.126:31135/selectProducts/${currentPage}/${PageSize}`
             )
             .then((response) => {
-                const { code, msg, data } = response;
+                const { code, msg, data } = response.data;
+
                 if (code === 1001) {
                     // 查询成功
-                    console.log("数据:", data);
+                    // console.log("数据:", data.data);
                     message.success(msg);
-                    setDatabox(data.data);
+                    setDatabox([...databox, ...data.data]);
+                   
                 } else {
                     // 其他错误
                     message.error("查询失败: " + msg);
@@ -39,6 +40,15 @@ export default function HomeBody(props) {
                 message.error("请求出错");
             });
     }, []);
+     useEffect(()=>{
+         if (props.search){
+             setDatabox(props.search)
+
+         }
+     },[props])
+    useEffect(() => {
+        console.log('databox', databox);
+    }, [databox])
 
     function handlePageChange(currentPage) {
         setCurrentPage(currentPage);
@@ -58,22 +68,22 @@ export default function HomeBody(props) {
                                 <a href="#" title="nice-book">
                                     <div className={styles.panel_detail}>
                                         <div className={styles.bookface_img}>
-                                            <img src={databox.picture} alt="" />
+                                            <img src={item.picture} alt="" />
                                         </div>
                                         <span className={styles.book_price}>
                                             <i>Hot soft</i>
                                             {/* <!-- 收藏量 --> */}
                                         </span>
                                         <div className={styles.book_brief}>
-                                            <h3>{databox.name}</h3>
+                                            <h3>{item.name}</h3>
                                             <div className={styles.book_quote}>
                                                 {/* <!-- 描述 --> */}
-                                                <p>{databox.description}</p>
+                                                <p>{item.description}</p>
                                             </div>
                                         </div>
                                         <div className={styles.pay}>
                                             <span></span>
-                                            <Link to={"/Buy"}>
+                                            <Link to={"/Buy/:softId"}>
                                                 <button
                                                     className={
                                                         styles.cssbuttons_io_button
@@ -103,7 +113,7 @@ export default function HomeBody(props) {
                                                             class="selected"
                                                         ></path>
                                                     </svg>
-                                                    {databox.price}
+                                                    {item.price}
                                                     <div
                                                         className={styles.icon}
                                                     >

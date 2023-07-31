@@ -17,7 +17,7 @@ import Login from "../pages/Login/main";
 
 export default [
     {
-        path: "*",
+        path: "/Login",
         element: < Login />,
     },
     {
@@ -76,5 +76,9 @@ export default [
                 element: <App3 />,
             },
         ],
+    },
+    {
+        path: "/",
+        element: <Login />,
     },
 ];
