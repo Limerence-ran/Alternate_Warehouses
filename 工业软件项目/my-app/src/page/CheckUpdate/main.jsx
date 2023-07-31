@@ -10,30 +10,26 @@ import {
     useRoutes,
 } from "react-router-dom";
 import axios from "axios";
+import HomeHead from "../../components/home-head/main";
 
 export default function CheckUpdate(props) {
+    const token = localStorage.getItem("token"); // 从本地存储中获取授权 token
     const [currentPage, setCurrentPage] = useState("1");
     const [databox, setDatabox] = useState([]);
-    const PageSize = "6";
-
-    useEffect(() => {
-        const authorizationToken = localStorage.getItem("token"); // 从本地存储中获取授权 token
-
-        const currentPage = 1;
-        const pageSize = 6;
-        axios
-
-            .get(
-                `http://39.98.41.126:31132/selectProducts/${currentPage}/${PageSize}`,
-                {
-                    headers: {
-                        Authorization: authorizationToken, // 使用授权的 token
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
+    const pagestatus = (page, pageSize)=>{
+        console.log(page, pageSize)
+        axios.get(
+            `http://39.98.41.126:31135/users/updateAll/${page}/${pageSize}`,
+            {
+                headers: {
+                    Authorization: token, // 使用授权的 token
+                    "Content-Type": "application/json",
+                },
+            }
+        )
             .then((response) => {
-                const { code, msg, data } = response;
+                const { code, msg, data } = response.data;
+                setDatabox(data)
                 if (code === 1001) {
                     // 查询成功
                     console.log("数据:", data);
@@ -48,6 +44,14 @@ export default function CheckUpdate(props) {
                 console.log("请求出错", error);
                 message.error("请求出错");
             });
+    }
+
+    useEffect(() => {
+      
+        const currentPage = 1;
+        const pageSize = 6;
+        pagestatus(currentPage, pageSize)
+      
     }, []);
 
     function handlePageChange(currentPage) {
@@ -55,6 +59,7 @@ export default function CheckUpdate(props) {
     }
     return (
         <div>
+            < HomeHead/>
             <div className={styles.home}>
                 <button className={styles.icon_home_top}>
                     <span>{props.title}</span>
@@ -144,7 +149,7 @@ export default function CheckUpdate(props) {
                 </div>
             </div>
             <div className={styles.Pagination}>
-                <Pagination
+                <Pagination onChange={(page, pagteSize) => pagestatus(page, pagteSize)}
                     style={{ height: "500px", position: "bottomLeft" }}
                     total={85}
                     // showTotal={(total) => `Total ${total} items`}

@@ -16,7 +16,7 @@ function PurchasePage() {
 
     useEffect(() => {
         if (document.getElementById("current-time")) {
-            const interval = setInterval(() => {
+        const interval = setInterval(() => {
                 const currentTime = moment()
                     .locale("zh-cn")
                     .format("YYYY-MM-DD");
@@ -25,7 +25,7 @@ function PurchasePage() {
                 if (element) element.textContent = currentTime;
             }, 1000);
         }
-        const url = `http://39.98.41.126:31132/users/buy/${softId}`;
+        const url = `http://39.98.41.126:31135/users/buy/${softId}`;
 
         const fetchData = () => {
             axios
@@ -64,7 +64,6 @@ function PurchasePage() {
         fetchData();
 
         return () => {
-            clearInterval(interval);
         };
     }, []);
 
@@ -81,7 +80,7 @@ function PurchasePage() {
 
             axios
                 .post(
-                    "http://39.98.41.126:31132/users/purchases",
+                    "http://39.98.41.126:31135/users/purchases",
                     requestData,
                     {
                         headers: {
@@ -123,7 +122,7 @@ function PurchasePage() {
         };
 
         axios
-            .post("http:/39.98.41.126:31132/purchases", requestData, {
+            .post("http://39.98.41.126:31135/purchases", requestData, {
                 headers: {
                     Authorization: authorizationToken, // 使用授权的 token
                 },

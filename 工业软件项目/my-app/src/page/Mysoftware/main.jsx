@@ -4,10 +4,12 @@ import style from './main.module.css'
 import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
 // import App from '../../router/App'
 import App1 from '../../component/App1/main'
+import HomeHead from '../../components/home-head/main';
 
 const Mysoftware = () => {
     return (
         <>
+        <HomeHead/>
             <div className={style.body}>
                 <div className={style.box}>
                     <div className={style.content}>

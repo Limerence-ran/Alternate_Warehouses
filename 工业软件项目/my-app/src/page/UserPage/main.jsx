@@ -3,12 +3,13 @@ import { UserOutlined, UploadOutlined, ManOutlined, AppstoreOutlined, ContainerO
 import style from './main.module.css'
 import { BrowserRouter as Router, Routes, Route, Link, Outlet, useRoutes } from "react-router-dom";
 import routes from '../../router/router'
+import HomeHead from '../../components/home-head/main';
 
 const UserPage = () => {
     return (
         <>
             <div className={style.body}>
-                {/* <Header /> */}
+               <HomeHead/>
                 <div className={style.box}>
                     <div className={style.content}>
                         <div className={style.left}>

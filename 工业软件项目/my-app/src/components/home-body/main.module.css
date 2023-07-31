@@ -81,10 +81,11 @@
 }
 
 .book_wrapper ul {
-    width: 1300px;
+    width: 1050px;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    /* justify-content: space-around;*/
+    flex-wrap: wrap; 
+    justify-content: flex-start;
 }
 
 .clearfix:after {

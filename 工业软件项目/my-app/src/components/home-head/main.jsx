@@ -11,7 +11,7 @@ import {
     SettingOutlined,
     IdcardOutlined,
 } from "@ant-design/icons";
-// import { useNavigate } from 'react-router-dom';
+
 
 import {
     BrowserRouter as Router,
@@ -22,13 +22,14 @@ import {
     useRoutes,
 } from "react-router-dom";
 
-export default function HomeHead() {
+export default function HomeHead(props) {
     const [searchText, setSearchText] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     // const navigate = useNavigate();
     // const Upload = ()=>{
     //     navigate('/Update');
     // }
+    console.log("props",props)
     const handleInputChange = (event) => {
         const searchText = event.target.value;
         setSearchText(searchText);
@@ -44,7 +45,7 @@ export default function HomeHead() {
         const fetchSearchResults = async () => {
             try {
                 axios
-                    .post("http://39.98.41.126:31132/search", {
+                    .post("http://39.98.41.126:31135/search", {
                         message: searchText,
                     })
                     .then((response) => {
@@ -53,7 +54,7 @@ export default function HomeHead() {
                         if (code === 1001) {
                             // 查询成功
                             console.log("数据:", data);
-
+                            props.setSearch(data)
                             message.success(msg);
                             setSearchResults(response.data);
                         } else {
