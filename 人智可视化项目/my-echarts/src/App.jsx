@@ -24,7 +24,7 @@ import Vedio from "./component/Vedio/main";
 import HomeTab from "./components/home-top/main";
 import routes from "../src/router/router";
 import HotGroup from "./component/HotGroup/main";
-
+import PointLine from "./components/point-line/main";
 
 function App() {
     const element = useRoutes(routes);
@@ -57,7 +57,6 @@ function App() {
             {/* <Vedio /> */}
             {/* <HomeTab /> */}
             {/* <Cancel/> */}
-           
         </>
     );
 }
