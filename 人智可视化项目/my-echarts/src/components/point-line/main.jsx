@@ -6,11 +6,20 @@ export default function PointLine(props) {
 
     const combinedArray = xArray.map((x, index) => [x, yArray[index]]);
 
-    const data1 = combinedArray
-
+    const data1 = combinedArray;
+    //this.props.data_xy.var
     // 配置散点图的基本参数
     const option = {
         backgroundColor: "rgb(214 216 254)",
+        title: {
+            text: `噪声参数:${props.var}`,
+            left: "center", // 标题水平居中
+            textStyle: {
+                color: "#333", // 标题字体颜色
+                fontSize: 18, // 标题字体大小
+                fontWeight: "bold", // 标题字体粗细
+            },
+        },
         legend: {
             bottom: 10,
             left: "center",

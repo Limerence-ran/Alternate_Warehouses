@@ -1,21 +1,22 @@
 import style from "./main.module.css";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { message } from "antd";
-import { Divider, Space, Tag } from "antd";
+import { message, Checkbox, Select } from "antd";
 import DynamicTable from "../../components/create-form/main";
+const { Option } = Select;
 
 function Chart5() {
     const [dems, setDems] = useState(1);
     const [isshow, setisShow] = useState(false);
-    const tableData = localStorage.getItem("tableData");
+    const [mydropdownValue, setMydropdownValue] = useState("");
     const [inputValues, setInputValues] = useState({
         a: "",
         b: "",
         c: "",
         d: "",
     });
+    const [selectedOption, setSelectedOption] = useState("");
 
     const [showBInput, setShowBInput] = useState(false);
     const [showCInput, setShowCInput] = useState(false);
@@ -23,9 +24,115 @@ function Chart5() {
 
     const navigate = useNavigate();
 
-    const Onclickpage = () => {
-        //发送ajax请求
+    // 定义勾选框状态
+    const [showDropdown, setShowDropdown] = useState(false);
 
+    // 定义下拉框选项
+    const dropdownOptions = [
+        // { value: "option1", label: "Option 1" },
+        // { value: "option2", label: "Option 2" },
+        // { value: "option3", label: "Option 3" },
+    ];
+    //组件创建时调用的ajax函数
+    const ajax = async (data) => {
+        try {
+            // 发送请求
+            const response = await axios({
+                url: "http://39.98.41.126:31130/resource/resource",
+                method: "POST",
+                headers: {
+                    Authorization: localStorage.getItem("token"), // 替换为你的实际授权头部
+                },
+                data: {
+                    id: localStorage.getItem("myGroupid"),
+                },
+            });
+
+            // 处理成功状态
+            const { data: responseData } = response.data;
+            for (let j = 0; j < responseData.length; j++) {
+                dropdownOptions[j].value = responseData[j].resourceName;
+                dropdownOptions[j].label = responseData[j].resourceName;
+            }
+            setMydropdownValue(response.data.resourceName);
+        } catch (error) {
+            // 处理错误状态
+            const { response } = error;
+            if (response) {
+                // 请求已发送，但是服务器响应状态码错误
+                const { data: errorData } = response;
+                message.error(errorData.message);
+            } else {
+                // 请求未发送，发生了网络错误等
+                message.error("请求失败，请检查网络连接");
+            }
+
+            throw error; // 可以选择抛出错误，供调用者处理
+        }
+    };
+
+    const handleInputChange = (e, field) => {
+        const { value } = e.target;
+        setInputValues((prevInputValues) => ({
+            ...prevInputValues,
+            [field]: value,
+        }));
+    };
+
+    const handleCheckboxChange = (e, field) => {
+        const { checked } = e.target;
+        setShowDropdown(e.target.checked);
+        if (field === "b") {
+            setShowBInput(checked);
+        } else if (field === "c") {
+            setShowCInput(checked);
+        } else if (field === "d") {
+            setShowDInput(checked);
+        }
+
+        setInputValues((prevInputValues) => ({
+            ...prevInputValues,
+            [field]: checked ? "" : inputValues[field],
+        }));
+    };
+    const radioGroup = document.querySelectorAll('input[name="algorithm"]');
+    let selectedValue = 0; //获取到算法的值
+    for (let i = 0; i < radioGroup.length; i++) {
+        if (radioGroup[0].checked) {
+            selectedValue = 0;
+            break; // 停止循环，因为只需要获取一个选中的值
+        } else {
+            selectedValue = 1;
+            break;
+        }
+    }
+    const handleSelectChange = (value) => {
+        setSelectedOption(value);
+    };
+
+    useEffect(() => {
+        ajax();
+    }, []);
+
+    const Onclickpage = () => {
+        const input1Value = document.getElementById("input1").value;
+        const input2Value = document.getElementById("input2").value;
+        const input3Value = document.getElementById("input3").value;
+        const input4Value = document.getElementById("input4").value;
+        const values = [input1Value, input2Value, input3Value, input4Value];
+
+        const dropdown1Value = document.getElementById("dropdown1").value;
+        const dropdown2Value = document.getElementById("dropdown2").value;
+        const dropdown3Value = document.getElementById("dropdown3").value;
+
+        const dropdownvalues = [
+            mydropdownValue,
+            dropdown1Value,
+            dropdown2Value,
+            dropdown3Value,
+        ];
+
+        //发送ajax请求
         const request = async (requestData) => {
             try {
                 const response = await axios.post(
@@ -45,9 +152,9 @@ function Chart5() {
         request({
             data: localStorage.getItem("tableData"),
             groupId: localStorage.getItem("myGroupid"),
-            algorithmId: 1, //选用算法
-            resourceNames: ["2332", "draw"], //数据集名字
-            resourceWeights: [70, 30, 51], //数据集占比
+            algorithmId: selectedValue, //选用算法
+            resourceNames: dropdownvalues, //数据集名字
+            resourceWeights: values, //数据集占比
         })
             .then((responseData) => {
                 // 处理返回的数据
@@ -65,31 +172,6 @@ function Chart5() {
                 // 错误处理
                 console.error(error);
             });
-    };
-
-    const handleInputChange = (e, field) => {
-        const { value } = e.target;
-        setInputValues((prevInputValues) => ({
-            ...prevInputValues,
-            [field]: value,
-        }));
-    };
-
-    const handleCheckboxChange = (e, field) => {
-        const { checked } = e.target;
-
-        if (field === "b") {
-            setShowBInput(checked);
-        } else if (field === "c") {
-            setShowCInput(checked);
-        } else if (field === "d") {
-            setShowDInput(checked);
-        }
-
-        setInputValues((prevInputValues) => ({
-            ...prevInputValues,
-            [field]: checked ? "" : inputValues[field],
-        }));
     };
 
     return (
@@ -139,39 +221,84 @@ function Chart5() {
                                 </div>
                                 <div className={style.useright1}>
                                     <div>
-                                        <input
-                                            type="checkbox"
-                                            onChange={(e) =>
-                                                handleCheckboxChange(e, "b")
-                                            }
-                                        />
-                                        <span>
-                                            Dataset b(3 noise turned on)
-                                        </span>
+                                        <Checkbox
+                                            onChange={handleCheckboxChange}
+                                        >
+                                            Dataset b
+                                        </Checkbox>
+                                        {showDropdown && (
+                                            <Select
+                                                id="dropdown1"
+                                                defaultValue=""
+                                                style={{ width: 200 }}
+                                                onChange={handleSelectChange}
+                                            >
+                                                {dropdownOptions.map(
+                                                    (option) => (
+                                                        <Option
+                                                            key={option.value}
+                                                            value={option.value}
+                                                        >
+                                                            {option.label}
+                                                        </Option>
+                                                    )
+                                                )}
+                                            </Select>
+                                        )}
                                     </div>
 
                                     <div>
-                                        <input
-                                            type="checkbox"
-                                            onChange={(e) =>
-                                                handleCheckboxChange(e, "c")
-                                            }
-                                        />
-                                        <span>
-                                            Dataset c(1 noise turned on){" "}
-                                        </span>
+                                        <Checkbox
+                                            onChange={handleCheckboxChange}
+                                        >
+                                            Dataset c
+                                        </Checkbox>
+                                        {showDropdown && (
+                                            <Select
+                                                id="dropdown2"
+                                                defaultValue=""
+                                                style={{ width: 200 }}
+                                                onChange={handleSelectChange}
+                                            >
+                                                {dropdownOptions.map(
+                                                    (option) => (
+                                                        <Option
+                                                            key={option.value}
+                                                            value={option.value}
+                                                        >
+                                                            {option.label}
+                                                        </Option>
+                                                    )
+                                                )}
+                                            </Select>
+                                        )}
                                     </div>
 
                                     <div>
-                                        <input
-                                            type="checkbox"
-                                            onChange={(e) =>
-                                                handleCheckboxChange(e, "d")
-                                            }
-                                        />
-                                        <span>
-                                            Dataset d(2 noise turned on)
-                                        </span>
+                                        <Checkbox
+                                            onChange={handleCheckboxChange}
+                                        >
+                                            Dataset d
+                                        </Checkbox>
+                                        {showDropdown && (
+                                            <Select
+                                                id="dropdown3"
+                                                defaultValue=""
+                                                style={{ width: 200 }}
+                                                onChange={handleSelectChange}
+                                            >
+                                                {dropdownOptions.map(
+                                                    (option) => (
+                                                        <Option
+                                                            key={option.value}
+                                                            value={option.value}
+                                                        >
+                                                            {option.label}
+                                                        </Option>
+                                                    )
+                                                )}
+                                            </Select>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -179,13 +306,14 @@ function Chart5() {
                                 <div className={style.usedataleft}>
                                     <span>
                                         Please select the weight of the other
-                                        dataset:{" "}
+                                        dataset:
                                     </span>
                                 </div>
                                 <div className={style.useright}>
                                     <span>
                                         a
                                         <input
+                                            id="input1"
                                             type="text"
                                             value={inputValues.a}
                                             onChange={(e) =>
@@ -198,6 +326,7 @@ function Chart5() {
                                         <span>
                                             b
                                             <input
+                                                id="input2"
                                                 type="text"
                                                 value={inputValues.b}
                                                 onChange={(e) =>
@@ -211,6 +340,7 @@ function Chart5() {
                                         <span>
                                             c
                                             <input
+                                                id="input3"
                                                 type="text"
                                                 value={inputValues.c}
                                                 onChange={(e) =>
@@ -224,6 +354,7 @@ function Chart5() {
                                         <span>
                                             d
                                             <input
+                                                id="input4"
                                                 type="text"
                                                 value={inputValues.d}
                                                 onChange={(e) =>

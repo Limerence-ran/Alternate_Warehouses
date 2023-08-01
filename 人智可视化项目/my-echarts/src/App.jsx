@@ -38,14 +38,14 @@ function App() {
             
       < Slider /> */}
             {/* <HotGroup/> */}
-            {/* {element} */}
+            {element}
             {/* < Alldatasets/>
     <Mydatasets/> */}
             {/* <Aboutme/> */}
             {/* <Group /> */}
             {/* <CreateGroup /> */}
             {/* <Slider/> */}
-            <Chart1/>
+            {/* <Chart1/> */}
             {/* <Chart2 /> */}
 
             {/* <Chart4 /> */}

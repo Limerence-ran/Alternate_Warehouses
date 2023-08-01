@@ -1,68 +1,68 @@
-import Chart1 from '../component/Chart1/main'
-import Chart2 from '../component/Chart2/main'
-import Chart3 from '../component/Chart3/main'
-import Chart4 from '../component/Chart4/main'
-import Chart5 from '../component/Chart5/main'
-import Chart6 from '../component/Chart6/main'
-import Chartdata from '../page/Chartdata/main'
-import Group from '../component/Group/main'
-import CreateGroup from '../component/CreateGroup/main'
-import Login from '../pages/Login/main'
-import HotGroup from '../component/HotGroup/main'
+import Chart1 from "../component/Chart1/main";
+import Chart2 from "../component/Chart2/main";
+import Chart3 from "../component/Chart3/main";
+import Chart4 from "../component/Chart4/main";
+import Chart5 from "../component/Chart5/main";
+import Chart6 from "../component/Chart6/main";
+import Chartdata from "../page/Chartdata/main";
+import Group from "../component/Group/main";
+import CreateGroup from "../component/CreateGroup/main";
+import Login from "../pages/Login/main";
+import HotGroup from "../component/HotGroup/main";
 
 export default [
     {
-        path: '/Login',
-        element: < Login />
+        path: "/Login",
+        element: <Login />,
     },
     {
-        path: '/Chartdata',
+        path: "/Chartdata",
         element: <Chartdata />,
         children: [
             {
-                path: 'Group',
-                element: < Group />
+                path: "Group",
+                element: <Group />,
             },
             {
-                path: 'HotGroup',
-                element: < HotGroup />
+                path: "HotGroup",
+                element: <HotGroup />,
             },
             {
-                path: 'Chart1',
-                element: < Chart1 />
+                path: "Chart1",
+                element: <Chart1 />,
             },
             {
-                path: 'Chart2',
-                element: < Chart2 />
+                path: "Chart2",
+                element: <Chart2 />,
+            },
+            // {
+            //     path: 'Chart3',
+            //     element: < Chart3 />
+            // },
+            {
+                path: "Chart4",
+                element: <Chart4 />,
             },
             {
-                path: 'Chart3',
-                element: < Chart3 />
+                path: "Chart5",
+                element: <Chart5 />,
             },
             {
-                path: 'Chart4',
-                element: < Chart4 />,
+                path: "Chart6",
+                element: <Chart6 />,
             },
             {
-                path: 'Chart5',
-                element: <Chart5 />
+                path: "CreateGroup",
+                element: <CreateGroup />,
             },
             {
-                path: 'Chart6',
-                element: <Chart6 />
+                path: "",
+                element: <Group />,
             },
-            {
-                path: 'CreateGroup',
-                element: <CreateGroup />
-            },
-            {
-                path: '',
-                element: < Group />
-            },
-        ]
+        ],
     },
     {
-        path: '/',
-        element: < Login />
+        path: "/",
+        element: <Login />,
     },
-]
+];

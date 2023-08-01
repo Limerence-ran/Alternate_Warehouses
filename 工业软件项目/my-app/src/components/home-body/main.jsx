@@ -16,9 +16,10 @@ export default function HomeBody(props) {
     const [currentPage, setCurrentPage] = useState("1");
     const [databox, setDatabox] = useState([]);
     const PageSize = "6";
-    console.log(props)
+    console.log(props);
     useEffect(() => {
-        axios.get(
+        axios
+            .get(
                 `http://39.98.41.126:31135/selectProducts/${currentPage}/${PageSize}`
             )
             .then((response) => {
@@ -29,7 +30,6 @@ export default function HomeBody(props) {
                     // console.log("数据:", data.data);
                     message.success(msg);
                     setDatabox([...databox, ...data.data]);
-                   
                 } else {
                     // 其他错误
                     message.error("查询失败: " + msg);
@@ -40,15 +40,14 @@ export default function HomeBody(props) {
                 message.error("请求出错");
             });
     }, []);
-     useEffect(()=>{
-         if (props.search){
-             setDatabox(props.search)
-
-         }
-     },[props])
     useEffect(() => {
-        console.log('databox', databox);
-    }, [databox])
+        if (props.search) {
+            setDatabox(props.search);
+        }
+    }, [props]);
+    useEffect(() => {
+        console.log("databox", databox);
+    }, [databox]);
 
     function handlePageChange(currentPage) {
         setCurrentPage(currentPage);

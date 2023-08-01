@@ -12,10 +12,10 @@ class Bar extends React.Component {
 
         // prettier-ignore
         let dataAxis = [];
-        // prettier-ignore
 
-        let data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
-        //this.props.data_xy.distance
+        let data = this.props.data_xy.distance;
+
+        //[220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
 
         for (let i = 0; i < data.length; i++) {
             dataAxis.push("");
@@ -28,7 +28,7 @@ class Bar extends React.Component {
         option = {
             title: {
                 text: "Distributed AI System Based on Differential privacy",
-                subtext: "噪声:",//this.props.data_xy.var
+                subtext: "Magnitude of change", 
                 left: "center",
                 textStyle: {
                     color: "rgb(143 123 251)",
