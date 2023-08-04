@@ -2,15 +2,24 @@ import React from "react";
 import * as echarts from "echarts";
 
 class Bar extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     componentDidMount() {
         var chartDom = document.getElementById("main");
         var myChart = echarts.init(chartDom);
         var option;
 
         // prettier-ignore
-        let dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
-        // prettier-ignore
-        let data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+        let dataAxis = [];
+
+        let data = this.props.data_xy.distance;
+
+        //[220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+
+        for (let i = 0; i < data.length; i++) {
+            dataAxis.push("");
+        }
         let yMax = 500;
         let dataShadow = [];
         for (let i = 0; i < data.length; i++) {
@@ -18,8 +27,8 @@ class Bar extends React.Component {
         }
         option = {
             title: {
-                text: "QG STUDIO",
-                subtext: "Distributed AI System Based on Differential privacy",
+                text: "Distributed AI System Based on Differential privacy",
+                subtext: "Magnitude of change", 
                 left: "center",
                 textStyle: {
                     color: "rgb(143 123 251)",
@@ -80,6 +89,9 @@ class Bar extends React.Component {
                                 ]
                             ),
                         },
+                    },
+                    label: {
+                        show: false,
                     },
                     data: data,
                 },

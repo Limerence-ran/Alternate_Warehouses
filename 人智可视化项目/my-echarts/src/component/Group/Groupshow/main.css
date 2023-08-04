@@ -17,6 +17,7 @@ display: flex;
         overflow: scroll;
         background-color: #fff;
         border-radius: 0;
+        height: 100vh;
    
 }
 

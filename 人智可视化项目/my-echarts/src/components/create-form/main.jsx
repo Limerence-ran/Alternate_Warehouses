@@ -5,6 +5,7 @@ import Vedio from "../../component/Vedio/main";
 
 const DynamicTable = (prop) => {
     const [dem, setDem] = useState(prop.demnum);
+    const [dimension, setDimension] = useState(prop.dimensionName);
     const [rows, setRows] = useState(1);
     const [cols, setCols] = useState(1);
     const [data, setData] = useState([]);
@@ -53,22 +54,22 @@ const DynamicTable = (prop) => {
 
     // 提交表格数据
     const handleSubmit = () => {
-        const columnsData = [];
+        const columnsData = {};
         for (let i = 0; i < cols; i++) {
             const columnData = data.map((row) => row[`col${i}`]);
-            columnsData.push(columnData);
+            // columnsData.push(columnData);
+            columnsData.dimension[i] = columnData;
         }
         console.log(columnsData);
         const tableData = {
-            rows,
-            cols,
-            data: columnsData,
+            data: [columnsData],
+            dimension: dimension,
         };
         console.log(tableData); // 在控制台输出包装后的数据
-
+        localStorage.setItem("tableData", tableData.data);
         setisShow(!isshow);
         setTimeout(() => {
-            navigate("/Chartdata/Chart2");
+            navigate("/Chartdata/Chart5");
         }, 3000);
     };
 
@@ -76,7 +77,7 @@ const DynamicTable = (prop) => {
     const columns = [];
     for (let i = 0; i < cols; i++) {
         columns.push({
-            title: `Column ${i + 1}`,
+            title: `${dimension[i]}`,
             dataIndex: `col${i}`,
             render: (text, record, rowIndex) => (
                 <Input
