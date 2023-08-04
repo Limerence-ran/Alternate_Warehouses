@@ -4,7 +4,14 @@
 
 .withdrawal {
     width: 100px;
+    height: 20px;
     font-size: 12px;
+    background-color:rgb(150, 155, 251);
+    border: none;
+}
+.withdrawal:hover{
+    background-color: rgb(114, 120, 243);
+        ;
 }
 .cancelContainer{
     position: fixed;
@@ -18,4 +25,8 @@
         z-index: 9999;
         background-color: rgba(0, 0, 0, 0.5);
         /* 半透明黑色背景 */
+}
+.onclickName:hover{
+    cursor: pointer;
+    color: #92a0d5;
 }

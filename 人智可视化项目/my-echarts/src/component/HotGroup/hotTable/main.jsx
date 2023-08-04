@@ -154,11 +154,6 @@ const HotTable = () => {
             title: 'Group Type',
             dataIndex: 'popularity',
         },
-
-        {
-            title: 'Group Purpose',
-            dataIndex: 'purpose',
-        },
         {
             title: 'dimensions',
             dataIndex: 'dimension',

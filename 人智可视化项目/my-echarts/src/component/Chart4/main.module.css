@@ -1,16 +1,25 @@
 .content {
 
     position: relative;
-    width: 84%;
+    width: 100%;
     left: 220px;
-    height: 639px;
+    /* height: 639px; */
+    height: 100vh;
     margin-top: 11px;
     background-color: #fff;
     transition: all .3s ease;
     /* background-color: #9c5d5d; */
     /* position: fixed; */
 }
-
+.middle{
+    height: 100%;
+    width: 80%;
+    /* background-color: #a83e3e; */
+   
+}
+.middle ul{
+    margin: 0;
+}
 main {
     min-width: 600px;
     max-width: 1200px;
@@ -19,11 +28,16 @@ main {
     height: 600px;
     /* background-color: #27943f; */
 }
-
-.title {
+.header{
     display: flex;
+        justify-content: center;
+}
+
+ .title {
+    display: flex;
+    justify-content: center;
     list-style: none;
-    padding: 0;
+  
     margin: 0 30px;
 
     height: 40px;
@@ -35,7 +49,7 @@ main {
 
 .title li {
     width: 100px;
-    margin-left: 120px;
+    margin-left: 100px;
 }
 
 .body {
@@ -55,13 +69,15 @@ main {
     width: 100px;
     height: 80%;
     margin-top: 20px;
-    background-color: #f7f5f5;
+    background-color: #d6d6d6;
     color: #2c323f;
     border: none;
     border-radius: 18px;
     text-align: center;
 }
-
+.btnheader:hover{
+    background-color: #97a2e0;
+}
 .chartbox {
     width: 100%;
     height: 100%;

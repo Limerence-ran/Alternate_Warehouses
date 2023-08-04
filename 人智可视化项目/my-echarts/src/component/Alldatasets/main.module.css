@@ -1,10 +1,10 @@
 .content {
     position: relative;
-    width: 84%;
+    width: 100%;
     left: 220px;
     height: 639px;
     margin-top: 11px;
-    background-color: #fff;
+    /* background-color: #c13a3a; */
     transition: all 0.3s ease;
     /* background-color: #9c5d5d; */
     /* position: fixed; */
@@ -81,9 +81,9 @@ main {
 
 .chartbuttom {
     height: 200px;
-    width: 80%;
+    width: 100%;
     /* background-color: #da5050; */
-    margin: 30px auto;
+    margin: 35px auto;
 }
 
 table {

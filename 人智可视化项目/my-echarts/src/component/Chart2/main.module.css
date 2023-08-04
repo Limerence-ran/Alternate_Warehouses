@@ -6,7 +6,7 @@
     left: 220px;
     height: 639px;
     margin-top: 11px;
-    background-color: #fff;
+  background-color: #fff;
     transition: all 0.3s ease;
 }
 
@@ -16,6 +16,7 @@ main {
     width: 100%;
     padding: 24px 20px 20px 20px;
     height: 600px;
+    margin: 0 auto;
     /* background-color: #27943f; */
 }
 

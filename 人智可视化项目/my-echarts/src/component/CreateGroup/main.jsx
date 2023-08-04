@@ -88,7 +88,7 @@ const CreateGroup = () => {
     return (
         <>
             <div className={style.content} id='CreateGroup'>
-                <main>
+                <main className={style.mainbox}>
                     <div className={style.chartbox}>
                         <div className={style.container}>
                             <Form form={form} onFinish={handleFinish} layout="vertical" className={style.formstyle}>
@@ -120,12 +120,13 @@ const CreateGroup = () => {
                                     name="text"
                                     rules={[{ required: true, message: 'Please input Dimension' }]}
                                 >
-                                    <input />
+                                    <input className={style.inputstyle} />
                                 </Form.Item>
 
                                 <Form.Item
                                     label="Dimension parameters "
-                                    // name="parameters"
+                                    name="parameters"
+                                    rules={[{ required: true, message: 'Please input  Parameters' }]}
                                 >
                                     <span>
                                         Arity Select:
@@ -133,7 +134,7 @@ const CreateGroup = () => {
                                             const selectedDimension = parseInt(e.target.value);
                                             // setDimension(selectedDimension);
                                             setArity(Array(selectedDimension).fill(''));
-                                        }}>
+                                        }} className={style.option}>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -142,25 +143,26 @@ const CreateGroup = () => {
                                             <option value="6">6</option>
                                         </select>
                                     </span>
-                                    <span className={style.parameters}>Please input parameters name :</span>
-                                   
-                                        <span className={style.parameters}>
-                                            
-                                                {arity.map((value, index) => (
-                                                    <Form.Item name={index} key={index}>
-                                                        <input  value={value} onChange={(e) => {
-                                                            const newArray = [...arity];
-                                                            newArray[index] = e.target.value;
-                                                            setArity(newArray);
-                                                        }} />
-                                                    </Form.Item>
-                                                  
-                                                ))}
-                                          
-                                           
-                                        </span>
-                                
-                                  
+                                    <span className={style.parameters}>Please input parameters name :
+                            
+                                    
+                                    </span>
+                                    <span className={style.parameters}>
+
+                                        {arity.map((value, index) => (
+                                            <Form.Item name={index} key={index} className={style.parameters_input}>
+                                                <input value={value} onChange={(e) => {
+                                                    const newArray = [...arity];
+                                                    newArray[index] = e.target.value;
+                                                    setArity(newArray);
+                                                }} />
+                                            </Form.Item>
+
+                                        ))}
+
+
+                                    </span>
+                                      
                                 </Form.Item>
 
                                 <Form.Item
@@ -168,7 +170,7 @@ const CreateGroup = () => {
                                     name="description"
                                     rules={[{ required: true, message: 'Please input Group description' }]}
                                 >
-                                    <Input.TextArea rows={5} className={style.textareastyle} value={description} onChange={(e) => setDescription(e.targrt.value)}/>
+                                    <Input.TextArea rows={5}  style={{ resize: "none"}} className={style.textareastyle} value={description} onChange={(e) => setDescription(e.targrt.value)}/>
                                 </Form.Item>
 
                                 <Form.Item>

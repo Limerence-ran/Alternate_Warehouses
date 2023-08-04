@@ -1,17 +1,32 @@
+.Paging{
+    width: 100vw;
+    height: 100vh;
+}
+
 .Paging .ant-table-pagination {
-    width: 100%;
+display: flex;
+    justify-content: center;
+    margin-top: 16px;
 }
 
 .Paging .ant-spin-container {
-    margin-right: 400px;
+    /* margin-right: 0;
+    width: 1200px; */
+    width: 100%;
+        padding-left: 5px;
+        overflow: scroll;
+        background-color: #fff;
+        border-radius: 0;
+   
 }
 
 .Paging .ant-table {
-    width: 1200px;
+    width: 100%;
     padding-left: 5px;
     overflow: scroll;
     background-color: #fff;
-    height: 560px;
+    height: 100%;
+    border-radius: 0;
 }
 
 .Paging .ant-table::-webkit-scrollbar {
@@ -19,5 +34,18 @@
 }
 
 .Paging table {
+    /* width: 100%; */
     background-color: #fff;
+   
+    /* min-width: 100px; */
+     white-space: nowrap;
+    
+}
+.Paging .ant-table-thead th,
+.Paging .ant-table-tbody td {
+    white-space: normal;
+    width: max-content;
+}
+.Paging .ant-table-thead .ant-table-cell {
+    text-align: center;
 }

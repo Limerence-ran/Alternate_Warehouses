@@ -2,12 +2,14 @@
     padding: 0;
     margin: 0;
     position: relative;
+    /* height: 100vh; */
 }
 
 .backimg {
     height: 780px;
-    max-width: 1980px;
-    min-width: 1080px;
+    /* height: 10vh; */
+    /* max-width: 1980px;
+    min-width: 1080px; */
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 100%;

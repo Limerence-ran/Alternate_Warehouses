@@ -8,15 +8,17 @@ function Chart1() {
         navigate('/ChartData/Chart5');
     }
     return (
-        <>
-            <div className={style.content}>
+        
+           
+                   <>
+                <div className={style.upload}>
                 <div className={style.header}>
                     <span>IMDB Movie Reviews Dataset</span>
                 </div>
                 <main>
                     <div className={style.chartbox} >
                         <div className={style.chart}>
-                            <span>Please enter your data for each dimension</span>
+                          
                         </div>
                         <div className={style.selectbtn}>
                             <span>Please select the level of noise: </span>
@@ -30,8 +32,11 @@ function Chart1() {
                         </div>
                     </div>
                 </main>
-            </div>
-        </>
+                </div>
+
+                   </>
+          
+     
     )
 }
 
