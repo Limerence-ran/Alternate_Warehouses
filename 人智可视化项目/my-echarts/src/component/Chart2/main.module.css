@@ -33,10 +33,11 @@ main {
     height: 420px;
     margin-left: -10px;
     display: flex;
+    flex-direction: column;
     margin-top: 5px;
 }
 .img {
-    width: 600px;
+    width: 500px;
     height: 210px;
     background-color: #71bcd3;
 }

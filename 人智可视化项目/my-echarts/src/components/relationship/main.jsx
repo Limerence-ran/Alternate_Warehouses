@@ -1,32 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import ReactECharts from "echarts-for-react";
 
 export default function DynamicRelationChart(props) {
     const data = props.propdata;
-    const centerNode = {
-        id: 1,
-        name: `群组${props.gropId}`,
-        category: 0,
-    };
-
     // Create nodes and links based on the data
     const createNodesAndLinks = () => {
+        const centerNode = {
+            id: 1,
+            name: `群组${data.group.groupName}`,
+            category: 0,
+        };
         const nodes = [centerNode];
         const links = [];
 
-        data.forEach((item) => {
-            const groupId = item.groupId;
+        console.log(
+            "data.resourceListEnhancedWithRelativeCode",
+            data.resourceListEnhancedWithRelativeCode
+        );
+        data.resourceListEnhancedWithRelativeCode.forEach((item) => {
+            const groupId = item.id;
             const ownerId = item.ownerId;
 
             const groupNode = {
                 id: groupId,
-                name: `数据集${props.resourceName}`,
+                name: `数据集:${item.resourceName}`,
                 category: 1,
             };
 
             const ownerNode = {
                 id: ownerId,
-                name: `拥有者${ownerId}`,
+                name: `拥有者:${item.ownerName}`,
                 category: 2,
             };
 
@@ -36,7 +39,7 @@ export default function DynamicRelationChart(props) {
             };
 
             const ownerLink = {
-                source: groupNode.id,
+                source: groupId,
                 target: ownerId,
             };
 
@@ -48,6 +51,7 @@ export default function DynamicRelationChart(props) {
     };
 
     const { nodes, links } = createNodesAndLinks();
+    console.log("nodes, links->", nodes, links);
 
     const option = {
         series: [
@@ -66,8 +70,11 @@ export default function DynamicRelationChart(props) {
                     { name: "数据集" },
                     { name: "拥有者" },
                 ],
-                nodes: nodes.map((node) => ({
-                    ...node,
+
+                data: nodes.map((node) => ({
+                    id: node.id,
+                    name: node.name,
+                    category: node.category,
                     symbolSize: node.category === 0 ? 60 : 40,
                 })),
                 links: links,
@@ -85,7 +92,6 @@ export default function DynamicRelationChart(props) {
             },
         ],
     };
-
     return (
         <div style={{ height: "500px" }}>
             <ReactECharts option={option} />

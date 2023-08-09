@@ -1,18 +1,17 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Table } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
-import qs from 'qs';
-import "./main.css"
-import style from './main.module.css'
-import { useNavigate } from 'react-router-dom';
-import Cancel from '../../Cancel/main'
+import React, { useEffect, useState, useRef } from "react";
+import { Table } from "antd";
+import { CaretRightOutlined } from "@ant-design/icons";
+import qs from "qs";
+import "./main.css";
+import style from "./main.module.css";
+import { useNavigate } from "react-router-dom";
+import Cancel from "../../Cancel/main";
 import axios from "axios";
 import { message } from "antd";
 
-
 const Groupshow = () => {
     const [data, setData] = useState();
-    const [detail,setDatail] = useState('')
+    const [detail, setDatail] = useState("");
     const [loading, setLoading] = useState(false);
     const [iscancel, setIscancel] = useState(false);
     const [tableParams, setTableParams] = useState({
@@ -22,27 +21,28 @@ const Groupshow = () => {
         },
     });
     const Cancelbox = (e) => {
-        setDatail(e)
-        console.log(e)
+        setDatail(e);
+        console.log(e);
         setIscancel(!iscancel);
-    }
+    };
     const navigate = useNavigate();
     const OnclickName = (record) => {
-     const groupId=record.id;
-        localStorage.setItem('myGroupid', groupId)
-        navigate('/Chartdata/Chart4');
-    }
+        const groupId = record.id;
+        localStorage.setItem("myGroupid", groupId);
+        navigate("/Chartdata/Chart4");
+    };
     const fetchData = () => {
-        const token = localStorage.getItem("token");   
-        setLoading(true); 
-    
-        fetch(`http://39.98.41.126:31130/groups`,{headers:{
-            Authorization: token,
-        }})
+        const token = localStorage.getItem("token");
+        setLoading(true);
+
+        fetch(`http://39.98.41.126:31130/groups`, {
+            headers: {
+                Authorization: token,
+            },
+        })
             .then((res) => res.json())
             .then((res) => {
-
-                console.log(res)
+                console.log(res);
                 setData(res.data);
                 setLoading(false);
                 setTableParams({
@@ -50,16 +50,13 @@ const Groupshow = () => {
                     pagination: {
                         ...tableParams.pagination,
                         total: 200,
-                        
                     },
                 });
             });
     };
-      
+
     useEffect(() => {
         fetchData();
-
-
     }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -75,23 +72,19 @@ const Groupshow = () => {
         }
     };
 
-
     const handleDelete = (record) => {
         const groupId = record.id;
-        console.log("record:", record)
-        console.log("record:", record.id)
-        console.log("record:", record.groupName)
+        console.log("record:", record);
+        console.log("record:", record.id);
+        console.log("record:", record.groupName);
         const name = record.groupName;
-        const updatedData = data.filter((item) => item.id!== record.id);
+        const updatedData = data.filter((item) => item.id !== record.id);
         setData(updatedData);
 
-
-      
         const disbandGroup = (groupName) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
-            axios.delete(
-                "http://39.98.41.126:31130/groups",
-                {
+            axios
+                .delete("http://39.98.41.126:31130/groups", {
                     headers: {
                         Authorization: ` ${token}`, // 使用从本地存储中获取的 token，以 Bearer 认证方案传递
                         "Content-Type": "application/json",
@@ -99,16 +92,13 @@ const Groupshow = () => {
                     data: {
                         groupName: groupName, // 要上传的群组信息
                     },
-                }
-            )
+                })
                 .then((response) => {
                     const { code, msg, data } = response;
 
                     if (code === 1) {
-
                         message.success(msg);
                     } else {
-
                         message.error("解散失败: " + msg);
                     }
                 })
@@ -118,9 +108,7 @@ const Groupshow = () => {
                 });
         };
         disbandGroup(name);
-
     };
-
 
     const getRandomuserParams = (params) => ({
         results: params.pagination?.pageSize,
@@ -130,56 +118,63 @@ const Groupshow = () => {
 
     const columns = [
         {
-            title: 'Group Name',
-            dataIndex: 'groupName',
-            render: (dataIndex, record) => (<li onClick={() => OnclickName(record)}>{dataIndex}</li>),
+            title: "Group Name",
+            dataIndex: "groupName",
+            render: (dataIndex, record) => (
+                <li onClick={() => OnclickName(record)}>{dataIndex}</li>
+            ),
         },
         {
-            title: 'Group Type',
-            render: () => (<span>Publice</span>),
+            title: "Group Type",
+            render: () => <span>Publice</span>,
         },
 
         {
-            title: 'datanum',
-            dataIndex: 'resourceQuantity',
+            title: "datanum",
+            dataIndex: "resourceQuantity",
         },
         {
-            title: 'dimension',
-            dataIndex: 'dimension',
+            title: "dimension",
+            dataIndex: "dimension",
         },
         {
-            title: 'Detail',
-            dataIndex: 'description',
-            render: (e) => <CaretRightOutlined onClick={()=>Cancelbox(e)} />,
+            title: "Detail",
+            dataIndex: "description",
+            render: (e) => <CaretRightOutlined onClick={() => Cancelbox(e)} />,
         },
         {
-            title: 'Withdrawal',
+            title: "Withdrawal",
             render: (e, record) => (
-                <button onClick={() => handleDelete(record)} className={style.withdrawal} > Withdrawal</button >
-            )
+                <button
+                    onClick={() => handleDelete(record)}
+                    className={style.withdrawal}
+                >
+                    {" "}
+                    Withdrawal
+                </button>
+            ),
         },
     ];
-  
+
     return (
-        <><div className='Paging' >
-            <Table
-                columns={columns}
-                rowKey={(record) => record.id}
-                dataSource={data}
-                pagination={{
-                    ...tableParams.pagination,
-                    position: ['bottomRight'],
-                }}
-                loading={loading}
-                onChange={handleTableChange}
-            />
-        </div>
-            {
-                iscancel && <Cancel className={style.cancelContainer} value={detail}/>
-            }
+        <>
+            <div className="Paging">
+                <Table
+                    columns={columns}
+                    rowKey={(record) => record.id}
+                    dataSource={data}
+                    pagination={{
+                        ...tableParams.pagination,
+                        position: ["bottomRight"],
+                    }}
+                    loading={loading}
+                    onChange={handleTableChange}
+                />
+            </div>
+            {iscancel && (
+                <Cancel className={style.cancelContainer} value={detail} />
+            )}
         </>
     );
 };
 export default Groupshow;
-
-

@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Vedio from "../../component/Vedio/main";
 
 const DynamicTable = (prop) => {
+    console.log(prop);
     const [dem, setDem] = useState(prop.demnum);
     const [dimension, setDimension] = useState(prop.dimensionName);
-    const [rows, setRows] = useState(1);
+    const [rows, setRows] = useState(dem);
     const [cols, setCols] = useState(1);
     const [data, setData] = useState([]);
     const [columnTitles, setColumnTitles] = useState([]);
@@ -55,10 +56,11 @@ const DynamicTable = (prop) => {
     // 提交表格数据
     const handleSubmit = () => {
         const columnsData = {};
+        console.log(columnsData);
         for (let i = 0; i < cols; i++) {
-            const columnData = data.map((row) => row[`col${i}`]);
+            const key = dimension[i];
+            columnsData[key] = data.map((row) => row[`col${i}`]);
             // columnsData.push(columnData);
-            columnsData.dimension[i] = columnData;
         }
         console.log(columnsData);
         const tableData = {

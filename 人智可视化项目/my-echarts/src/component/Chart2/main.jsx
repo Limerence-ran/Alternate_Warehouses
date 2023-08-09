@@ -4,10 +4,9 @@ import Pointxy from "../../components/point-xy/main";
 import Bar from "../../components/bar/main";
 import PointLine from "../../components/point-line/main";
 function Chart2() {
-    // const [datas, setDatas] = useState([]);
-    // if (localStorage.getItem("data-xy"))
-        // setDatas(localStorage.getItem("data-xy"));
-
+    const [datas, setDatas] = useState([]);
+    if (localStorage.getItem("data-xy"))
+        setDatas(localStorage.getItem("data-xy"));
 
     const [isshow, setisShow] = useState(false);
     useEffect(() => {});

@@ -1,12 +1,13 @@
 import style from "./main.module.css";
 import { useState, useEffect } from "react";
-import { Divider, Space, Tag } from "antd";
+import { Divider, Space, Tag, message } from "antd";
 import axios from "axios";
 import DynamicTable from "../../components/create-form/main";
 
 function Chart6() {
     const [dems, setDems] = useState(1);
     const [resourceFormat, setResourceFormat] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,7 +32,7 @@ function Chart6() {
                     // 进行业务逻辑操作
                     setDems(dimension);
                     setResourceFormat(resourceFormat);
-
+                    // console.log(dimension, resourceFormat);
                     message.success("请求成功");
                 } else {
                     // 请求失败
@@ -39,13 +40,12 @@ function Chart6() {
                 }
             } catch (error) {
                 // 请求错误
-                message.error("请求错误");
+                message.error(error, "请求错误");
             }
         };
 
         fetchData();
     }, []);
-
     return (
         <>
             <div className={style.content}>
@@ -55,10 +55,12 @@ function Chart6() {
                 <main>
                     <div className={style.chartbox}>
                         <div className={style.chart}>
-                            <DynamicTable
-                                demnum={dems}
-                                dimensionName={dimension}
-                            ></DynamicTable>
+                            {dems && resourceFormat && (
+                                <DynamicTable
+                                    demnum={dems}
+                                    dimensionName={resourceFormat}
+                                ></DynamicTable>
+                            )}
                             <Space size={[0, "small"]} wrap>
                                 <Tag bordered={false} color="processing">
                                     行:群组维度
