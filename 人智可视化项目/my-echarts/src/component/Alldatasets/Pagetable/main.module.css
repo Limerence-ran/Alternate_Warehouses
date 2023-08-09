@@ -1,8 +1,11 @@
 .div {
     width: 100%
 }
-
-.get {
-    width: 60px;
-    font-size: 12px;
+.getbtn{
+    width: 50px;
+    border: none;
+    background-color: rgb(130,
+        100,
+        249);
+        font-size: 8px;
 }

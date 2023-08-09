@@ -19,16 +19,13 @@ const Popup = (props) => {
       <>
          {showPopup && (
             <div className={style.popupbox}>
-               <div className={style.textheader}><span>Group DEscription</span></div>
+               <div className={style.textheader}><span>Group Description</span></div>
                <div className={style.canceltext}>
                   <textarea
                      readOnly
                      value={props.value.value} 
-                     rows={20} cols={48} className={style.textarea} />
+                     rows={14} cols={48} className={style.textarea} style={{ resize: "none" }}/>
                </div>
-               {/* <div className={style.cancelbutton} onClick={closePopup}>
-                   Cancel
-               </div> */}
                <button className={style.cancelbutton} onClick={closePopup}>Cancel</button>
             </div>
          )}
@@ -38,8 +35,10 @@ const Popup = (props) => {
 
 export default function Cancel(props) {
    return (
-      <div className={style.App}>
-         <Popup value={props}/>
-      </div>
+     <>
+         <div className={style.App}>
+            <Popup value={props} />
+         </div>
+     </>
    );
 }

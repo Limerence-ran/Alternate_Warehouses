@@ -2,29 +2,35 @@
     /* top: 64px; */
   
     position: relative;
-    width: 84%;
+    width: 80%;
     left: 220px;
-    height: 639px;
+    height: 590px;
     margin-top: 11px;
-    background-color: rgb(247,
-        249,
-        255);
+    background-color: rgb(60, 87, 168);
     transition: all .3s ease;
 
 }
-
+.upload{
+    height: 500px;
+    width: 100%;
+    background-color: #d9dff2;
+   padding: 0 auto;
+   text-align: center;
+   margin-top: 40px;
+}
 main {
-
+    /* background-color: #b03434; */
     min-width: 600px;
     max-width: 1200px;
     width: 100%;
     padding: 24px 20px 20px 20px;
-    height: 600px;
+    height: 400px;
     /* background-color: #27943f; */
 }
 
-.header {
+.chart .header {
     text-align: center;
+    width: 80%;
     font-size: 14px;
     height: 30px;
     padding-top: 10px;
@@ -40,7 +46,7 @@ main {
 
 
 .chart {
-    width: 600px;
+    width: 800px;
     height: 300px;
     background-color: rgb(255,
         255,
@@ -70,7 +76,7 @@ main {
 }
 
 .chartbox .btn {
-    margin-left: 500px;
+   height: 30px;
 }
 
 .chartbox .btn button {

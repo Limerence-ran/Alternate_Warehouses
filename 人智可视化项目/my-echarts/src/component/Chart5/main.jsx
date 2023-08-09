@@ -199,213 +199,91 @@ function Chart5() {
     return (
         <>
             <div className={style.content}>
-                <div className={style.header}>
-                    <span>IMDB Movie Reviews Dataset</span>
-                </div>
-                <main>
-                    <div className={style.chartbox}>
-                        <div className={style.chart}>
-                            <div className={style.chart}></div>
-                        </div>
-                        <div className={style.chartbuttom}>
-                            <div className={style.radio}>
-                                <div className={style.usedataleft}>
-                                    <span>
-                                        Please select the iteration mode you
-                                        want:
-                                    </span>
-                                </div>
-                                <div className={style.usedataright}>
-                                    <input
-                                        type="radio"
-                                        name="algorithm"
-                                        onChange={handleboxChange}
-                                    />
-                                    <span> Mean value algorithm</span>
-                                    <input
-                                        type="radio"
-                                        name="algorithm"
-                                        onChange={handleboxChange}
-                                    />
-                                    <span>Differential Algorithm</span>
-                                </div>
-                            </div>
-                            <div className={style.usedata}>
-                                <div className={style.usedataleft}>
-                                    <span>
-                                        Please select the dataset you want to
-                                        use:
-                                    </span>
-                                </div>
-                                <div className={style.useright1}>
-                                    <div>
-                                        <Checkbox
-                                            onChange={handleCheckboxChange.bind(
-                                                this,
-                                                "b"
-                                            )}
-                                        >
-                                            Dataset b
-                                        </Checkbox>
-                                        {showDropdownb && (
-                                            <Select
-                                                id="dropdown1"
-                                                defaultValue=""
-                                                style={{ width: 200 }}
-                                                onChange={handleSelectChange.bind(
-                                                    this,
-                                                    "c"
-                                                )}
-                                            >
-                                                {dropdownOptions.map(
-                                                    (option) => (
-                                                        <Option
-                                                            key={option.value}
-                                                            value={option.value}
-                                                        >
-                                                            {option.label}
-                                                        </Option>
-                                                    )
-                                                )}
-                                            </Select>
-                                        )}
-                                    </div>
-
-                                    <div>
-                                        <Checkbox
-                                            onChange={handleCheckboxChange.bind(
-                                                this,
-                                                "c"
-                                            )}
-                                        >
-                                            Dataset c
-                                        </Checkbox>
-                                        {showDropdownc && (
-                                            <Select
-                                                id="dropdown2"
-                                                defaultValue=""
-                                                style={{ width: 200 }}
-                                                onChange={handleSelectChange}
-                                            >
-                                                {dropdownOptions.map(
-                                                    (option) => (
-                                                        <Option
-                                                            key={option.value}
-                                                            value={option.value}
-                                                        >
-                                                            {option.label}
-                                                        </Option>
-                                                    )
-                                                )}
-                                            </Select>
-                                        )}
-                                    </div>
-
-                                    <div>
-                                        <Checkbox
-                                            onChange={handleCheckboxChange.bind(
-                                                this,
-                                                "d"
-                                            )}
-                                        >
-                                            Dataset d
-                                        </Checkbox>
-                                        {showDropdownd && (
-                                            <Select
-                                                id="dropdown3"
-                                                defaultValue=""
-                                                style={{ width: 200 }}
-                                                onChange={handleSelectChange}
-                                            >
-                                                {dropdownOptions.map(
-                                                    (option) => (
-                                                        <Option
-                                                            key={option.value}
-                                                            value={option.value}
-                                                        >
-                                                            {option.label}
-                                                        </Option>
-                                                    )
-                                                )}
-                                            </Select>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={style.dataweight}>
-                                <div className={style.usedataleft}>
-                                    <span>
-                                        Please select the weight of the other
-                                        dataset:
-                                    </span>
-                                </div>
-                                <div className={style.useright}>
-                                    <span>
-                                        a
-                                        <input
-                                            id="input1"
-                                            type="text"
-                                            value={inputValues.a}
-                                            onChange={(e) =>
-                                                handleInputChange(e, "a")
-                                            }
-                                        />
-                                        %
-                                    </span>
-                                    {showBInput && (
-                                        <span>
-                                            b
-                                            <input
-                                                id="input2"
-                                                type="text"
-                                                value={inputValues.b}
-                                                onChange={(e) =>
-                                                    handleInputChange(e, "b")
-                                                }
-                                            />
-                                            %
-                                        </span>
-                                    )}
-                                    {showCInput && (
-                                        <span>
-                                            c
-                                            <input
-                                                id="input3"
-                                                type="text"
-                                                value={inputValues.c}
-                                                onChange={(e) =>
-                                                    handleInputChange(e, "c")
-                                                }
-                                            />
-                                            %
-                                        </span>
-                                    )}
-                                    {showDInput && (
-                                        <span>
-                                            d
-                                            <input
-                                                id="input4"
-                                                type="text"
-                                                value={inputValues.d}
-                                                onChange={(e) =>
-                                                    handleInputChange(e, "d")
-                                                }
-                                            />
-                                            %
-                                        </span>
-                                    )}
-                                </div>
-                            </div>
-                            <button
-                                className={style.next}
-                                onClick={Onclickpage}
-                            >
-                                Next
-                            </button>
-                        </div>
+                <div className={style.Chart5}>
+                    <div className={style.header}>
+                        <span>IMDB Movie Reviews Dataset</span>
                     </div>
-                </main>
-                {isshow && <Vedio />}
+                    <main>
+                        <div className={style.chartbox}>
+                            <div className={style.chart}></div>
+                            <div className={style.chartbuttom}>
+                                <div className={style.radio}>
+                                    <div className={style.usedataleft}>
+                                        <span>
+                                            Please select the iteration mode you
+                                            want:
+                                        </span>
+                                    </div>
+                                    <div className={style.usedataright}>
+                                        <input type="radio" name="algorithm" />
+                                        <span> Mean value algorith</span>
+                                        <input type="radio" name="algorithm" />
+                                        <span>Differential Algorithm</span>
+                                    </div>
+                                </div>
+                                <div className={style.usedata}>
+                                    <div className={style.usedataleft}>
+                                        <span>
+                                            Please select the dataset you want
+                                            to use:{" "}
+                                        </span>
+                                    </div>
+                                    <div className={style.useright1}>
+                                        <div>
+                                            {" "}
+                                            <input type="checkbox" />
+                                            <span>
+                                                Dataset b(3noise turned on)
+                                            </span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            <input type="checkbox" />
+                                            <span>
+                                                Dataset c(1noise turned on){" "}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            <input type="checkbox" />
+                                            <span>
+                                                Dataset d(2 noise turned on)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={style.dataweight}>
+                                    <div className={style.usedataleft}>
+                                        <span>
+                                            Please select the weight of the
+                                            other dataset:{" "}
+                                        </span>
+                                    </div>
+                                    <div className={style.useright}>
+                                        <span>
+                                            a<input type="text" />%
+                                        </span>
+                                        <span>
+                                            b<input type="text" />%
+                                        </span>
+                                        <span>
+                                            c<input type="text" />%
+                                        </span>
+                                        <span>
+                                            d<input type="text" />%
+                                        </span>
+                                    </div>
+                                </div>
+                                <button
+                                    className={style.next}
+                                    onClick={Onclickpage}
+                                >
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </main>
+                </div>
             </div>
         </>
     );

@@ -39,22 +39,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                 console.log(response);
                 setData(response.data.data);
 
-                // function handleAjax() {
-                //     handleAjaxChange(data);
-                // }
-                // const fetchData = () => {
-                //     setLoading(true);
-                //     fetch(
-                //         `https://randomuser.me/api?${qs.stringify(
-                //             getRandomuserParams(tableParams)
-                //         )}`
-                //     )
-                //         .then((res) => res.json())
-                //         .then(({ results }) => {
-                //             console.log(results)
-                //             setData(results);
-                //             handleAjax();
-
+    
                 setLoading(false);
                 setTableParams({
                     ...tableParams,
@@ -165,14 +150,8 @@ const Pagetable1 = ({ handleAjaxChange }) => {
         {
             title: "",
             render: (e, record) => (
-                <button
-                    className={style.get}
-                    onClick={() => onclickGet(record)}
-                >
-                    {" "}
-                    Get
-                </button>
-            ),
+                <button className={style.getbtn} onClick={()=>onclickGet(record)}> Get</button >
+            )
         },
     ];
 

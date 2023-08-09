@@ -197,25 +197,29 @@ const Abouttable = () => {
             render: (e, record) => (
                 <>
                     {record.status === "0" ? (
+                        <span className={style.wait}>Waiting for reply</span>
+                    ) : record.status === "1" ? (
+                        <Button className={style.get}> Agreed</Button>
+                    ) : record.status === "2" ? (
+                        <Button className={style.get}> Rejected</Button>
+                    ) : (
                         <>
                             {" "}
                             <Button
                                 className={style.get}
                                 onClick={() => Agree(record)}
                             >
+                                {" "}
                                 Agreed
                             </Button>
                             <Button
                                 className={style.get}
                                 onClick={() => Rejected(record)}
                             >
+                                {" "}
                                 Rejected
                             </Button>
                         </>
-                    ) : record.status === "1" ? (
-                        <Button className={style.get}> Agreed</Button>
-                    ) : (
-                        <Button className={style.get}> Rejected</Button>
                     )}
                 </>
             ),

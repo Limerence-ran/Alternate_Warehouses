@@ -16,12 +16,8 @@ function Chartdata() {
             <div className={style.Chartbox}>
              <HomeTab/>
                 <Slider onLiElements={renderLis} />
-                <div className={style.swap}>
-                    {/* {routes.map((route, index) => (
-                        <Link key={index} to={route.path}><button>{index}</button></Link>
-                    ))} */}
-                  
-                </div>
+                {/* <div className={style.swap}>
+                </div> */}
                 <Outlet></Outlet>
             </div></>
     )

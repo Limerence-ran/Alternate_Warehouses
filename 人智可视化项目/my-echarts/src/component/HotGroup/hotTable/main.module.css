@@ -3,8 +3,10 @@
 }
 
 .withdrawal {
-    width: 100px;
+    width:80px;
     font-size: 12px;
+    background-color: #3e7fd5;
+    color: #fff;
 }
 
 .cancelContainer {

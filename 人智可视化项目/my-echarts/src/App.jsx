@@ -25,6 +25,7 @@ import HomeTab from "./components/home-top/main";
 import routes from "../src/router/router";
 import HotGroup from "./component/HotGroup/main";
 import PointLine from "./components/point-line/main";
+import Groupshow from "../src/component/Group/Groupshow/main";
 
 function App() {
     const element = useRoutes(routes);
@@ -38,9 +39,10 @@ function App() {
             
       < Slider /> */}
             {/* <HotGroup/> */}
-            {/* {element} */}
-            {/* < Alldatasets/>
-    <Mydatasets/> */}
+            {element}
+            {/* <Groupshow/> */}
+            {/* < Alldatasets/> */}
+            {/* <Mydatasets/>  */}
             {/* <Aboutme/> */}
             {/* <Group /> */}
             {/* <CreateGroup /> */}
@@ -51,14 +53,12 @@ function App() {
             {/* <Chart4 /> */}
             {/* <Header/> */}
             {/* <Cancel/> */}
-            <Chart5/>
+            <Chart5 />
             {/* <Chart6/> */}
             {/* <Vedio /> */}
             {/* <HomeTab /> */}
             {/* <Cancel/> */}
 
-
-            
             {/* <Chart3/> */}
         </>
     );

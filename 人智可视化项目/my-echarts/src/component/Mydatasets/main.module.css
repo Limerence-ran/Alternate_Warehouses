@@ -81,9 +81,9 @@ main {
 
 .chartbuttom {
     height: 200px;
-    width: 80%;
+    width: 100%;
     /* background-color: #da5050; */
-    margin: 30px auto;
+    margin: 35px auto;
 }
 
 table {

@@ -2,14 +2,19 @@
     /* top: 64px; */
 
     position: relative;
-    width: 84%;
+    width: 100%;
     left: 220px;
-    height: 639px;
+    /* height: 639px; */
+    height: 100vh;
     margin-top: 11px;
     background-color: rgb(247, 249, 255);
     transition: all 0.3s ease;
 }
-
+.Chart6{
+height: 100%;
+width: 80%;
+/* background-color: #784343; */
+}
 main {
     min-width: 600px;
     max-width: 1200px;

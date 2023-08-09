@@ -1,12 +1,11 @@
  
  .content {
-        max-width: 100%;
-        max-height: 100%;
+    
      transition: all .3s ease;
      margin-left: 240px;
-     margin-right: 20PX;
+     margin-right: 20px;
      margin-top: 12px;
-     border-radius: 0 6px 6px 0;
+    
   } 
   
  
@@ -16,8 +15,10 @@
   margin-left: 50px;
 }
 .paging{
-    width: 100%;
-    border-radius: 0 18px 8px 0;
+    width: 100%-220px;
+    background-color: #9a3a3a;
+    border-radius: 0;
+  
    
 }
 .group{

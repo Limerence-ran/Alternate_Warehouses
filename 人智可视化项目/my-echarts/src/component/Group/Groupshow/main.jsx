@@ -118,11 +118,17 @@ const Groupshow = () => {
 
     const columns = [
         {
+<<<<<<< HEAD
             title: "Group Name",
             dataIndex: "groupName",
             render: (dataIndex, record) => (
                 <li onClick={() => OnclickName(record)}>{dataIndex}</li>
             ),
+=======
+            title: 'Group Name',
+            dataIndex: 'groupName',
+            render: (dataIndex, record) => (<li onClick={() => OnclickName(record)} className={style.onclickName}>{dataIndex}</li>),
+>>>>>>> 6cd2e89e341556145f831200ddf19ced819e232f
         },
         {
             title: "Group Type",
