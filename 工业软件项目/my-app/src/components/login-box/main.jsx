@@ -186,8 +186,8 @@ const AuthForm = () => {
                 }
             )
             .then((response) => {
-                console.log("执行登录操作");
-                console.log(response);
+                // console.log("执行登录操作");
+                // console.log(response);
                 const { code, msg, data } = response.data;
                 if (code === 1001) {
                     // 登录成功
@@ -237,7 +237,7 @@ const AuthForm = () => {
                 // console.log("执行登录操作");
                 // console.log(response.data)
                 const { code, msg } = response.data;
-                console.log("code:", code)
+                // console.log("code:", code)
                 if (code === 1001) {
                     // 更新成功
                     showMessage(msg, "success");

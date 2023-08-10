@@ -38,8 +38,8 @@ function App() {
             {/* < HomeTab />
             
       < Slider /> */}
-            {/* <HotGroup/> */}
-            {element}
+            {/* <HotGroup/>
+            {element} */}
             {/* <Groupshow/> */}
              {/* < Alldatasets/> */}
               {/* <Mydatasets/>  */}
