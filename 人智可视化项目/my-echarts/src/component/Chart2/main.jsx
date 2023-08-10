@@ -3,13 +3,16 @@ import React, { useState, useEffect } from "react";
 import Pointxy from "../../components/point-xy/main";
 import Bar from "../../components/bar/main";
 import PointLine from "../../components/point-line/main";
+import { Skeleton } from "antd";
+
 function Chart2() {
     const [datas, setDatas] = useState([]);
-    if (localStorage.getItem("data-xy"))
-        setDatas(localStorage.getItem("data-xy"));
-
     const [isshow, setisShow] = useState(false);
-    useEffect(() => {});
+
+    useEffect(() => {
+        if (localStorage.getItem("data-xy"))
+            setDatas(localStorage.getItem("data-xy"));
+    }, []);
     function handlesubmit() {
         setisShow(!isshow);
         setTimeout(() => {
@@ -25,13 +28,19 @@ function Chart2() {
                 <main>
                     <div className={style.chart2}>
                         <div className={style.img}>
-                            <Pointxy data_xy={datas}></Pointxy>
+                            <Skeleton>
+                                <Pointxy data_xy={datas}></Pointxy>
+                            </Skeleton>
                         </div>
                         <div className={style.img}>
-                            <Bar data_xy={datas}></Bar>
+                            <Skeleton>
+                                <Bar data_xy={datas}></Bar>
+                            </Skeleton>
                         </div>
                         <div className={style.img}>
-                            <PointLine data_xy={datas}></PointLine>
+                            <Skeleton>
+                                <PointLine data_xy={datas}></PointLine>
+                            </Skeleton>
                         </div>
                     </div>
                     <button onClick={handlesubmit}>finish</button>

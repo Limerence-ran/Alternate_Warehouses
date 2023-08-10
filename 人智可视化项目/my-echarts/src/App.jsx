@@ -11,7 +11,7 @@ import Cancel from "./component/Cancel/main";
 import Slider from "./component/Slider/main";
 import Chart1 from "./component/Chart1/main";
 import Chart2 from "./component/Chart2/main";
-import Chart3 from "./component/Chart3/main";
+
 import Chart4 from "./component/Chart4/main";
 import Header from "../src/component/Header/main";
 import CreateGroup from "./component/CreateGroup/main";
@@ -35,9 +35,8 @@ function App() {
             {/* <Login/> */}
             {/* <Chartdata /> */}
             {/* <UploadPage/> */}
-            {/* < HomeTab />
-            
-      < Slider /> */}
+            {/* < HomeTab /> */}
+            {/* < Slider /> */}
             {/* <HotGroup/> */}
             {element}
             {/* <Groupshow/> */}
@@ -49,17 +48,14 @@ function App() {
             {/* <Slider/> */}
             {/* <Chart1/> */}
             {/* <Chart2 /> */}
-
             {/* <Chart4 /> */}
             {/* <Header/> */}
             {/* <Cancel/> */}
-            <Chart5 />
+            {/* <Chart5 /> */}
             {/* <Chart6/> */}
             {/* <Vedio /> */}
             {/* <HomeTab /> */}
             {/* <Cancel/> */}
-
-            {/* <Chart3/> */}
         </>
     );
 }

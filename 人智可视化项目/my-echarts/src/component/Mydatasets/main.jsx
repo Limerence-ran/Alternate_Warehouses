@@ -1,6 +1,8 @@
+import React from "react";
 import style from "./main.module.css";
 import { useState, useEffect, useRef } from "react";
 import "./main.css";
+import { Skeleton } from "antd";
 import Mydatatable from "./Mydatatable/main";
 import RelationChart from "../../components/relationship/main";
 import axios from "axios";
@@ -62,7 +64,9 @@ function Mydatasets() {
                     <div className={style.chartbox}>
                         <div className={style.box}>
                             <div className={style.chart}>
-                                <RelationChart propdata={data} />
+                                <Skeleton>
+                                    <RelationChart propdata={data} />
+                                </Skeleton>
                             </div>
                         </div>
                         <div className={style.chartbuttom}>

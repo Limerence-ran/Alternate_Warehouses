@@ -17,74 +17,55 @@ function Chart4() {
     return (
         <>
             <div className={style.content}>
-<<<<<<< HEAD
-                <div className={style.header}>
-                    <ul className={style.title}>
-                        <li>
-                            <button
-                                className={style.btnheader}
-                                onClick={() => IsChart(0)}
-                            >
-                                All datasets
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={style.btnheader}
-                                onClick={() => IsChart(1)}
-                            >
-                                Datasets I link to
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={style.btnheader}
-                                onClick={() => IsChart(2)}
-                            >
-                                about
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={style.btnheader}
-                                onClick={() => IsChart(3)}
-                            >
-                                upload my data
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <div ref={box}>
-                    {which === 0 ? (
-                        <Alldatasets />
-                    ) : which === 1 ? (
-                        <Mydatasets />
-                    ) : which === 2 ? (
-                        <Aboutme />
-                    ) : (
-                        <Chart1 />
-                    )}
-                </div>
-=======
-               <div className={style.middle}>
+                <div className={style.middle}>
                     <div className={style.header}>
                         <ul className={style.title}>
-                            <li><button className={style.btnheader} onClick={() => IsChart(0)}>All datasets</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(1)}>Datasets I link to</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(2)}>About me</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(3)}>Upload my data</button></li>
-
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(0)}
+                                >
+                                    All datasets
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(1)}
+                                >
+                                    Datasets I link to
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(2)}
+                                >
+                                    About me
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(3)}
+                                >
+                                    Upload my data
+                                </button>
+                            </li>
                         </ul>
                     </div>
-                    <div ref={box} >
-                        {which === 0 ? <Alldatasets />
-                            : which === 1 ? < Mydatasets />
-                                : which === 2 ? <Aboutme />
-                                    : <Chart1 />}
+                    <div ref={box}>
+                        {which === 0 ? (
+                            <Alldatasets />
+                        ) : which === 1 ? (
+                            <Mydatasets />
+                        ) : which === 2 ? (
+                            <Aboutme />
+                        ) : (
+                            <Chart1 />
+                        )}
                     </div>
-               </div>
-        
->>>>>>> 6cd2e89e341556145f831200ddf19ced819e232f
+                </div>
             </div>
         </>
     );
