@@ -20,11 +20,38 @@ function Chart4() {
                 <div className={style.middle}>
                     <div className={style.header}>
                         <ul className={style.title}>
-                            <li><button className={style.btnheader} onClick={() => IsChart(0)}>All datasets</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(1)}>Datasets I link to</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(2)}>About me</button></li>
-                            <li><button className={style.btnheader} onClick={() => IsChart(3)}>Upload my data</button></li>
-
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(0)}
+                                >
+                                    All datasets
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(1)}
+                                >
+                                    Datasets I link to
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(2)}
+                                >
+                                    About me
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className={style.btnheader}
+                                    onClick={() => IsChart(3)}
+                                >
+                                    Upload my data
+                                </button>
+                            </li>
                         </ul>
                     </div>
                     <div ref={box} className={style.middle_buttom}>

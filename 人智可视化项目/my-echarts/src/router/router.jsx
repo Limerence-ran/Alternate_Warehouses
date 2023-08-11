@@ -1,6 +1,5 @@
 import Chart1 from "../component/UploadMydata/main";
 import Chart2 from "../component/Chart2/main";
-import Chart3 from "../component/Chart3/main";
 import Chart4 from "../component/Chart4/main";
 import Chart5 from "../component/Chart5/main";
 import Chart6 from "../component/Chart6/main";
@@ -35,10 +34,7 @@ export default [
                 path: "Chart2",
                 element: <Chart2 />,
             },
-            // {
-            //     path: 'Chart3',
-            //     element: < Chart3 />
-            // },
+
             {
                 path: "Chart4",
                 element: <Chart4 />,

@@ -1,6 +1,6 @@
 import style from "./main.module.css";
 import { useState, useEffect } from "react";
-import { Divider, Space, Tag, message } from "antd";
+import { Space, Skeleton, message } from "antd";
 import axios from "axios";
 import DynamicTable from "../../components/create-form/main";
 
@@ -56,7 +56,10 @@ function Chart6() {
                     <main>
                         <div className={style.chartbox}>
                             <div className={style.chart}>
-                                <DynamicTable demnum={dems}></DynamicTable>
+                                <Skeleton>
+                                    <DynamicTable demnum={dems}></DynamicTable>{" "}
+                                </Skeleton>
+                                ;
                                 <Space size={[0, "small"]} wrap>
                                     {/* <Tag bordered={false} color="processing">
                                     行:群组维度
