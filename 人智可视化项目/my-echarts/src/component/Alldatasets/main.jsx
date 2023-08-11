@@ -10,18 +10,21 @@ import { message } from "antd";
 function Alldatasets() {
     const box = useRef(null);
     const [which, setWhich] = useState(0);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(0);
+    const [datapoint, setDatapoint] = useState();
     const IsChart = (index) => {
         setWhich(index);
     };
-    console.log(which);
+
     function onAjaxChange(data) {
         setData(data);
     }
 
-    const dataVisualization = () => {
-        const token = localStorage.getItem("token"); // 从本地存储获取 token
-        const id = localStorage.getItem("myGroupid");
+    const token = localStorage.getItem("token"); // 从本地存储获取 token
+
+    const id = localStorage.getItem("myGroupid");
+
+    useEffect(() => {
         axios
             .post(
                 "http://39.98.41.126:31130/dataVisualization/all",
@@ -36,11 +39,11 @@ function Alldatasets() {
                 }
             )
             .then((response) => {
-                const { code, msg, data } = response;
-
-                if (code === 1) {
-                    console.log("data:" + data);
-                    setData(response.data.resourceListEnhancedWithRelativeCode);
+                const { code, msg, data } = response.data;
+                if (code == 1) {
+                    let newData = data;
+                    // console.log("newData:",newData);
+                    setDatapoint(newData);
                     // 在这里处理成功的逻辑
                 } else {
                     message.error("创建失败: " + msg);
@@ -50,32 +53,29 @@ function Alldatasets() {
                 message.error("请求出错");
                 console.log("请求出错", error);
             });
-    };
-
-    useEffect(() => {
-        dataVisualization();
     }, []);
-
-    return (
-        <>
-            <main>
-                <div className={style.body}>
+    useEffect(() => {
+        // console.log(datapoint, "datapoint");
+    }, [datapoint]);
+    return (        
                     <div className={style.chartbox}>
                         <div className={style.box} ref={box}>
                             <div className={style.chart}>
-                                <RelationChart propdata={data}></RelationChart>
+                                {datapoint ? (
+                                    <RelationChart
+                                        propdata={datapoint}
+                                    ></RelationChart>
+                                ) : (
+                                    ""
+                                )}
                             </div>
                         </div>
                         <div className={style.chartbuttom}>
                             <Pagetable1
-                                className={style.paging1}
                                 handleAjaxChange={onAjaxChange}
                             />
                         </div>
                     </div>
-                </div>
-            </main>
-        </>
     );
 }
 

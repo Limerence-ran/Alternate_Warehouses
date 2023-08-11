@@ -1,6 +1,7 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 export default function PointLine(props) {
+    
     const xArray = props.noise_x;
     const yArray = props.noise_y;
 
@@ -92,7 +93,7 @@ export default function PointLine(props) {
             notMerge={true}
             lazyUpdate={true}
             theme={"AI隐私差分"}
-            style={{ width: "650px", height: "400px" }}
+            style={{ width: "500px", height: "300px" }}
         />
     );
 }

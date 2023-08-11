@@ -28,7 +28,7 @@ class Bar extends React.Component {
         option = {
             title: {
                 text: "Distributed AI System Based on Differential privacy",
-                subtext: "Magnitude of change", 
+                subtext: "Magnitude of change",
                 left: "center",
                 textStyle: {
                     color: "rgb(143 123 251)",
@@ -122,8 +122,8 @@ class Bar extends React.Component {
             <div
                 id="main"
                 style={{
-                    width: "650px",
-                    height: "400px",
+                    width: "500px",
+                    height: "300px",
                     backgroundColor: "rgb(214 216 254)",
                 }}
             ></div>

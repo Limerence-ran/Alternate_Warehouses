@@ -15,10 +15,10 @@ function Chartdata() {
         <>
             <div className={style.Chartbox}>
              <HomeTab/>
-                <Slider onLiElements={renderLis} />
-                {/* <div className={style.swap}>
-                </div> */}
-                <Outlet></Outlet>
+                <div className={style.Chartbox_content}>
+                    <Slider onLiElements={renderLis} />
+                    <Outlet></Outlet>
+               </div>
             </div></>
     )
 }

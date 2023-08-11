@@ -1,4 +1,4 @@
-import Chart1 from "../component/Chart1/main";
+import Chart1 from "../component/UploadMydata/main";
 import Chart2 from "../component/Chart2/main";
 import Chart3 from "../component/Chart3/main";
 import Chart4 from "../component/Chart4/main";

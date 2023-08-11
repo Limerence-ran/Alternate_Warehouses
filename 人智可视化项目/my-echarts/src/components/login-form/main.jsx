@@ -153,121 +153,123 @@ const LoginRegisterForm = () => {
     };
 
     return (
-        <div className={styles.form_main}>
-            {isLoginMode && (
-                <>
-                    <form onSubmit={handleSubmit}>
-                        <div className={styles.formGroup}>
-                            <UserOutlined></UserOutlined>
-                            <input
-                                placeholder="username"
-                                type="text"
-                                id="username"
-                                value={username}
-                                onChange={handleUsernameChange}
-                                className={styles.formInput}
-                                required
-                                maxLength={20}
-                            />
-                        </div>
+        <div className={styles.color_right_demo}>
+            <div className={styles.form_main}>
+                {isLoginMode && (
+                    <>
+                        <form onSubmit={handleSubmit}>
+                            <div className={styles.formGroup}>
+                                <UserOutlined></UserOutlined>
+                                <input
+                                    placeholder="username"
+                                    type="text"
+                                    id="username"
+                                    value={username}
+                                    onChange={handleUsernameChange}
+                                    className={styles.formInput}
+                                    required
+                                    maxLength={20}
+                                />
+                            </div>
 
-                        <div className={styles.formGroup}>
-                            <UnlockOutlined />
-                            <input
-                                placeholder="password"
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={handlePasswordChange}
-                                className={styles.formInput}
-                                required
-                                minLength={6}
-                            />
-                        </div>
+                            <div className={styles.formGroup}>
+                                <UnlockOutlined />
+                                <input
+                                    placeholder="password"
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    className={styles.formInput}
+                                    required
+                                    minLength={6}
+                                />
+                            </div>
 
-                        <button type="submit" className={styles.authButton}>
-                            Login
-                        </button>
-                    </form>
-                    <CheckIcon />
-                    <p className={styles.switchModeMessage}>
-                        No account？{" "}
-                        <span
-                            className={styles.switchModeLink}
-                            onClick={() => {
-                                setIsLoginMode(false);
-                            }}
-                        >
-                            Register Now
-                        </span>
-                    </p>
-                </>
-            )}
+                            <button type="submit" className={styles.authButton}>
+                                Login
+                            </button>
+                        </form>
+                        <CheckIcon />
+                        <p className={styles.switchModeMessage}>
+                            No account？{" "}
+                            <span
+                                className={styles.switchModeLink}
+                                onClick={() => {
+                                    setIsLoginMode(false);
+                                }}
+                            >
+                                Register Now
+                            </span>
+                        </p>
+                    </>
+                )}
 
-            {!isLoginMode && (
-                <>
-                    <form onSubmit={handleSubmit}>
-                        <div className={styles.formGroup}>
-                            <UserOutlined></UserOutlined>
-                            <input
-                                placeholder="username"
-                                type="text"
-                                id="username"
-                                value={username}
-                                onChange={handleUsernameChange}
-                                className={styles.formInput}
-                                required
-                                maxLength={20}
-                            />
-                        </div>
+                {!isLoginMode && (
+                    <>
+                        <form onSubmit={handleSubmit}>
+                            <div className={styles.formGroup}>
+                                <UserOutlined></UserOutlined>
+                                <input
+                                    placeholder="username"
+                                    type="text"
+                                    id="username"
+                                    value={username}
+                                    onChange={handleUsernameChange}
+                                    className={styles.formInput}
+                                    required
+                                    maxLength={20}
+                                />
+                            </div>
 
-                        <div className={styles.formGroup}>
-                            <UnlockOutlined />
-                            <input
-                                placeholder="password"
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={handlePasswordChange}
-                                className={styles.formInput}
-                                required
-                                minLength={6}
-                            />
-                        </div>
+                            <div className={styles.formGroup}>
+                                <UnlockOutlined />
+                                <input
+                                    placeholder="password"
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                    className={styles.formInput}
+                                    required
+                                    minLength={6}
+                                />
+                            </div>
 
-                        <div className={styles.formGroup}>
-                            <CheckOutlined />
-                            <input
-                                placeholder="confirmPassword"
-                                type="password"
-                                id="confirmPassword"
-                                value={confirmPassword}
-                                onChange={handleConfirmPasswordChange}
-                                className={styles.formInput}
-                                required
-                                minLength={6}
-                            />
-                        </div>
+                            <div className={styles.formGroup}>
+                                <CheckOutlined />
+                                <input
+                                    placeholder="confirmPassword"
+                                    type="password"
+                                    id="confirmPassword"
+                                    value={confirmPassword}
+                                    onChange={handleConfirmPasswordChange}
+                                    className={styles.formInput}
+                                    required
+                                    minLength={6}
+                                />
+                            </div>
 
-                        <button type="submit" className={styles.authButton}>
-                            Register
-                        </button>
-                    </form>
+                            <button type="submit" className={styles.authButton}>
+                                Register
+                            </button>
+                        </form>
 
-                    <p className={styles.switchModeMessage}>
-                        Already have an account?{" "}
-                        <span
-                            className={styles.switchModeLink}
-                            onClick={() => {
-                                setIsLoginMode(true);
-                            }}
-                        >
-                            Login
-                        </span>
-                    </p>
-                </>
-            )}
-        </div>
+                        <p className={styles.switchModeMessage}>
+                            Already have an account?{" "}
+                            <span
+                                className={styles.switchModeLink}
+                                onClick={() => {
+                                    setIsLoginMode(true);
+                                }}
+                            >
+                                Login
+                            </span>
+                        </p>
+                    </>
+                )}
+            </div>
+       </div>
     );
 };
 

@@ -1,24 +1,23 @@
-import style from './main.module.css'
-import { FieldBinaryOutlined } from '@ant-design/icons'
-import { useState, useEffect, useRef } from 'react'
-import Alldatasets from '../Alldatasets/main'
-import Mydatasets from '../Mydatasets/main'
-import Aboutme from '../Aboutme/main'
-import Chart1 from '../Chart1/main'
-import './main.css'
+import style from "./main.module.css";
+import { FieldBinaryOutlined } from "@ant-design/icons";
+import { useState, useEffect, useRef } from "react";
+import Alldatasets from "../Alldatasets/main";
+import Mydatasets from "../Mydatasets/main";
+import Aboutme from "../Aboutme/main";
+import UploadMyData from "../UploadMydata/main";
+import "./main.css";
 
 function Chart4() {
-    const box = useRef(null)
-    const [which, setWhich] = useState(0)
+    const box = useRef(null);
+    const [which, setWhich] = useState(0);
     const IsChart = (index) => {
-        setWhich(index)
-    }
-    console.log(which)
+        setWhich(index);
+    };
 
     return (
         <>
             <div className={style.content}>
-               <div className={style.middle}>
+                <div className={style.middle}>
                     <div className={style.header}>
                         <ul className={style.title}>
                             <li><button className={style.btnheader} onClick={() => IsChart(0)}>All datasets</button></li>
@@ -28,17 +27,17 @@ function Chart4() {
 
                         </ul>
                     </div>
-                    <div ref={box} >
+                    <div ref={box} className={style.middle_buttom}>
                         {which === 0 ? <Alldatasets />
                             : which === 1 ? < Mydatasets />
                                 : which === 2 ? <Aboutme />
-                                    : <Chart1 />}
+                                    : <UploadMyData />}
                     </div>
-               </div>
-        
+                </div>
+
             </div>
         </>
-    )
+    );
 }
 
-export default Chart4
+export default Chart4;

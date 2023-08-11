@@ -67,7 +67,6 @@ const Pagetable1 = ({ handleAjaxChange }) => {
         let Groupid = localStorage.getItem("myGroupid");
         console.log(Groupid);
         idGroup(Groupid);
-
         // fetchData();
     }, [JSON.stringify(tableParams)]);
 
@@ -158,7 +157,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
 
     return (
         <>
-            <div className="Paging1">
+            <div className="Paging2">
                 <Table
                     columns={columns}
                     rowKey={(record) => record.id}

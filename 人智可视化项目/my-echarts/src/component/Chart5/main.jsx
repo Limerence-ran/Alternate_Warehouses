@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { message, Checkbox, Select } from "antd";
-import DynamicTable from "../../components/create-form/main";
 const { Option } = Select;
 
 function Chart5() {
@@ -17,7 +16,7 @@ function Chart5() {
         d: "",
     });
     const [selectedOption, setSelectedOption] = useState("");
-
+    let selectedValue = 0; //获取到算法的值
     const [showBInput, setShowBInput] = useState(false);
     const [showCInput, setShowCInput] = useState(false);
     const [showDInput, setShowDInput] = useState(false);
@@ -25,7 +24,9 @@ function Chart5() {
     const navigate = useNavigate();
 
     // 定义勾选框状态
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showDropdownb, setShowDropdownb] = useState(false);
+    const [showDropdownc, setShowDropdownc] = useState(false);
+    const [showDropdownd, setShowDropdownd] = useState(false);
 
     // 定义下拉框选项
     const dropdownOptions = [
@@ -34,7 +35,7 @@ function Chart5() {
         // { value: "option3", label: "Option 3" },
     ];
     //组件创建时调用的ajax函数
-    const ajax = async (data) => {
+    const ajax = async () => {
         try {
             // 发送请求
             const response = await axios({
@@ -50,6 +51,8 @@ function Chart5() {
 
             // 处理成功状态
             const { data: responseData } = response.data;
+            console.log(responseData);
+            message.success("成功", response.msg);
             for (let j = 0; j < responseData.length; j++) {
                 dropdownOptions[j].value = responseData[j].resourceName;
                 dropdownOptions[j].label = responseData[j].resourceName;
@@ -57,15 +60,7 @@ function Chart5() {
             setMydropdownValue(response.data.resourceName);
         } catch (error) {
             // 处理错误状态
-            const { response } = error;
-            if (response) {
-                // 请求已发送，但是服务器响应状态码错误
-                const { data: errorData } = response;
-                message.error(errorData.message);
-            } else {
-                // 请求未发送，发生了网络错误等
-                message.error("请求失败，请检查网络连接");
-            }
+            message.error("请求失败，请检查网络连接");
 
             throw error; // 可以选择抛出错误，供调用者处理
         }
@@ -79,33 +74,39 @@ function Chart5() {
         }));
     };
 
-    const handleCheckboxChange = (e, field) => {
-        const { checked } = e.target;
-        setShowDropdown(e.target.checked);
-        if (field === "b") {
+    function handleCheckboxChange(e, field) {
+        console.log(field.target.checked);
+        const { checked } = field.target;
+
+        if (e === "b") {
+            setShowDropdownb(field.target.checked);
             setShowBInput(checked);
-        } else if (field === "c") {
+        } else if (e === "c") {
+            setShowDropdownc(field.target.checked);
             setShowCInput(checked);
-        } else if (field === "d") {
+        } else if (e === "d") {
+            setShowDropdownd(field.target.checked);
             setShowDInput(checked);
         }
-
         setInputValues((prevInputValues) => ({
             ...prevInputValues,
             [field]: checked ? "" : inputValues[field],
         }));
-    };
-    const radioGroup = document.querySelectorAll('input[name="algorithm"]');
-    let selectedValue = 0; //获取到算法的值
-    for (let i = 0; i < radioGroup.length; i++) {
-        if (radioGroup[0].checked) {
-            selectedValue = 0;
-            break; // 停止循环，因为只需要获取一个选中的值
-        } else {
-            selectedValue = 1;
-            break;
+    }
+    function handleboxChange() {
+        const radioGroup = document.querySelectorAll('input[name="algorithm"]');
+
+        for (let i = 0; i < radioGroup.length; i++) {
+            if (radioGroup[0].checked) {
+                selectedValue = 0;
+                break; // 停止循环，因为只需要获取一个选中的值
+            } else {
+                selectedValue = 1;
+                break;
+            }
         }
     }
+
     const handleSelectChange = (value) => {
         setSelectedOption(value);
     };
@@ -115,23 +116,44 @@ function Chart5() {
     }, []);
 
     const Onclickpage = () => {
-        const input1Value = document.getElementById("input1").value;
-        const input2Value = document.getElementById("input2").value;
-        const input3Value = document.getElementById("input3").value;
-        const input4Value = document.getElementById("input4").value;
-        const values = [input1Value, input2Value, input3Value, input4Value];
+        const values = [];
+        if (document.getElementById("input1") !== null) {
+            const input1Value = document.getElementById("input1").value;
+            values.push(input1Value);
+        }
 
-        const dropdown1Value = document.getElementById("dropdown1").value;
-        const dropdown2Value = document.getElementById("dropdown2").value;
-        const dropdown3Value = document.getElementById("dropdown3").value;
+        if (document.getElementById("input2") !== null) {
+            const input2Value = document.getElementById("input2").value;
+            values.push(input2Value);
+        }
 
-        const dropdownvalues = [
-            mydropdownValue,
-            dropdown1Value,
-            dropdown2Value,
-            dropdown3Value,
-        ];
+        if (document.getElementById("input3") !== null) {
+            const input3Value = document.getElementById("input3").value;
+            values.push(input3Value);
+        }
 
+        if (document.getElementById("input4") !== null) {
+            const input4Value = document.getElementById("input4").value;
+            values.push(input4Value);
+        }
+
+        const dropdownvalues = [mydropdownValue];
+
+        if (document.getElementById("dropdown1") !== null) {
+            const dropdown1Value = document.getElementById("dropdown1").value;
+            dropdownvalues.push(dropdown1Value);
+        }
+
+        if (document.getElementById("dropdown2") !== null) {
+            const dropdown2Value = document.getElementById("dropdown2").value;
+            dropdownvalues.push(dropdown2Value);
+        }
+
+        if (document.getElementById("dropdown3") !== null) {
+            const dropdown3Value = document.getElementById("dropdown3").value;
+            dropdownvalues.push(dropdown3Value);
+        }
+        console.log(dropdownvalues, values);
         //发送ajax请求
         const request = async (requestData) => {
             try {
@@ -177,47 +199,93 @@ function Chart5() {
     return (
         <>
             <div className={style.content}>
-             <div className={style.Chart5}>
+                <div className={style.Chart5}>
                     <div className={style.header}>
                         <span>IMDB Movie Reviews Dataset</span>
                     </div>
-                    <main>
-                        <div className={style.chartbox} >
-                            <div className={style.chart}>
-
-                            </div>
+                 
+                        <div className={style.chartbox}>
+                            <div className={style.chart}></div>
                             <div className={style.chartbuttom}>
-
-
                                 <div className={style.radio}>
-                                    <div className={style.usedataleft}><span>Please select the iteration mode you want:</span></div>
+                                    <div className={style.usedataleft}>
+                                        <span>
+                                            Please select the iteration mode you
+                                            want:
+                                        </span>
+                                    </div>
                                     <div className={style.usedataright}>
-                                        <input type='radio' name="algorithm" /><span> Mean value algorith</span>
-                                        <input type='radio' name="algorithm" /><span>Differential Algorithm</span>
+                                        <input type="radio" name="algorithm" />
+                                        <span> Mean value algorith</span>
+                                        <input type="radio" name="algorithm" />
+                                        <span>Differential Algorithm</span>
                                     </div>
                                 </div>
                                 <div className={style.usedata}>
-                                    <div className={style.usedataleft}><span>Please select the dataset you want to use: </span></div>
+                                    <div className={style.usedataleft}>
+                                        <span>
+                                            Please select the dataset you want
+                                            to use:{" "}
+                                        </span>
+                                    </div>
                                     <div className={style.useright1}>
-                                        <div>  <input type="checkbox" /><span>Dataset b(3noise turned on)</span></div>
-                                        <div> <input type="checkbox" /><span>Dataset c(1noise turned on) </span></div>
-                                        <div> <input type="checkbox" /><span>Dataset d(2 noise turned on)</span></div>
+                                        <div>
+                                            {" "}
+                                            <input type="checkbox" />
+                                            <span>
+                                                Dataset b(3noise turned on)
+                                            </span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            <input type="checkbox" />
+                                            <span>
+                                                Dataset c(1noise turned on){" "}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            {" "}
+                                            <input type="checkbox" />
+                                            <span>
+                                                Dataset d(2 noise turned on)
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className={style.dataweight}>
-                                    <div className={style.usedataleft}><span>Please select the weight of the other dataset:	 </span></div>
-                                    <div className={style.useright}>
-                                        <span>a<input type='text' />%</span>
-                                        <span>b<input type='text' />%</span>
-                                        <span>c<input type='text' />%</span>
-                                        <span>d<input type='text' />%</span>
+                                    <div className={style.usedataleft}>
+                                        <span>
+                                            Please select the weight of the
+                                            other dataset:{" "}
+                                        </span>
                                     </div>
+                                    <div className={style.useright}>
+                                        <span>
+                                            a<input type="text" />%
+                                        </span>
+                                        <span>
+                                            b<input type="text" />%
+                                        </span>
+                                        <span>
+                                            c<input type="text" />%
+                                        </span>
+                                        <span>
+                                            d<input type="text" />%
+                                        </span>
+                                    <button
+                                        className={style.next}
+                                        onClick={Onclickpage}
+                                    >
+                                        Next
+                                    </button>
+                                    </div>
+                             
                                 </div>
-                                <button className={style.next} onClick={Onclickpage}>Next</button>
+                               
                             </div>
                         </div>
-                    </main>
-             </div>
+                   
+                </div>
             </div>
         </>
     );

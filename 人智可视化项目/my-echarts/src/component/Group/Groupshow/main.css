@@ -1,14 +1,24 @@
-.Paging{
-    width: 100vw;
-    height: 100vh;
-}
 
+.Paging{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.Paging .ant-table-wrapper{
+    height: 100%;
+}
+.Paging .ant-spin-nested-loading{
+    height: 100%;
+}
 .Paging .ant-table-pagination {
 display: flex;
     justify-content: center;
     margin-top: 16px;
 }
+.Paging .ant-table{
 
+    width: 100%;
+}
 .Paging .ant-spin-container {
     /* margin-right: 0;
     width: 1200px; */
@@ -17,7 +27,7 @@ display: flex;
         overflow: scroll;
         background-color: #fff;
         border-radius: 0;
-        height: 100vh;
+        height: 100%;
    
 }
 

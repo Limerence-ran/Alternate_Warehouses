@@ -1,48 +1,46 @@
+ .content {
 
-.content {
-  
-    position: relative;
-    width: 80%;
-    left: 220px;
-    /* background-color: #fff; */
-    /* height: 639px; */
-    margin-top: 11px;
-  
-    transition: all .3s ease;
-
-}
+     transition: all .3s ease;
+     width: 90%;
+     height: 100%;
+     position: relative;
+     background-color: #fff;
+ }
 
 .mainbox{
     /* min-width: 600px;
     max-width: 1200px; */
-    background-color:rgb(183, 186, 251);
-   margin-left: 40px;
-   width: 60%;
-    height: 570px;
-    padding-left: 70px;
+    /* background-color:rgb(183, 186, 251); */
+   /* margin-left: 40px; */
+   width: 90%;
+    height:100%;
+    padding: 0;
+    /* padding-left: 70px; */
    
 } 
 .formstyle {
     /* background-color: rgb(183, 186, 251); */
     /* padding: 20px; */
     border-radius: 6px;
-    height: 590px;
-    padding: 10px 0px;
+    height:90%;
+  padding-top: 5%;
+    /* padding: 10px 0px; */
 
 }
 
 .inputstyle {
-    width: 90%;
-    height: 30px;
+    width: 100%;
+    height: 100%;
     /* height: 200px; */
     background-color: #f7eded;
 }
 
-.round-radio-button {
+.round_radio_button {
     border-radius: 50%;
     width: 80px;
     /* height: 80px; */
     display: flex;
+    height: 5%;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -52,18 +50,30 @@
     margin-left: 10px;
 }
 .textareastyle {
-    width: 90%;
-    background-color: #f9f0f0;
+    width: 100%;
+    height: 30%;
+    background-color: #f7eded;
 }
-
+.Submitbtn{
+    width: 100%;
+    height: 10%;
+    /* display: flex; */
+   /* align-items: center; */
+   position: relative;
+}
 .SubmitButton {
-    width: 180PX;
+    position: absolute;
+    width: 20%;
+  left: 40%;
+top: 50%;
+    /* margin: 0 auto; */
    background-color: #949eda;
 }
 
 .success-modal-style {
     text-align: center;
     font-size: 18px;
+    width: 370px;
 }
 
 @media (max-width: 576px) {

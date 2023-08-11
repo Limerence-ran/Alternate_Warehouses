@@ -2,25 +2,11 @@
  .content {
     
      transition: all .3s ease;
-     margin-left: 240px;
-     margin-right: 20px;
-     margin-top: 12px;
+     /* margin-left: 240px; */
+    width: 90%;
+    height: 100%;
+    position: relative;
     
   } 
   
  
-
-.title li{
-    width:100px ;
-  margin-left: 50px;
-}
-.paging{
-    width: 100%-220px;
-    background-color: #9a3a3a;
-    border-radius: 0;
-  
-   
-}
-.group{
-    margin-bottom: 20px;
-}

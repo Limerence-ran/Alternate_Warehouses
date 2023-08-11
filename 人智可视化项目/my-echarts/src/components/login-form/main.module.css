@@ -1,12 +1,23 @@
+.color_right_demo{
+   
+  /* margin: 15% 0; */
+   /* height: calc(100% - 100px); */
+   margin-top: 15%;
+   position: relative;
+    height: 70%;
+        width: 100%;
+        margin: 15% 0;
+}
+
 .form_main {
     position: absolute;
-    top: 100px;
-    transform: translate(800px, 100px);
     transition: 0.5s;
     opacity: 0.85;
-    width: 350px;
+    top: 0;
+    left: 0;
+    width:300px;
     display: flex;
-    height: 360px;
+    height: 70%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -14,23 +25,6 @@
     padding: 30px 40px 30px 30px;
     border-radius: 30px;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.062);
-}
-
-.formTitle {
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-
-.formGroup {
-    margin-bottom: 15px;
-}
-
-.formInput {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
 .formButton {
@@ -68,12 +62,12 @@
     outline: none;
     text-decoration: none;
 }
-
+/* 
 .errorMessage {
     color: red;
     margin-top: 5px;
     font-size: 12px;
-}
+} */
 
 .authButton {
     width: 255px;
@@ -91,12 +85,6 @@
 .switchModeLink {
     color: rgba(128, 68, 255, 1);
     cursor: pointer;
-}
-
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
 }
 
 /* 根据需要设置整体样式 */
@@ -131,6 +119,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: #fff;
 }
 
 /* 错误信息样式 */

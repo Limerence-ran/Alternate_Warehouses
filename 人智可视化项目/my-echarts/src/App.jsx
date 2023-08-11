@@ -9,7 +9,7 @@ import UploadPage from "./page/UploadPage/main";
 import Group from "./component/Group/main";
 import Cancel from "./component/Cancel/main";
 import Slider from "./component/Slider/main";
-import Chart1 from "./component/Chart1/main";
+import UploadMyData from "./component/UploadMydata/main";
 import Chart2 from "./component/Chart2/main";
 import Chart3 from "./component/Chart3/main";
 import Chart4 from "./component/Chart4/main";
@@ -25,7 +25,8 @@ import HomeTab from "./components/home-top/main";
 import routes from "../src/router/router";
 import HotGroup from "./component/HotGroup/main";
 import PointLine from "./components/point-line/main";
-import Groupshow from '../src/component/Group/Groupshow/main'
+import Groupshow from "../src/component/Group/Groupshow/main";
+import LoginRegisterForm from "./components/login-form/main";
 
 function App() {
     const element = useRoutes(routes);
@@ -33,34 +34,33 @@ function App() {
         <>
             {/* 完整页面 */}
             {/* <Login/> */}
+            {/* < LoginRegisterForm /> */}
             {/* <Chartdata /> */}
             {/* <UploadPage/> */}
             {/* < HomeTab />
-            
+           
       < Slider /> */}
-            {/* <HotGroup/>
-            {element} */}
+            {/* <HotGroup/> */}
+            {element}
             {/* <Groupshow/> */}
-             {/* < Alldatasets/> */}
-              {/* <Mydatasets/>  */}
+            {/* < Alldatasets/> */}
+            {/* <Mydatasets/>  */}
             {/* <Aboutme/> */}
             {/* <Group /> */}
             {/* <CreateGroup /> */}
             {/* <Slider/> */}
-            {/* <Chart1/> */}
+          
             {/* <Chart2 /> */}
 
             {/* <Chart4 /> */}
             {/* <Header/> */}
-            {/* <Cancel/> */}
-            {/* <Chart5/> */}
+            {/* <Cancel/>*/}
+            {/* <Chart5 />  */}
             {/* <Chart6/> */}
             {/* <Vedio /> */}
             {/* <HomeTab /> */}
             {/* <Cancel/> */}
 
-
-            
             {/* <Chart3/> */}
         </>
     );
