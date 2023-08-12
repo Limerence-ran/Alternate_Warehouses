@@ -1,13 +1,10 @@
 .sidebar {
-    position: fixed;
-    width: 220px;
+    /* position: fixed; */
+    width: 10%;
     /* background: rgba(142, 181, 231, 1); */
     top: 90px;
     left: 0;
-    /* height: 100%; */
-    /* height: 608px; */
-    /* height: 900px; */
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
     scrollbar-width:none;
     scrollbar-color: transparent transparent;
@@ -20,7 +17,7 @@
     background-color: #fff;
     border-right: 2px solid #accae3;
     border-radius: 6px 0px 0 0;
-    margin-left: 20PX;
+    /* margin-left: 20PX; */
 }
 
 
@@ -35,7 +32,7 @@ a {
 
 ul {
     list-style: none;
-    width: 190px;
+    width:100%;
 }
 
 
@@ -45,37 +42,33 @@ ul {
 }
 
 .menu {
-    /* width: 260px; */
-    margin: 36px 0;
-    padding: 0 20px;
+    list-style: none;
+        width: 100%;
+    margin: 30% 0;
+    /* padding: 0 20px; */
     transition: all .3s ease;
 }
-/* 
-.menu li {
-    width: 190px;
-} */
 
-.menu ul li {
-    width: 190px;
+
+.menu li {
+    width: 100%;
+    height: 35px;
     
-}
-.menu ul li a {
-    margin-left: 10px;
-    margin-bottom: 20px;
 }
 
 .menu a {
     /* text-align: center; */
-    width: 166px;
+    width:90%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #6f6f6f;
-    font-size: 16px;
-    padding: 12px 16px 12px 0;
+    font-size: 14px;
+    /* padding: 12px 16px 12px 0; */
     transition: all .3s ease;
     border-radius: 10px;
-    margin: 4px 0;
+    margin: 24px auto;
     white-space: nowrap;
     text-align: center;
 }
@@ -101,44 +94,12 @@ ul {
     color: #8D8D8D;
     transition: all .3s ease;
     white-space: nowrap;
-}
-
-.divider {
     text-align: center;
+    
 }
-
 
 .dropdown a.active,
 .dropdown a:hover {
     color: #1775F1;
 }
 
-
-.title {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    height: 40px;
-    background-color: #fff;
-    width: 100%;
-
-
-}
-
-.title li {
-    width: 100px;
-    margin-left: 50px;
-}
-
-.body {
-    display: flex;
-    align-items: center;
-    font-size: 22px;
-    font-weight: 500;
-    color: #2c323f;
-    /* margin-bottom: 5px; */
-    background-color: aqua;
-    width: 100%;
-    height: 570px;
-}

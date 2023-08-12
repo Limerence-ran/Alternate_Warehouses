@@ -11,8 +11,15 @@ const Login = function () {
             <div className={styles.backimg}>
                 <div className={styles.color}>
                     <LoginTab />
-                    <LoginDemo />
-                    <LoginRegisterForm />
+                    <div className={styles.color_content}>
+                        <div className={styles.color_left}>
+                            <LoginDemo />
+                        </div>
+                        <div className={styles.color_right}>
+                            <LoginRegisterForm />
+                        </div>
+                  </div>
+                   
                 </div>
             </div>
         </div>

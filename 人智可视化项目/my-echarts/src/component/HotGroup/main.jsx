@@ -9,7 +9,7 @@ function HotGroup() {
     return (
         <>
             <div className={style.content}>
-                <HotTable className={style.paging} />
+                <HotTable />
             </div>
         </>
     );

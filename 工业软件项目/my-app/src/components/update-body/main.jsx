@@ -9,9 +9,7 @@ export default function UpdateForm() {
                 {/* <!-- 大盒子 --> */}
                 <div>
                     <form id="upload-form">
-                        {/* <!-- 小盒子 --> */}
                         <div class="son-div">
-                            {/* <!-- 申请人个人信息 --> */}
                             <div>
                                 <input
                                     type="text"

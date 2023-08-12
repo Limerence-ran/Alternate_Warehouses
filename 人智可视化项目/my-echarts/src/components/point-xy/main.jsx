@@ -2,6 +2,7 @@ import React from "react";
 
 import ReactECharts from "echarts-for-react";
 export default function Pointxy(props) {
+
     // 假设有两组数据分别是 data1 和 data2
     const data1 = props.data_xy.before_data; // 第一组数据的坐标点 props.before_data
     const data2 = props.data_xy.result_data; // 第二组数据的坐标点

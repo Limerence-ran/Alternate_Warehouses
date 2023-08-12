@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 // import '../../router/router'
 
-function Chart1() {
+function UploadMyData() {
     const [data_form, setData] = useState([]);
     const navigate = useNavigate();
     function handletoUpload() {
@@ -51,7 +51,7 @@ function Chart1() {
                 <div className={style.header}>
                     <span>IMDB Movie Reviews Dataset</span>
                 </div>
-                <main>
+       
                     <div className={style.chartbox}>
                         <div className={style.chart}></div>
                         <div className={style.selectbtn}>
@@ -67,10 +67,20 @@ function Chart1() {
                             <button onClick={nextPage}>Upload my data</button>
                         </div>
                     </div>
+<<<<<<< HEAD:人智可视化项目/my-echarts/src/component/Chart1/main.jsx
                 </main>
             </div>
         </>
     );
+=======
+     
+                </div>
+
+                   </>
+          
+     
+    )
+>>>>>>> 657b0cb7a3ffb8dd0d35d21d40686ef3105dd44a:人智可视化项目/my-echarts/src/component/UploadMydata/main.jsx
 }
 
-export default Chart1;
+export default UploadMyData;

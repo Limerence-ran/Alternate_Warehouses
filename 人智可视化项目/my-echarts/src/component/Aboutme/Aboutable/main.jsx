@@ -61,22 +61,7 @@ const Abouttable = () => {
                 message.error("请求出错");
                 console.log("请求出错", error);
             });
-        // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`)
-        // fetch(`http://39.98.41.126:31130/users/readMessages`)
-        //     .then((res) => res.json())
-        //     .then(({ results }) => {
-        //         setData(results);
-        //         setLoading(false);
-        //         setTableParams({
-        //             ...tableParams,
-        //             pagination: {
-        //                 ...tableParams.pagination,
-        //                 total: 200,
-        //                 // 200 is mock data, you should read it from server
-        //                 // total: data.totalCount,
-        //             },
-        //         });
-        //     });
+      
     };
 
     useEffect(() => {
@@ -228,7 +213,7 @@ const Abouttable = () => {
 
     return (
         <>
-            <div className="Paging1">
+            <div className="Paging3">
                 <Table
                     columns={columns}
                     rowKey={(record) => record.id}

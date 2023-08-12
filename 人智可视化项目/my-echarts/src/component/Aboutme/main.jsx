@@ -1,8 +1,8 @@
-import style from './main.module.css'
+// import style from './main.module.css'
 import { FieldBinaryOutlined } from '@ant-design/icons'
 import { useState, useEffect, useRef } from 'react'
 import Abouttable from './Aboutable/main'
-import './main.css'
+// import './main.css'
 
 function Aboutme() {
     const box = useRef(null)
@@ -17,21 +17,7 @@ function Aboutme() {
     return (
         <>
 
-            <main>
-                <div className={style.body}>
-                    <div className={style.chartbox} >
-                        {/* <div className={style.box} ref={box}>
-                            <div className={style.chart} >1</div>
-                        </div> */}
-                        <div className={style.chartbuttom}>
-                            <Abouttable className={style.paging1} />
-                        </div>
-
-                    </div>
-
-                </div>
-            </main>
-
+                            <Abouttable  />
         </>
     )
 }

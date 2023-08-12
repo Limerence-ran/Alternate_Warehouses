@@ -203,7 +203,7 @@ function Chart5() {
                     <div className={style.header}>
                         <span>IMDB Movie Reviews Dataset</span>
                     </div>
-                    <main>
+                 
                         <div className={style.chartbox}>
                             <div className={style.chart}></div>
                             <div className={style.chartbuttom}>
@@ -272,17 +272,19 @@ function Chart5() {
                                         <span>
                                             d<input type="text" />%
                                         </span>
+                                    <button
+                                        className={style.next}
+                                        onClick={Onclickpage}
+                                    >
+                                        Next
+                                    </button>
                                     </div>
+                             
                                 </div>
-                                <button
-                                    className={style.next}
-                                    onClick={Onclickpage}
-                                >
-                                    Next
-                                </button>
+                               
                             </div>
                         </div>
-                    </main>
+                   
                 </div>
             </div>
         </>

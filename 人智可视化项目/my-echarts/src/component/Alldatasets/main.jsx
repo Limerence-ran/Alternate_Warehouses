@@ -42,7 +42,7 @@ function Alldatasets() {
                 const { code, msg, data } = response.data;
                 if (code == 1) {
                     let newData = data;
-                    console.log(newData, "newData");
+                    // console.log("newData:",newData);
                     setDatapoint(newData);
                     // 在这里处理成功的逻辑
                 } else {
@@ -55,12 +55,9 @@ function Alldatasets() {
             });
     }, []);
     useEffect(() => {
-        console.log(datapoint, "datapoint");
+        // console.log(datapoint, "datapoint");
     }, [datapoint]);
-    return (
-        <>
-            <main>
-                <div className={style.body}>
+    return (        
                     <div className={style.chartbox}>
                         <div className={style.box} ref={box}>
                             <div className={style.chart}>
@@ -75,14 +72,10 @@ function Alldatasets() {
                         </div>
                         <div className={style.chartbuttom}>
                             <Pagetable1
-                                className={style.paging1}
                                 handleAjaxChange={onAjaxChange}
                             />
                         </div>
                     </div>
-                </div>
-            </main>
-        </>
     );
 }
 

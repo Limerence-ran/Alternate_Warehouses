@@ -6,7 +6,7 @@ import Chartdata from "./page/Chartdata/main";
 import Group from "./component/Group/main";
 import Cancel from "./component/Cancel/main";
 import Slider from "./component/Slider/main";
-import Chart1 from "./component/Chart1/main";
+import UploadMyData from "./component/UploadMydata/main";
 import Chart2 from "./component/Chart2/main";
 import Chart4 from "./component/Chart4/main";
 import Header from "../src/component/Header/main";
@@ -98,6 +98,7 @@ function App() {
         <>
             {/* 完整页面 */}
             {/* <Login/> */}
+            {/* < LoginRegisterForm /> */}
             {/* <Chartdata /> */}
             {/* < HomeTab /> */}
             {/* < Slider /> */}
@@ -110,12 +111,12 @@ function App() {
             {/* <Group /> */}
             {/* <CreateGroup /> */}
             {/* <Slider/> */}
-            {/* <Chart1/> */}
+          
             {/* <Chart2 /> */}
             {/* <Chart4 /> */}
             {/* <Header/> */}
-            {/* <Cancel/> */}
-            {/* <Chart5 /> */}
+            {/* <Cancel/>*/}
+            {/* <Chart5 />  */}
             {/* <Chart6/> */}
             {/* <Vedio /> */}
             {/* <HomeTab /> */}

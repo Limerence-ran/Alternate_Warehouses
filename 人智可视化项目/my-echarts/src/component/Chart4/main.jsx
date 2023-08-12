@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Alldatasets from "../Alldatasets/main";
 import Mydatasets from "../Mydatasets/main";
 import Aboutme from "../Aboutme/main";
-import Chart1 from "../Chart1/main";
+import UploadMyData from "../UploadMydata/main";
 import "./main.css";
 
 function Chart4() {
@@ -54,18 +54,14 @@ function Chart4() {
                             </li>
                         </ul>
                     </div>
-                    <div ref={box}>
-                        {which === 0 ? (
-                            <Alldatasets />
-                        ) : which === 1 ? (
-                            <Mydatasets />
-                        ) : which === 2 ? (
-                            <Aboutme />
-                        ) : (
-                            <Chart1 />
-                        )}
+                    <div ref={box} className={style.middle_buttom}>
+                        {which === 0 ? <Alldatasets />
+                            : which === 1 ? < Mydatasets />
+                                : which === 2 ? <Aboutme />
+                                    : <UploadMyData />}
                     </div>
                 </div>
+
             </div>
         </>
     );

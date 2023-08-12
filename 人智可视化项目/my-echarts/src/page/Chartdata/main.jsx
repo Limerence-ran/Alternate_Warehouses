@@ -19,6 +19,7 @@ function Chartdata() {
     return (
         <>
             <div className={style.Chartbox}>
+<<<<<<< HEAD
                 <HomeTab />
                 <Slider onLiElements={renderLis} />
                 {/* <div className={style.swap}>
@@ -27,5 +28,14 @@ function Chartdata() {
             </div>
         </>
     );
+=======
+             <HomeTab/>
+                <div className={style.Chartbox_content}>
+                    <Slider onLiElements={renderLis} />
+                    <Outlet></Outlet>
+               </div>
+            </div></>
+    )
+>>>>>>> 657b0cb7a3ffb8dd0d35d21d40686ef3105dd44a
 }
 export default Chartdata;

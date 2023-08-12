@@ -1,46 +1,54 @@
-.Paging1 .ant-table-pagination {
+.Paging3{
+    width: 100%;
+    height: 100%;
+    color: #000;
+}
+
+.Paging3 .ant-table-wrapper {
+    height: 100%;
     width: 100%;
 }
 
-.Paging1 .ant-spin-container {
-    margin-right: 60px;
-    height: 40PX;
-    background-color: #fff;
+.Paging3 .ant-table-wrapper .ant-table-thead>tr>th,
+.Paging3 .ant-table-wrapper .ant-table-thead>tr>td {
+    /* background-color: transparent; */
+    text-align: center;
+}
+
+.Paging3 .ant-spin-nested-loading {
+    width: 100%;
+    height: 100%;
 
 }
 
-.Paging1 .ant-table {
-    width: 1200px;
+.Paging3 .ant-spin-container {
+   height: 100%;
+   width: 100%;
+
+}
+.Paging3 .ant-table {
+    width: 100%;
     padding-left: 5px;
     overflow: scroll;
-    background-color: #fff;
-  
+    height: 87%;
+    background-color: transparent;
 }
-
-.Paging1 .ant-table::-webkit-scrollbar {
+.Paging3 .ant-pagination{
+    height: 10%;
+}
+.Paging3 .ant-table::-webkit-scrollbar {
     display: none;
 }
 
-.Paging1 table {
-    background-color: #fff;
-}
 
-.Paging1 .ant-spin-container {
-    transform: scale(0.8, 0.8);
-    margin-top: -20px;
-}
-
-.Paging1 .ant-table-tbody {
-    height: 200px;
+.Paging3 .ant-table-tbody {
+    height:80%;
     overflow: scroll;
 }
 
-.Paging1 .ant-table-cell {
+.Paging3 .ant-table-cell {
     height: 2px !important;
     padding: 3px !important;
-}
-.Paging1 .ant-table{
-    height: 320px;
 }
 
 

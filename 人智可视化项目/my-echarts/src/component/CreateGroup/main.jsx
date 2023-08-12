@@ -86,8 +86,7 @@ const CreateGroup = () => {
         <>
             <div className={style.content} id="CreateGroup">
                 <main className={style.mainbox}>
-                    <div className={style.chartbox}>
-                        <div className={style.container}>
+                    
                             <Form
                                 form={form}
                                 onFinish={handleFinish}
@@ -120,13 +119,13 @@ const CreateGroup = () => {
                                     <Radio.Group>
                                         <Radio
                                             value="collection"
-                                            className="round-radio-button"
+                                            className="round_radio_button"
                                         >
                                             collection
                                         </Radio>
                                         <Radio
                                             value="individual"
-                                            className="round-radio-button"
+                                            className="round_radio_button"
                                         >
                                             individual
                                         </Radio>
@@ -151,7 +150,7 @@ const CreateGroup = () => {
                                     name="parameters"
                                     rules={[
                                         {
-                                            required: true,
+                                            // required: true,
                                             message: "Please input  Parameters",
                                         },
                                     ]}
@@ -219,17 +218,17 @@ const CreateGroup = () => {
                                     ]}
                                 >
                                     <Input.TextArea
-                                        rows={5}
+                                        rows={4}
                                         style={{ resize: "none" }}
                                         className={style.textareastyle}
                                         value={description}
                                         onChange={(e) =>
-                                            setDescription(e.targrt.value)
+                                            setDescription(e.target.value)
                                         }
                                     />
                                 </Form.Item>
 
-                                <Form.Item>
+                        <Form.Item className={style.Submitbtn}>
                                     <Button
                                         type="primary"
                                         htmlType="submit"
@@ -252,8 +251,6 @@ const CreateGroup = () => {
                             >
                                 <p>submit success！</p>
                             </Modal>
-                        </div>
-                    </div>
                 </main>
             </div>
         </>

@@ -53,7 +53,7 @@ function Chart6() {
                     <div className={style.header}>
                         <span>IMDB Movie Reviews Dataset</span>
                     </div>
-                    <main>
+                
                         <div className={style.chartbox}>
                             <div className={style.chart}>
                                 <Skeleton>
@@ -70,7 +70,7 @@ function Chart6() {
                                 </Space>
                             </div>
                         </div>
-                    </main>
+            
                 </div>
             </div>
         </>
