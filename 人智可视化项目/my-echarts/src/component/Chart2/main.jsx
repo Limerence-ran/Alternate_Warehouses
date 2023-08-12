@@ -2,7 +2,7 @@ import style from "./main.module.css";
 import React, { useState, useEffect } from "react";
 import Pointxy from "../../components/point-xy/main";
 import Bar from "../../components/bar/main";
-import PointLine from "../../components/point-line/main";
+import PointNoise from "../../components/point-noise/main";
 import { Skeleton } from "antd";
 
 function Chart2() {
@@ -39,7 +39,7 @@ function Chart2() {
                         </div>
                         <div className={style.img}>
                             <Skeleton>
-                                <PointLine data_xy={datas}></PointLine>
+                                <PointNoise data_xy={datas}></PointNoise>
                             </Skeleton>
                         </div>
                     </div>

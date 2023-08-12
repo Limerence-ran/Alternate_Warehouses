@@ -46,18 +46,14 @@ function Chart1() {
     }
 
     return (
-        
-           
-                   <>
-                <div className={style.upload}>
+        <>
+            <div className={style.upload}>
                 <div className={style.header}>
                     <span>IMDB Movie Reviews Dataset</span>
                 </div>
                 <main>
                     <div className={style.chartbox}>
-                        <div className={style.chart}>
-                          
-                        </div>
+                        <div className={style.chart}></div>
                         <div className={style.selectbtn}>
                             <span>Please select the level of noise: </span>
                             <input type="radio" name="1"></input>1
@@ -72,12 +68,9 @@ function Chart1() {
                         </div>
                     </div>
                 </main>
-                </div>
-
-                   </>
-          
-     
-    )
+            </div>
+        </>
+    );
 }
 
 export default Chart1;
