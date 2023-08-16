@@ -10,42 +10,34 @@ let slaveSymbol =
     "path://M600.255321 133.164178c120.213708 0 219.218733 68.021482 232.313549 155.527628h21.531936c-6.225171-97.884819-117.4874-175.858037-253.843452-175.858037S352.637041 190.806986 346.411869 288.691806h21.529903c13.094816-87.506146 112.099841-155.527628 232.313549-155.527628z,M600.255321 436.760206c-120.213708 0-219.218733-68.021482-232.313549-155.527627H346.409836c6.225171 97.884819 117.4874 175.858037 253.843452 175.858036s247.620314-77.973217 253.843452-175.858036h-21.531936c-13.09075 87.504113-112.095775 155.527628-232.309483 155.527627z,M346.125211 741.541498c0 101.900075 113.7771 184.508626 254.13011 184.508625 140.350978 0 254.130111-82.60855 254.130111-184.508625v-444.199103c0-2.901149-0.103685-5.784001-0.286659-8.650589h-21.531936c0.971794 6.4854 1.486153 13.076519 1.486153 19.757091v421.988131c0 96.803242-104.675176 175.282686-233.799702 175.282686s-233.799702-78.479444-233.799701-175.282686V308.448897c0-6.680572 0.516392-13.269658 1.486152-19.757091h-21.529903a135.835594 135.835594 0 0 0-0.286658 8.650589v444.199103z";
 
 export default function DynamicRelationChart(props) {
-    
     const data = props.propdata;
     // console.log("props.propdata:", data)
     // Create nodes and links based on the data
     const createNodesAndLinks = () => {
         const centerNode = {
             id: "center",
-            name: `群组:${data.group.groupName}`,
-            category: "群组",
+            name: `Group: ${data.group.groupName}`,
+            category: "Group",
             value: 1,
         };
         const nodes = [centerNode];
         const links = [];
 
-<<<<<<< HEAD
-=======
-        // console.log(
-        //     "data.resourceListEnhancedWithRelativeCode",
-        //     data.resourceListEnhancedWithRelativeCode
-        // );
->>>>>>> 657b0cb7a3ffb8dd0d35d21d40686ef3105dd44a
         data.resourceListEnhancedWithRelativeCode.forEach((item) => {
             const groupId = item.id;
             const ownerId = item.ownerId;
 
             const groupNode = {
                 id: groupId,
-                name: `数据集:${item.resourceName}`,
+                name: `DataSet:${item.resourceName}`,
                 value: 1,
-                category: "数据集",
+                category: "DataSet",
             };
 
             const ownerNode = {
                 id: ownerId,
-                name: `拥有者:${item.ownerName}`,
-                category: "拥有者",
+                name: `Owner:${item.ownerName}`,
+                category: "Owner",
                 value: 1,
             };
 
@@ -74,12 +66,15 @@ export default function DynamicRelationChart(props) {
             top: "bottom",
             left: "right",
         },
-        legend: { data: ["群组", "数据集", "拥有者"] },
+        legend: { data: ["Group", "DataSet", "Owner"] },
 
         tooltip: { show: true },
 
         series: [
             {
+                animationDuration: 1500,
+                animationDelay: 100,
+                animationEasingUpdate: "quinticInOut",
                 draggable: true,
                 type: "graph",
                 layout: "force",
@@ -92,37 +87,36 @@ export default function DynamicRelationChart(props) {
                     gravity: 0.1,
                 },
                 categories: [
-                    { name: "群组", itemStyle: { color: "red" } },
+                    { name: "Group", itemStyle: { color: "red" } },
                     {
-                        name: "数据集",
+                        name: "DataSet",
                         itemStyle: { color: "#ff6e7f" },
                     },
                     {
-                        name: "拥有者",
+                        name: "Owner",
                         itemStyle: { color: " rgba(128, 68, 255, 1)" },
                     },
                 ],
-             
+
                 data: nodes.map((node) => ({
                     //避坑：id: node.id,
                     name: node.name,
                     category: node.category,
                     symbolSize:
-                        node.category === "群组"
+                        node.category === "Group"
                             ? 50
-                            : node.category === "数据集"
+                            : node.category === "DataSet"
                             ? 40
                             : 20,
                     symbol:
-                        node.category === "群组"
+                        node.category === "Group"
                             ? appSymbol
-                            : node.category === "数据集"
+                            : node.category === "DataSet"
                             ? masterSymbol
                             : slaveSymbol,
                 })),
                 links: links,
-                animationDuration: 1500,
-                animationEasingUpdate: "quinticInOut",
+
                 label: {
                     show: true,
                     position: "bottom",
@@ -134,6 +128,7 @@ export default function DynamicRelationChart(props) {
                     curveness: 0.2,
                     width: 3,
                 },
+
                 edgeSymbol: ["circle", "arrow"],
                 edgeAnimation: true,
                 emphasis: {

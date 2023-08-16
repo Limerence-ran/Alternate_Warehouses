@@ -1,15 +1,8 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
-<<<<<<< HEAD:人智可视化项目/my-echarts/src/components/point-noise/main.jsx
 export default function PointNoise(props) {
     const xArray = props.data_xy.noise_x;
     const yArray = props.data_xy.noise_y;
-=======
-export default function PointLine(props) {
-    
-    const xArray = props.noise_x;
-    const yArray = props.noise_y;
->>>>>>> 657b0cb7a3ffb8dd0d35d21d40686ef3105dd44a:人智可视化项目/my-echarts/src/components/point-line/main.jsx
 
     const combinedArray = xArray.map((x, index) => [x, yArray[index]]);
 

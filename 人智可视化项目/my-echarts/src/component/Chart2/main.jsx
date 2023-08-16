@@ -23,10 +23,9 @@ function Chart2() {
         <>
             <div className={style.content}>
                 <div className={style.header}>
-                    <span>数据结果可视化</span>
+                    <span>Data Visualization</span>
                 </div>
                 <div className={style.data}>
-
                     <div className={style.chart2}>
                         <div className={style.img}>
                             <Skeleton>
@@ -45,8 +44,7 @@ function Chart2() {
                         </div>
                     </div>
                     <button onClick={handlesubmit}>finish</button>
-
-        </div>
+                </div>
                 {isshow && <Vedio />}
             </div>
         </>
