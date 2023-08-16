@@ -1,0 +1,15 @@
+.capInfor{
+    
+            height: 40%;
+             width:90%;
+       /* background-color: #fff; */
+              margin:10% 5%
+}
+.capInfor div{
+    height: 10%;
+        width: 100%;
+        margin-bottom: 5%;
+        color: #fff;
+        font-family: cursive;
+        font-size: 20px;
+}

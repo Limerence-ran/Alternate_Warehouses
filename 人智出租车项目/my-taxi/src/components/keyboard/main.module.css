@@ -1,8 +1,46 @@
 .button {
-    width: 120px;
-    height: 40px;
-    border: 1px solid blanchedalmond;
+    height: 100%;
+    width: 100%;
+    border: 1px solid skyblue;
     border-radius: 4px;
-    background: blanchedalmond;
-    color: #333;
+    /* background: blanchedalmond; */
+    background: skyblue;
+    /* opacity: 0.8; */
+    color: #fff;
+}
+.keyboard {
+    position: relative;
+    width: 20%;
+    height: 60%;
+    /* background-color: #fff; */
+}
+
+
+.custom_keyboard {
+    position: absolute;
+    width: 100%;
+    /* 设置键盘的宽度 */
+    height: 30%;
+    /* 设置键盘的高度 */
+}
+
+
+.search {
+    width: 100%;
+    height: 60%;
+}
+
+.search input:focus {
+    border-color: #1890ff;
+    /* 设置聚焦时的边框颜色 */
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.7);
+    /* 设置聚焦时的边框阴影 */
+    /* border: none; */
+    outline: none;
+    /* 去掉聚焦时的外边框 */
+}
+
+.search input::placeholder {
+    color: aliceblue;
+    font-size: 10px;
 }

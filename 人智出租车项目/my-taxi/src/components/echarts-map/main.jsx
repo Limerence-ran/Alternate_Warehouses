@@ -312,6 +312,7 @@ const EchartMap = () => {
                     fontFamily: "YouSheBiaoTiHei",
                     fontSize: "50px",
                     color: "#05e8fe",
+                    fontFamily: 'cursive',
                 },
             },
             tooltip: {
@@ -799,10 +800,7 @@ const EchartMap = () => {
         <>
             <div
                 id="aMap"
-                style={{
-                    width: "1920px",
-                    height: "930px",
-                }}
+                style={{ width: '100%', height: '100%', }}
             ></div>
         </>
     );

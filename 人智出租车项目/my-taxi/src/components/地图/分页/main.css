@@ -1,0 +1,24 @@
+.Table{
+   height: 90%;
+   position: relative;
+}
+.Table .ant-table-wrapper .ant-table,.Table .ant-table-wrapper .ant-table-thead{
+    background-color: transparent;
+    color: aliceblue;
+ text-align: center;
+ }
+ .Table .ant-table-wrapper  .ant-table-cell-row-hover,.ant-table-cell:hover {
+    color: #000;
+ }
+ .Table .at-spin-nested-loading{
+   height: 100%;
+   position: absolute;
+ }
+
+
+ .pageHeader{
+   height: 10%;
+   width: 100%;
+   font-family: cursive;
+      text-align: center;
+ }
