@@ -6,9 +6,7 @@ export default function HomeTab() {
     return (
         <div className={styles.tabbody}>
             <div className={styles.tabbody_box}>
-                <div className={styles.tabimg}>
-                  
-                </div>
+                <div className={styles.tabimg}></div>
                 <div className={styles.tablogo}>QG STUDIO</div>
                 <div className={styles.searchbox}>
                     <input
@@ -23,7 +21,7 @@ export default function HomeTab() {
                     <span className={styles.username}>Myself:8848-4399</span>
                     <UserOutlined />
                 </div>
-         </div>
+            </div>
         </div>
     );
 }

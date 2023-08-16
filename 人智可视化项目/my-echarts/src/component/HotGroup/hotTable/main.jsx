@@ -1,22 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Table } from 'antd';
-import { CaretRightOutlined } from '@ant-design/icons';
-import qs from 'qs';
-import "./main.css"
-import style from './main.module.css'
-import { useNavigate } from 'react-router-dom';
-import Cancel from '../../Cancel/main'
+import React, { useEffect, useState, useRef } from "react";
+import { Table } from "antd";
+import { CaretRightOutlined } from "@ant-design/icons";
+import qs from "qs";
+import "./main.css";
+import style from "./main.module.css";
+import { useNavigate } from "react-router-dom";
+import Cancel from "../../Cancel/main";
 import axios from "axios";
 import { message } from "antd";
-import { Button, Space } from 'antd';
-
+import { Button, Space } from "antd";
 
 const HotTable = () => {
     const [data, setData] = useState();
-    const [detail, setDatail] = useState('')
+    const [detail, setDatail] = useState("");
     const [loading, setLoading] = useState(false);
     const [iscancel, setIscancel] = useState(false);
-    const [disable, setDisable] = useState([])
+    const [disable, setDisable] = useState([]);
     const [tableParams, setTableParams] = useState({
         pagination: {
             current: 1,
@@ -24,14 +23,14 @@ const HotTable = () => {
         },
     });
     const Cancelbox = (e) => {
-        setDatail(e)
-        console.log(e)
+        setDatail(e);
+        console.log(e);
         setIscancel(!iscancel);
-    }
+    };
     const navigate = useNavigate();
     const OnclickName = () => {
-        navigate('/Chartdata/Chart4');
-    }
+        navigate("/Chartdata/Chart4");
+    };
     const fetchData = () => {
         const token = localStorage.getItem("token");
         const headers = {
@@ -42,19 +41,18 @@ const HotTable = () => {
             // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`, { headers })
             .then((res) => res.json())
 
-            .then(res => {
-                let results = res.data.data
-                console.log(res.data.data)
+            .then((res) => {
+                let results = res.data.data;
+                console.log(res.data.data);
                 setData(results);
-                let newArr = Array(10000).fill(false)
-                setDisable(newArr)
+                let newArr = Array(10000).fill(false);
+                setDisable(newArr);
                 setLoading(false);
                 setTableParams({
                     ...tableParams,
                     pagination: {
                         ...tableParams.pagination,
                         total: 200,
-                      
                     },
                 });
             });
@@ -62,8 +60,6 @@ const HotTable = () => {
 
     useEffect(() => {
         fetchData();
-
-
     }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -79,21 +75,14 @@ const HotTable = () => {
         }
     };
 
-
     const handleDelete = (record) => {
-
-
         // setDisable(!newArr[record.id])
-        console.log("record:", record)
-        console.log("record:", record.groupName)
-        const name = record.groupName
-        let arr = [...disable]
-        arr[record.id] = true
-        setDisable(arr)
-       
-
-
-
+        console.log("record:", record);
+        console.log("record:", record.groupName);
+        const name = record.groupName;
+        let arr = [...disable];
+        arr[record.id] = true;
+        setDisable(arr);
 
         const joinGroup = (groupName) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
@@ -102,7 +91,6 @@ const HotTable = () => {
                     "http://39.98.41.126:31130/groups/join",
 
                     {
-
                         groupName: groupName,
                     },
                     {
@@ -114,12 +102,11 @@ const HotTable = () => {
                 )
                 .then((response) => {
                     const { code, msg, data } = response;
-                    console.log(response)
+                    console.log(response);
                     if (code === 1000) {
                         message.error("加入失败: " + msg);
-
                     } else {
-                        console.log("data:" + data)
+                        console.log("data:" + data);
                         // 在这里处理成功的逻辑
                     }
                 })
@@ -131,14 +118,6 @@ const HotTable = () => {
         joinGroup(name);
     };
 
-
-
-
-
-
-
-
-
     const getRandomuserParams = (params) => ({
         results: params.pagination?.pageSize,
         page: params.pagination?.current,
@@ -147,49 +126,55 @@ const HotTable = () => {
 
     const columns = [
         {
-            title: 'Group Name',
-            dataIndex: 'groupName',
+            title: "Group Name",
+            dataIndex: "groupName",
         },
         {
-            title: 'Group Type',
-            dataIndex: 'popularity',
+            title: "Group Type",
+            dataIndex: "popularity",
         },
         {
-            title: 'dimensions',
-            dataIndex: 'dimension',
+            title: "dimensions",
+            dataIndex: "dimension",
         },
         {
-            title: 'group datasets',
-            dataIndex: 'resourceQuantity',
+            title: "group datasets",
+            dataIndex: "resourceQuantity",
         },
         {
-            title: 'Withdrawal',
+            title: "Withdrawal",
             render: (e, record) => (
-                <Button disabled={disable[record.id]} onClick={() => handleDelete(record)} className={style.withdrawal} > Join</Button >
-            )
+                <Button
+                    disabled={disable[record.id]}
+                    onClick={() => handleDelete(record)}
+                    className={style.withdrawal}
+                >
+                    {" "}
+                    Join
+                </Button>
+            ),
         },
     ];
 
     return (
-        <><div className='Paging' >
-            <Table
-                columns={columns}
-                // rowKey={(record) => record.login.uuid}
-                dataSource={data}
-                pagination={{
-                    ...tableParams.pagination,
-                    position: ['bottomRight'],
-                }}
-                loading={loading}
-                onChange={handleTableChange}
-            />
-        </div>
-            {
-                iscancel && <Cancel className={style.cancelContainer} value={detail} />
-            }
+        <>
+            <div className="Paging">
+                <Table
+                    columns={columns}
+                    // rowKey={(record) => record.login.uuid}
+                    dataSource={data}
+                    pagination={{
+                        ...tableParams.pagination,
+                        position: ["bottomRight"],
+                    }}
+                    loading={loading}
+                    onChange={handleTableChange}
+                />
+            </div>
+            {iscancel && (
+                <Cancel className={style.cancelContainer} value={detail} />
+            )}
         </>
     );
 };
 export default HotTable;
-
-

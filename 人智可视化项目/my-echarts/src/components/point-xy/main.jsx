@@ -4,11 +4,42 @@ import ReactECharts from "echarts-for-react";
 export default function Pointxy(props) {
 
     // 假设有两组数据分别是 data1 和 data2
-    const data1 = props.before_data; // 第一组数据的坐标点 props.before_data
+    const data1 = props.data_xy.before_data; // 第一组数据的坐标点 props.before_data
+    const data2 = props.data_xy.result_data; // 第二组数据的坐标点
+    const dataline = []; //连线数组
+    data1.forEach((item, index) => {
+        let arr1 = [];
+        arr1.push(item);
+        arr1.push(data2[index]);
+        dataline.push(arr1);
+    });
+    const addLine = () => {
+        for (let i = 0; i < dataline.length; i++) {
+            option.series.push({
+                type: "line",
+                name: "Moving track",
+                data: dataline[i],
+                lineStyle: {
+                    width: 4,
+                    color: getColorByIndex(i), // 线条颜色
+                    emphasis: {
+                        focus: "self",
+                    },
+                },
+                symbolSize: 0,
+            });
+        }
+    };
 
-    const data2 = props.result_data; // 第二组数据的坐标点
     function getColorByIndex(index) {
-        const colors = ["blue", "red", "green", "yellow", "purple", "orange"];
+        const colors = [
+            "#6c50f3",
+            "#00ffff",
+            "#00ff00",
+            "#00ff99",
+            "#FF0087",
+            "#FFBF00",
+        ];
         return colors[index];
     }
 
@@ -20,7 +51,20 @@ export default function Pointxy(props) {
             left: "center",
             itemWidth: 9,
             itemHeight: 9,
-            data: ["Before processing", "After processing"],
+            data: [
+                "Before processing",
+                "After processing",
+                { name: "Moving track", icon: "none" },
+            ],
+
+            itemStyle: {
+                color: "rgb(143 123 251)",
+            },
+        },
+        tooltip: { show: true, formatter: "coordinate : ( {c} ) " },
+        toolbox: {
+            show: true,
+            feature: { saveAsImage: { title: false } },
         },
         xAxis: {
             axisLine: {
@@ -66,7 +110,7 @@ export default function Pointxy(props) {
             },
             splitLine: {
                 lineStyle: {
-                    color: "#E9E9E9",
+                    color: "#333",
                 },
             },
         },
@@ -82,9 +126,13 @@ export default function Pointxy(props) {
                         },
                     };
                 }),
-
-                symbolSize: 15,
+                symbolSize: 20,
                 symbol: "circle",
+                itemStyle: {
+                    color: "#6c50f3",
+                    borderWidth: 3,
+                    borderColor: "#fff",
+                },
             },
             {
                 name: "After processing",
@@ -98,19 +146,24 @@ export default function Pointxy(props) {
                     };
                 }),
 
-                symbolSize: 15,
+                symbolSize: 20,
                 symbol: "diamond",
+                itemStyle: {
+                    color: "#6c50f3",
+                    borderWidth: 3,
+                    borderColor: "#fff",
+                },
             },
         ],
     };
-
+    addLine();
     return (
         <ReactECharts
             option={option}
             notMerge={true}
             lazyUpdate={true}
             theme={"AI隐私差分"}
-            style={{ width: "500px", height: "300px" }}
+            style={{ width: "100%", height: "100%" }}
         />
     );
 }

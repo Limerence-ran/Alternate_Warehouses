@@ -46,38 +46,30 @@ function UploadMyData() {
     }
 
     return (
-        
-           
-                   <>
-                <div className={style.upload}>
+        <>
+            <div className={style.upload}>
                 <div className={style.header}>
                     <span>IMDB Movie Reviews Dataset</span>
                 </div>
-       
-                    <div className={style.chartbox}>
-                        <div className={style.chart}>
-                          
-                        </div>
-                        <div className={style.selectbtn}>
-                            <span>Please select the level of noise: </span>
-                            <input type="radio" name="1"></input>1
-                            <input type="radio" name="1"></input>2
-                            <input type="radio" name="1"></input>3
-                        </div>
-                        <div className={style.btn}>
-                            <button onClick={handletoUpload}>
-                                Using my previous data
-                            </button>
-                            <button onClick={nextPage}>Upload my data</button>
-                        </div>
-                    </div>
-     
-                </div>
 
-                   </>
-          
-     
-    )
+                <div className={style.chartbox}>
+                    <div className={style.chart}></div>
+                    <div className={style.selectbtn}>
+                        <span>Please select the level of noise: </span>
+                        <input type="radio" name="1"></input>1
+                        <input type="radio" name="1"></input>2
+                        <input type="radio" name="1"></input>3
+                    </div>
+                    <div className={style.btn}>
+                        <button onClick={handletoUpload}>
+                            Using my previous data
+                        </button>
+                        <button onClick={nextPage}>Upload my data</button>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 }
 
 export default UploadMyData;

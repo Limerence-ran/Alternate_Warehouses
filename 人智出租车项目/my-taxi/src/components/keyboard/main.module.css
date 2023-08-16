@@ -1,0 +1,8 @@
+.button {
+    width: 120px;
+    height: 40px;
+    border: 1px solid blanchedalmond;
+    border-radius: 4px;
+    background: blanchedalmond;
+    color: #333;
+}

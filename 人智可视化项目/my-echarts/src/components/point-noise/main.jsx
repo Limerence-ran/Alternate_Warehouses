@@ -1,9 +1,8 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
-export default function PointLine(props) {
-    
-    const xArray = props.noise_x;
-    const yArray = props.noise_y;
+export default function PointNoise(props) {
+    const xArray = props.data_xy.noise_x;
+    const yArray = props.data_xy.noise_y;
 
     const combinedArray = xArray.map((x, index) => [x, yArray[index]]);
 
@@ -12,22 +11,30 @@ export default function PointLine(props) {
     // 配置散点图的基本参数
     const option = {
         backgroundColor: "rgb(214 216 254)",
+        grid: { show: true, containLable: true },
         title: {
-            text: `噪声参数:${props.var}`,
-            left: "center", // 标题水平居中
+            text: `Noise parameters : ${props.data_xy.var}`,
+            bottom: "2%",
+            right: "10%", // 标题水平居中
             textStyle: {
-                color: "#333", // 标题字体颜色
-                fontSize: 18, // 标题字体大小
-                fontWeight: "bold", // 标题字体粗细
+                color: "#8998AC", // 标题字体颜色
+                fontSize: 12, // 标题字体大小
             },
         },
         legend: {
-            bottom: 10,
-            left: "center",
-            itemWidth: 9,
-            itemHeight: 9,
-            data: "噪声",
+            bottom: "2%",
+            right: "center",
+            data: ["noise"],
+            textStyle: { color: "#3E9FFF", fontSize: 20 },
+            itemHeight: 18,
+            itemWidth: 18, // 修改icon图形大小
         },
+        tooltip: { show: true, formatter: "coordinate : ( {c} ) " },
+        toolbox: {
+            show: true,
+            feature: { saveAsImage: { title: false } },
+        },
+
         xAxis: {
             axisLine: {
                 //  改变x轴颜色
@@ -47,7 +54,7 @@ export default function PointLine(props) {
             },
             splitLine: {
                 lineStyle: {
-                    color: "#E9E9E9",
+                    color: "rgb(143 123 251)",
                 },
             },
         },
@@ -70,19 +77,19 @@ export default function PointLine(props) {
             },
             splitLine: {
                 lineStyle: {
-                    color: "#E9E9E9",
+                    color: "rgb(143 123 251)",
                 },
             },
         },
         series: [
             {
-                name: "噪声",
+                name: "noise",
                 type: "scatter",
                 data: data1,
                 itemStyle: {
-                    color: "blue",
+                    color: "#3E9FFF",
                 },
-                symbolSize: 15,
+                symbolSize: 18,
             },
         ],
     };
@@ -93,7 +100,7 @@ export default function PointLine(props) {
             notMerge={true}
             lazyUpdate={true}
             theme={"AI隐私差分"}
-            style={{ width: "500px", height: "300px" }}
+            style={{ width: "100%", height: "100%" }}
         />
     );
 }

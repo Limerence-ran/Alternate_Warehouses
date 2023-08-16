@@ -27,8 +27,8 @@ class Bar extends React.Component {
         }
         option = {
             title: {
-                text: "Distributed AI System Based on Differential privacy",
-                subtext: "Magnitude of change",
+                text: "Magnitude of change",
+                top: "1%",
                 left: "center",
                 textStyle: {
                     color: "rgb(143 123 251)",
@@ -64,6 +64,14 @@ class Bar extends React.Component {
                     type: "inside",
                 },
             ],
+            tooltip: {
+                formatter: "distance : ( {c} ) ",
+                show: true,
+            },
+            toolbox: {
+                show: true,
+                feature: { saveAsImage: { title: false } },
+            },
             series: [
                 {
                     type: "bar",
@@ -93,6 +101,7 @@ class Bar extends React.Component {
                     label: {
                         show: false,
                     },
+
                     data: data,
                 },
             ],
@@ -122,9 +131,8 @@ class Bar extends React.Component {
             <div
                 id="main"
                 style={{
-                    width: "500px",
-                    height: "300px",
-                    backgroundColor: "rgb(214 216 254)",
+                    width: "100%",
+                    height: "100%",
                 }}
             ></div>
         );
