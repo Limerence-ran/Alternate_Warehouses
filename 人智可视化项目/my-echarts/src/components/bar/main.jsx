@@ -26,6 +26,7 @@ class Bar extends React.Component {
             dataShadow.push(yMax);
         }
         option = {
+            backgroundColor: "rgb(214 216 254)",
             title: {
                 text: "Magnitude of change",
                 top: "1%",
@@ -125,6 +126,11 @@ class Bar extends React.Component {
         });
 
         option && myChart.setOption(option);
+        // 监听窗口大小改变事件
+        window.addEventListener("resize", function () {
+            // 调整图表大小
+            myChart.resize();
+        });
     }
     render() {
         return (

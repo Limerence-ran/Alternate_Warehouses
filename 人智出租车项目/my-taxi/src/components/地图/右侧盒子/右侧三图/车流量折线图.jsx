@@ -1,62 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import ReactECharts from 'echarts-for-react';
-import * as echarts from 'echarts';
+import React, { useEffect, useState } from "react";
+import ReactECharts from "echarts-for-react";
+import * as echarts from "echarts";
 
 export default function Liner() {
     const dataX = [
-        '0:00',
-        '1:00',
-        '2:00',
-        '3:00',
-        '4:00',
-        '5:00',
-        '6:00',
-        '7:00',
-        '8:00',
-        '9:00',
-        '10:00',
-        '11:00',
-        '12:00',
-        '13:00',
-        '14:00',
-        '15:00',
-        '16:00',
-        '17:00',
-        '18:00',
-        '19:00',
-        '20:00',
-        '21:00',
-        '22:00',
-        '23:00'
+        "0:00",
+        "1:00",
+        "2:00",
+        "3:00",
+        "4:00",
+        "5:00",
+        "6:00",
+        "7:00",
+        "8:00",
+        "9:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "23:00",
     ];
     const dataY = [
-        30,
-        40,
-        30,
-        40,
-        30,
-        40,
-        30,
-        60,
-        20,
-        40,
-        30,
-        40,
-        30,
-        40,
-        30,
-        40,
-        30,
-        60,
-        20,
-        40,
-        30,
-        40,
-        100,
-    60  ]
-     const option= {
+        30, 40, 30, 40, 30, 40, 30, 60, 20, 40, 30, 40, 30, 40, 30, 40, 30, 60,
+        20, 40, 30, 40, 100, 60,
+    ];
+    const option = {
         tooltip: {
-            trigger: "axis"
+            trigger: "axis",
         },
         legend: {
             top: "0%",
@@ -65,17 +44,27 @@ export default function Liner() {
             textStyle: {
                 color: "rgba(251, 237, 237, 1)",
                 fontSize: "14px",
+<<<<<<< HEAD
+                fontFamily: "cursive",
+            },
+=======
                 fontFamily: 'cursive',
               
             }
+>>>>>>> 611fb65693ca114267d329a0a83b7af4d888bbb0
         },
 
         grid: {
             left: "2%",
             top: "10%",
             right: "0%",
+<<<<<<< HEAD
+            bottom: "25%",
+            containLabel: true,
+=======
             bottom: "20%",
             containLabel: true
+>>>>>>> 611fb65693ca114267d329a0a83b7af4d888bbb0
         },
         xAxis: [
             {
@@ -89,17 +78,16 @@ export default function Liner() {
                     rotate: 45, // 旋转角度，使横坐标文字不重叠
                     textStyle: {
                         color: "rgba(255,255,255,.6)",
-                        fontSize: 12
-                    }
+                        fontSize: 12,
+                    },
                 },
                 // x轴线的颜色为   rgba(255,255,255,.2)
                 axisLine: {
                     lineStyle: {
-                        color: "rgba(255,255,255,.2)"
-                    }
+                        color: "rgba(255,255,255,.2)",
+                    },
                 },
-              
-            }
+            },
         ],
         yAxis: [
             {
@@ -107,22 +95,22 @@ export default function Liner() {
                 axisTick: { show: false },
                 axisLine: {
                     lineStyle: {
-                        color: "rgba(255,255,255,.1)"
-                    }
+                        color: "rgba(255,255,255,.1)",
+                    },
                 },
                 axisLabel: {
                     textStyle: {
                         color: "rgba(255,255,255,.6)",
-                        fontSize: 12
-                    }
+                        fontSize: 12,
+                    },
                 },
                 // 修改分割线的颜色
                 splitLine: {
                     lineStyle: {
-                        color: "rgba(255,255,255,.1)"
-                    }
-                }
-            }
+                        color: "rgba(255,255,255,.1)",
+                    },
+                },
+            },
         ],
         series: [
             {
@@ -132,7 +120,7 @@ export default function Liner() {
                 // 单独修改当前线条的样式
                 lineStyle: {
                     color: "#0184d5",
-                    width: "2"
+                    width: "2",
                 },
                 // 填充颜色设置
                 areaStyle: {
@@ -144,16 +132,16 @@ export default function Liner() {
                         [
                             {
                                 offset: 0,
-                                color: "rgba(1, 132, 213, 0.4)" // 渐变色的起始颜色
+                                color: "rgba(1, 132, 213, 0.4)", // 渐变色的起始颜色
                             },
                             {
                                 offset: 0.8,
-                                color: "rgba(1, 132, 213, 0.1)" // 渐变线的结束颜色
-                            }
+                                color: "rgba(1, 132, 213, 0.1)", // 渐变线的结束颜色
+                            },
                         ],
                         false
                     ),
-                    shadowColor: "rgba(0, 0, 0, 0.1)"
+                    shadowColor: "rgba(0, 0, 0, 0.1)",
                 },
                 // 设置拐点
                 symbol: "circle",
@@ -165,9 +153,9 @@ export default function Liner() {
                 itemStyle: {
                     color: "#0184d5",
                     borderColor: "rgba(221, 220, 107, .1)",
-                    borderWidth: 12
+                    borderWidth: 12,
                 },
-                data: dataY, 
+                data: dataY,
             },
             // {
             //     name: "联盟广告",
@@ -246,64 +234,62 @@ export default function Liner() {
             //         20
             //     ]
             // }
-        ]
+        ],
     };
     return (
         <>
             <ReactECharts option={option} />
         </>
-    )
+    );
 }
 
+// const data = [
+//     ['0:00', 200],
+//     ['1:00', 360],
+//     ['3:00', 450],
+//     ['4:00', 550],
+//     ['5:00', 650],
+//     ['23:00', 500],
+//     ['24:00', 180],
+//     ['24:00', 680],
+// ];
+// const option = {
+//     grid: {
+//         left: '2%', // 调整左边距
+//         right: '4%', // 调整右边距
+//         bottom: '25%', // 调整底边距
+//         top:"6%",
+//         containLabel: true // 自适应文字大小
+//     },
+//     xAxis: {
+//         type: 'category',
+//         data: data.map(item => item[0]), // 使用数据中的时间作为横坐标数据
+//         boundaryGap: false,
+//         axisLabel: {
+//             interval: 0, // 强制显示所有横坐标刻度
+//             rotate: 45, // 旋转角度，使横坐标文字不重叠
+//         },
+//     },
+//     yAxis: {
+//         type: 'value',
+//         axisLine: {
+//             lineStyle: { // 设置 y 轴横线的样式
+//                 color: '#999999', // 设置横线颜色为浅灰色
+//             },
+//         },
+//         splitLine: {
+//             lineStyle: { // 设置 y 轴分隔线的样式
+//                 color: ['rgba(245, 240, 240, 0.2)'], // 设置分隔线颜色为浅灰色，透明度为 0.5
+//             },
+//         },
+//     },
 
+//     series: [{
+//         type: 'line',
+//         data: data.map(item => item[1]), // 使用数据中的数值作为纵坐标数据
+//         emphasis: {
+//             focus: 'series' // 高亮显示折线
+//         }
+//     }]
 
- // const data = [
-    //     ['0:00', 200],
-    //     ['1:00', 360],
-    //     ['3:00', 450],
-    //     ['4:00', 550],
-    //     ['5:00', 650],
-    //     ['23:00', 500],
-    //     ['24:00', 180],
-    //     ['24:00', 680],
-    // ];
-    // const option = {
-    //     grid: {
-    //         left: '2%', // 调整左边距
-    //         right: '4%', // 调整右边距
-    //         bottom: '25%', // 调整底边距
-    //         top:"6%",
-    //         containLabel: true // 自适应文字大小
-    //     },
-    //     xAxis: {
-    //         type: 'category',
-    //         data: data.map(item => item[0]), // 使用数据中的时间作为横坐标数据
-    //         boundaryGap: false,
-    //         axisLabel: {
-    //             interval: 0, // 强制显示所有横坐标刻度
-    //             rotate: 45, // 旋转角度，使横坐标文字不重叠
-    //         },
-    //     },
-    //     yAxis: {
-    //         type: 'value',
-    //         axisLine: {
-    //             lineStyle: { // 设置 y 轴横线的样式
-    //                 color: '#999999', // 设置横线颜色为浅灰色
-    //             },
-    //         },
-    //         splitLine: {
-    //             lineStyle: { // 设置 y 轴分隔线的样式
-    //                 color: ['rgba(245, 240, 240, 0.2)'], // 设置分隔线颜色为浅灰色，透明度为 0.5
-    //             },
-    //         },
-    //     },
-
-    //     series: [{
-    //         type: 'line',
-    //         data: data.map(item => item[1]), // 使用数据中的数值作为纵坐标数据
-    //         emphasis: {
-    //             focus: 'series' // 高亮显示折线
-    //         }
-    //     }]
-    
-    // };
+// };

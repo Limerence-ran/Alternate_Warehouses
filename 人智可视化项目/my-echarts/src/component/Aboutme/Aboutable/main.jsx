@@ -35,7 +35,7 @@ const Abouttable = () => {
                 }
             )
             .then((response) => {
-                const { code, msg, data } = response;
+                const { code, msg, data } = response.data;
                 console.log(response);
                 setData(response.data.data);
                 setLoading(false);
@@ -50,7 +50,7 @@ const Abouttable = () => {
                 });
                 if (code === 1) {
                     // 查询成功
-                    message.success(msg);
+                    message.success("查询成功");
                     console.log("数据:", data);
                 } else {
                     // 其他错误
