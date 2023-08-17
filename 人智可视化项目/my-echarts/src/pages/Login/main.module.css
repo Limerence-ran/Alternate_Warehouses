@@ -1,7 +1,9 @@
 .father {
     padding: 0;
-    margin: 0;
+    margin: auto;
     height: 100vh;
+    min-width: 1700px;
+    max-height: 900px;
     /* position: relative; */
     /* height: 100vh; */
 }
@@ -25,21 +27,20 @@
     height: 100%;
     background: rgba(128, 68, 255, 0.65);
     z-index: 3;
-
 }
-.color_content{
-   height: calc(100% - 100px);
-   display: flex;
- 
+.color_content {
+    height: calc(100% - 100px);
+    display: flex;
 }
-.color_left{
-    height:100%;
+.color_left {
+    height: 100%;
+    width: 50%;
+    margin: 0 5%;
+    margin-left: 15%;
+}
+.color_right {
+    height: 100%;
     width: 40%;
     margin: 0 5%;
-  
-}
-.color_right{
-    height: 100%;
-     width: 40%;
-    margin: 0 5%;
+    margin-left: 5%;
 }

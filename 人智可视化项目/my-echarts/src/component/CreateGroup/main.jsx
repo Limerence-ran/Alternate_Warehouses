@@ -86,171 +86,162 @@ const CreateGroup = () => {
         <>
             <div className={style.content} id="CreateGroup">
                 <main className={style.mainbox}>
-                    
-                            <Form
-                                form={form}
-                                onFinish={handleFinish}
-                                layout="vertical"
-                                className={style.formstyle}
-                            >
-                                <Form.Item
-                                    label="Group name"
-                                    name="name"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: "Please input Group name",
-                                        },
-                                    ]}
-                                >
-                                    <Input className={style.inputstyle} />
-                                </Form.Item>
+                    <Form
+                        form={form}
+                        onFinish={handleFinish}
+                        layout="vertical"
+                        className={style.formstyle}
+                    >
+                        <Form.Item
+                            label="Group name"
+                            name="name"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input Group name",
+                                },
+                            ]}
+                        >
+                            <Input className={style.inputstyle} />
+                        </Form.Item>
 
-                                <Form.Item
-                                    label="Type"
-                                    name="type"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: "Please input Group type",
-                                        },
-                                    ]}
+                        <Form.Item
+                            label="Type"
+                            name="type"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input Group type",
+                                },
+                            ]}
+                        >
+                            <Radio.Group>
+                                <Radio
+                                    value="collection"
+                                    className="round_radio_button"
                                 >
-                                    <Radio.Group>
-                                        <Radio
-                                            value="collection"
-                                            className="round_radio_button"
-                                        >
-                                            collection
-                                        </Radio>
-                                        <Radio
-                                            value="individual"
-                                            className="round_radio_button"
-                                        >
-                                            individual
-                                        </Radio>
-                                    </Radio.Group>
-                                </Form.Item>
+                                    collection
+                                </Radio>
+                                <Radio
+                                    value="individual"
+                                    className="round_radio_button"
+                                >
+                                    individual
+                                </Radio>
+                            </Radio.Group>
+                        </Form.Item>
 
-                                <Form.Item
-                                    label="Input Dimension "
-                                    name="text"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: "Please input Dimension",
-                                        },
-                                    ]}
-                                >
-                                    <input className={style.inputstyle} />
-                                </Form.Item>
+                        <Form.Item
+                            label="Input Dimension "
+                            name="text"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input Dimension",
+                                },
+                            ]}
+                        >
+                            <input className={style.inputstyle} />
+                        </Form.Item>
 
-                                <Form.Item
-                                    label="Dimension parameters "
-                                    name="parameters"
-                                    rules={[
-                                        {
-                                            // required: true,
-                                            message: "Please input  Parameters",
-                                        },
-                                    ]}
+                        <Form.Item
+                            label="Dimension parameters "
+                            name="parameters"
+                            rules={[
+                                {
+                                    // required: true,
+                                    message: "Please input  Parameters",
+                                },
+                            ]}
+                        >
+                            <span>
+                                Arity Select:
+                                <select
+                                    onChange={(e) => {
+                                        const selectedDimension = parseInt(
+                                            e.target.value
+                                        );
+                                        // setDimension(selectedDimension);
+                                        setArity(
+                                            Array(selectedDimension).fill("")
+                                        );
+                                    }}
+                                    className={style.option}
                                 >
-                                    <span>
-                                        Arity Select:
-                                        <select
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </span>
+                            <span className={style.parameters}>
+                                Please input parameters name :
+                            </span>
+                            <span className={style.parameters}>
+                                {arity.map((value, index) => (
+                                    <Form.Item
+                                        name={index}
+                                        key={index}
+                                        className={style.parameters_input}
+                                    >
+                                        <input
+                                            value={value}
                                             onChange={(e) => {
-                                                const selectedDimension =
-                                                    parseInt(e.target.value);
-                                                // setDimension(selectedDimension);
-                                                setArity(
-                                                    Array(
-                                                        selectedDimension
-                                                    ).fill("")
-                                                );
+                                                const newArray = [...arity];
+                                                newArray[index] =
+                                                    e.target.value;
+                                                setArity(newArray);
                                             }}
-                                            className={style.option}
-                                        >
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                        </select>
-                                    </span>
-                                    <span className={style.parameters}>
-                                        Please input parameters name :
-                                    </span>
-                                    <span className={style.parameters}>
-                                        {arity.map((value, index) => (
-                                            <Form.Item
-                                                name={index}
-                                                key={index}
-                                                className={
-                                                    style.parameters_input
-                                                }
-                                            >
-                                                <input
-                                                    value={value}
-                                                    onChange={(e) => {
-                                                        const newArray = [
-                                                            ...arity,
-                                                        ];
-                                                        newArray[index] =
-                                                            e.target.value;
-                                                        setArity(newArray);
-                                                    }}
-                                                />
-                                            </Form.Item>
-                                        ))}
-                                    </span>
-                                </Form.Item>
+                                        />
+                                    </Form.Item>
+                                ))}
+                            </span>
+                        </Form.Item>
 
-                                <Form.Item
-                                    label="Group Description"
-                                    name="description"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message:
-                                                "Please input Group description",
-                                        },
-                                    ]}
-                                >
-                                    <Input.TextArea
-                                        rows={4}
-                                        style={{ resize: "none" }}
-                                        className={style.textareastyle}
-                                        value={description}
-                                        onChange={(e) =>
-                                            setDescription(e.target.value)
-                                        }
-                                    />
-                                </Form.Item>
+                        <Form.Item
+                            label="Group Description"
+                            name="description"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input Group description",
+                                },
+                            ]}
+                        >
+                            <Input.TextArea
+                                rows={4}
+                                style={{ resize: "none" }}
+                                className={style.textareastyle}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </Form.Item>
 
                         <Form.Item className={style.Submitbtn}>
-                                    <Button
-                                        type="primary"
-                                        htmlType="submit"
-                                        loading={isSubmitting}
-                                        className={style.SubmitButton}
-                                    >
-                                        Submit
-                                    </Button>
-                                </Form.Item>
-                            </Form>
-
-                            <Modal
-                                visible={isSuccessModalVisible}
-                                onCancel={handleSuccessModalClose}
-                                onOk={handleSuccessModalClose}
-                                okText="Close"
-                                title="提交成功"
-                                centered
-                                className="success-modal-style"
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                loading={isSubmitting}
+                                className={style.SubmitButton}
                             >
-                                <p>submit success！</p>
-                            </Modal>
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+
+                    <Modal
+                        visible={isSuccessModalVisible}
+                        onCancel={handleSuccessModalClose}
+                        onOk={handleSuccessModalClose}
+                        okText="Close"
+                        title="提交成功"
+                        centered
+                        className="success-modal-style"
+                    >
+                        <p>submit success！</p>
+                    </Modal>
                 </main>
             </div>
         </>

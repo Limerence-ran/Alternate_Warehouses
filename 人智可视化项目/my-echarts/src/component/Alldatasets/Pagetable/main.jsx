@@ -35,11 +35,10 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                 }
             )
             .then((response) => {
-                const { code, msg, data } = response;
-                console.log(response);
+                const { code, msg, data } = response.data;
+                // console.log(response);
                 setData(response.data.data);
 
-    
                 setLoading(false);
                 setTableParams({
                     ...tableParams,
@@ -50,7 +49,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                 });
                 if (code === 1) {
                     message.success(msg);
-                    console.log("data:" + data);
+                    // console.log("data:" + data);
                 } else {
                     message.error("连接失败: " + msg);
                     // 在这里处理其他错误情况的逻辑
@@ -105,8 +104,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                     }
                 )
                 .then((response) => {
-                    const { code, msg, data } = response;
-
+                    const { code, msg, data } = response.data;
                     if (code === 1) {
                         console.log("data:" + data);
                         // 在这里处理成功的逻辑
@@ -150,8 +148,14 @@ const Pagetable1 = ({ handleAjaxChange }) => {
         {
             title: "",
             render: (e, record) => (
-                <button className={style.getbtn} onClick={()=>onclickGet(record)}> Get</button >
-            )
+                <button
+                    className={style.getbtn}
+                    onClick={() => onclickGet(record)}
+                >
+                    {" "}
+                    Get
+                </button>
+            ),
         },
     ];
 

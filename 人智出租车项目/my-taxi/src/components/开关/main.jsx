@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './main.css'
+import React, { useState } from "react";
+import "./main.css";
 function SwitchButton(props) {
-    const { onChange } = props
+    const { onChange } = props;
     const [isOn, setIsOn] = useState(false);
 
     const handleToggleSwitch = () => {
@@ -9,8 +9,12 @@ function SwitchButton(props) {
     };
 
     return (
-        <label className={`switch ${isOn ? 'on' : 'off'}`} onClick={onChange}>
-            <input type="checkbox" checked={isOn} onChange={handleToggleSwitch} />
+        <label className={`switch ${isOn ? "on" : "off"}`} onClick={onChange}>
+            <input
+                type="checkbox"
+                checked={isOn}
+                onChange={handleToggleSwitch}
+            />
             <span className="slider"></span>
         </label>
     );

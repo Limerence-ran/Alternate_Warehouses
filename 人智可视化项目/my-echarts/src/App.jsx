@@ -102,7 +102,7 @@ function App() {
             {/* < HomeTab /> */}
             {/* < Slider /> */}
             {/* <HotGroup/> */}
-            {/* {element} */}
+            {element}
             {/* <Groupshow/> */}
             {/* < Alldatasets/> */}
             {/* <Mydatasets/>  */}

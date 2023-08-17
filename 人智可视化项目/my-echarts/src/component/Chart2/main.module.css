@@ -1,14 +1,13 @@
 .content {
     /* top: 64px; */
 
-        transition: all .3s ease;
-            /* margin-left: 240px; */
-            width: 90%;
-            height: 100%;
-            position: relative;
-            background-color: #fff;
+    transition: all 0.3s ease;
+    /* margin-left: 240px; */
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #fff;
 }
-
 
 .header {
     text-align: center;
@@ -19,22 +18,23 @@
     align-items: center;
     justify-content: center;
 }
-.data{
+.data {
     width: 90%;
     height: 85%;
     margin: 0 auto;
 }
 .chart2 {
-    width: 100%;
-    height: 420px;
-    margin-left: -10px;
+    width: 110%;
+    height: 520px;
     display: flex;
-    flex-direction: column;
     margin-top: 5px;
+    flex-wrap: wrap;
 }
 .img {
-    width: 500px;
-    height: 210px;
+    margin: 5px;
+    flex-basis: 45%;
+    width: 100%;
+    height: 400px;
     background-color: #71bcd3;
 }
 
@@ -46,5 +46,5 @@
     width: 120px;
     height: 30px;
     float: right;
-    margin-right: 140px;
+    margin-top: 300px;
 }
