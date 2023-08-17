@@ -44,27 +44,17 @@ export default function Liner() {
             textStyle: {
                 color: "rgba(251, 237, 237, 1)",
                 fontSize: "14px",
-<<<<<<< HEAD
-                fontFamily: "cursive",
-            },
-=======
                 fontFamily: 'cursive',
               
             }
->>>>>>> 611fb65693ca114267d329a0a83b7af4d888bbb0
         },
 
         grid: {
             left: "2%",
             top: "10%",
             right: "0%",
-<<<<<<< HEAD
-            bottom: "25%",
-            containLabel: true,
-=======
             bottom: "20%",
             containLabel: true
->>>>>>> 611fb65693ca114267d329a0a83b7af4d888bbb0
         },
         xAxis: [
             {
