@@ -30,6 +30,7 @@
 }
 .Table .ant-table-wrapper .ant-table-tbody>tr>td{
     text-align: center;
+    border: none;
 }
 .Table .ant-table-wrapper .ant-table {
     border-radius: 0;

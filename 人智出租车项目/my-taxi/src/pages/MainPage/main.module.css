@@ -8,9 +8,10 @@
     min-height: 1000px;
     border: 1px solid rgba(25, 186, 139, 0.17);
      /* background: url(../assets/images/image\ 75.png); */
-     background-color: rgb(0,
-        19,
-        41);
+     /* background-color: rgb(2, 45, 95); */
+        background-color: rgb(0,
+                    19,
+                    41);
      /* background-size: 100% 100%; */
      position: relative;
     
@@ -290,7 +291,8 @@ background-color: rgb(8,
     /* background-color: #fff; */
     /* border: 1px solid rgba(25, 186, 139, 0.17); */
         /* background: url(../images/panel.jpg) rgba(255, 255, 255, 0.03); */
-      background: url(../../assets/images/3.png) no-repeat;
+      /* background: url(../../assets/images/3.png) no-repeat; */
+        background: url(../images/panel.jpg) rgba(255, 255, 255, 0.03);
             background-size: 100% 100%;
 } 
 
@@ -301,7 +303,8 @@ background-color: rgb(8,
     width: 60%;
     /* height: 100%; */
     /* border: 1px solid rgba(25, 186, 139, 0.17); */
-    background: url(../../assets/images/3.png) no-repeat;
+    /* background: url(../../assets/images/3.png) no-repeat; */
+    background: url(../images/panel.jpg) rgba(255, 255, 255, 0.03);
         background-size: 100% 100%;
     text-align: center;
 }
@@ -315,7 +318,7 @@ background-color: rgb(8,
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: url(../../assets/images/3.png) no-repeat;
+    /* background: url(../../assets/images/3.png) no-repeat; */
         background-size: 100% 100%;
 }
 

@@ -98,6 +98,7 @@ function MainPage() {
                        
                          {carPath ?<span>行车轨迹</span>:<span>查询车辆</span>}
                         {/* <span>区域监控</span> */}
+                        
                     </div>
                     <div className={style.content_header_right}>
                         <span className={style.btn_wrong}>
@@ -111,8 +112,8 @@ function MainPage() {
                             <div style={{ height: "96%", width: "95%", margin: "10% 2% 7% 3%"}}>
                                 {/* {carPath ? <Page /> : <SearchCap />}  */}
                                 {/* <Page /> */}
-                                {/* <SearchCap /> */}
-                                {/* <Hot/> */}
+                            
+                                <Hot/>
                                 {/* <Keyboard/> */}
                                 
                             </div>
@@ -121,13 +122,13 @@ function MainPage() {
                         <div className={style.bigMap}>
                             <div className={style.map} style={{ width: '96%', height: '95%', position: 'relative', margin: "2% 1% 0% 2.5%"}} >
                                 {/* {carPath ? <Map /> : <WrongCap />}  */}
-                                {/* < EchartMap/> */}
-                                <WrongCap />
+                                < EchartMap/>
+                                {/* <WrongCap /> */}
                              
                             </div>
                         </div>
                         <div className={style.column}>
-                            <div style={{ height: "96%", width: "95%", margin: "8% 2% 7% 3%" }}>
+                            <div style={{ height: "100%", width: "95%", margin: "0% 2% 7% 3%" }}>
                                 <Echart/>
                                 {/* <CarInfor /> */}
                                 {/* {carPath?<CarInfor />:<></>}  */}

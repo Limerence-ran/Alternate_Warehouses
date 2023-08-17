@@ -154,7 +154,7 @@ const WrongCap = () => {
         <>
 
 
-            <div className='Table' style={{ width: '99%', height: '97%', margin: "3% 0% 2% 0.5%" }}>
+            <div className='Table' style={{ width: '100%', height: '97%', margin: "2% 0% 2% 0%" }}>
                 <Table columns={columns} className='Table' bordered={false}  dataSource={data} size="small" rowSelection={null} pagination={{ defaultPageSize: pageSize, onShowSizeChange: handlePaginationChange }} />
             </div>
         </>

@@ -66,6 +66,7 @@ export default function Liner() {
                 color: "rgba(251, 237, 237, 1)",
                 fontSize: "14px",
                 fontFamily: 'cursive',
+              
             }
         },
 
@@ -73,7 +74,7 @@ export default function Liner() {
             left: "2%",
             top: "10%",
             right: "0%",
-            bottom: "25%",
+            bottom: "20%",
             containLabel: true
         },
         xAxis: [
