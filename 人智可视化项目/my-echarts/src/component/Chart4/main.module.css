@@ -11,7 +11,7 @@
 .middle{
     margin: 0 auto;
     height: 100%;
-    width: 90%;
+    width: 100%;
     /* background-color: #a83e3e; */
    
 }
@@ -53,4 +53,5 @@
 .middle_buttom{
     height: 90%;
     width: 100%;
+    background-color: #fff;
 }
