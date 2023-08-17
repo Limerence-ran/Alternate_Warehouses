@@ -146,6 +146,7 @@ function MainPage() {
                             <span>查询车辆</span>
                         )}
                         {/* <span>区域监控</span> */}
+                        
                     </div>
                     <div className={style.content_header_right}>
                         <span className={style.btn_wrong}>
@@ -167,8 +168,8 @@ function MainPage() {
                             >
                                 {/* {carPath ? <Page /> : <SearchCap />}  */}
                                 {/* <Page /> */}
-                                {/* <SearchCap /> */}
-                                {/* <Hot/> */}
+                            
+                                <Hot/>
                                 {/* <Keyboard/> */}
                             </div>
                         </div>
