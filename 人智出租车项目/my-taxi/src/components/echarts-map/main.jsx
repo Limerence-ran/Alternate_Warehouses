@@ -3,47 +3,60 @@ import * as echarts from "echarts";
 import "echarts-extension-amap";
 import GuangZhouJson from "../../utils/guangzhou.json";
 import ChinaJson from "../../utils/china.json";
-import carIcon from '../../assets/images/car.jpg'
-import adsIcon from '../../assets/images/ads.png'
+import carIcon from "../../assets/images/car.jpg";
+import adsIcon from "../../assets/images/ads.png";
 const EchartMap = () => {
-    const [icon, setIcon] = useState(carIcon)
+    const [icon, setIcon] = useState(carIcon);
     useEffect(() => {
         var panyuData = [
-            {value:[113.393116, 23.039404] ,name:"华南师范"},
+            { value: [113.393116, 23.039404], name: "华南师范" },
             { value: [113.405492, 23.048527], name: "北京师范" },
-            { value: [113.352062, 23.139339],name:"华南理工"},
-            { value: [113.383799, 22.942212],name:'中山大学'},
-            { value: [113.366177, 22.946164], name: '广东工业大学' },
-            { value: [113.325536, 22.967779], name: '暨南大学' },
-            { value: [113.376519, 22.910552],name: '哈工大学' },
-        ]
+            { value: [113.352062, 23.139339], name: "华南理工" },
+            { value: [113.383799, 22.942212], name: "中山大学" },
+            { value: [113.366177, 22.946164], name: "广东工业大学" },
+            { value: [113.325536, 22.967779], name: "暨南大学" },
+            { value: [113.376519, 22.910552], name: "哈工大学" },
+        ];
         // const panyuNameArray = panyuData.map((item) => item.name);
         // console.log('panyuNameArray:', panyuNameArray)
-       // 热点圆区域
-       var HotPoints = [
-           {
-               value: [113.383917, 22.93756], name: "番禺区", scale: 1709
-           },
-           {
-               value: [113.2732, 23.157159], name: "白云区", scale: 1709
-           },
-           {
-               value: [113.361597, 23.124817], name: "天河区", scale: 17091709
-           },
-           {
-               value: [113.238879, 23.128594], name: "荔湾区", scale: 17091709
-           },
-           {
-               value: [113.261503, 23.131377], name: "越秀区", scale: 17091709
-           },
-           {
-               value: [113.311916, 23.086615], name: "海珠区", scale: 17091709
-           },
-           {
-               value: [113.453780, 23.109010], name: "黄埔区", scale: 17091709
-           },
-        
-       ]
+        // 热点圆区域
+        var HotPoints = [
+            {
+                value: [113.383917, 22.93756],
+                name: "番禺区",
+                scale: 1709,
+            },
+            {
+                value: [113.2732, 23.157159],
+                name: "白云区",
+                scale: 1709,
+            },
+            {
+                value: [113.361597, 23.124817],
+                name: "天河区",
+                scale: 17091709,
+            },
+            {
+                value: [113.238879, 23.128594],
+                name: "荔湾区",
+                scale: 17091709,
+            },
+            {
+                value: [113.261503, 23.131377],
+                name: "越秀区",
+                scale: 17091709,
+            },
+            {
+                value: [113.311916, 23.086615],
+                name: "海珠区",
+                scale: 17091709,
+            },
+            {
+                value: [113.45378, 23.10901],
+                name: "黄埔区",
+                scale: 17091709,
+            },
+        ];
         //涟漪点-贝塞尔曲线数据
         var color = [
             "#6bcc75",
@@ -216,7 +229,7 @@ const EchartMap = () => {
         //     return res;
         // };
 
-        //1、加载动画用option
+        //1、加载动画的option
         let option1 = {
             graphic: {
                 elements: [
@@ -266,7 +279,7 @@ const EchartMap = () => {
             },
         };
         //1-->2无继承合并关系，需要true清除
-        //2、显示地图用option
+        //2、显示区域流量的option
         const option2 = {
             // 时间轴
             timeline: {
@@ -296,7 +309,7 @@ const EchartMap = () => {
                 checkpointStyle: {
                     borderColor: "#777",
                     borderWidth: 2,
-                    color: '#0184d5' // 设置选中时间点的颜色
+                    color: "#0184d5", // 设置选中时间点的颜色
                 },
                 controlStyle: {
                     showNextBtn: true,
@@ -317,7 +330,7 @@ const EchartMap = () => {
                 skyColor: "#174ae4",
                 roam: false,
                 viewMode: "3D", //是否启用3d地图
-                showLabel:false,
+                showLabel: false,
 
                 largeMode: false,
                 pitch: 35, //视角高度
@@ -325,36 +338,36 @@ const EchartMap = () => {
                 center: [104.397128, 33.916527],
                 mapStyle: "amap://styles/darkblue",
             },
-            visualMap: {
-                min: 75,
-                max: 90,
-                left: 40,
-                bottom: 40,
-                calculable: false,
-                seriesIndex: 0,
-                text: ["高", "低"],
-                inRange: {
-                    color: ["rgb(4, 1, 255)", "rgb(225, 1, 255)"],
-                },
-                textStyle: {
-                    color: "#ffffff",
-                    fontSize: 10,
-                },
-            },
+            // visualMap: {
+            //     min: 75,
+            //     max: 90,
+            //     left: 40,
+            //     bottom: 40,
+            //     calculable: false,
+            //     seriesIndex: 0,
+            //     text: ["高", "低"],
+            //     inRange: {
+            //         color: ["rgb(4, 1, 255)", "rgb(225, 1, 255)"],
+            //     },
+            //     textStyle: {
+            //         color: "#ffffff",
+            //         fontSize: 10,
+            //     },
+            // },
             title: {
-                text: "广州市出租车流量",
+                text: "广州出租车流量",
                 left: "center",
                 textStyle: {
                     fontFamily: "YouSheBiaoTiHei",
                     fontSize: "50px",
                     color: "#05e8fe",
-                    fontFamily: 'cursive',
+                    fontFamily: "cursive",
                 },
             },
             tooltip: {
                 trigger: "item",
+                // formatter:
             },
-
             series: [
                 //分类点
                 // {
@@ -390,30 +403,30 @@ const EchartMap = () => {
                 //     },
                 // },
                 // 上落点
-                {
-                    type: "scatter",
-                    coordinateSystem: "amap",
-                    zlevel: 1,
-                    label: {
-                        normal: {
-                            formatter: "{b}",
-                            position: "right",
-                            offset: [15, 0],
-                            color: "#1DE9B6",
-                            show: true,
-                        },
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: "red",
-                            shadowBlur: 10,
-                            shadowColor: "#333",
-                        },
-                    },
-                    symbol: "pin",
-                    symbolSize: 40,
-                    data: points,
-                },
+                // {
+                //     type: "scatter",
+                //     coordinateSystem: "amap",
+                //     zlevel: 1,
+                //     label: {
+                //         normal: {
+                //             formatter: "{b}",
+                //             position: "right",
+                //             offset: [15, 0],
+                //             color: "#1DE9B6",
+                //             show: true,
+                //         },
+                //     },
+                //     itemStyle: {
+                //         normal: {
+                //             color: "red",
+                //             shadowBlur: 10,
+                //             shadowColor: "#333",
+                //         },
+                //     },
+                //     symbol: "pin",
+                //     symbolSize: 40,
+                //     data: points,
+                // },
                 //涟漪点
                 {
                     type: "effectScatter",
@@ -587,180 +600,108 @@ const EchartMap = () => {
                     ],
                 },
                 //轨迹
-                {
-                    type: "lines",
-                    coordinateSystem: "amap",
-                    polyline: true,
-                    lineStyle: {
-                        normal: {
-                            color: "red",
-                            width: 1, //线条宽度
-                        },
-                    },
-                    data: [
-                        {
-                            coords: [
-                                [113.242883, 23.159608],
-                                [113.2421, 23.156117],
-                                [113.244689, 23.151688],
-                                [113.245339, 23.148395],
-                                [113.24904, 23.147713],
-                                [113.251232, 23.148707],
-                                [113.253302, 23.145272],
-                                [113.251926, 23.144179],
-                                [113.253534, 23.139835],
-                                [113.24969, 23.137862],
-                                [113.245019, 23.137677],
-                                [113.243103, 23.136258],
-                                [113.245779, 23.134682],
-                                [113.247112, 23.131871],
-                                [113.253247, 23.128847],
-                                [113.254701, 23.128847],
-                                [113.254426, 23.125142],
-                                [113.252741, 23.118852],
-                                [113.252708, 23.11499],
-                                [113.25425, 23.107138],
-                                [113.248434, 23.104909],
-                                [113.242078, 23.103276],
-                                [113.248533, 23.093932],
-                                [113.252355, 23.081747],
-                                [113.258336, 23.072061],
-                                [113.265418, 23.064363],
-                                [113.270893, 23.060358],
-                                [113.276885, 23.054448],
-                                [113.273393, 23.053596],
-                                [113.265077, 23.05057],
-                                [113.257807, 23.046778],
-                                [113.256122, 23.043908],
-                                [113.254932, 23.044831],
-                                [113.24535, 23.043368],
-                                [113.233674, 23.042857],
-                                [113.225744, 23.041862],
-                                [113.211689, 23.043311],
-                                [113.209222, 23.044476],
-                                [113.20334, 23.050599],
-                                [113.195762, 23.056167],
-                                [113.188184, 23.058241],
-                                [113.184836, 23.059647],
-                                [113.180606, 23.06317],
-                                [113.177566, 23.069576],
-                                [113.178866, 23.07476],
-                                [113.177412, 23.077558],
-                                [113.183415, 23.077856],
-                                [113.193658, 23.083878],
-                                [113.195233, 23.084105],
-                                [113.208814, 23.083551],
-                                [113.209585, 23.086903],
-                                [113.212504, 23.088323],
-                                [113.212075, 23.090978],
-                                [113.213264, 23.092682],
-                                [113.213099, 23.095665],
-                                [113.216348, 23.096772],
-                                [113.215809, 23.100677],
-                                [113.213848, 23.099797],
-                                [113.208142, 23.099683],
-                                [113.206788, 23.107649],
-                                [113.205246, 23.109509],
-                                [113.203296, 23.119775],
-                                [113.203715, 23.121876],
-                                [113.209718, 23.121848],
-                                [113.211601, 23.12889],
-                                [113.212669, 23.141098],
-                                [113.213716, 23.141695],
-                                [113.215412, 23.148679],
-                                [113.216447, 23.149999],
-                                [113.220479, 23.144505],
-                                [113.227693, 23.138046],
-                                [113.229401, 23.14063],
-                                [113.233278, 23.143739],
-                                [113.237067, 23.149034],
-                                [113.238157, 23.156599],
-                                [113.242883, 23.159608],
-                            ],
-                        },
-                    ],
-                },
+                // {
+                //     type: "lines",
+                //     coordinateSystem: "amap",
+                //     polyline: true,
+                //     lineStyle: {
+                //         normal: {
+                //             color: "red",
+                //             width: 1, //线条宽度
+                //         },
+                //     },
+                //     data: [
+                //         {
+                //             coords: [
+                //                 [113.242883, 23.159608],
+                //                 [113.2421, 23.156117],
+                //                 [113.244689, 23.151688],
+                //                 [113.245339, 23.148395],
+                //                 [113.24904, 23.147713],
+                //                 [113.251232, 23.148707],
+                //                 [113.253302, 23.145272],
+                //                 [113.251926, 23.144179],
+                //                 [113.253534, 23.139835],
+                //                 [113.24969, 23.137862],
+                //                 [113.245019, 23.137677],
+                //                 [113.243103, 23.136258],
+                //                 [113.245779, 23.134682],
+                //                 [113.247112, 23.131871],
+                //                 [113.253247, 23.128847],
+                //                 [113.254701, 23.128847],
+                //                 [113.254426, 23.125142],
+                //                 [113.252741, 23.118852],
+                //                 [113.252708, 23.11499],
+                //                 [113.25425, 23.107138],
+                //                 [113.248434, 23.104909],
+                //                 [113.242078, 23.103276],
+                //                 [113.248533, 23.093932],
+                //                 [113.252355, 23.081747],
+                //                 [113.258336, 23.072061],
+                //                 [113.265418, 23.064363],
+                //                 [113.270893, 23.060358],
+                //                 [113.276885, 23.054448],
+                //                 [113.273393, 23.053596],
+                //                 [113.265077, 23.05057],
+                //                 [113.257807, 23.046778],
+                //                 [113.256122, 23.043908],
+                //                 [113.254932, 23.044831],
+                //                 [113.24535, 23.043368],
+                //                 [113.233674, 23.042857],
+                //                 [113.225744, 23.041862],
+                //                 [113.211689, 23.043311],
+                //                 [113.209222, 23.044476],
+                //                 [113.20334, 23.050599],
+                //                 [113.195762, 23.056167],
+                //                 [113.188184, 23.058241],
+                //                 [113.184836, 23.059647],
+                //                 [113.180606, 23.06317],
+                //                 [113.177566, 23.069576],
+                //                 [113.178866, 23.07476],
+                //                 [113.177412, 23.077558],
+                //                 [113.183415, 23.077856],
+                //                 [113.193658, 23.083878],
+                //                 [113.195233, 23.084105],
+                //                 [113.208814, 23.083551],
+                //                 [113.209585, 23.086903],
+                //                 [113.212504, 23.088323],
+                //                 [113.212075, 23.090978],
+                //                 [113.213264, 23.092682],
+                //                 [113.213099, 23.095665],
+                //                 [113.216348, 23.096772],
+                //                 [113.215809, 23.100677],
+                //                 [113.213848, 23.099797],
+                //                 [113.208142, 23.099683],
+                //                 [113.206788, 23.107649],
+                //                 [113.205246, 23.109509],
+                //                 [113.203296, 23.119775],
+                //                 [113.203715, 23.121876],
+                //                 [113.209718, 23.121848],
+                //                 [113.211601, 23.12889],
+                //                 [113.212669, 23.141098],
+                //                 [113.213716, 23.141695],
+                //                 [113.215412, 23.148679],
+                //                 [113.216447, 23.149999],
+                //                 [113.220479, 23.144505],
+                //                 [113.227693, 23.138046],
+                //                 [113.229401, 23.14063],
+                //                 [113.233278, 23.143739],
+                //                 [113.237067, 23.149034],
+                //                 [113.238157, 23.156599],
+                //                 [113.242883, 23.159608],
+                //             ],
+                //         },
+                //     ],
+                // },
             ],
         };
-     const option3 = {
-         amap: {
-             maptypecontrol: true,
-         
-             skyColor: "#174ae4",
-             roam: false,
-             viewMode: "3D", //是否启用3d地图
-             showLabel: false,
+        //3、显示载客热点和行车导向的option
+        //4、显示车辆轨迹的option
 
-             largeMode: false,
-             pitch: 35, //视角高度
-             resizeEnable: true,
-             mapStyle: "amap://styles/darkblue",
-         },
-         title: {
-             text: "番禺区载客热点",
-             left: "center",
-             textStyle: {
-                 fontFamily: "YouSheBiaoTiHei",
-                 fontSize: "50px",
-                 color: "#05e8fe",
-                 fontFamily: 'cursive',
-             },
-         },
-         tooltip: {
-             trigger: "item",
-         },
-         series: [
-             {
-                 name: '载客热点',
-                 type: "scatter",
-                 coordinateSystem: "amap",
-                //  showEffectOn: "render",
-                 zlevel: 1,
-                //  rippleEffect: {
-                //      period: 15,
-                //      scale: 4,
-                //      brushType: "fill",
-                //  },
-                 hoverAnimation: true,
-                 label: {
-                     normal: {
-                         formatter: function (params) {
-                             // 根据 params.dataIndex 获取对应的索引值
-                             var index = params.dataIndex;
-                             // 根据索引值获取相应的名称
-                             var name = panyuData.map((item) => item.name)[index];
-                             // 返回格式化后的字符串
-                             return name;
-                         },
-
-                         position: "right",
-                         offset: [0, 0],
-                         color: "#1DE9B6",
-                         show: true,
-                         fontFamily: 'cursive',
-                     },
-                 },
-                 itemStyle: {
-                     normal: {
-                         color:"blue",
-                         opacity: 1, // 设置散点图标的透明度
-                         shadowColor: 'rgba(0, 0, 0, 0.5)', // 设置阴影颜色
-                         shadowBlur: 10, // 设置阴影模糊大小
-                         shadowOffsetX: 0, // 设置阴影水平偏移量
-                         shadowOffsetY: 0 // 设置阴影垂直偏移量
-                     },
-                 },
-                 symbol: 'image://' + icon,
-                 symbolSize: 20,
-                 data: panyuData.map((item)=>item.value)
-             },
-         ]
-        
-     }
-        const option4 = {
+        const option3 = {
             amap: {
                 maptypecontrol: true,
-     
+
                 skyColor: "#174ae4",
                 roam: false,
                 viewMode: "3D", //是否启用3d地图
@@ -771,43 +712,41 @@ const EchartMap = () => {
                 resizeEnable: true,
                 mapStyle: "amap://styles/darkblue",
             },
-         
             title: {
-                text: "广州市热点区域",
+                text: "番禺区载客热点",
                 left: "center",
                 textStyle: {
                     fontFamily: "YouSheBiaoTiHei",
                     fontSize: "50px",
                     color: "#05e8fe",
-                    fontFamily: 'cursive',
+                    fontFamily: "cursive",
                 },
             },
             tooltip: {
                 trigger: "item",
             },
-
             series: [
-               
-                //涟漪点
                 {
-                    type: "effectScatter",
+                    name: "载客热点",
+                    type: "scatter",
                     coordinateSystem: "amap",
-                    showEffectOn: "render",
+                    //  showEffectOn: "render",
                     zlevel: 1,
-                    rippleEffect: {
-                        period: 15,
-                        scale: 4,
-                        brushType: "fill",
-                    },
+                    //  rippleEffect: {
+                    //      period: 15,
+                    //      scale: 4,
+                    //      brushType: "fill",
+                    //  },
                     hoverAnimation: true,
-                   
                     label: {
                         normal: {
                             formatter: function (params) {
                                 // 根据 params.dataIndex 获取对应的索引值
                                 var index = params.dataIndex;
                                 // 根据索引值获取相应的名称
-                                var name = HotPoints.map((item) => item.name)[index];
+                                var name = panyuData.map((item) => item.name)[
+                                    index
+                                ];
                                 // 返回格式化后的字符串
                                 return name;
                             },
@@ -816,36 +755,26 @@ const EchartMap = () => {
                             offset: [0, 0],
                             color: "#1DE9B6",
                             show: true,
-                            fontFamily: 'cursive',
+                            fontFamily: "cursive",
                         },
                     },
                     itemStyle: {
                         normal: {
-                            color: function (i) {
-                                return color[i.dataIndex];
-                            },
-                            shadowBlur: 10,
-                            shadowColor: "#333",
+                            color: "blue",
+                            opacity: 1, // 设置散点图标的透明度
+                            shadowColor: "rgba(0, 0, 0, 0.5)", // 设置阴影颜色
+                            shadowBlur: 10, // 设置阴影模糊大小
+                            shadowOffsetX: 0, // 设置阴影水平偏移量
+                            shadowOffsetY: 0, // 设置阴影垂直偏移量
                         },
                     },
-                    symbolSize:12,
-                   
-                    data: HotPoints.map((item)=>item.value),
-                    onClick: function (params) {
-                        // 根据 params.dataIndex 获取对应的索引值
-                        var index = params.dataIndex;
-                        // 根据索引值获取相应的经纬度
-                        var latLng = HotPoints.map((item) => item.value)[index];
-                        console.log(' latLng:', latLng)
-                        // 设置地图的缩放级别和中心点位置
-                        amap.setZoomAndCenter(12, latLng);
-                        // 移除该涟漪点的系列数据
-                        amap.remove(this.seriesIndex);
-                    },
+                    symbol: "image://" + icon,
+                    symbolSize: 20,
+                    data: panyuData.map((item) => item.value),
                 },
-              
             ],
         };
+
         const option5 = {
             amap: {
                 maptypecontrol: true,
@@ -867,7 +796,7 @@ const EchartMap = () => {
                     fontFamily: "YouSheBiaoTiHei",
                     fontSize: "50px",
                     color: "#05e8fe",
-                    fontFamily: 'cursive',
+                    fontFamily: "cursive",
                 },
             },
             tooltip: {
@@ -896,7 +825,7 @@ const EchartMap = () => {
                             curveness: 0.3, //尾迹线条曲直度
                         },
                     },
-                 
+
                     data: [
                         {
                             coords: [
@@ -960,11 +889,10 @@ const EchartMap = () => {
                         },
                     ],
                 },
-            ]
-
-        }
+            ],
+        };
         const mapChart = echarts.init(document.getElementById("aMap"));
-        mapChart.setOption(option1); 
+        mapChart.setOption(option1);
         // 此时地图实例已创建，可以获取到地图实例并进行操作
         function initialMap() {
             //获取地图对象
@@ -976,7 +904,7 @@ const EchartMap = () => {
                 amap.addControl(toolbar);
             });
             amap.addControl(new AMap.Scale());
-             amap.addControl(new AMap.ToolBar());
+            amap.addControl(new AMap.ToolBar());
             //广州各区区域渲染
             function addGuangZhouArea() {
                 function addPolygon(data, center, name) {
@@ -990,7 +918,7 @@ const EchartMap = () => {
                         strokeStyle: "solid",
                         strokeDasharray: [5, 5],
                     });
-                    // 添加文本标签
+                    //添加文本标签
                     let label = new AMap.Text({
                         text: name, // 名称
                         position: center, // 中心位置
@@ -998,16 +926,14 @@ const EchartMap = () => {
                         offset: new AMap.Pixel(0, -10), // 偏移量，使标签在多边形上方显示
                     });
                     label.setStyle({
-                        // fillColor: "#fff", // 字体颜色
                         color: "#d1caca",
-                        boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)", // 盒子阴影
                         borderRadius: "5px", // 盒子圆角
                         padding: "5px 5px", // 盒子内边距
                         fontSize: "7px", // 字体大小
                         backgroundColor: "transparent",
                         border: "none",
-                        fontWeight:"600",
-                        fontFamily: 'cursive'
+                        fontWeight: "600",
+                        fontFamily: "cursive",
                     });
                     polygon.on("mouseover", () => {
                         polygon.setOptions({
@@ -1030,27 +956,243 @@ const EchartMap = () => {
                                 zoom: 12,
                             },
                         });
-                        amap.add([polygon, label], true);
-                        setTimeout(()=>{
-                            mapChart.setOption(option4);
-                        },500)
-                       
-                       
                     });
                     //统一处理地图放缩事件
                     amap.on("zoomchange", function () {
                         if (amap.getZoom() < 10 || amap.getZoom() >= 12) {
-                            amap.remove(polygon);
-                           
+                            amap.remove([polygon, label]);
                         } else {
-                            amap.add([polygon, label]);                                                                                                      
+                            amap.add([polygon, label]);
                         }
-                      
+                        // if (amap.getZoom() >= 12) {
+                        //     setTimeout(() => {
+                        //         mapChart.setOption({
+                        //             series: [
+                        //                 //涟漪点
+                        //                 {
+                        //                     type: "effectScatter",
+                        //                     coordinateSystem: "amap",
+                        //                     showEffectOn: "render",
+                        //                     zlevel: 1,
+                        //                     rippleEffect: {
+                        //                         period: 15,
+                        //                         scale: 4,
+                        //                         brushType: "fill",
+                        //                     },
+                        //                     hoverAnimation: true,
+
+                        //                     label: {
+                        //                         normal: {
+                        //                             formatter: function (
+                        //                                 params
+                        //                             ) {
+                        //                                 // 根据 params.dataIndex 获取对应的索引值
+                        //                                 var index =
+                        //                                     params.dataIndex;
+                        //                                 // 根据索引值获取相应的名称
+                        //                                 var name =
+                        //                                     HotPoints.map(
+                        //                                         (item) =>
+                        //                                             item.name
+                        //                                     )[index];
+                        //                                 // 返回格式化后的字符串
+                        //                                 return name;
+                        //                             },
+
+                        //                             position: "right",
+                        //                             offset: [0, 0],
+                        //                             color: "#1DE9B6",
+                        //                             show: true,
+                        //                             fontFamily: "cursive",
+                        //                         },
+                        //                     },
+                        //                     itemStyle: {
+                        //                         normal: {
+                        //                             color: function (i) {
+                        //                                 return color[
+                        //                                     i.dataIndex
+                        //                                 ];
+                        //                             },
+                        //                             shadowBlur: 10,
+                        //                             shadowColor: "#333",
+                        //                         },
+                        //                     },
+                        //                     symbolSize: 12,
+
+                        //                     data: HotPoints.map(
+                        //                         (item) => item.value
+                        //                     ),
+                        //                     onClick: function (params) {
+                        //                         // 根据 params.dataIndex 获取对应的索引值
+                        //                         var index = params.dataIndex;
+                        //                         // 根据索引值获取相应的经纬度
+                        //                         var latLng = HotPoints.map(
+                        //                             (item) => item.value
+                        //                         )[index];
+                        //                         console.log(" latLng:", latLng);
+                        //                         // 设置地图的缩放级别和中心点位置
+                        //                         amap.setZoomAndCenter(
+                        //                             12,
+                        //                             latLng
+                        //                         );
+                        //                         // 移除该涟漪点的系列数据
+                        //                         amap.remove(this.seriesIndex);
+                        //                     },
+                        //                 },
+                        //             ],
+                        //         });
+                        //     }, 1000);
+                        // } else {
+                        //     setTimeout(() => {
+                        //         mapChart.setOption({
+                        //             series: [
+                        //                 //贝塞尔曲线
+                        //                 {
+                        //                     type: "lines",
+                        //                     coordinateSystem: "amap",
+                        //                     zlevel: 2,
+                        //                     effect: {
+                        //                         show: true,
+                        //                         period: 4, //箭头指向速度，值越小速度越快
+                        //                         trailLength: 0.4, //特效尾迹长度[0,1]值越大，尾迹越长重
+                        //                         symbol: "arrow", //箭头图标
+                        //                         symbolSize: 7, //图标大小
+                        //                     },
+                        //                     lineStyle: {
+                        //                         normal: {
+                        //                             color: function (i) {
+                        //                                 return color[
+                        //                                     i.dataIndex
+                        //                                 ];
+                        //                             },
+                        //                             width: 1, //线条宽度
+                        //                             opacity: 0.1, //尾迹线条透明度
+                        //                             curveness: 0.3, //尾迹线条曲直度
+                        //                         },
+                        //                     },
+                        //                     data: [
+                        //                         {
+                        //                             coords: [
+                        //                                 [118.8062, 31.9208],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [127.9688, 45.368],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [110.3467, 41.4899],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [125.8154, 44.2584],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [116.4551, 40.2539],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [119.4543, 25.9222],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [114.4995, 38.1006],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [117.4219, 39.4189],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [112.3352, 37.9413],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [109.1162, 34.2004],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [103.5901, 36.3043],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [106.3586, 38.1775],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [101.4038, 36.8207],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [103.9526, 30.7617],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [108.384366, 30.439702],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [113.0823, 28.2568],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [102.9199, 25.46639],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [91.11, 29.97],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                         {
+                        //                             coords: [
+                        //                                 [87.68, 43.77],
+                        //                                 [123.1238, 42.1216],
+                        //                             ],
+                        //                         },
+                        //                     ],
+                        //                 },
+                        //             ],
+                        //         });
+                        //     }, 1000);
+                        // }
                     });
-                      
-                 
-                    
-                    
+                    amap.add([polygon, label]);
                 }
                 //显示广州各区的模块
                 if (!amap.polygon) {
@@ -1069,12 +1211,11 @@ const EchartMap = () => {
             //中国各省区域渲染
             function addChinaArea() {
                 function addPolygon(data, center, name) {
-           
                     let polygon = new AMap.Polygon({
                         path: data,
                         fillColor: "#3d6eff",
                         strokeOpacity: 1,
-                                                                                                                                                                                                                                                        fillOpacity: 0.5,
+                        fillOpacity: 0.5,
                         strokeColor: "#2b8cbe",
                         strokeWeight: 1,
                         strokeStyle: "solid",
@@ -1088,15 +1229,13 @@ const EchartMap = () => {
                         offset: new AMap.Pixel(0, -10), // 偏移量，使标签在多边形上方显示
                     });
                     label.setStyle({
-                        // fillColor: "#fff", // 字体颜色
-                        color:"#bdb8b8",
-                        boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)", // 盒子阴影
+                        color: "#bdb8b8",
                         borderRadius: "5px", // 盒子圆角
                         padding: "5px 5px", // 盒子内边距
                         fontSize: "7px", // 字体大小
-                        backgroundColor:"transparent",
-                        border:"none",
-                        fontFamily: 'cursive',
+                        backgroundColor: "transparent",
+                        border: "none",
+                        fontFamily: "cursive",
                         fontWeight: "600",
                     });
                     polygon.on("mouseover", () => {
@@ -1113,7 +1252,6 @@ const EchartMap = () => {
                     });
                     // 添加鼠标点击事件
                     polygon.on("click", () => {
-                        console.log("中心：",center)
                         //放大地图等级并切换中心点重新渲染;
                         mapChart.setOption({
                             amap: {
@@ -1121,22 +1259,17 @@ const EchartMap = () => {
                                 zoom: 10,
                             },
                         });
-                        
                     });
                     //统一处理地图放缩事件
                     amap.on("zoomchange", function () {
-                     
                         if (amap.getZoom() >= 10) {
-                            amap.remove(polygon);
-                            
+                            amap.remove([polygon, label]);
                         } else {
-                            amap.add([polygon, label], true);
+                            amap.add([polygon, label]);
                         }
-                        console.log("当前地图的放大缩小级别是: " + amap.getZoom())
-                
                     });
-                 
-                    amap.add([polygon, label], true);
+
+                    amap.add([polygon, label]);
                 }
                 //显示中国各省的模块
                 for (let i = 0; i < ChinaJson.features.length; i++) {
@@ -1153,31 +1286,29 @@ const EchartMap = () => {
                     );
                 }
             }
+
             addChinaArea();
             addGuangZhouArea();
         }
         // 根据延迟时间设置定时器，用于隐藏加载动画并显示动画元素
+
         setTimeout(function () {
             //加载动画
             mapChart.showLoading();
-            //地图渲染
+
             mapChart.setOption(option2, true);
-            // mapChart.setOption(option4, true);
-           
             //延时处理
             setTimeout(function () {
                 mapChart.hideLoading();
-            }, 1500);
+            }, 1000);
+            //地图渲染
             initialMap();
         }, 2500);
     }, []);
 
     return (
         <>
-            <div
-                id="aMap"
-                style={{ width: '100%', height: '100%', }}
-            ></div>
+            <div id="aMap" style={{ width: "100%", height: "100%" }}></div>
         </>
     );
 };

@@ -9,7 +9,7 @@ const App = () => {
     return (
         <>
             {/* <EchartMap /> */}
-            {/* <Rain /> */}
+            <Rain />
             {/* <Keyboard /> */}
             {/* <EchartsDiv /> */}
             <MainPage />

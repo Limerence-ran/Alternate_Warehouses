@@ -83,7 +83,7 @@ export default function DynamicRelationChart(props) {
                 edgeSymbolSize: 10,
                 force: {
                     repulsion: 1000,
-                    edgeLength: [200, 1000],
+                    edgeLength: [200, 400],
                     gravity: 0.1,
                 },
                 categories: [
@@ -125,7 +125,7 @@ export default function DynamicRelationChart(props) {
                 },
                 lineStyle: {
                     color: "source",
-                    curveness: 0.2,
+                    curveness: 0,
                     width: 3,
                 },
 

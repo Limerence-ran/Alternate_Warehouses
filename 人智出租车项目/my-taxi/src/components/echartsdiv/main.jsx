@@ -6,8 +6,14 @@ import BarChart from "../../components/地图/右侧盒子/右侧三图/平均�
 export default function EchartsDiv(props) {
     return (
         <>
-            <div className={styles.card}>
-                <div className={styles.bg}>
+            <div
+                className={styles.card}
+                style={{ width: props.cardwidth, height: props.cardheight }}
+            >
+                <div
+                    className={styles.bg}
+                    style={{ width: props.bgwidth, height: props.bgheight }}
+                >
                     {props.type === "Liner" ? (
                         <Liner />
                     ) : props.type === "Liner1" ? (
@@ -16,7 +22,10 @@ export default function EchartsDiv(props) {
                         <BarChart />
                     ) : null}
                 </div>
-                <div className={styles.blob}></div>
+                <div
+                    className={styles.blob}
+                    style={{ width: props.blobwidth, height: props.blobheight }}
+                ></div>
             </div>
         </>
     );

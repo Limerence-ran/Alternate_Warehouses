@@ -88,7 +88,6 @@ const Hot = () => {
     const [pageSize, setPageSize] = useState(15); // 使用 useState 设置每页展示的行数
     // 按钮开关
     const [btnOpen, setBtnOpen] = useState(false);
-    console.log(btnOpen);
     useEffect(() => {
         setPageSize(10);
     }, []); // 初始加载时设置每页展示的行数为10

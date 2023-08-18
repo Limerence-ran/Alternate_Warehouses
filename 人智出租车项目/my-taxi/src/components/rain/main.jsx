@@ -119,7 +119,16 @@ export default function Rain() {
 
     return (
         <>
-            <canvas id="c" style={{ width: "100%", height: "100%" }}></canvas>
+            <canvas
+                id="c"
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "absolute",
+                    zIndex: "9999",
+                    pointerEvents: "none",
+                }}
+            ></canvas>
         </>
     );
 }

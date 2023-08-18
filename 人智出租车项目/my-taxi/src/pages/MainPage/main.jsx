@@ -3,7 +3,6 @@ import style from "./main.module.css";
 import Page from "../../components/地图/分页/page";
 import headerIcon from "../../assets/images/Group 9910.png";
 import Map from "../../components/地图/地图/main";
-import Echart from "../../components/地图/右侧盒子/右侧三图/main";
 import CarInfor from "../../components/地图/右侧盒子/车辆信息/main";
 import WrongCap from "../../components/地图/异常车辆/main";
 import SearchCap from "../../components/地图/查询异常车牌号/main";
@@ -146,7 +145,6 @@ function MainPage() {
                             <span>查询车辆</span>
                         )}
                         {/* <span>区域监控</span> */}
-                        
                     </div>
                     <div className={style.content_header_right}>
                         <span className={style.btn_wrong}>
@@ -168,8 +166,8 @@ function MainPage() {
                             >
                                 {/* {carPath ? <Page /> : <SearchCap />}  */}
                                 {/* <Page /> */}
-                            
-                                <Hot/>
+
+                                <Hot />
                                 {/* <Keyboard/> */}
                             </div>
                         </div>
@@ -184,8 +182,8 @@ function MainPage() {
                                 }}
                             >
                                 {/* {carPath ? <Map /> : <WrongCap />}  */}
-                                {/* < EchartMap/> */}
-                                <WrongCap />
+                                <EchartMap />
+                                {/* <WrongCap /> */}
                             </div>
                         </div>
                         <div className={style.column}>
@@ -197,9 +195,33 @@ function MainPage() {
                                 }}
                             >
                                 {/* <Echart /> */}
-                                <EchartsDiv type="Liner" />
-                                <EchartsDiv type="Liner1" />
-                                <EchartsDiv type="BarChart" />
+                                <EchartsDiv
+                                    type="Liner"
+                                    cardwidth="106%"
+                                    cardheight="34%"
+                                    bgwidth="97%"
+                                    bgheight="96%"
+                                    blobwidth="60%"
+                                    blobheight="60%"
+                                />
+                                <EchartsDiv
+                                    type="Liner1"
+                                    cardwidth="106%"
+                                    cardheight="34%"
+                                    bgwidth="97%"
+                                    bgheight="96%"
+                                    blobwidth="60%"
+                                    blobheight="60%"
+                                />
+                                <EchartsDiv
+                                    type="BarChart"
+                                    cardwidth="106%"
+                                    cardheight="34%"
+                                    bgwidth="97%"
+                                    bgheight="96%"
+                                    blobwidth="60%"
+                                    blobheight="60%"
+                                />
                                 {/* <CarInfor /> */}
                                 {/* {carPath?<CarInfor />:<></>}  */}
                             </div>

@@ -102,7 +102,7 @@ function App() {
             {/* < HomeTab /> */}
             {/* < Slider /> */}
             {/* <HotGroup/> */}
-            {element}
+            {/* {element} */}
             {/* <Groupshow/> */}
             {/* < Alldatasets/> */}
             {/* <Mydatasets/>  */}
@@ -112,13 +112,13 @@ function App() {
             {/* <Slider/> */}
             {/* <Chart2 /> */}
             {/* <Chart4 /> */}
-            {/* <Cancel/>*/}
+            {/* <Cancel/> */}
             {/* <Chart5 />  */}
             {/* <Chart6/> */}
             {/* <Vedio /> */}
             {/* <HomeTab /> */}
             {/* <Cancel/> */}
-            {/* <RelationChart propdata={data} /> */}
+            <RelationChart propdata={data} />
         </>
     );
 }
