@@ -3,11 +3,14 @@ import React, { useState, useEffect } from "react";
 import Pointxy from "../../components/point-xy/main";
 import Bar from "../../components/bar/main";
 import PointNoise from "../../components/point-noise/main";
+import { useNavigate } from "react-router-dom";
+
 import { Skeleton } from "antd";
 
 function Chart2() {
     const [datas, setDatas] = useState({});
     const [isshow, setisShow] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // if (localStorage.getItem("data-xy"))
@@ -149,6 +152,13 @@ function Chart2() {
                 </div>
                 <div className={style.data}>
                     <div className={style.chart2}>
+                        <div className={style.img}>
+                            <Skeleton>
+                                {datas ? (
+                                    <Pointxy data_xy={datas}></Pointxy>
+                                ) : null}
+                            </Skeleton>
+                        </div>
                         <div className={style.img}>
                             <Skeleton>
                                 {datas ? (

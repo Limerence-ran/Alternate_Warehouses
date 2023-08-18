@@ -44,8 +44,9 @@ export default function Liner() {
             textStyle: {
                 color: "rgba(251, 237, 237, 1)",
                 fontSize: "14px",
-                fontFamily: "cursive",
-            },
+                fontFamily: 'cursive',
+              
+            }
         },
 
         grid: {
@@ -53,7 +54,7 @@ export default function Liner() {
             top: "10%",
             right: "0%",
             bottom: "20%",
-            containLabel: true,
+            containLabel: true
         },
         xAxis: [
             {

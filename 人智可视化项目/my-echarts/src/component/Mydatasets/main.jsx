@@ -59,7 +59,7 @@ function Mydatasets() {
     }, []);
     return (
         <>
-            <main>
+     
                 <div className={style.body}>
                     <div className={style.chartbox}>
                         <div className={style.box}>
@@ -77,7 +77,7 @@ function Mydatasets() {
                         </div>
                     </div>
                 </div>
-            </main>
+       
         </>
     );
 }

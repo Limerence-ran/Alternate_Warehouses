@@ -129,19 +129,19 @@ const Pagetable1 = ({ handleAjaxChange }) => {
 
     const columns = [
         {
-            title: "resourceName",
+            title: "ResourceName",
             dataIndex: "resourceName",
         },
         {
-            title: "ownerName",
+            title: "OwnerName",
             dataIndex: "ownerName",
         },
         {
-            title: "type",
+            title: "Type",
             dataIndex: "type",
         },
         {
-            title: "referenceQuantity",
+            title: "ReferenceQuantity",
             dataIndex: "referenceQuantity",
         },
 

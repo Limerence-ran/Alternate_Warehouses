@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                background-color: black;
+            }
+
+            button {
+                border: none;
+                display: block;
+                position: relative;
+                padding: 0.7em 2.4em;
+                font-size: 18px;
+                background: transparent;
+                cursor: pointer;
+                user-select: none;
+                overflow: hidden;
+                color: #1479ea;
+                z-index: 1;
+                font-family: inherit;
+                font-weight: 500;
+            }
+
+            button span {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 94%;
+                height: 85%;
+                background: transparent;
+                z-index: -1;
+                border: 4px solid #1479ea;
+                box-shadow: inset 0px 0px 25px #1479ea;
+                border-radius: 10%;
+            }
+
+            button span::before {
+                content: "";
+                display: block;
+
+                position: absolute;
+                width: 8%;
+                height: 500%;
+                background: black;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(-60deg);
+                transition: all 0.3s;
+            }
+
+            button:hover span::before {
+                transform: translate(-50%, -50%) rotate(-90deg);
+                width: 100%;
+                background: #1479ea;
+            }
+
+            button:hover {
+                color: white;
+            }
+
+            button:active span::before {
+                background: #1479ea;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button>
+            Button
+            <span></span>
+        </button>
+    </body>
+</html>

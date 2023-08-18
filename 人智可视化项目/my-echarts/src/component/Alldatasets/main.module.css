@@ -13,13 +13,17 @@
     height:45%;
     text-align: center;
     font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #7e3939; */
 }
 
 .chart {
     width:70%;
     height: 100%;
-    background-color: rgb(173, 177, 254);
-    margin: 10px auto;
+    /* background-color: rgb(173, 177, 254); */
+   
 }
 
 .chartbuttom {
@@ -30,15 +34,14 @@
     /* margin: 35px auto; */
 }
 
-table {
+/* table {
     color: #333;
     width: 100%;
     height: 260px;
     margin-bottom: 0.75rem;
     border-collapse: collapse;
-    background-color: #f2ebeb;
-    /* position: fixed;  */
-}
+    
+} */
 
 tr,
 td,
@@ -62,11 +65,11 @@ button {
 }
 
 /* Table */
-.div {
+/* .div {
     width: 100%;
 }
 
 .get {
     width: 60px;
     font-size: 12px;
-}
+} */

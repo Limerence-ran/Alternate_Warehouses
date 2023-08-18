@@ -19,6 +19,7 @@ import Chart6 from "./component/Chart6/main";
 import Vedio from "./component/Vedio/main";
 import HomeTab from "./components/home-top/main";
 import routes from "../src/router/router";
+
 import HotGroup from "./component/HotGroup/main";
 import Groupshow from "../src/component/Group/Groupshow/main";
 import Pointxy from "./components/point-xy/main";

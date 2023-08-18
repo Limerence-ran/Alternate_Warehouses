@@ -20,7 +20,7 @@ function Chart5() {
     const [showBInput, setShowBInput] = useState(false);
     const [showCInput, setShowCInput] = useState(false);
     const [showDInput, setShowDInput] = useState(false);
-
+  
     const navigate = useNavigate();
 
     // 定义勾选框状态

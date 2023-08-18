@@ -126,6 +126,11 @@ const HotTable = () => {
 
     const columns = [
         {
+            title: "Rank",
+            dataIndex: '1',
+        },
+
+        {
             title: "Group Name",
             dataIndex: "groupName",
         },
@@ -134,11 +139,11 @@ const HotTable = () => {
             dataIndex: "popularity",
         },
         {
-            title: "dimensions",
+            title: "Dimensions",
             dataIndex: "dimension",
         },
         {
-            title: "group datasets",
+            title: "Group Datanum",
             dataIndex: "resourceQuantity",
         },
         {
