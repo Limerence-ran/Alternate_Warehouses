@@ -51,7 +51,7 @@ function Chart6() {
             <div className={style.content}>
                 <div className={style.Chart6}>
                     <div className={style.header}>
-                        <span>IMDB Movie Reviews Dataset</span>
+                        <span>IMDB Movie Reviews Data</span>
                     </div>
                 
                         <div className={style.chartbox}>

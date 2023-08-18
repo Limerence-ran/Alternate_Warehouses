@@ -309,7 +309,7 @@ header .showTime {
 
 /*预测时间 */
 .Timer {
-    height: 200px;
+    height: 230px;
     width: 130px;
     background-color: #fff;
     position: absolute;
@@ -320,7 +320,7 @@ header .showTime {
 }
 
 .Timer ul li {
-    margin-top: 4%;
+    margin: 7%;
 }
 .Timer ul li:hover {
     color: #149cea;

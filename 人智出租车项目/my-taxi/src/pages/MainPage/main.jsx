@@ -50,14 +50,20 @@ function MainPage() {
             clearInterval(timer);
         };
     }, []);
+    const handleLiClick = (e) => {
+        const currentTime = e.target.innerText;
+        const dateArray = currentTime.split(".");
+        const day = dateArray[dateArray.length - 1];
+       console.log(day)
+        setShowDate(false);
 
+    };
     return (
         <>
             <div className={style.body}>
                 <div className={style.header}>
                     <header>
-                        {/* <img src={headerImg} className={style.header_img} /> */}
-
+                
                         <div className={style.header_text}>
                             <img
                                 src={headerIcon}
@@ -105,13 +111,15 @@ function MainPage() {
                                                 fontFamily: "cursive",
                                             }}
                                         >
-                                            <li>2017.3.1</li>
-                                            <li>2017.3.2</li>
-                                            <li>2017.3.3</li>
-                                            <li>2017.3.4</li>
-                                            <li>2017.3.5</li>
-                                            <li>2017.3.6</li>
-                                            <li>2017.3.7</li>
+                                            <li onClick={handleLiClick}>2017.3.1</li>
+                                            <li onClick={handleLiClick}>2017.3.2</li>
+                                            <li onClick={handleLiClick}>2017.3.2</li>
+                                            <li onClick={handleLiClick}>2017.3.2</li>
+                                            <li onClick={handleLiClick}>2017.3.3</li>
+                                            <li onClick={handleLiClick}>2017.3.4</li>
+                                            <li onClick={handleLiClick}>2017.3.5</li>
+                                            <li onClick={handleLiClick}>2017.3.6</li>
+                                            <li onClick={handleLiClick}>2017.3.7</li>
                                         </ul>
                                     </div>
                                 )}
@@ -169,8 +177,8 @@ function MainPage() {
                                 {/* {carPath ? <Page /> : <SearchCap />}  */}
                                 {/* <Page /> */}
                             
-                                <Hot/>
-                                {/* <Keyboard/> */}
+                                {/* <Hot/> */}
+                                <Keyboard/>
                             </div>
                         </div>
                         <div className={style.bigMap}>

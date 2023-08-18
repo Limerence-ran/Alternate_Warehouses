@@ -128,11 +128,11 @@ const Groupshow = () => {
         },
 
         {
-            title: "datanum",
+            title: "Datanum",
             dataIndex: "resourceQuantity",
         },
         {
-            title: "dimension",
+            title: "Dimension",
             dataIndex: "dimension",
         },
         {

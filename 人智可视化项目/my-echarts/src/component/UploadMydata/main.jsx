@@ -49,7 +49,7 @@ function UploadMyData() {
         <>
             <div className={style.upload}>
                 <div className={style.header}>
-                    <span>IMDB Movie Reviews Dataset</span>
+                    <span>IMDB Movie Reviews Data</span>
                 </div>
 
                 <div className={style.chartbox}>

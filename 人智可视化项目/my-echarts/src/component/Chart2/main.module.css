@@ -22,29 +22,36 @@
     width: 90%;
     height: 85%;
     margin: 0 auto;
+    background-color: #ec9999;
+    position: relative;
 }
 .chart2 {
-    width: 110%;
-    height: 520px;
+    width: 100%;
+    height: 100%;
     display: flex;
     margin-top: 5px;
     flex-wrap: wrap;
+    /* background-color: #ca7272; */
 }
 .img {
     margin: 5px;
     flex-basis: 45%;
-    width: 100%;
-    height: 400px;
-    background-color: #71bcd3;
+    width: 50%;
+    height: 30%;
+    background-color: #287991;
 }
 
 .content button {
+    position: absolute;
     background-color: rgb(143 123 251);
     color: aliceblue;
     border-radius: 8px;
     border-style: none;
     width: 120px;
     height: 30px;
+    bottom: 10%;
     float: right;
-    margin-top: 300px;
+    right: 10%;
+    /* float: right; */
+    /* margin-top: 300px; */
 }
