@@ -4,8 +4,8 @@
 }
 
 .body {
-    height: 1000px;
-    min-height: 1000px;
+    height: 100vh;
+
     border: 1px solid rgba(25, 186, 139, 0.17);
     /* background: url(../assets/images/image\ 75.png); */
     /* background-color: rgb(2, 45, 95); */
@@ -26,14 +26,14 @@
 
 .login_img{
     width: 40%;
-    height: 80%;
+    height: 100%;
     /* background-color: aqua; */
     background: url(../../assets/images/login.png) no-repeat;
     background-size: 100% 100%;
 }
 .login {
     width: 60%;
-    height: 80%;
+    height: 100%;
     /* background-color: rgb(85, 168, 168,0.3); */
     background: url(../../assets//images/login_back.png) no-repeat;
     background-size: 100% 100%;
@@ -248,7 +248,7 @@ margin-bottom: 9%;
                                        position: absolute;
                                        width: 10%;
                                         border-radius: 2px;
-                                       height: 952%;
+                                       height: 990%;
                                        background: rgb(0,
                                         19,
                                         41);

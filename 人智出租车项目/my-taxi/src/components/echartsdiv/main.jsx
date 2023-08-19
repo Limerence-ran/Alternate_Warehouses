@@ -15,11 +15,11 @@ export default function EchartsDiv(props) {
                     style={{ width: props.bgwidth, height: props.bgheight }}
                 >
                     {props.type === "Liner" ? (
-                        <Liner />
+                        <Liner/>
                     ) : props.type === "Liner1" ? (
-                        <Liner1 />
+                            <Liner1/>
                     ) : props.type === "BarChart" ? (
-                        <BarChart />
+                                <BarChart/>
                     ) : null}
                 </div>
                 <div

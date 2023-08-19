@@ -4,8 +4,8 @@
 }
 
 .body {
-    height: 1000px;
-    min-height: 1000px;
+    height: 100vh;
+    /* min-height: 1000px; */
     border: 1px solid rgba(25, 186, 139, 0.17);
     /* background: url(../assets/images/image\ 75.png); */
     /* background-color: rgb(2, 45, 95); */
@@ -72,7 +72,7 @@
 
 header .showTime {
     position: absolute;
-    right: 0.375rem;
+    right: 0.378rem;
     top: 0.5rem;
     line-height: 0.9375rem;
     color: #fff;
@@ -203,17 +203,32 @@ header .showTime {
     height: 40px;
     /* background-color: #fff; */
     /* position: relative; */
+    display: flex;
+    justify-content: space-between;
 }
 .content_header_left {
     /* position: absolute; */
     height: 100%;
-    float: left;
+    /* float: left; */
     width: 30%;
     background: url(../../assets/images/2.png) no-repeat;
     background-size: 100% 100%;
     /* background-color: #fff; */
     display: flex;
     align-items: center;
+}
+.content_header_middle{
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #c5a7a7; */
+}
+.content_header_middle span{
+    color: #fff;
+    font-size: 16px;
+    font-family: cursive;
 }
 .content_header_left span {
     margin-left: 5%;
@@ -228,7 +243,7 @@ header .showTime {
 .content_header_right {
     /* position: absolute; */
     height: 90%;
-    float: right;
+    /* float: right; */
     width: 30%;
     display: flex;
     align-items: center;
@@ -288,8 +303,9 @@ header .showTime {
     margin-top: 10px;
     width: 60%;
     /* height: 100%; */
-    /* border: 1px solid rgba(25, 186, 139, 0.17); */
+    border: 1px solid rgba(25, 186, 139, 0.17);
     /* background: url(../../assets/images/3.png) no-repeat; */
+    /* background-color: #fff; */
     background: url(../images/panel.jpg) rgba(255, 255, 255, 0.03);
     background-size: 100% 100%;
     text-align: center;
@@ -298,8 +314,8 @@ header .showTime {
 /* 右边盒子 */
 .column {
     width: 18%;
-    margin-top: -15px;
-    /* border: 1px solid rgba(25, 186, 139, 0.17); */
+    margin-top: 10px;
+    border: 1px solid rgba(25, 186, 139, 0.17);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

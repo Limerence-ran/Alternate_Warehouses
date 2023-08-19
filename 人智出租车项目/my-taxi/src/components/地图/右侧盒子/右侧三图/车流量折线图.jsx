@@ -36,6 +36,7 @@ export default function Liner() {
     const option = {
         tooltip: {
             trigger: "axis",
+            fontSize: "10px",
         },
         legend: {
             top: "0%",
@@ -51,9 +52,9 @@ export default function Liner() {
 
         grid: {
             left: "2%",
-            top: "10%",
+            top: "15%",
             right: "0%",
-            bottom: "20%",
+            bottom: "2%",
             containLabel: true
         },
         xAxis: [
@@ -228,7 +229,7 @@ export default function Liner() {
     };
     return (
         <>
-            <ReactECharts option={option} />
+            <ReactECharts style={{width:"100%",height:"100%"}} option={option} />
         </>
     );
 }

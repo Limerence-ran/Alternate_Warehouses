@@ -6,6 +6,7 @@ import { message } from "antd";
 import CheckIcon from "../../components/复选框/main";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Rain from '../../components/rain/main'
 
 
 function Login() {
@@ -97,6 +98,7 @@ const showMessage = (content, type) => {
    
     return (
         <>
+            <Rain/>
             <div className={styles.body}>
                 <div className={styles.login_content}>
                     <div className={styles.login_img}> </div>

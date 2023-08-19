@@ -32,10 +32,11 @@ export default function Keyboard() {
                 <div
                     style={{
                         color: "white",
-                        height: "10%",
+                        height: "15%",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
+                        marginTop:"5%"
                     }}
                 >
                     <input
@@ -43,7 +44,7 @@ export default function Keyboard() {
                         placeholder="输入要查询的车牌号..."
                         style={{
                             height: "60%",
-                            width: "75%",
+                            width: "72%",
                             background: "transparent",
                         }}
                         value={value}

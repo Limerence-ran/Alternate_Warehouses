@@ -1,7 +1,9 @@
 .card {
     position: relative;
-    margin-top: 10px;
-    margin-left: -5%;
+    /* margin-top: 10px; */
+    /* margin-left: -5%; */
+height: 100%;
+width: 100%;
     z-index: 1111;
     overflow: hidden;
     display: flex;
@@ -26,6 +28,7 @@
     left: 5px;
     z-index: 2;
     background: rgb(8 26 48);
+    /* background: rgb(180, 190, 203); */
     backdrop-filter: blur(24px);
     border-radius: 10px;
     overflow: hidden;
