@@ -9,18 +9,17 @@ import routes from "../src/routes/router.jsx";
 import { useRoutes } from "react-router-dom";
 import { useState } from "react";
 
+
 const App = () => {
 
     const element = useRoutes(routes);
     return (
         <>
-            {/* <EchartMap /> */}
-            {/* {rain && < Rain/>} */}
-            {/* <Keyboard /> */}
-            {/* <EchartsDiv /> */}
-            {/* <MainPage /> */}
-            {/* <Login/> */}
-            {element}
+          
+                {element}
+          
+          
+           
         </>
     );
 };

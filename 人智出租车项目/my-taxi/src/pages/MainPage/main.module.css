@@ -257,6 +257,7 @@ header .showTime {
     width: 30%;
     height: 100%;
     transform: rotate(180deg);
+
 }
 
 .content_header_right .btn_wrong button {
@@ -268,6 +269,9 @@ header .showTime {
     font-family: cursive;
     font-size: 20px;
     font-weight: bold;
+}
+.content_header_right .btn_wrong .btn_forecast{
+    font-size: 12px;
 }
 .content_header_right .btn_wrong button:hover {
     cursor: pointer;

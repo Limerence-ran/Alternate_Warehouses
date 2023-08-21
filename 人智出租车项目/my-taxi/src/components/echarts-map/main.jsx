@@ -5,195 +5,204 @@ import GuangZhouJson from "../../utils/guangzhou.json";
 import ChinaJson from "../../utils/china.json";
 import carIcon from "../../assets/images/car.jpg";
 import adsIcon from "../../assets/images/ads.png";
+import { interpolateLab } from "d3-interpolate";
+import { useSelector } from 'react-redux' //用于从Redux状态树中选择需要的数据。
+
 const EchartMap = () => {
     const [icon, setIcon] = useState(carIcon);
-    useEffect(() => {
-        var panyuData = [
-            { value: [113.393116, 23.039404], name: "华南师范" },
-            { value: [113.405492, 23.048527], name: "北京师范" },
-            { value: [113.352062, 23.139339], name: "华南理工" },
-            { value: [113.383799, 22.942212], name: "中山大学" },
-            { value: [113.366177, 22.946164], name: "广东工业大学" },
-            { value: [113.325536, 22.967779], name: "暨南大学" },
-            { value: [113.376519, 22.910552], name: "哈工大学" },
-        ];
-        // const panyuNameArray = panyuData.map((item) => item.name);
-        // console.log('panyuNameArray:', panyuNameArray)
-        // 热点圆区域
-        var HotPoints = [
-            {
-                value: [113.383917, 22.93756],
-                name: "番禺区",
-                scale: 1709,
-            },
-            {
-                value: [113.2732, 23.157159],
-                name: "白云区",
-                scale: 1709,
-            },
-            {
-                value: [113.361597, 23.124817],
-                name: "天河区",
-                scale: 17091709,
-            },
-            {
-                value: [113.238879, 23.128594],
-                name: "荔湾区",
-                scale: 17091709,
-            },
-            {
-                value: [113.261503, 23.131377],
-                name: "越秀区",
-                scale: 17091709,
-            },
-            {
-                value: [113.311916, 23.086615],
-                name: "海珠区",
-                scale: 17091709,
-            },
-            {
-                value: [113.45378, 23.10901],
-                name: "黄埔区",
-                scale: 17091709,
-            },
-        ];
-        //涟漪点-贝塞尔曲线数据
-        var color = [
-            "#6bcc75",
-            "#65c78b",
-            "#5fc2a0",
-            "#5abead",
-            "#52b9c7",
-            "#4fb6d2",
-            "#4ab2e5",
-            "#52b9c7",
-            "#5abead",
-            "#dfae10",
-            "#d5b314",
-            "#c1bb1f",
-            "#f34e2b",
-            "#f56321",
-            "#f56f1c",
-            "#4ab2e5",
-            "#4fb6d2",
-            "#f58414",
-            "#f58f0e",
-            "#f5a305",
-            "#e7ab0b",
-            "#b9be23",
-            "#e7ab0b",
-            "#dfae10",
-            "#d5b314",
-            "#c1bb1f",
-            "#b9be23",
-            "#a6c62c",
-            "#96cc34",
-            "#89d23b",
-            "#7ed741",
-            "#77d64c",
-            "#71d162",
-        ];
-        var points = [
-            {
-                value: [118.8062, 31.9208],
-            },
-            {
-                value: [127.9688, 45.368],
-            },
-            {
-                value: [110.3467, 41.4899],
-            },
-            {
-                value: [125.8154, 44.2584],
-            },
-            {
-                value: [116.4551, 40.2539],
-            },
-            {
-                value: [123.1238, 42.1216],
-            },
-            {
-                value: [114.4995, 38.1006],
-            },
-            {
-                value: [117.4219, 39.4189],
-            },
-            {
-                value: [112.3352, 37.9413],
-            },
-            {
-                value: [109.1162, 34.2004],
-            },
-            {
-                value: [103.5901, 36.3043],
-            },
-            {
-                value: [106.3586, 38.1775],
-            },
-            {
-                value: [101.4038, 36.8207],
-            },
-            {
-                value: [103.9526, 30.7617],
-            },
-            {
-                value: [108.384366, 30.439702],
-            },
-            {
-                value: [113.0823, 28.2568],
-            },
-            {
-                value: [102.9199, 25.46639],
-            },
-            {
-                value: [119.4543, 25.9222],
-            },
-            {
-                value: [91.11, 29.97],
-            },
-            {
-                value: [87.68, 43.77],
-            },
-        ];
-        //分类热点的数据
-        var geoCoordMap = {
-            北京: [116.46, 39.92],
-            成都: [104.06, 30.67],
-            杭州: [120.19, 30.26],
-            济南: [117, 36.65],
-            福州: [119.3, 26.08],
-            上海: [121.48, 31.22],
-            重庆: [106.54, 29.59],
-            深圳: [114.07, 22.62],
-            宁波: [121.56, 29.86],
-            南昌: [115.89, 28.68],
-            广州: [113.23, 23.16],
-            厦门: [118.1, 24.46],
-            太原: [112.53, 37.87],
-            哈尔滨: [126.63, 45.75],
-            西安: [108.95, 34.27],
-            沈阳: [123.38, 41.8],
-            大连: [121.62, 38.92],
-            海口: [110.35, 20.02],
-            长沙: [113, 28.21],
-            银川: [106.27, 38.47],
-            石家庄: [114.48, 38.03],
-            昆明: [102.73, 25.04],
-            武汉: [114.31, 30.52],
-            呼和浩特: [111.65, 40.82],
-            天津: [117.2, 39.13],
-            贵阳: [106.71, 26.57],
-            兰州: [103.73, 36.03],
-            青岛: [120.33, 36.07],
-            南京: [118.78, 32.04],
-            长春: [125.35, 43.88],
-            郑州: [113.65, 34.76],
-            西宁: [101.74, 36.56],
-            合肥: [117.27, 31.86],
-            南宁: [108.33, 22.84],
-            拉萨: [91.11, 29.97],
-            乌鲁木齐: [87.68, 43.77],
-        };
+    var btnopen = useSelector((state) => (state.counter.btnopen))//载客热点false 与流向图true 的按钮状态
+    const area = useSelector((state) => state.counter.area)
+
+    //随机生成一个颜色渐变自定义长度的颜色数组
+    const startColor = "#708fee";
+    const endColor = "#092161";
+    const colorInterpolator = interpolateLab(startColor, endColor);
+    const length = 11;
+    const colorArray = Array.from({ length }, (d, i) => colorInterpolator(i / (length - 1)));
+    console.log('colorArray:' + colorArray)
+    
+    var panyuData = [
+        { value: [113.393116, 23.039404], name: "华南师范" },
+        { value: [113.405492, 23.048527], name: "北京师范" },
+        { value: [113.352062, 23.139339], name: "华南理工" },
+        { value: [113.383799, 22.942212], name: "中山大学" },
+        { value: [113.366177, 22.946164], name: "广东工业大学" },
+        { value: [113.325536, 22.967779], name: "暨南大学" },
+        { value: [113.376519, 22.910552], name: "哈工大学" },
+        { value: [113.352604, 23.089644], name: "广东财经大学" },
+        { value: [113.425217, 23.043526], name: "广州医科大学" },
+        { value: [113.508229, 22.960607], name: "广东第二师范" },
+        { value: [113.369776, 22.938714], name: "番禺区中医院" },
+        { value: [113.344284, 22.949305], name: "沙头中学" },
+    ];
+    var HotPoints = [
+        {
+            value: [113.383917, 22.93756, 34],
+            name: "番禺区",
+
+        },
+
+
+        {
+            value: [113.201503, 23.131377, 45],
+            name: "越秀区",
+
+        },
+
+        {
+            value: [113.48378, 23.10901, 40],
+            name: "黄埔区",
+        },
+
+        {
+            value: [113.810734, 23.261452, 50],
+            name: "增城区",
+
+        },
+        {
+            value: [113.220125, 23.404326, 60],
+            name: "花都区",
+
+        },
+
+    ];
+    //涟漪点-贝塞尔曲线数据
+    var color = [
+        "#6bcc75",
+        "#65c78b",
+        "#5fc2a0",
+        "#5abead",
+        "#52b9c7",
+        "#4fb6d2",
+        "#4ab2e5",
+        "#52b9c7",
+        "#5abead",
+        "#dfae10",
+        "#d5b314",
+        "#c1bb1f",
+        "#f34e2b",
+        "#f56321",
+        "#f56f1c",
+        "#4ab2e5",
+        "#4fb6d2",
+        "#f58414",
+        "#f58f0e",
+        "#f5a305",
+        "#e7ab0b",
+        "#b9be23",
+        "#e7ab0b",
+        "#dfae10",
+        "#d5b314",
+        "#c1bb1f",
+        "#b9be23",
+        "#a6c62c",
+        "#96cc34",
+        "#89d23b",
+        "#7ed741",
+        "#77d64c",
+        "#71d162",
+    ];
+    var points = [
+        {
+            value: [118.8062, 31.9208],
+        },
+        {
+            value: [127.9688, 45.368],
+        },
+        {
+            value: [110.3467, 41.4899],
+        },
+        {
+            value: [125.8154, 44.2584],
+        },
+        {
+            value: [116.4551, 40.2539],
+        },
+        {
+            value: [123.1238, 42.1216],
+        },
+        {
+            value: [114.4995, 38.1006],
+        },
+        {
+            value: [117.4219, 39.4189],
+        },
+        {
+            value: [112.3352, 37.9413],
+        },
+        {
+            value: [109.1162, 34.2004],
+        },
+        {
+            value: [103.5901, 36.3043],
+        },
+        {
+            value: [106.3586, 38.1775],
+        },
+        {
+            value: [101.4038, 36.8207],
+        },
+        {
+            value: [103.9526, 30.7617],
+        },
+        {
+            value: [108.384366, 30.439702],
+        },
+        {
+            value: [113.0823, 28.2568],
+        },
+        {
+            value: [102.9199, 25.46639],
+        },
+        {
+            value: [119.4543, 25.9222],
+        },
+        {
+            value: [91.11, 29.97],
+        },
+        {
+            value: [87.68, 43.77],
+        },
+    ];
+    //分类热点的数据
+    var geoCoordMap = {
+        北京: [116.46, 39.92],
+        成都: [104.06, 30.67],
+        杭州: [120.19, 30.26],
+        济南: [117, 36.65],
+        福州: [119.3, 26.08],
+        上海: [121.48, 31.22],
+        重庆: [106.54, 29.59],
+        深圳: [114.07, 22.62],
+        宁波: [121.56, 29.86],
+        南昌: [115.89, 28.68],
+        广州: [113.23, 23.16],
+        厦门: [118.1, 24.46],
+        太原: [112.53, 37.87],
+        哈尔滨: [126.63, 45.75],
+        西安: [108.95, 34.27],
+        沈阳: [123.38, 41.8],
+        大连: [121.62, 38.92],
+        海口: [110.35, 20.02],
+        长沙: [113, 28.21],
+        银川: [106.27, 38.47],
+        石家庄: [114.48, 38.03],
+        昆明: [102.73, 25.04],
+        武汉: [114.31, 30.52],
+        呼和浩特: [111.65, 40.82],
+        天津: [117.2, 39.13],
+        贵阳: [106.71, 26.57],
+        兰州: [103.73, 36.03],
+        青岛: [120.33, 36.07],
+        南京: [118.78, 32.04],
+        长春: [125.35, 43.88],
+        郑州: [113.65, 34.76],
+        西宁: [101.74, 36.56],
+        合肥: [117.27, 31.86],
+        南宁: [108.33, 22.84],
+        拉萨: [91.11, 29.97],
+        乌鲁木齐: [87.68, 43.77],
+    };
         // var data = [
         //     { name: "成都", value: 88.7 },
         //     { name: "重庆", value: 87.38 },
@@ -215,6 +224,7 @@ const EchartMap = () => {
         //     { name: "乌鲁木齐", value: 76.91 },
         //     { name: "拉萨", value: 76.01 },
         // ];
+
         // var convertData = function (data) {
         //     var res = [];
         //     for (var i = 0; i < data.length; i++) {
@@ -229,6 +239,7 @@ const EchartMap = () => {
         //     return res;
         // };
 
+    useEffect(() => {
         //1、加载动画的option
         let option1 = {
             graphic: {
@@ -695,13 +706,54 @@ const EchartMap = () => {
                 // },
             ],
         };
-        //3、显示载客热点和行车导向的option
-        //4、显示车辆轨迹的option
-
+        //初始化地图显示广州区域车流量
         const option3 = {
+            // 时间轴
+            timeline: {
+                data: Array.from(Array(24).keys()),
+                axisType: "value",
+                autoPlay: false,
+                left: "10%",
+                right: "10%",
+                bottom: "3%",
+                width: "80%",
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: "#ddd",
+                        },
+                    },
+                    emphasis: {
+                        textStyle: {
+                            color: "#fff",
+                        },
+                    },
+                },
+                symbolSize: 10,
+                lineStyle: {
+                    color: "#555",
+                },
+                checkpointStyle: {
+                    borderColor: "#777",
+                    borderWidth: 2,
+                    color: "#0184d5", // 设置选中时间点的颜色
+                },
+                controlStyle: {
+                    showNextBtn: true,
+                    showPrevBtn: true,
+                    normal: {
+                        color: "#666",
+                        borderColor: "#666",
+                    },
+                    emphasis: {
+                        color: "#aaa",
+                        borderColor: "#aaa",
+                    },
+                },
+            },
             amap: {
                 maptypecontrol: true,
-
+                zoom: 10,
                 skyColor: "#174ae4",
                 roam: false,
                 viewMode: "3D", //是否启用3d地图
@@ -710,10 +762,59 @@ const EchartMap = () => {
                 largeMode: false,
                 pitch: 35, //视角高度
                 resizeEnable: true,
+                center: [113.266887, 23.133306],
                 mapStyle: "amap://styles/darkblue",
             },
+            // visualMap: {
+            //     min: 75,
+            //     max: 90,
+            //     left: 40,
+            //     bottom: 40,
+            //     calculable: false,
+            //     seriesIndex: 0,
+            //     text: ["高", "低"],
+            //     inRange: {
+            //         color: ["#708fee", "#092161"],
+            //     },
+            //     textStyle: {
+            //         color: "#ffffff",
+            //         fontSize: 10,
+            //     },
+            // },
             title: {
-                text: "番禺区载客热点",
+                text: "广州出租车流量",
+                left: "center",
+                textStyle: {
+                    fontFamily: "YouSheBiaoTiHei",
+                    fontSize: "50px",
+                    color: "#05e8fe",
+                    fontFamily: "cursive",
+                },
+            },
+            tooltip: {
+                trigger: "item",
+            },
+            series: [  
+            ],
+        };
+        // 热点区域
+        const option4 = {
+            amap: {
+                maptypecontrol: true,
+                zoom: 10,
+                skyColor: "#174ae4",
+                roam: false,
+                viewMode: "3D", //是否启用3d地图
+                showLabel: false,
+                largeMode: false,
+                pitch: 35, //视角高度
+                resizeEnable: true,
+                center: [113.33, 23.16],
+                mapStyle: "amap://styles/darkblue",
+            },
+
+            title: {
+                text: "热点区域",
                 left: "center",
                 textStyle: {
                     fontFamily: "YouSheBiaoTiHei",
@@ -726,28 +827,26 @@ const EchartMap = () => {
                 trigger: "item",
             },
             series: [
+                //涟漪点
                 {
-                    name: "载客热点",
-                    type: "scatter",
+                    type: "effectScatter",
                     coordinateSystem: "amap",
-                    //  showEffectOn: "render",
+                    showEffectOn: "render",
                     zlevel: 1,
-                    //  rippleEffect: {
-                    //      period: 15,
-                    //      scale: 4,
-                    //      brushType: "fill",
-                    //  },
+                    rippleEffect: {
+                        period: 15,
+                        scale: 4,
+                        brushType: "fill",
+                    },
                     hoverAnimation: true,
+
                     label: {
                         normal: {
                             formatter: function (params) {
                                 // 根据 params.dataIndex 获取对应的索引值
                                 var index = params.dataIndex;
                                 // 根据索引值获取相应的名称
-                                var name = panyuData.map((item) => item.name)[
-                                    index
-                                ];
-                                // 返回格式化后的字符串
+                                var name = HotPoints.map((item) => item.name)[index];
                                 return name;
                             },
 
@@ -760,137 +859,22 @@ const EchartMap = () => {
                     },
                     itemStyle: {
                         normal: {
-                            color: "blue",
-                            opacity: 1, // 设置散点图标的透明度
-                            shadowColor: "rgba(0, 0, 0, 0.5)", // 设置阴影颜色
-                            shadowBlur: 10, // 设置阴影模糊大小
-                            shadowOffsetX: 0, // 设置阴影水平偏移量
-                            shadowOffsetY: 0, // 设置阴影垂直偏移量
-                        },
-                    },
-                    symbol: "image://" + icon,
-                    symbolSize: 20,
-                    data: panyuData.map((item) => item.value),
-                },
-            ],
-        };
-
-        const option5 = {
-            amap: {
-                maptypecontrol: true,
-
-                skyColor: "#174ae4",
-                roam: false,
-                viewMode: "3D", //是否启用3d地图
-                showLabel: false,
-
-                largeMode: false,
-                pitch: 35, //视角高度
-                resizeEnable: true,
-                mapStyle: "amap://styles/darkblue",
-            },
-            title: {
-                text: "载客热点流向图",
-                left: "center",
-                textStyle: {
-                    fontFamily: "YouSheBiaoTiHei",
-                    fontSize: "50px",
-                    color: "#05e8fe",
-                    fontFamily: "cursive",
-                },
-            },
-            tooltip: {
-                trigger: "item",
-            },
-            series: [
-                //贝塞尔曲线
-                {
-                    type: "lines",
-                    coordinateSystem: "amap",
-                    zlevel: 2,
-                    effect: {
-                        show: true,
-                        period: 4, //箭头指向速度，值越小速度越快
-                        trailLength: 0.4, //特效尾迹长度[0,1]值越大，尾迹越长重
-                        symbol: "arrow", //箭头图标
-                        symbolSize: 7, //图标大小
-                    },
-                    lineStyle: {
-                        normal: {
                             color: function (i) {
                                 return color[i.dataIndex];
                             },
-                            width: 1, //线条宽度
-                            opacity: 0.1, //尾迹线条透明度
-                            curveness: 0.3, //尾迹线条曲直度
+                            shadowBlur: 10,
+                            shadowColor: "#333",
                         },
                     },
-
-                    data: [
-                        {
-                            coords: [
-                                [113.393116, 23.039404],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.310789, 22.948325],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.352062, 23.139339],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.485541, 22.945796],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.366177, 22.946164],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.325536, 22.967779],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.460478, 23.059248],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.3925, 23.008064],
-                                [113.383917, 22.93756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.460478, 23.059248],
-                                [113.383917, 22.95756],
-                            ],
-                        },
-                        {
-                            coords: [
-                                [113.3925, 23.005064],
-                                [113.383317, 22.93756],
-                            ],
-                        },
-                    ],
+                    symbolSize: function (i) { return i[2]; },
+                    data: HotPoints.map((item) => item.value),
                 },
             ],
         };
+        //3、显示载客热点和行车导向的option
+        //4、显示车辆轨迹的option
+
+      
         const mapChart = echarts.init(document.getElementById("aMap"));
         mapChart.setOption(option1);
         // 此时地图实例已创建，可以获取到地图实例并进行操作
@@ -907,10 +891,10 @@ const EchartMap = () => {
             amap.addControl(new AMap.ToolBar());
             //广州各区区域渲染
             function addGuangZhouArea() {
-                function addPolygon(data, center, name) {
+                function addPolygon(data, center, name,color) {
                     let polygon = new AMap.Polygon({
                         path: data,
-                        fillColor: "#3d6eff",
+                        fillColor: color,
                         strokeOpacity: 1,
                         fillOpacity: 0.5,
                         strokeColor: "#2b8cbe",
@@ -944,7 +928,7 @@ const EchartMap = () => {
                     polygon.on("mouseout", () => {
                         polygon.setOptions({
                             fillOpacity: 0.5,
-                            fillColor: "#3d6eff",
+                            fillColor: color,
                         });
                     });
                     // 添加鼠标点击事件
@@ -957,6 +941,8 @@ const EchartMap = () => {
                             },
                         });
                     });
+                   
+                
                     //统一处理地图放缩事件
                     amap.on("zoomchange", function () {
                         if (amap.getZoom() < 10 || amap.getZoom() >= 12) {
@@ -1203,7 +1189,8 @@ const EchartMap = () => {
                         addPolygon(
                             guangzhoujson,
                             GuangZhouJson.features[i].properties.center,
-                            GuangZhouJson.features[i].properties.name
+                            GuangZhouJson.features[i].properties.name,
+                            colorArray[i]
                         );
                     }
                 }
@@ -1287,7 +1274,7 @@ const EchartMap = () => {
                 }
             }
 
-            addChinaArea();
+            // addChinaArea();
             addGuangZhouArea();
         }
         // 根据延迟时间设置定时器，用于隐藏加载动画并显示动画元素
@@ -1296,15 +1283,208 @@ const EchartMap = () => {
             //加载动画
             mapChart.showLoading();
 
-            mapChart.setOption(option2, true);
+            // mapChart.setOption(option2, true);
+          
+            if(area==='区域监控'){
+                mapChart.setOption(option3,true);
+                initialMap();
+            }else if(area==='热点分析'){
+                mapChart.setOption(option4,true);
+            }
+           
+            mapChart.on('click', function (params) {
+                if (params.componentType === 'series' && params.seriesType === 'effectScatter') {
+                    var position = params.value;
+                    var latLng = [position[0], position[1]];//从value中获得经纬度数组
+                    function handleIfElseCondition() {
+                        if (btnopen) {
+                            mapChart.setOption({
+                                amap: {
+                                    zoom: 12,
+                                    center: latLng,
+                                },
+                                title: {
+                                    text: "载客热点",
+                                    left: "center",
+                                    textStyle: {
+                                        fontFamily: "YouSheBiaoTiHei",
+                                        fontSize: "50px",
+                                        color: "#05e8fe",
+                                        fontFamily: "cursive",
+                                    },
+                                },
+                                series: [
+                                    // 贝塞尔曲线
+                                    {
+                                        type: "lines",
+                                        coordinateSystem: "amap",
+                                        zlevel: 2,
+                                        effect: {
+                                            show: true,
+                                            period: 4, //箭头指向速度，值越小速度越快
+                                            trailLength: 0.4, //特效尾迹长度[0,1]值越大，尾迹越长重
+                                            symbol: "arrow", //箭头图标
+                                            symbolSize: 7, //图标大小
+                                        },
+                                        lineStyle: {
+                                            normal: {
+                                                color: function (i) {
+                                                    return color[i.dataIndex];
+                                                },
+                                                width: 1, //线条宽度
+                                                opacity: 0.1, //尾迹线条透明度
+                                                curveness: 0.3, //尾迹线条曲直度
+                                            },
+                                        },
+                                        data: [
+                                            {
+                                                coords: [
+                                                    [113.325536, 22.967779],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.376519, 22.910552],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.352604, 23.089644],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+
+                                            {
+                                                coords: [
+                                                    [113.369776, 22.938714],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.425217, 23.043526],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.344284, 22.949305],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.366177, 22.946164],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.383799, 22.942212],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.082300, 23.139339],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.352062, 23.139339],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.405492, 23.048527],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                            {
+                                                coords: [
+                                                    [113.393116, 23.039404],
+                                                    [113.508229, 22.960607],
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                ],
+                            });
+                        } else {
+                            mapChart.setOption({
+                                amap: {
+                                    zoom: 12,
+                                    center: latLng,
+                                },
+                                title: {
+                                    text: "载客热点",
+                                    left: "center",
+                                    textStyle: {
+                                        fontFamily: "YouSheBiaoTiHei",
+                                        fontSize: "50px",
+                                        color: "#05e8fe",
+                                        fontFamily: "cursive",
+                                    },
+                                },
+                                series: [
+                                    //载客热点
+                                    {
+                                        name: "载客热点",
+                                        type: "scatter",
+                                        coordinateSystem: "amap",
+                                        zlevel: 1,
+                                        hoverAnimation: true,
+                                        label: {
+                                            normal: {
+                                                formatter: function (params) {
+                                                    // 根据 params.dataIndex 获取对应的索引值
+                                                    var index = params.dataIndex;
+                                                    var name = panyuData.map((item) => item.name)[index];
+                                                    return name;
+                                                },
+                                                position: "right",
+                                                offset: [0, 0],
+                                                color: "#1DE9B6",
+                                                show: true,
+                                                fontFamily: "cursive",
+                                            },
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: "blue",
+                                                opacity: 1, // 设置散点图标的透明度
+                                                shadowColor: "rgba(0, 0, 0, 0.5)", // 设置阴影颜色
+                                                shadowBlur: 10, // 设置阴影模糊大小
+                                                shadowOffsetX: 0, // 设置阴影水平偏移量
+                                                shadowOffsetY: 0, // 设置阴影垂直偏移量
+                                            },
+                                        },
+                                        symbol: "image://" + icon,
+                                        symbolSize: 20,
+                                        data: panyuData.map((item) => item.value),
+                                    },
+
+                                ],
+                            });
+                        }
+                    }
+                    handleIfElseCondition();
+
+                }
+            });
             //延时处理
             setTimeout(function () {
                 mapChart.hideLoading();
             }, 1000);
+
             //地图渲染
-            initialMap();
+            // initialMap();
         }, 2500);
-    }, []);
+    }, [btnopen,area]);
 
     return (
         <>

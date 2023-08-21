@@ -16,20 +16,26 @@ import { message } from "antd";
 import Rain from '../../components/rain/main'
 import Mymap from '../../components/main'
 
+import { useSelector } from 'react-redux' //用于从Redux状态树中选择需要的数据。
+import { useDispatch } from 'react-redux'   //用于触发Redux中定义的actions。
+import { areaChange } from "../../slice/sliceCounter";  //导入actions
+
+
+
 function MainPage() {
     const [currentTime, setCurrentTime] = useState("");
     const [showDate, setShowDate] = useState(false); //选择预测日期
     const [date, setDate] = useState('2017.3.1')//展示预测时间
     const [forecastModel, setForecastModel] = useState(false)//预测模式
-    const [model,setModel] = useState('')
+    const [model,setModel] = useState('区域监控')
     const [carPath, setCarPath] = useState(false);  
     const [witndrawnl, setWithdrawnl] = useState(false);//异常情况返回
     const navigate = useNavigate();
     const [rain, setRain] = useState(true);
-
-
-  
-
+    
+    //顶部功能按钮控制地图渲染
+    const disPatch = useDispatch()
+ 
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -76,6 +82,7 @@ function MainPage() {
             duration: 3, // 弹框显示的时间，单位为秒
         });
     };
+
     return (
         <>
             {rain && <Rain />}
@@ -93,17 +100,17 @@ function MainPage() {
                         <div className={style.showTime}>{currentTime}</div>
                         <div className={style.navigate_left}>
                             <span className={style.btn_left}>
-                                <button onClick={() => { setModel('区域监控'); setWithdrawnl(false); setCarPath(false); }}>
+                                <button onClick={() => { setModel('区域监控'); disPatch(areaChange('区域监控')); setWithdrawnl(false); setCarPath(false); }}>
                                     <div>区域监控</div>
                                 </button>
                             </span>
                             <span className={style.btn_left}>
-                                <button onClick={() => { setModel('热点分析'); setWithdrawnl(false); setCarPath(false); }}>
+                                <button onClick={() => { setModel('热点分析'); disPatch(areaChange('热点分析')); setWithdrawnl(false); setCarPath(false); }}>
                                     <div>热点分析</div>
                                 </button>
                             </span>
                             <span className={style.btn_left}>
-                                <button onClick={() => { showMessage("管理员请先登录！", "success"); setModel('行车轨迹'); setCarPath(true) }}>
+                                <button onClick={() => { showMessage("管理员请先登录！", "success"); setModel('行车轨迹'); disPatch(areaChange('行车轨迹')); setCarPath(true) }}>
                                     <div>行车轨迹</div>
                                 </button>
                             </span>
@@ -181,7 +188,7 @@ function MainPage() {
                             </button>
                         </span>}
                         {forecastModel && <span className={style.btn_wrong}>
-                            <button onClick={() => { setCarPath(false); setForecastModel(false) }}>
+                            <button className={style.btn_forecast} onClick={() => { setCarPath(false); setForecastModel(false) }}>
                                 退出预测模式 <LogoutOutlined />
                             </button>
                         </span>}
@@ -193,15 +200,16 @@ function MainPage() {
                         <div className={style.pagelist}>
                             <div
                                 style={{
-                                    height: "96%",
-                                    width: "95%",
-                                    margin: "10% 2% 7% 3%",
+                                    height: "100%",
+                                    width: "96%",
+                                    margin: "0% 2%",
+                                    
                                 }}
                             >
                                 {/* {carPath ? <Page /> : <SearchCap />}  */}
-                                <Page />
+                                {/* <Page /> */}
                             
-                                {/* <Hot/> */}
+                                <Hot/>
                                 {/* <Keyboard/> */}
                             </div>
                         </div>
@@ -215,9 +223,9 @@ function MainPage() {
                                 }}
                             >
                                 {/* {carPath ? <Map /> : <WrongCap />}  */}
-                                {/* <EchartMap /> */}
+                                <EchartMap />
                                 {/* <WrongCap /> */}
-                                <Mymap/>
+                                {/* <Mymap/> */}
                             </div>
                         </div>
                         <div className={style.column}>
