@@ -17,9 +17,9 @@ const App = () => {
             <Rain />
             {/* <Keyboard /> */}
             {/* <EchartsDiv /> */}
-            {/* <MainPage /> */}
+            <MainPage />
             {/* <Login/> */}
-            {element}
+            {/* {element} */}
         </>
     );
 };

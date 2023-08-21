@@ -53,22 +53,20 @@ function MainPage() {
         const currentTime = e.target.innerText;
         const dateArray = currentTime.split(".");
         const day = dateArray[dateArray.length - 1];
-       console.log(day)
+        console.log(day);
         setShowDate(false);
-
     };
     return (
         <>
             <div className={style.body}>
                 <div className={style.header}>
                     <header>
-                
                         <div className={style.header_text}>
                             <img
                                 src={headerIcon}
                                 className={style.header_icon}
                             />
-                            <h1>出租车的大数据可视化系统</h1>
+                            <h1>云端出租车大数据可视化平台</h1>
                         </div>
                         <div className={style.showTime}>{currentTime}</div>
                         <div className={style.navigate_left}>
@@ -110,15 +108,33 @@ function MainPage() {
                                                 fontFamily: "cursive",
                                             }}
                                         >
-                                            <li onClick={handleLiClick}>2017.3.1</li>
-                                            <li onClick={handleLiClick}>2017.3.2</li>
-                                            <li onClick={handleLiClick}>2017.3.2</li>
-                                            <li onClick={handleLiClick}>2017.3.2</li>
-                                            <li onClick={handleLiClick}>2017.3.3</li>
-                                            <li onClick={handleLiClick}>2017.3.4</li>
-                                            <li onClick={handleLiClick}>2017.3.5</li>
-                                            <li onClick={handleLiClick}>2017.3.6</li>
-                                            <li onClick={handleLiClick}>2017.3.7</li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.1
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.2
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.2
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.2
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.3
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.4
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.5
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.6
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.7
+                                            </li>
                                         </ul>
                                     </div>
                                 )}
@@ -167,26 +183,35 @@ function MainPage() {
                         <div className={style.pagelist}>
                             <div
                                 style={{
-                                    height: "96%",
-                                    width: "95%",
-                                    margin: "10% 2% 7% 3%",
+                                    height: "100%",
+                                    width: "100%",
+                                    margin: "0% 5% ",
                                 }}
                             >
-                                {/* {carPath ? <Page /> : <SearchCap />}  */}
-                                {/* <Page /> */}
-                            
-                                {/* <Hot/> */}
-                                <Keyboard/>
+                                <EchartsDiv
+                                    type="Keyboard"
+                                    cardwidth="100%"
+                                    cardheight="101%"
+                                    bgwidth="96.6%"
+                                    bgheight="98.5%"
+                                    blobwidth="60%"
+                                    blobheight="60%"
+                                    bgtop="0.8%"
+                                >
+                                    {/* {carPath ? <Page /> : <SearchCap />}  */}
+                                    {/* <Page /> */}
+                                    {/* <Hot/> */}
+                                </EchartsDiv>
                             </div>
                         </div>
                         <div className={style.bigMap}>
                             <div
                                 className={style.map}
                                 style={{
-                                    width: "96%",
-                                    height: "91%",
+                                    width: "98.5%",
+                                    height: "98%",
                                     position: "relative",
-                                    margin: "2% 1% 0% 2.5%",
+                                    margin: "0.55% 0.85% ",
                                 }}
                             >
                                 {/* {carPath ? <Map /> : <WrongCap />}  */}
@@ -199,7 +224,7 @@ function MainPage() {
                                 style={{
                                     height: "96%",
                                     width: "95%",
-                                    margin: "8% 2% 7% 3%",
+                                    margin: "0% 2% 7% 3%",
                                 }}
                             >
                                 {/* <Echart /> */}
@@ -207,8 +232,8 @@ function MainPage() {
                                     type="Liner"
                                     cardwidth="106%"
                                     cardheight="34%"
-                                    bgwidth="97%"
-                                    bgheight="96%"
+                                    bgwidth="96.6%"
+                                    bgheight="95.5%"
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />
@@ -216,8 +241,8 @@ function MainPage() {
                                     type="Liner1"
                                     cardwidth="106%"
                                     cardheight="34%"
-                                    bgwidth="97%"
-                                    bgheight="96%"
+                                    bgwidth="96.6%"
+                                    bgheight="95.5%"
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />
@@ -225,8 +250,8 @@ function MainPage() {
                                     type="BarChart"
                                     cardwidth="106%"
                                     cardheight="34%"
-                                    bgwidth="97%"
-                                    bgheight="96%"
+                                    bgwidth="96.6%"
+                                    bgheight="95.5%"
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />

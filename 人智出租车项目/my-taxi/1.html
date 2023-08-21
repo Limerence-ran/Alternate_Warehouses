@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="initial-scale=1.0, user-scalable=no, width=device-width"
+        />
+        <title>利用 ThreeJS 实现动态边界墙</title>
+        <link
+            rel="stylesheet"
+            href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"
+        />
+        <style>
+            html,
+            body,
+            #container {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container"></div>
+        <script>
+            console.warn = console.log;
+        </script>
+        <script src="https://webapi.amap.com/maps?v=2.0&key=8c4344f0c1fb8c79c638e2a67d2a900f"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.142/build/three.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/js/loaders/GLTFLoader.js"></script>
+        <script>
+            javascript: (function () {
+                var script = document.createElement("script");
+                script.onload = function () {
+                    var stats = new Stats();
+                    document.body.appendChild(stats.dom);
+                    requestAnimationFrame(function loop() {
+                        stats.update();
+                        requestAnimationFrame(loop);
+                    });
+                };
+                script.src =
+                    "https://mrdoob.github.io/stats.js/build/stats.min.js";
+                document.head.appendChild(script);
+            })();
+        </script>
+
+        <script>
+            const container = document.getElementById("container");
+
+            const map = new AMap.Map("container", {
+                center: [116.52668, 39.794678],
+                zooms: [2, 20],
+                zoom: 17.5,
+                viewMode: "3D",
+                mapStyle: "amap://styles/grey",
+                pitch: 52,
+            });
+
+            map.on("click", (event) => {
+                const { lng, lat } = event.lnglat;
+                console.log([lng, lat]);
+            });
+
+            // 墙体路径原始数据
+            const data = [
+                [
+                    [117.348611, 40.581141],
+                    [117.389879, 40.561593],
+                    [117.429915, 40.576141],
+                    [117.412669, 40.605226],
+                    [117.467487, 40.649738],
+                    [117.467487, 40.649738],
+                    [117.501364, 40.636569],
+                    [117.514914, 40.660181],
+                    [117.493973, 40.675161],
+                    [117.408973, 40.686961],
+                    [117.342451, 40.673799],
+                    [117.319662, 40.657911],
+                    [117.278394, 40.664267],
+                    [117.208177, 40.694675],
+                    [117.117018, 40.70012],
+                    [117.11209, 40.707379],
+                    [117.012308, 40.693767],
+                    [116.964881, 40.709647],
+                    [116.926692, 40.745022],
+                    [116.924229, 40.773581],
+                    [116.848468, 40.839264],
+                    [116.81336, 40.848319],
+                    [116.759773, 40.889954],
+                    [116.713577, 40.909858],
+                    [116.722201, 40.927495],
+                    [116.677853, 40.970888],
+                    [116.698795, 41.021477],
+                    [116.688324, 41.044501],
+                    [116.647672, 41.059394],
+                    [116.615643, 41.053076],
+                    [116.623034, 41.021026],
+                    [116.598397, 40.974503],
+                    [116.5676, 40.992574],
+                    [116.519557, 40.98128],
+                    [116.519557, 40.98128],
+                    [116.455499, 40.980828],
+                    [116.447492, 40.953715],
+                    [116.477057, 40.899907],
+                    [116.398216, 40.90624],
+                    [116.370499, 40.94377],
+                    [116.339702, 40.929303],
+                    [116.334159, 40.90443],
+                    [116.438253, 40.81934],
+                    [116.46597, 40.774487],
+                    [116.453651, 40.765876],
+                    [116.316912, 40.772221],
+                    [116.311369, 40.754996],
+                    [116.273181, 40.762703],
+                    [116.247311, 40.791707],
+                    [116.22021, 40.744115],
+                    [116.204812, 40.740035],
+                    [116.171551, 40.695582],
+                    [116.162928, 40.662451],
+                    [116.133979, 40.666536],
+                    [116.09887, 40.630665],
+                    [116.005247, 40.583868],
+                    [115.982457, 40.578868],
+                    [115.971986, 40.6025],
+                    [115.907929, 40.617493],
+                    [115.885139, 40.595229],
+                    [115.827857, 40.587504],
+                    [115.819849, 40.55932],
+                    [115.784741, 40.55841],
+                    [115.755176, 40.540221],
+                    [115.736082, 40.503372],
+                    [115.781045, 40.49336],
+                    [115.771806, 40.443734],
+                    [115.864197, 40.359422],
+                    [115.917784, 40.354405],
+                    [115.95166, 40.281852],
+                    [115.968907, 40.264045],
+                    [115.89869, 40.234354],
+                    [115.870356, 40.185909],
+                    [115.855574, 40.188652],
+                    [115.847567, 40.147036],
+                    [115.806299, 40.15344],
+                    [115.773654, 40.176307],
+                    [115.75456, 40.145663],
+                    [115.75456, 40.145663],
+                    [115.599959, 40.119583],
+                    [115.59072, 40.096239],
+                    [115.527278, 40.076092],
+                    [115.485394, 40.040364],
+                    [115.454597, 40.029825],
+                    [115.450286, 39.992697],
+                    [115.428728, 39.984443],
+                    [115.426264, 39.950502],
+                    [115.481083, 39.935819],
+                    [115.522967, 39.899099],
+                    [115.515575, 39.892212],
+                    [115.515575, 39.892212],
+                    [115.526046, 39.87568],
+                    [115.514344, 39.837549],
+                    [115.567314, 39.816407],
+                    [115.552532, 39.794799],
+                    [115.50572, 39.784222],
+                    [115.483547, 39.798477],
+                    [115.483547, 39.798477],
+                    [115.443511, 39.785601],
+                    [115.439815, 39.752022],
+                    [115.486626, 39.741899],
+                    [115.491554, 39.670074],
+                    [115.478619, 39.650723],
+                    [115.478619, 39.650723],
+                    [115.522351, 39.640124],
+                    [115.518039, 39.597252],
+                    [115.545756, 39.618922],
+                    [115.587024, 39.589873],
+                    [115.633836, 39.599557],
+                    [115.633836, 39.599557],
+                    [115.667712, 39.615234],
+                    [115.698509, 39.577881],
+                    [115.698509, 39.577881],
+                    [115.699125, 39.570039],
+                    [115.699125, 39.570039],
+                    [115.716988, 39.56035],
+                    [115.716988, 39.56035],
+                    [115.718835, 39.553891],
+                    [115.718835, 39.553891],
+                    [115.720683, 39.551122],
+                    [115.720683, 39.551122],
+                    [115.722531, 39.5442],
+                    [115.721299, 39.543738],
+                    [115.722531, 39.5442],
+                    [115.722531, 39.543738],
+                    [115.721299, 39.543738],
+                    [115.722531, 39.543738],
+                    [115.724995, 39.5442],
+                    [115.724995, 39.5442],
+                    [115.738545, 39.540046],
+                    [115.738545, 39.539585],
+                    [115.738545, 39.540046],
+                    [115.738545, 39.539585],
+                    [115.752712, 39.515581],
+                    [115.806299, 39.510041],
+                    [115.806299, 39.510041],
+                    [115.821081, 39.522968],
+                    [115.821081, 39.522968],
+                    [115.828473, 39.541431],
+                    [115.867893, 39.546507],
+                    [115.867893, 39.546507],
+                    [115.91532, 39.582955],
+                    [115.91532, 39.582955],
+                    [115.910393, 39.600479],
+                    [115.910393, 39.600479],
+                    [115.957204, 39.560812],
+                    [115.978146, 39.595868],
+                    [115.995392, 39.576958],
+                    [116.026189, 39.587567],
+                    [116.036044, 39.571884],
+                    [116.09887, 39.575113],
+                    [116.130283, 39.567732],
+                    [116.151841, 39.583416],
+                    [116.198652, 39.589412],
+                    [116.240536, 39.564041],
+                    [116.257782, 39.500344],
+                    [116.307057, 39.488337],
+                    [116.337854, 39.455536],
+                    [116.361876, 39.455074],
+                    [116.361876, 39.455074],
+                    [116.434557, 39.442597],
+                    [116.454883, 39.453226],
+                    [116.444412, 39.482332],
+                    [116.411767, 39.482794],
+                    [116.401912, 39.528046],
+                    [116.443796, 39.510041],
+                    [116.437637, 39.526661],
+                    [116.478289, 39.535431],
+                    [116.473361, 39.552968],
+                    [116.50847, 39.551122],
+                    [116.524484, 39.596329],
+                    [116.592237, 39.621227],
+                    [116.592237, 39.621227],
+                    [116.620571, 39.601863],
+                    [116.664918, 39.605552],
+                    [116.723432, 39.59264],
+                    [116.724048, 39.59264],
+                    [116.723432, 39.59264],
+                    [116.724048, 39.59264],
+                    [116.726512, 39.595407],
+                    [116.726512, 39.595407],
+                    [116.709266, 39.618],
+                    [116.748686, 39.619844],
+                    [116.79057, 39.595868],
+                    [116.812128, 39.615695],
+                    [116.8497, 39.66777],
+                    [116.906366, 39.677444],
+                    [116.90575, 39.688037],
+                    [116.889736, 39.687576],
+                    [116.887272, 39.72533],
+                    [116.916837, 39.731314],
+                    [116.902055, 39.763523],
+                    [116.949482, 39.778703],
+                    [116.918069, 39.84628],
+                    [116.907598, 39.832494],
+                    [116.865714, 39.843982],
+                    [116.812128, 39.889916],
+                    [116.78441, 39.891294],
+                    [116.782563, 39.947749],
+                    [116.757925, 39.967934],
+                    [116.781331, 40.034866],
+                    [116.820135, 40.02845],
+                    [116.831222, 40.051359],
+                    [116.867562, 40.041739],
+                    [116.927924, 40.055024],
+                    [116.945171, 40.04128],
+                    [117.025243, 40.030283],
+                    [117.051728, 40.059605],
+                    [117.105315, 40.074261],
+                    [117.105315, 40.074261],
+                    [117.140423, 40.064185],
+                    [117.159517, 40.077008],
+                    [117.204481, 40.069681],
+                    [117.210024, 40.082045],
+                    [117.224191, 40.094865],
+                    [117.224191, 40.094865],
+                    [117.254988, 40.114548],
+                    [117.254988, 40.114548],
+                    [117.254988, 40.114548],
+                    [117.274082, 40.105852],
+                    [117.307343, 40.136971],
+                    [117.349227, 40.136513],
+                    [117.367089, 40.172649],
+                    [117.367089, 40.173106],
+                    [117.367089, 40.173106],
+                    [117.367089, 40.172649],
+                    [117.383719, 40.188195],
+                    [117.389879, 40.227958],
+                    [117.351075, 40.229786],
+                    [117.331365, 40.289613],
+                    [117.295024, 40.2782],
+                    [117.271618, 40.325211],
+                    [117.271618, 40.325211],
+                    [117.243285, 40.369453],
+                    [117.226039, 40.368997],
+                    [117.234046, 40.417312],
+                    [117.263611, 40.442367],
+                    [117.208793, 40.501552],
+                    [117.262995, 40.512927],
+                    [117.247597, 40.539766],
+                    [117.269771, 40.560684],
+                    [117.348611, 40.581141],
+                ],
+            ];
+            // 地理坐标转为three坐标系，不管用不用arr，都需要转换一个非空数组
+            // 否则customCoords没实例化api会报错
+            const paths = map.customCoords.lngLatsToCoords(data);
+
+            // 墙体高度
+            const height = 5550;
+            // 墙体颜色
+            const color = "#25a5f7";
+            // 动效纹理
+            let texture = null;
+            // 动效纹理偏移
+            let texture_offset = 0;
+
+            // THREE相关变量
+            let camera, scene, renderer;
+
+            // 初始化图层
+            function initLayer() {
+                const layer = new AMap.GLCustomLayer({
+                    zIndex: 9999,
+                    visible: true,
+                    init: (gl) => {
+                        initThree(gl);
+                        createWall();
+                        animate();
+                    },
+                    render: () => {
+                        const { near, far, fov, up, lookAt, position } =
+                            map.customCoords.getCameraParams();
+
+                        camera.near = near; // 近平面
+                        camera.far = far; // 远平面
+                        camera.fov = fov; // 视野范围
+                        camera.position.set(...position);
+                        camera.up.set(...up);
+                        camera.lookAt(...lookAt);
+
+                        // 更新相机坐标系
+                        camera.updateProjectionMatrix();
+
+                        renderer.render(scene, camera);
+
+                        // 这里必须执行！重新设置 three 的 gl 上下文状态
+                        renderer.resetState();
+                    },
+                });
+
+                map.add(layer);
+            }
+
+            function initThree(gl) {
+                camera = new THREE.PerspectiveCamera(
+                    60,
+                    container.clientWidth / container.clientHeight,
+                    100,
+                    1 << 30
+                );
+                renderer = new THREE.WebGLRenderer({
+                    context: gl,
+                    // canvas: document.querySelector('.amap-layer'), //也可以直接用canvas初始化
+                    antialias: true, // 抗锯齿，默认false 耗性能
+                });
+                // 自动清空画布这里必须设置为 false，否则地图底图将无法显示
+                renderer.autoClear = false;
+                renderer.outputEncoding = THREE.sRGBEncoding;
+
+                scene = new THREE.Scene();
+                // 增加环境光
+                const aLight = new THREE.AmbientLight(0xffffff, 0.3);
+                scene.add(aLight);
+            }
+
+            function createCube() {
+                const geometry = new THREE.BoxGeometry(200, 200, 200);
+                const material = new THREE.MeshBasicMaterial({
+                    color: 0xffffff,
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    depthWrite: false,
+                });
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.set(0, 0, 0);
+                scene.add(cube);
+            }
+
+            function createWall() {
+                let faceList = [];
+                let faceVertexUvs = [];
+
+                // 合并多个闭合范围
+                for (let i = 0; i < paths.length; i++) {
+                    const { face, uvs } = generateVecData(paths[i]);
+                    faceList = [...faceList, ...face];
+                    faceVertexUvs = [...faceVertexUvs, ...uvs];
+                }
+
+                // 背景层
+                const geometry = new THREE.BufferGeometry();
+                geometry.setAttribute(
+                    "position",
+                    new THREE.BufferAttribute(new Float32Array(faceList), 3)
+                );
+                geometry.setAttribute(
+                    "uv",
+                    new THREE.BufferAttribute(
+                        new Float32Array(faceVertexUvs),
+                        2
+                    )
+                );
+
+                const material1 = new THREE.MeshBasicMaterial({
+                    color: color,
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    depthWrite: false,
+                    alphaMap: new THREE.TextureLoader().load(
+                        "./images/texture_1.png"
+                    ), // 不透明图片
+                    // wireframe: true
+                });
+                const mesh1 = new THREE.Mesh(geometry, material1);
+                scene.add(mesh1);
+
+                // 动画层
+                const geometry2 = geometry.clone();
+                texture = this.generateTexture(128, color);
+                texture.wrapS = THREE.RepeatWrapping; // 水平重复平铺
+                texture.wrapT = THREE.RepeatWrapping; // 垂直重复平铺
+
+                const material2 = new THREE.MeshBasicMaterial({
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    depthWrite: false,
+                    map: texture,
+                });
+
+                const mesh2 = new THREE.Mesh(geometry2, material2);
+                scene.add(mesh2);
+            }
+
+            /**
+             * 创建一个闭合范围的模型数据
+             * @param res {Object} 包含面的顶点数据face，UV面的顶点数据uvs
+             */
+            function generateVecData(arr) {
+                const vec3List = []; // 顶点数组
+                let faceList = []; // 三角面数组
+                let faceVertexUvs = []; // 面的UV层队列，用于纹理和几何信息映射
+
+                // t3---t2
+                // |  \  |
+                // t0---t1
+                // UV面
+                // 下三角[t0, t1, t3]
+                // 上三角[t3, t1, t2]
+                const t0 = [0, 0];
+                const t1 = [1, 0];
+                const t2 = [1, 1];
+                const t3 = [0, 1];
+
+                for (let i = 0; i < arr.length; i++) {
+                    const [x1, y1] = arr[i];
+                    vec3List.push([x1, y1, 0]);
+                    vec3List.push([x1, y1, height]);
+                }
+
+                // 1---3
+                // | \ |
+                // 0---2
+                // 三角面顶点，没有顺序要求，但要跟UV面顺序一致
+                // 下三角 [0,1,2]
+                // 上三角 [1,2,3]
+                for (let i = 0; i < vec3List.length - 2; i++) {
+                    if (i % 2 === 0) {
+                        // 下三角
+                        faceList = [
+                            ...faceList,
+                            ...vec3List[i],
+                            ...vec3List[i + 2],
+                            ...vec3List[i + 1],
+                        ];
+                        // UV
+                        faceVertexUvs = [...faceVertexUvs, ...t0, ...t1, ...t3];
+                    } else {
+                        // 上三角
+                        faceList = [
+                            ...faceList,
+                            ...vec3List[i],
+                            ...vec3List[i + 1],
+                            ...vec3List[i + 2],
+                        ];
+                        // UV
+                        faceVertexUvs = [...faceVertexUvs, ...t3, ...t1, ...t2];
+                    }
+                }
+
+                return {
+                    face: faceList,
+                    uvs: faceVertexUvs,
+                };
+            }
+
+            /**
+             * 创建材质图
+             * @param size 尺寸为2的n次方
+             * @param color 颜色
+             * @returns {*}
+             */
+            function generateTexture(size = 64, color = "#ff0000") {
+                let canvas = document.createElement("canvas");
+                canvas.width = size;
+                canvas.height = size;
+                let ctx = canvas.getContext("2d");
+                let linearGradient = ctx.createLinearGradient(0, 0, 0, size);
+                linearGradient.addColorStop(0.2, hexToRgba(color, 0.0));
+                linearGradient.addColorStop(0.8, hexToRgba(color, 0.5));
+                linearGradient.addColorStop(1.0, hexToRgba(color, 1.0));
+                ctx.fillStyle = linearGradient;
+                ctx.fillRect(0, 0, size, size);
+
+                let texture = new THREE.Texture(canvas);
+                texture.needsUpdate = true; //必须
+                return texture;
+            }
+
+            /**
+             * 将十六进制的颜色值转成rgba
+             * @param {String} hex
+             * @param {number} opacity
+             * @returns {string}
+             */
+            function hexToRgba(hex, opacity = 1) {
+                return (
+                    "rgba(" +
+                    parseInt("0x" + hex.slice(1, 3)) +
+                    "," +
+                    parseInt("0x" + hex.slice(3, 5)) +
+                    "," +
+                    parseInt("0x" + hex.slice(5, 7)) +
+                    "," +
+                    opacity +
+                    ")"
+                );
+            }
+
+            // 动画
+            function animate() {
+                // 纹理偏移
+                texture_offset -= 0.005; // 向上移动
+                texture.offset.set(0, texture_offset);
+
+                if (map) {
+                    map.render();
+                }
+                requestAnimationFrame(() => {
+                    animate();
+                });
+            }
+
+            initLayer();
+        </script>
+    </body>
+</html>

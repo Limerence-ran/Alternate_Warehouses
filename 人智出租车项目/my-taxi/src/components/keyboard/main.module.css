@@ -1,21 +1,19 @@
 .button {
     height: 100%;
     width: 100%;
-    border: 1px solid skyblue;
-    border-radius: 4px;
+    border: 1px solid #0b62b8;
+    border-radius: 0px 4px 4px 0;
     /* background: blanchedalmond; */
-    background: skyblue;
+    background: #0b62b8;
     /* opacity: 0.8; */
     color: #fff;
 }
 .keyboard {
     position: relative;
-    width: 20%;
-    height: 60%;
+    width: 30%;
+    height: 100%;
     /* background-color: #fff; */
 }
-
-
 
 .custom_keyboard {
     position: absolute;
@@ -30,21 +28,25 @@
     height: 60%;
 }
 
-.search input:focus {
+.search input:valid {
     border-color: #1890ff;
     /* 设置聚焦时的边框颜色 */
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.7);
+    box-shadow: inset 0px 0px 25px #1479ea;
     /* 设置聚焦时的边框阴影 */
     /* border: none; */
     outline: none;
     /* 去掉聚焦时的外边框 */
 }
-.search input{
-    border:1px solid rgba(24, 144, 255, 0.7);
+.search input:focus {
+    outline: none;
+    cursor: not-allowed;
+}
+.search input {
+    border: 1px solid rgba(24, 144, 255, 0.7);
     color: #fff;
-    border-radius: 2px;
+    border-radius: 2px 0 0 2px;
     height: 100%;
-
+    cursor: not-allowed;
 }
 .search input::placeholder {
     color: aliceblue;
