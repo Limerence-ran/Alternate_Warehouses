@@ -22,30 +22,20 @@ const HotTable = () => {
             pageSize: 10,
         },
     });
-    const Cancelbox = (e) => {
-        setDatail(e);
-        console.log(e);
-        setIscancel(!iscancel);
-    };
-    const navigate = useNavigate();
-    const OnclickName = () => {
-        navigate("/Chartdata/Chart4");
-    };
-    const fetchData = () => {
+    const fetchData = async () => {
+        let dataset = [];
         const token = localStorage.getItem("token");
         const headers = {
             Authorization: `Bearer ${token}`,
         };
         setLoading(true);
-        fetch(`http://39.98.41.126:31130/groups/page`, { headers })
+        await fetch(`http://39.98.41.126:31130/groups/page`, { headers })
             .then((res) => res.json())
             .then((res) => {
-                let results = res.data.data;
-                console.log(res.data.data);
-                setData(results);
-                let newArr = Array(10000).fill(false);
-                setDisable(newArr);
-                setLoading(false);
+                res.data.data.forEach((i) => {
+                    i.join = false;
+                });
+                dataset = res.data.data;
                 setTableParams({
                     ...tableParams,
                     pagination: {
@@ -53,6 +43,23 @@ const HotTable = () => {
                         total: 200,
                     },
                 });
+            });
+        await fetch(`http://39.98.41.126:31130/groups`, {
+            headers: {
+                Authorization: token,
+            },
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                dataset.forEach((i) => {
+                    res.data.forEach((j) => {
+                        if (i.id === j.id) {
+                            i.join = true;
+                        }
+                    });
+                });
+                setData(dataset);
+                setLoading(false);
             });
     };
 
@@ -74,20 +81,19 @@ const HotTable = () => {
     };
 
     const handleDelete = (record) => {
-        // setDisable(!newArr[record.id])
-        console.log("record:", record);
-        console.log("record:", record.groupName);
         const name = record.groupName;
-        let arr = [...disable];
-        arr[record.id] = true;
-        setDisable(arr);
-
+        let arr = [...data];
+        arr.forEach((object) => {
+            if (object.id === record.id) {
+                object.join = true;
+            }
+        });
+        setData(arr);
         const joinGroup = (groupName) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
                 .post(
                     "http://39.98.41.126:31130/groups/join",
-
                     {
                         groupName: groupName,
                     },
@@ -99,28 +105,22 @@ const HotTable = () => {
                     }
                 )
                 .then((response) => {
-                    const { code, msg, data } = response;
+                    const { code, msg } = response.data;
                     console.log(response);
-                    if (code === 1000) {
-                        message.error("加入失败: " + msg);
+                    if (code === 1) {
+                        message.success("Join successfully: " + msg);
                     } else {
-                        console.log("data:" + data);
+                        message.error("Join failed: " + msg);
                         // 在这里处理成功的逻辑
                     }
                 })
                 .catch((error) => {
-                    message.error("请求出错");
-                    console.log("请求出错", error);
+                    message.error("The request failed");
+                    console.log("The request failed", error);
                 });
         };
         joinGroup(name);
     };
-
-    const getRandomuserParams = (params) => ({
-        results: params.pagination?.pageSize,
-        page: params.pagination?.current,
-        ...params,
-    });
 
     const columns = [
         {
@@ -141,16 +141,18 @@ const HotTable = () => {
         },
         {
             title: "Withdrawal",
-            render: (e, record) => (
-                <Button
-                    disabled={disable[record.id]}
-                    onClick={() => handleDelete(record)}
-                    className={style.withdrawal}
-                >
-                    {" "}
-                    Join
-                </Button>
-            ),
+            render: (e, record) => {
+                console.log(record.join);
+                return (
+                    <Button
+                        disabled={record.join}
+                        onClick={() => handleDelete(record)}
+                        className={style.withdrawal}
+                    >
+                        Join
+                    </Button>
+                );
+            },
         },
     ];
 

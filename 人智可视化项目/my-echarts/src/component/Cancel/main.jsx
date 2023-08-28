@@ -2,15 +2,9 @@ import style from "./main.module.css";
 import React, { useState } from "react";
 
 const Popup = (props) => {
-    console.log("props:", props.value.value);
     const [showPopup, setShowPopup] = useState(true);
-
     const closePopup = () => {
-        console.log(111);
         setShowPopup(false);
-        setTimeout(() => {
-            // setShowPopup(true);
-        }, 300);
     };
 
     return (

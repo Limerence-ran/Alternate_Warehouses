@@ -14,7 +14,7 @@ import {
 import style from "./main.module.css"; // 导入自定义的CSS文件
 import axios from "axios";
 import { DatabaseOutlined, LineChartOutlined } from "@ant-design/icons";
-import "./main.css"
+import "./main.css";
 
 //创建群组组件
 const CreateGroup = () => {
@@ -188,33 +188,25 @@ const CreateGroup = () => {
                                 },
                             ]}
                         >
-                            <Select
-                                placeholder="Arity Select"
-                                name="select"
-                                onChange={(value) => {
-                                    const newArray = [
-                                        ...Array(Number(value)),
-                                    ].map(() => "");
-                                    setArity(newArray);
-                                }}
-                            >
-                                <Select.Option value="1">1</Select.Option>
-                                <Select.Option value="2">2</Select.Option>
-                                <Select.Option value="3">3</Select.Option>
-                                <Select.Option value="4">4</Select.Option>
-                                <Select.Option value="5">5</Select.Option>
-                                <Select.Option value="6">6</Select.Option>
-                            </Select>
+                                <Select
+                                    placeholder="Arity Select"
+                                    name="select"
+                                    onChange={(value) => {
+                                        const newArray = [
+                                            ...Array(Number(value)),
+                                        ].map(() => "");
+                                        setArity(newArray);
+                                    }}
+                                >
+                                    <Select.Option value="1">1</Select.Option>
+                                    <Select.Option value="2">2</Select.Option>
+                                    <Select.Option value="3">3</Select.Option>
+                                    <Select.Option value="4">4</Select.Option>
+                                    <Select.Option value="5">5</Select.Option>
+                                    <Select.Option value="6">6</Select.Option>
+                                </Select>
                         </Form.Item>
-                        <Form.Item>
-                            <Button
-                                style={{ flexBasis: "45%" }}
-                                type="primary"
-                                onClick={showbottomDrawer}
-                            >
-                                Parameter Name
-                            </Button>
-                        </Form.Item>
+
                         <Drawer
                             title="Please input parameter name"
                             placement="bottom"
@@ -275,17 +267,26 @@ const CreateGroup = () => {
                                 onChange={(e) => setDescription(e.target.value)}
                             />
                         </Form.Item>
-
-                        <div id="createbtn">
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                loading={isSubmitting}
-                                className={style.SubmitButton}
-                            >
-                                Submit
-                            </Button>
-                        </div>
+                        <Form.Item>
+                            <div id="createbtn">
+                                <Button
+                                    style={{ flexBasis: "45%" }}
+                                    type="primary"
+                                    onClick={showbottomDrawer}
+                                >
+                                    Parameter Name
+                                </Button>
+                                <Button
+                                    style={{ flexBasis: "45%" }}
+                                    type="primary"
+                                    htmlType="submit"
+                                    loading={isSubmitting}
+                                    className={style.SubmitButton}
+                                >
+                                    Submit
+                                </Button>
+                            </div>
+                        </Form.Item>
                     </Form>
                     <Modal
                         open={isSuccessModalVisible}

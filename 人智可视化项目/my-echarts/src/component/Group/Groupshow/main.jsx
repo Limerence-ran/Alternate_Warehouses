@@ -89,10 +89,9 @@ const Groupshow = () => {
                     },
                 })
                 .then((response) => {
-                    const { code, msg, data } = response;
+                    const { code, msg } = response.data;
                     if (code === 1) {
                         message.success(msg);
-                        
                     } else {
                         message.error("解散失败: " + msg);
                     }
@@ -122,7 +121,6 @@ const Groupshow = () => {
             title: "Group Type",
             render: () => <span>Publice</span>,
         },
-
         {
             title: "Datanum",
             dataIndex: "resourceQuantity",

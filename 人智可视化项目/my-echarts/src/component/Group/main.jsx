@@ -8,7 +8,7 @@ function Group() {
     return (
         <>
             <div className={style.content}>
-                <Groupshow  />
+                <Groupshow />
             </div>
         </>
     );
