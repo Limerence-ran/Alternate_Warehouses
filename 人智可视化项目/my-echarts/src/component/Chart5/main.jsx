@@ -1,46 +1,293 @@
 import style from "./main.module.css";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import axios from "axios";
-import { message, Checkbox, Select } from "antd";
-const { Option } = Select;
+import {
+    message,
+    Radio,
+    Select,
+    Tag,
+    Input,
+    Form,
+    InputNumber,
+    Popconfirm,
+    Table,
+    Typography,
+    Drawer,
+    Space,
+    Button,
+    Steps,
+} from "antd";
+import { PieChartOutlined } from "@ant-design/icons";
+import Vedio from "../../component/Vedio/main";
+import "./main.css";
 
 function Chart5() {
-    const [dems, setDems] = useState(1);
+    //定义权重输入的值
+    const [inputValues, setInputValues] = useState({});
+    const [form] = Form.useForm();
+    const [data, setData] = useState([]);
+    const [editingKey, setEditingKey] = useState("");
+    //定义我在群组中可用的资源
+    const [resourcenamedata, setResourcenamedata] = useState([]);
+    //定义我在群组中上传的资源
+    const [formdata, setFormdata] = useState([]);
+    //定义加载框
     const [isshow, setisShow] = useState(false);
-    const [mydropdownValue, setMydropdownValue] = useState("");
-    const [inputValues, setInputValues] = useState({
-        a: "",
-        b: "",
-        c: "",
-        d: "",
-    });
-    const [selectedOption, setSelectedOption] = useState("");
-    let selectedValue = 0; //获取到算法的值
-    const [showBInput, setShowBInput] = useState(false);
-    const [showCInput, setShowCInput] = useState(false);
-    const [showDInput, setShowDInput] = useState(false);
-  
+    //定义步骤条
+    const [current, setCurrent] = useState(0);
+    //定义选择的数据集
+    const [selectedOption, setSelectedOption] = useState([]);
+    //定义选择的交流次数
+    const [SelectedInteractNumOption, setSelectedInteractNumOption] =
+        useState(0);
+    //定义选择的权重
+    const [weight, setWeight] = useState([]);
+    //定义算法
+    const [selectedValue, setSelectedValue] = useState(0);
+    //定义路由函数
     const navigate = useNavigate();
-
-    // 定义勾选框状态
-    const [showDropdownb, setShowDropdownb] = useState(false);
-    const [showDropdownc, setShowDropdownc] = useState(false);
-    const [showDropdownd, setShowDropdownd] = useState(false);
-
     // 定义下拉框选项
-    const dropdownOptions = [
-        // { value: "option1", label: "Option 1" },
-        // { value: "option2", label: "Option 2" },
-        // { value: "option3", label: "Option 3" },
+    const options = resourcenamedata;
+    //定义输入框限制事件
+    const handleInputChange = (value, index) => {
+        const newValues = { ...inputValues };
+        newValues[index] = value;
+        setInputValues(newValues);
+        console.log(newValues);
+    };
+    //定义输入计算函数
+    const getSum = () => {
+        let sum = 0;
+        for (const key in inputValues) {
+            sum += parseInt(inputValues[key]) || 0;
+        }
+        return sum;
+    };
+    //定义下拉框搜索事件
+    const tagRender = (props) => {
+        const { label, value, closable, onClose } = props;
+        const onPreventMouseDown = (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+        };
+        return (
+            <Tag
+                color="blue"
+                onMouseDown={onPreventMouseDown}
+                closable={closable}
+                onClose={onClose}
+                style={{
+                    marginRight: 3,
+                }}
+            >
+                {label}
+            </Tag>
+        );
+    };
+    // 多选框选择改变时的回调函数
+    const handleSelectChange = (value) => {
+        setSelectedOption(value);
+    };
+    //单选框选择改变时的回调函数
+    const handleSelectInteractNumChange = (value) => {
+        setSelectedInteractNumOption(value);
+    };
+
+    const EditableCell = ({
+        editing,
+        dataIndex,
+        title,
+        record,
+        index,
+        children,
+        ...restProps
+    }) => {
+        return (
+            <td {...restProps}>
+                {editing ? (
+                    <Form.Item
+                        name={dataIndex}
+                        style={{
+                            margin: 0,
+                        }}
+                        rules={[
+                            {
+                                required: true,
+                                message: `Please Input ${title}!`,
+                            },
+                        ]}
+                    >
+                        <InputNumber min={0} />
+                    </Form.Item>
+                ) : (
+                    children
+                )}
+            </td>
+        );
+    };
+
+    //定义表格编辑与删除功能
+    const isEditing = (record) => record.key === editingKey;
+
+    const edit = (record) => {
+        let clearobj = {
+            ...record,
+        };
+        form.setFieldsValue(clearobj);
+        setEditingKey(record.key);
+    };
+
+    const cancel = () => {
+        setEditingKey("");
+    };
+
+    const save = async (key) => {
+        try {
+            const row = await form.validateFields();
+            const newData = [...data];
+            const index = newData.findIndex((item) => key === item.key);
+            if (index > -1) {
+                const item = newData[index];
+                newData.splice(index, 1, {
+                    ...item,
+                    ...row,
+                });
+                setData(newData);
+                setEditingKey("");
+            } else {
+                newData.push(row);
+                setData(newData);
+                setEditingKey("");
+            }
+        } catch (errInfo) {
+            console.log("Validate Failed:", errInfo);
+        }
+    };
+
+    const columns = [
+        {
+            title: "dimension",
+            dataIndex: "dimension",
+            width: "15%",
+            editable: false,
+        },
+        {
+            title: "operation",
+            dataIndex: "operation",
+            render: (_, record) => {
+                const editable = isEditing(record);
+                return editable ? (
+                    <span>
+                        <Typography.Link
+                            onClick={() => save(record.key)}
+                            style={{
+                                marginRight: 8,
+                            }}
+                        >
+                            Save
+                        </Typography.Link>
+                        <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+                            <a>Cancel</a>
+                        </Popconfirm>
+                    </span>
+                ) : (
+                    <Typography.Link
+                        disabled={editingKey !== ""}
+                        onClick={() => edit(record)}
+                    >
+                        Edit
+                    </Typography.Link>
+                );
+            },
+        },
     ];
+    if (formdata.length !== 0) {
+        formdata[0].map((item) => {
+            return columns.splice(columns.length - 1, 0, {
+                title: item,
+                dataIndex: item,
+                width: "15%",
+                editable: true,
+            });
+        });
+    }
+    const mergedColumns = columns.map((col) => {
+        if (!col.editable) {
+            return col;
+        }
+        return {
+            ...col,
+            onCell: (record) => ({
+                record,
+                inputType: "number",
+                dataIndex: col.dataIndex,
+                title: col.title,
+                editing: isEditing(record),
+            }),
+        };
+    });
+
+    //定义表格提交事件
+    const getTableData = () => {
+        const tableData = {};
+        // 遍历每一列
+        columns.forEach((column, columnIndex) => {
+            const { dataIndex } = column;
+            // 跳过第一列和最后一列
+            if (columnIndex === 0 || columnIndex === columns.length - 1) {
+                return;
+            }
+            const columnData = [];
+            // 遍历每一行
+            data.forEach((record) => {
+                columnData.push(record[dataIndex]);
+            });
+            // 将列名作为键，该列下的每行数据作为值
+            tableData[dataIndex] = columnData;
+        });
+
+        // 返回处理后的数据
+        return tableData;
+    };
+
+    //定义算法提交事件
+    const handleRadioChange = (e) => {
+        e.target.value === "Mean Value Algorithm"
+            ? setSelectedValue(0)
+            : setSelectedValue(1);
+    };
+
+    //定义右边抽屉
+    const [openright, setOpenright] = useState(false);
+    const [openbottom, setOpenbottom] = useState(false);
+    const showrightDrawer = () => {
+        setOpenright(true);
+    };
+    const showbottomDrawer = () => {
+        setOpenbottom(true);
+    };
+    const onCloseright = () => {
+        setOpenright(false);
+    };
+    const onClosebottom = () => {
+        setOpenbottom(false);
+    };
+    const formRef = useRef(); // 创建一个表单引用
+    const onClosebottomAndSubmit = () => {
+        setOpenbottom(false);
+        const form = formRef.current;
+        form.validateFields().then((values) => {
+            setWeight(Object.values(values));
+        });
+    };
     //组件创建时调用的ajax函数
     const ajax = async () => {
         try {
             // 发送请求
             const response = await axios({
                 url: "http://39.98.41.126:31130/resource/resource",
-                method: "POST",
+                method: "PUT",
                 headers: {
                     Authorization: localStorage.getItem("token"), // 替换为你的实际授权头部
                 },
@@ -48,142 +295,141 @@ function Chart5() {
                     id: localStorage.getItem("myGroupid"),
                 },
             });
-
             // 处理成功状态
-            const { data: responseData } = response.data;
-            console.log(responseData);
-            message.success("成功", response.msg);
-            for (let j = 0; j < responseData.length; j++) {
-                dropdownOptions[j].value = responseData[j].resourceName;
-                dropdownOptions[j].label = responseData[j].resourceName;
+            const { data, code, msg } = response.data;
+            if (code === 1) {
+                message.success("Data request successful");
+                const keysArray = [];
+                const valuesArray = [];
+                data.data.forEach((obj) => {
+                    const key = Object.keys(obj)[0]; // 获取对象中的键
+                    const value = Object.values(obj)[0]; // 获取对象中的值
+                    keysArray.push(key);
+                    valuesArray.push(value);
+                });
+                const resultArray = [keysArray, valuesArray];
+                setFormdata(resultArray);
+                const originData = [];
+                if (resultArray.length !== 0) {
+                    for (let j = 0; j < resultArray[1][0].length; j++) {
+                        let objectform = {
+                            key: j.toString(),
+                            dimension: `dimension ${j + 1}`,
+                        };
+                        for (let i = 0; i < resultArray[0].length; i++) {
+                            objectform[resultArray[0][i]] =
+                                resultArray[1][i][j];
+                        }
+                        originData.push(objectform);
+                    }
+                }
+                setData(originData);
+            } else {
+                message.error(msg);
             }
-            setMydropdownValue(response.data.resourceName);
         } catch (error) {
             // 处理错误状态
-            message.error("请求失败，请检查网络连接");
-
+            message.error(
+                "The request failed. Please check your network connection"
+            );
             throw error; // 可以选择抛出错误，供调用者处理
         }
     };
-
-    const handleInputChange = (e, field) => {
-        const { value } = e.target;
-        setInputValues((prevInputValues) => ({
-            ...prevInputValues,
-            [field]: value,
-        }));
-    };
-
-    function handleCheckboxChange(e, field) {
-        console.log(field.target.checked);
-        const { checked } = field.target;
-
-        if (e === "b") {
-            setShowDropdownb(field.target.checked);
-            setShowBInput(checked);
-        } else if (e === "c") {
-            setShowDropdownc(field.target.checked);
-            setShowCInput(checked);
-        } else if (e === "d") {
-            setShowDropdownd(field.target.checked);
-            setShowDInput(checked);
-        }
-        setInputValues((prevInputValues) => ({
-            ...prevInputValues,
-            [field]: checked ? "" : inputValues[field],
-        }));
-    }
-    function handleboxChange() {
-        const radioGroup = document.querySelectorAll('input[name="algorithm"]');
-
-        for (let i = 0; i < radioGroup.length; i++) {
-            if (radioGroup[0].checked) {
-                selectedValue = 0;
-                break; // 停止循环，因为只需要获取一个选中的值
-            } else {
-                selectedValue = 1;
-                break;
-            }
-        }
-    }
-
-    const handleSelectChange = (value) => {
-        setSelectedOption(value);
+    const getresourceName = () => {
+        const groupid = localStorage.getItem("myGroupid");
+        const usedata = (groupid) => {
+            const token = localStorage.getItem("token"); // 从本地存储获取 token
+            axios
+                .post(
+                    "http://39.98.41.126:31130/resource/resource",
+                    // 要上传的群组信息
+                    {
+                        id: groupid,
+                    },
+                    {
+                        headers: {
+                            Authorization: token, // 使用从本地存储中获取的 token
+                            "Content-Type": "application/json",
+                        },
+                    }
+                )
+                .then((response) => {
+                    const { code, msg, data } = response.data;
+                    if (code === 1) {
+                        let resourceNameData = [];
+                        data.data.map((item) => {
+                            resourceNameData.push({ value: item.resourceName });
+                        });
+                        setResourcenamedata(resourceNameData);
+                    } else {
+                        message.error(msg);
+                    }
+                })
+                .catch((error) => {
+                    message.error("An error occurred in the request");
+                    console.log(error);
+                });
+        };
+        usedata(groupid);
     };
 
     useEffect(() => {
+        //查看我在群组中上传的资源
         ajax();
+        //查看群组中我能用到的资源
+        getresourceName();
+        //定义表格数据
     }, []);
 
     const Onclickpage = () => {
-        const values = [];
-        if (document.getElementById("input1") !== null) {
-            const input1Value = document.getElementById("input1").value;
-            values.push(input1Value);
+        //处理格式不正确问题
+        if (selectedOption.length === 0) {
+            message.error("Resource data cannot be empty.");
+            return;
+        } else if (SelectedInteractNumOption === 0) {
+            message.error("Please select the number of communication times.");
+            return;
+        } else if (getSum() !== 100) {
+            message.error("The sum of weights must be 100.");
+            return; // 阻止继续执行关闭逻辑
         }
 
-        if (document.getElementById("input2") !== null) {
-            const input2Value = document.getElementById("input2").value;
-            values.push(input2Value);
-        }
-
-        if (document.getElementById("input3") !== null) {
-            const input3Value = document.getElementById("input3").value;
-            values.push(input3Value);
-        }
-
-        if (document.getElementById("input4") !== null) {
-            const input4Value = document.getElementById("input4").value;
-            values.push(input4Value);
-        }
-
-        const dropdownvalues = [mydropdownValue];
-
-        if (document.getElementById("dropdown1") !== null) {
-            const dropdown1Value = document.getElementById("dropdown1").value;
-            dropdownvalues.push(dropdown1Value);
-        }
-
-        if (document.getElementById("dropdown2") !== null) {
-            const dropdown2Value = document.getElementById("dropdown2").value;
-            dropdownvalues.push(dropdown2Value);
-        }
-
-        if (document.getElementById("dropdown3") !== null) {
-            const dropdown3Value = document.getElementById("dropdown3").value;
-            dropdownvalues.push(dropdown3Value);
-        }
-        console.log(dropdownvalues, values);
         //发送ajax请求
         const request = async (requestData) => {
             try {
                 const response = await axios.post(
                     "http://39.98.41.126:31130/resource/forward/operation",
-                    requestData
+                    requestData,
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem("token"), // 替换为你的实际授权头部
+                            "Content-Type": "application/json", // 设置请求内容类型
+                        },
+                    }
                 );
-                const data = response.data;
-                // 在这里处理返回的数据
-                return data;
+                return response.data;
             } catch (error) {
                 // 请求发生错误时的处理
-                message.error("请求发生错误，请重试！");
+                message.error("An error occurred in the request");
                 throw error;
             }
         };
 
         request({
-            data: localStorage.getItem("tableData"),
+            data: [getTableData()],
             groupId: localStorage.getItem("myGroupid"),
             algorithmId: selectedValue, //选用算法
-            resourceNames: dropdownvalues, //数据集名字
-            resourceWeights: values, //数据集占比
+            resourceNames: selectedOption, //数据集名字
+            resourceWeights: weight, //数据集权重
+            interactNum: SelectedInteractNumOption,
         })
             .then((responseData) => {
+                const { code, data } = responseData; // 获取返回的状态码
                 // 处理返回的数据
                 if (code === 1) {
                     console.log(responseData);
-                    message.success("请求成功！");
-                    localStorage.setItem("data-xy", responseData.data);
+                    message.success("Data request successful");
+                    localStorage.setItem("data-xy", data);
                     setisShow(!isshow);
                     setTimeout(() => {
                         navigate("/Chartdata/Chart2");
@@ -198,94 +444,262 @@ function Chart5() {
 
     return (
         <>
-            <div className={style.content}>
+            <div className={style.content} id="content">
                 <div className={style.Chart5}>
+                    {/* 标题 */}
                     <div className={style.header}>
-                        <span>IMDB Movie Reviews Dataset</span>
+                        <span>
+                            Differential Privacy Data Processing Visualization
+                            Center
+                        </span>
                     </div>
-                 
-                        <div className={style.chartbox}>
-                            <div className={style.chart}></div>
-                            <div className={style.chartbuttom}>
-                                <div className={style.radio}>
-                                    <div className={style.usedataleft}>
-                                        <span>
-                                            Please select the iteration mode you
-                                            want:
-                                        </span>
-                                    </div>
-                                    <div className={style.usedataright}>
-                                        <input type="radio" name="algorithm" />
-                                        <span> Mean value algorith</span>
-                                        <input type="radio" name="algorithm" />
-                                        <span>Differential Algorithm</span>
-                                    </div>
-                                </div>
-                                <div className={style.usedata}>
-                                    <div className={style.usedataleft}>
-                                        <span>
-                                            Please select the dataset you want
-                                            to use:{" "}
-                                        </span>
-                                    </div>
-                                    <div className={style.useright1}>
-                                        <div>
-                                            {" "}
-                                            <input type="checkbox" />
-                                            <span>
-                                                Dataset b(3noise turned on)
-                                            </span>
-                                        </div>
-                                        <div>
-                                            {" "}
-                                            <input type="checkbox" />
-                                            <span>
-                                                Dataset c(1noise turned on){" "}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            {" "}
-                                            <input type="checkbox" />
-                                            <span>
-                                                Dataset d(2 noise turned on)
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={style.dataweight}>
-                                    <div className={style.usedataleft}>
-                                        <span>
-                                            Please select the weight of the
-                                            other dataset:{" "}
-                                        </span>
-                                    </div>
-                                    <div className={style.useright}>
-                                        <span>
-                                            a<input type="text" />%
-                                        </span>
-                                        <span>
-                                            b<input type="text" />%
-                                        </span>
-                                        <span>
-                                            c<input type="text" />%
-                                        </span>
-                                        <span>
-                                            d<input type="text" />%
-                                        </span>
-                                    <button
-                                        className={style.next}
-                                        onClick={Onclickpage}
-                                    >
-                                        Next
-                                    </button>
-                                    </div>
-                             
-                                </div>
-                               
+                    {/* 步骤条 */}
+                    <div className={style.steps}>
+                        <Steps
+                            current={current}
+                            direction="vertical"
+                            items={[
+                                {
+                                    title: "Step 1",
+                                    description: "The Data to be Uploaded",
+                                },
+                                {
+                                    title: "Step 2",
+                                    description: "The iteration mode you want",
+                                },
+                                {
+                                    title: "Step 3",
+                                    description: "The datas you want to use",
+                                },
+                                {
+                                    title: "Step 4",
+                                    description: "The number of data exchanges",
+                                },
+                                {
+                                    title: "Step 5",
+                                    description: "The weight of the datas (%)",
+                                },
+                            ]}
+                        />
+                    </div>
+                    {/* 表单 */}
+                    <div className={style.chartbox}>
+                        <div
+                            className={style.chart}
+                            onClick={() => {
+                                setCurrent(0);
+                            }}
+                        >
+                            <div id="chart">
+                                <Button
+                                    type="primary"
+                                    onClick={showrightDrawer}
+                                >
+                                    The Data to be Uploaded
+                                </Button>
+                            </div>
+                            <Drawer
+                                title="The Data to be Uploaded"
+                                placement="right"
+                                size="large"
+                                width={1000}
+                                onClose={onCloseright}
+                                open={openright}
+                                extra={
+                                    <Space>
+                                        <Button onClick={onCloseright}>
+                                            Cancel
+                                        </Button>
+                                        <Button
+                                            type="primary"
+                                            onClick={onCloseright}
+                                        >
+                                            OK
+                                        </Button>
+                                    </Space>
+                                }
+                            >
+                                <Form form={form} component={false}>
+                                    <Table
+                                        //覆盖默认的table元素
+                                        components={{
+                                            body: {
+                                                cell: EditableCell,
+                                            },
+                                        }}
+                                        bordered
+                                        dataSource={data}
+                                        columns={mergedColumns}
+                                        rowClassName="editable-row"
+                                        pagination={{
+                                            onChange: cancel,
+                                        }}
+                                    />
+                                </Form>
+                            </Drawer>
+                        </div>
+                        <div
+                            className={style.radio}
+                            id="radio"
+                            onClick={() => {
+                                setCurrent(1);
+                            }}
+                        >
+                            {/* 选择算法 */}
+                            <Radio.Group
+                                defaultValue="Mean Value Algorithm"
+                                buttonStyle="solid"
+                                onChange={handleRadioChange}
+                            >
+                                <Radio.Button value="Mean Value Algorithm">
+                                    Mean Value Algorithm
+                                </Radio.Button>
+                                <Radio.Button value="Differential Algorithm">
+                                    Differential Algorithm
+                                </Radio.Button>
+                            </Radio.Group>
+                        </div>
+                        {/* 选择数据集 */}
+                        <div
+                            className={style.usedata}
+                            onClick={() => {
+                                setCurrent(2);
+                            }}
+                        >
+                            <div
+                                style={{
+                                    width: "100%",
+                                }}
+                            >
+                                <Select
+                                    maxTagCount={7}
+                                    maxTagTextLength={7}
+                                    mode="multiple"
+                                    tagRender={tagRender}
+                                    style={{
+                                        width: "80%",
+                                    }}
+                                    options={options}
+                                    onChange={handleSelectChange}
+                                />
                             </div>
                         </div>
-                   
+                        {/* 选择交流次数 */}
+                        <div
+                            className={style.useexchangesnumber}
+                            onClick={() => {
+                                setCurrent(3);
+                            }}
+                        >
+                            <Select
+                                style={{
+                                    width: "80%",
+                                }}
+                                onChange={handleSelectInteractNumChange}
+                                allowClear
+                                options={[
+                                    {
+                                        value: "1",
+                                    },
+                                    {
+                                        value: "2",
+                                    },
+                                    {
+                                        value: "3",
+                                    },
+                                    {
+                                        value: "4",
+                                    },
+                                    {
+                                        value: "5",
+                                    },
+                                ]}
+                            />
+                        </div>
+                        {/* 输入数据集权重 */}
+                        <div
+                            className={style.dataweight}
+                            onClick={() => {
+                                setCurrent(4);
+                            }}
+                        >
+                            <div id="dataweight">
+                                <Button
+                                    type="primary"
+                                    onClick={showbottomDrawer}
+                                >
+                                    The weight of the datas
+                                </Button>
+                            </div>
+                            <Drawer
+                                title="The weight of the datas"
+                                placement="bottom"
+                                size="large"
+                                height={500}
+                                onClose={onClosebottom}
+                                open={openbottom}
+                                extra={
+                                    <Space>
+                                        <Button onClick={onClosebottom}>
+                                            Cancel
+                                        </Button>
+                                        <Button
+                                            type="primary"
+                                            onClick={onClosebottomAndSubmit}
+                                        >
+                                            OK
+                                        </Button>
+                                    </Space>
+                                }
+                            >
+                                <Form ref={formRef}>
+                                    <Form.Item key="me" name={`input_me`}>
+                                        <InputNumber
+                                            addonBefore={<PieChartOutlined />}
+                                            prefix="My Data Weight"
+                                            suffix="%"
+                                            min={1}
+                                            size="middle"
+                                            placeholder="number"
+                                            style={{ width: "100%" }}
+                                            onChange={(value) =>
+                                                handleInputChange(value, "me")
+                                            }
+                                        />
+                                    </Form.Item>
+                                    {selectedOption.map((value, index) => (
+                                        <Form.Item
+                                            key={index}
+                                            name={`input_${index}`}
+                                        >
+                                            <InputNumber
+                                                addonBefore={
+                                                    <PieChartOutlined />
+                                                }
+                                                prefix={value}
+                                                onChange={(value) =>
+                                                    handleInputChange(
+                                                        value,
+                                                        index
+                                                    )
+                                                }
+                                                suffix="%"
+                                                min={1}
+                                                size="middle"
+                                                placeholder="number"
+                                                style={{ width: "100%" }}
+                                            />
+                                        </Form.Item>
+                                    ))}
+                                </Form>
+                            </Drawer>
+                        </div>
+                    </div>
+                    <Button className={style.next} onClick={Onclickpage}>
+                        Next
+                    </Button>
                 </div>
+                {isshow && <Vedio />}
             </div>
         </>
     );

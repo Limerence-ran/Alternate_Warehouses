@@ -1,8 +1,22 @@
 #CreateGroup .ant-btn {
     display: block;
+    width: 100%;
 }
 
-
-.formstyle .ant-from-item{
-    /* margin-bottom: 3%; */
+.labelClassName {
+    margin-left: 0px;
+}
+#radio .ant-radio-group {
+    flex-basis: 100%;
+}
+#radio .ant-radio-button-wrapper {
+    width: 50%;
+    text-align: center;
+}
+#createbtn .ant-btn {
+    display: block;
+    width: 100%;
+}
+#createbtn .ant-btn:hover {
+    background-color: rgb(173 177 254);
 }

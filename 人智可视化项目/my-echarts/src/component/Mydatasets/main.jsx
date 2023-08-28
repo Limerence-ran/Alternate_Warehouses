@@ -2,15 +2,15 @@ import React from "react";
 import style from "./main.module.css";
 import { useState, useEffect, useRef } from "react";
 import "./main.css";
-import { Skeleton } from "antd";
+import { Skeleton, message } from "antd";
 import Mydatatable from "./Mydatatable/main";
-import RelationChart from "../../components/relationship/main";
+import DynamicRelationChart from "../../components/relationship/main";
 import axios from "axios";
 
 function Mydatasets() {
     const box = useRef(null);
     const [which, setWhich] = useState(0);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState();
     const IsChart = (index) => {
         setWhich(index);
     };
@@ -32,12 +32,9 @@ function Mydatasets() {
                 }
             )
             .then((response) => {
-                const { code, msg, data } = response;
-
+                const { code, msg, data } = response.data;
                 if (code === 1) {
-                    console.log("data:" + data);
-                    setData(response.data.resourceListEnhancedWithRelativeCode);
-                    // 在这里处理成功的逻辑
+                    setData(data);
                 } else {
                     message.error("创建失败: " + msg);
                 }
@@ -48,8 +45,6 @@ function Mydatasets() {
             });
     };
 
-    console.log(which);
-
     function onAjaxChange(data) {
         setData(data);
     }
@@ -57,27 +52,30 @@ function Mydatasets() {
     useEffect(() => {
         MydataVisualization();
     }, []);
+
     return (
         <>
-     
-                <div className={style.body}>
-                    <div className={style.chartbox}>
-                        <div className={style.box}>
-                            <div className={style.chart}>
-                                <Skeleton>
-                                    <RelationChart propdata={data} />
-                                </Skeleton>
-                            </div>
-                        </div>
-                        <div className={style.chartbuttom}>
-                            <Mydatatable
-                                className={style.paging1}
-                                handleAjaxChange={onAjaxChange}
-                            />
+            <div className={style.body}>
+                <div className={style.chartbox}>
+                    <div className={style.box}>
+                        <div className={style.chart}>
+                            {data ? (
+                                <DynamicRelationChart
+                                    propdata={data}
+                                ></DynamicRelationChart>
+                            ) : (
+                                <Skeleton />
+                            )}
                         </div>
                     </div>
+                    <div className={style.chartbuttom}>
+                        <Mydatatable
+                            className={style.paging1}
+                            handleAjaxChange={onAjaxChange}
+                        />
+                    </div>
                 </div>
-       
+            </div>
         </>
     );
 }

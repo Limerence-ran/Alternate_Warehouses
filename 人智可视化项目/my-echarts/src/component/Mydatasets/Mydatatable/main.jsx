@@ -8,14 +8,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
 
-// import React, { useEffect, useState, useRef } from "react";
-// import { Table } from "antd";
-// import { CaretRightOutlined } from "@ant-design/icons";
-// import qs from "qs";
-// import "./main.css";
-// import style from "./main.module.css";
-// import { useNavigate } from "react-router-dom";
-
 const Mydatatable = () => {
     const [data, setData] = useState();
     const [loading, setLoading] = useState(false);
@@ -26,9 +18,6 @@ const Mydatatable = () => {
         },
     });
     const navigate = useNavigate();
-    const datashow = () => {
-        navigate("/Chartdata/Chart5");
-    };
     const fetchData = () => {
         setLoading(true);
         const groupid = localStorage.getItem("myGroupid");
@@ -49,41 +38,8 @@ const Mydatatable = () => {
                     }
                 )
                 .then((response) => {
-                    const { code, msg, data } = response;
-
-                    setData(
-                        //data.data
-                        [
-                            {
-                                "id": 5,
-                                "resourceName": "2332",
-                                "ownerId": 22,
-                                "groupId": 9,
-                                "popularity": 23,
-                                "noiseLevel": 2,
-                                "referenceQuantity": 121,
-                                "type": "commercial",
-                                "deleted": null,
-                                "version": null,
-                                "ownerName": "houtai",
-                                "isRelative": 1
-                            },
-                            {
-                                "id": 8,
-                                "resourceName": "draw",
-                                "ownerId": 21,
-                                "groupId": 9,
-                                "popularity": 0,
-                                "noiseLevel": 3,
-                                "referenceQuantity": 121,
-                                "type": "academic",
-                                "deleted": null,
-                                "version": null,
-                                "ownerName": "drawing",
-                                "isRelative": 1
-                            }
-                        ]
-                    );
+                    const { code, msg, data } = response.data;
+                    setData(data.data);
                     setLoading(false);
                     setTableParams({
                         ...tableParams,
@@ -93,14 +49,14 @@ const Mydatatable = () => {
                         },
                     });
                     if (code === 1) {
-                        message.success(msg);
+                        message.success("Request Granted");
                     } else {
-                        // message.error(msg);
+                        message.error(msg);
                     }
                 })
                 .catch((error) => {
-                    message.error("请求出错");
-                    console.log("请求出错", error);
+                    message.error("An error occurred in the request");
+                    console.log(error);
                 });
         };
         usedata(groupid);
@@ -122,20 +78,14 @@ const Mydatatable = () => {
         }
     };
 
-    const getRandomuserParams = (params) => ({
-        results: params.pagination?.pageSize,
-        page: params.pagination?.current,
-        ...params,
-    });
-
     const columns = [
         {
             title: "resourceName",
             dataIndex: "resourceName",
         },
         {
-            title: "Owners",
-            dataIndex: "owner",
+            title: "OwnerName",
+            dataIndex: "ownerName",
         },
         {
             title: "Type",
@@ -149,8 +99,44 @@ const Mydatatable = () => {
         {
             title: "",
             render: (e, record) => (
-                <button className={style.get2} onClick={datashow}>
-                    {" "}
+                <button
+                    className={style.get2}
+                    onClick={() => {
+                        //判断有无上传数据
+                        const ajax = async () => {
+                            try {
+                                // 发送请求
+                                const response = await axios({
+                                    url: "http://39.98.41.126:31130/resource/resource",
+                                    method: "PUT",
+                                    headers: {
+                                        Authorization:
+                                            localStorage.getItem("token"), // 替换为你的实际授权头部
+                                    },
+                                    data: {
+                                        id: localStorage.getItem("myGroupid"),
+                                    },
+                                });
+                                // 处理成功状态
+                                const { code, msg } = response.data;
+                                if (code === 1) {
+                                    message.success("Data request successful");
+                                    navigate("/Chartdata/Chart5");
+                                } else {
+                                    message.error(msg);
+                                    navigate("/Chartdata/Chart4/UploadMyData");
+                                }
+                            } catch (error) {
+                                // 处理错误状态
+                                message.error(
+                                    "The request failed. Please check your network connection"
+                                );
+                                throw error; // 可以选择抛出错误，供调用者处理
+                            }
+                        };
+                        ajax();
+                    }}
+                >
                     Use
                 </button>
             ),

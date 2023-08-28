@@ -1,10 +1,25 @@
 import React, { useState } from "react";
-import { Form, Radio, Input, Button, message, Modal } from "antd";
+import {
+    Form,
+    Radio,
+    Input,
+    Button,
+    message,
+    Modal,
+    InputNumber,
+    Select,
+    Drawer,
+    Space,
+} from "antd";
 import style from "./main.module.css"; // 导入自定义的CSS文件
 import axios from "axios";
+import { DatabaseOutlined, LineChartOutlined } from "@ant-design/icons";
+import "./main.css"
 
+//创建群组组件
 const CreateGroup = () => {
     const [form] = Form.useForm();
+    const [openbottom, setOpenbottom] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
@@ -12,29 +27,31 @@ const CreateGroup = () => {
     const [arity, setArity] = useState([]);
     const [description, setDescription] = useState("");
 
+    //处理抽屉事件
+    const onClosebottomAndSubmit = () => {
+        setOpenbottom(false);
+    };
+    const onClosebottom = () => {
+        setOpenbottom(false);
+    };
+    const showbottomDrawer = () => {
+        setOpenbottom(true);
+    };
+
     const handleFinish = (values) => {
         setIsSubmitting(true);
         console.log(values);
         const groupName = values.name;
         const dimension = values.text;
         const description = values.description;
-
         const resourceFormat = [];
         for (let key in values) {
             if (!isNaN(key)) {
                 resourceFormat.push(values[key]);
             }
         }
-
         // 调用 createGroup 函数，传递参数
         createGroup(groupName, dimension, resourceFormat, description);
-
-        // 模拟提交请求
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setIsSuccessModalVisible(true);
-            form.resetFields();
-        }, 2000);
     };
 
     const handleSuccessModalClose = () => {
@@ -67,18 +84,25 @@ const CreateGroup = () => {
                 }
             )
             .then((response) => {
-                const { code, msg, data } = response;
+                const { code, msg } = response.data;
                 if (code === 1) {
                     message.success(msg);
-                    console.log("data:" + data);
+                    // 模拟提交请求
+                    setTimeout(() => {
+                        setIsSubmitting(false);
+                        setIsSuccessModalVisible(true);
+                        form.resetFields();
+                    }, 1000);
                 } else {
-                    message.error("创建失败: " + msg);
+                    setIsSubmitting(false);
+                    message.error("Create failed:" + msg);
                     // 在这里处理其他错误情况的逻辑
                 }
             })
             .catch((error) => {
-                message.error("请求出错");
-                console.log("请求出错", error);
+                message.error("An error occurred in the request");
+                setIsSubmitting(false);
+                console.log("An error occurred in the request", error);
             });
     };
 
@@ -89,6 +113,10 @@ const CreateGroup = () => {
                     <Form
                         form={form}
                         onFinish={handleFinish}
+                        initialValues={{
+                            type: "collection", // 设置默认值为 "collection"
+                            type: "select",
+                        }}
                         layout="vertical"
                         className={style.formstyle}
                     >
@@ -102,7 +130,10 @@ const CreateGroup = () => {
                                 },
                             ]}
                         >
-                            <Input className={style.inputstyle} />
+                            <Input
+                                className={style.inputstyle}
+                                prefix={<DatabaseOutlined />}
+                            />
                         </Form.Item>
 
                         <Form.Item
@@ -111,24 +142,23 @@ const CreateGroup = () => {
                             rules={[
                                 {
                                     required: true,
-                                    message: "Please input Group type",
+                                    message: "Please choose Group type",
                                 },
                             ]}
                         >
-                            <Radio.Group>
-                                <Radio
-                                    value="collection"
-                                    className="round_radio_button"
+                            <div id="radio" className={style.radio}>
+                                <Radio.Group
+                                    defaultValue="collection"
+                                    buttonStyle="solid"
                                 >
-                                    collection
-                                </Radio>
-                                <Radio
-                                    value="individual"
-                                    className="round_radio_button"
-                                >
-                                    individual
-                                </Radio>
-                            </Radio.Group>
+                                    <Radio.Button value="collection">
+                                        collection
+                                    </Radio.Button>
+                                    <Radio.Button value="individual">
+                                        individual
+                                    </Radio.Button>
+                                </Radio.Group>
+                            </div>
                         </Form.Item>
 
                         <Form.Item
@@ -141,52 +171,79 @@ const CreateGroup = () => {
                                 },
                             ]}
                         >
-                            <input className={style.inputstyle} />
+                            <InputNumber
+                                className={style.inputstyle}
+                                prefix={<LineChartOutlined />}
+                                min={1}
+                            />
                         </Form.Item>
 
                         <Form.Item
-                            label="Dimension parameters "
-                            name="parameters"
+                            label="Select"
+                            name="select"
                             rules={[
                                 {
-                                    // required: true,
-                                    message: "Please input  Parameters",
+                                    required: true,
+                                    message: "Please choose a dimension",
                                 },
                             ]}
                         >
-                            <span>
-                                Arity Select:
-                                <select
-                                    onChange={(e) => {
-                                        const selectedDimension = parseInt(
-                                            e.target.value
-                                        );
-                                        // setDimension(selectedDimension);
-                                        setArity(
-                                            Array(selectedDimension).fill("")
-                                        );
-                                    }}
-                                    className={style.option}
-                                >
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                </select>
-                            </span>
-                            <span className={style.parameters}>
-                                Please input parameters name :
-                            </span>
-                            <span className={style.parameters}>
+                            <Select
+                                placeholder="Arity Select"
+                                name="select"
+                                onChange={(value) => {
+                                    const newArray = [
+                                        ...Array(Number(value)),
+                                    ].map(() => "");
+                                    setArity(newArray);
+                                }}
+                            >
+                                <Select.Option value="1">1</Select.Option>
+                                <Select.Option value="2">2</Select.Option>
+                                <Select.Option value="3">3</Select.Option>
+                                <Select.Option value="4">4</Select.Option>
+                                <Select.Option value="5">5</Select.Option>
+                                <Select.Option value="6">6</Select.Option>
+                            </Select>
+                        </Form.Item>
+                        <Form.Item>
+                            <Button
+                                style={{ flexBasis: "45%" }}
+                                type="primary"
+                                onClick={showbottomDrawer}
+                            >
+                                Parameter Name
+                            </Button>
+                        </Form.Item>
+                        <Drawer
+                            title="Please input parameter name"
+                            placement="bottom"
+                            size="large"
+                            height={500}
+                            onClose={onClosebottom}
+                            open={openbottom}
+                            extra={
+                                <Space>
+                                    <Button onClick={onClosebottom}>
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        type="primary"
+                                        onClick={onClosebottomAndSubmit}
+                                    >
+                                        OK
+                                    </Button>
+                                </Space>
+                            }
+                        >
+                            <div className={style.parameters}>
                                 {arity.map((value, index) => (
                                     <Form.Item
                                         name={index}
                                         key={index}
                                         className={style.parameters_input}
                                     >
-                                        <input
+                                        <Input
                                             value={value}
                                             onChange={(e) => {
                                                 const newArray = [...arity];
@@ -197,8 +254,8 @@ const CreateGroup = () => {
                                         />
                                     </Form.Item>
                                 ))}
-                            </span>
-                        </Form.Item>
+                            </div>
+                        </Drawer>
 
                         <Form.Item
                             label="Group Description"
@@ -219,7 +276,7 @@ const CreateGroup = () => {
                             />
                         </Form.Item>
 
-                        <Form.Item className={style.Submitbtn}>
+                        <div id="createbtn">
                             <Button
                                 type="primary"
                                 htmlType="submit"
@@ -228,11 +285,10 @@ const CreateGroup = () => {
                             >
                                 Submit
                             </Button>
-                        </Form.Item>
+                        </div>
                     </Form>
-
                     <Modal
-                        visible={isSuccessModalVisible}
+                        open={isSuccessModalVisible}
                         onCancel={handleSuccessModalClose}
                         onOk={handleSuccessModalClose}
                         okText="Close"
@@ -240,7 +296,7 @@ const CreateGroup = () => {
                         centered
                         className="success-modal-style"
                     >
-                        <p>submit success！</p>
+                        <span>Submit success!</span>
                     </Modal>
                 </main>
             </div>

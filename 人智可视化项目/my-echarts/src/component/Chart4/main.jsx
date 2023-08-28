@@ -5,15 +5,16 @@ import Alldatasets from "../Alldatasets/main";
 import Mydatasets from "../Mydatasets/main";
 import Aboutme from "../Aboutme/main";
 import UploadMyData from "../UploadMydata/main";
-import "./main.css";
+import { useNavigate } from "react-router-dom";
 
 function Chart4() {
     const box = useRef(null);
     const [which, setWhich] = useState(0);
-    const IsChart = (index) => {
+    const navigate = useNavigate();
+    const IsChart = (index, url) => {
+        navigate(`/Chartdata/Chart4/${url}`);
         setWhich(index);
     };
-
     return (
         <>
             <div className={style.content}>
@@ -23,7 +24,7 @@ function Chart4() {
                             <li>
                                 <button
                                     className={style.btnheader}
-                                    onClick={() => IsChart(0)}
+                                    onClick={() => IsChart(0, "Alldatasets")}
                                 >
                                     All data
                                 </button>
@@ -31,7 +32,7 @@ function Chart4() {
                             <li>
                                 <button
                                     className={style.btnheader}
-                                    onClick={() => IsChart(1)}
+                                    onClick={() => IsChart(1, "Mydatasets")}
                                 >
                                     Data I link to
                                 </button>
@@ -39,7 +40,7 @@ function Chart4() {
                             <li>
                                 <button
                                     className={style.btnheader}
-                                    onClick={() => IsChart(2)}
+                                    onClick={() => IsChart(2, "Aboutme")}
                                 >
                                     About me
                                 </button>
@@ -47,7 +48,7 @@ function Chart4() {
                             <li>
                                 <button
                                     className={style.btnheader}
-                                    onClick={() => IsChart(3)}
+                                    onClick={() => IsChart(3, "UploadMyData")}
                                 >
                                     Upload my data
                                 </button>
@@ -55,13 +56,17 @@ function Chart4() {
                         </ul>
                     </div>
                     <div ref={box} className={style.middle_buttom}>
-                        {which === 0 ? <Alldatasets />
-                            : which === 1 ? < Mydatasets />
-                                : which === 2 ? <Aboutme />
-                                    : <UploadMyData />}
+                        {which === 0 ? (
+                            <Alldatasets />
+                        ) : which === 1 ? (
+                            <Mydatasets />
+                        ) : which === 2 ? (
+                            <Aboutme />
+                        ) : (
+                            <UploadMyData />
+                        )}
                     </div>
                 </div>
-
             </div>
         </>
     );

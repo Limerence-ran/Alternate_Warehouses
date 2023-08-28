@@ -11,8 +11,7 @@ let slaveSymbol =
 
 export default function DynamicRelationChart(props) {
     const data = props.propdata;
-    // console.log("props.propdata:", data)
-    // Create nodes and links based on the data
+    console.log(props.propdata);
     const createNodesAndLinks = () => {
         const centerNode = {
             id: "center",
@@ -56,10 +55,7 @@ export default function DynamicRelationChart(props) {
 
         return { nodes, links };
     };
-
     const { nodes, links } = createNodesAndLinks();
-    // console.log("nodes, links->", nodes, links);
-
     const option = {
         title: {
             text: "Database diagram",
@@ -144,7 +140,11 @@ export default function DynamicRelationChart(props) {
     return (
         <ReactECharts
             option={option}
-            style={{ height: "100%", width: "100%" }}
+            style={{
+                height: "100%",
+                width: "100%",
+                backgroundColor: "#ebebeb",
+            }}
         />
     );
 }

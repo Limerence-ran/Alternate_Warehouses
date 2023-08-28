@@ -1,17 +1,18 @@
 import React from "react";
 import * as echarts from "echarts";
 
-class Bar extends React.Component {
+class EBar extends React.Component {
     constructor(props) {
         super(props);
     }
+ 
     componentDidMount() {
-        var chartDom = document.getElementById("main");
+        var chartDom = document.getElementById("Emainbar");
         var myChart = echarts.init(chartDom);
         var option;
         // prettier-ignore
         let dataAxis = [];
-        let data = this.props.data_xy.distance;
+        let data = this.props.data_xy.every_dot_var[0];
         for (let i = 0; i < data.length; i++) {
             dataAxis.push("");
         }
@@ -23,7 +24,7 @@ class Bar extends React.Component {
         option = {
             backgroundColor: "rgb(214 216 254)",
             title: {
-                text: "Magnitude of change",
+                text: "The Var of Every Dot",
                 bottom: "4%",
                 left: "center",
                 textStyle: {
@@ -174,7 +175,7 @@ class Bar extends React.Component {
     render() {
         return (
             <div
-                id="main"
+                id="Emainbar"
                 style={{
                     width: "100%",
                     height: "100%",
@@ -184,4 +185,4 @@ class Bar extends React.Component {
     }
 }
 
-export default Bar;
+export default EBar;

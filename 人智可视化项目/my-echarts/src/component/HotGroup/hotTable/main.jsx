@@ -38,9 +38,7 @@ const HotTable = () => {
         };
         setLoading(true);
         fetch(`http://39.98.41.126:31130/groups/page`, { headers })
-            // fetch(`https://randomuser.me/api?${qs.stringify(getRandomuserParams(tableParams))}`, { headers })
             .then((res) => res.json())
-
             .then((res) => {
                 let results = res.data.data;
                 console.log(res.data.data);
@@ -126,16 +124,11 @@ const HotTable = () => {
 
     const columns = [
         {
-            title: "Rank",
-            dataIndex: '1',
-        },
-
-        {
             title: "Group Name",
             dataIndex: "groupName",
         },
         {
-            title: "Group Type",
+            title: "Group Popularity",
             dataIndex: "popularity",
         },
         {

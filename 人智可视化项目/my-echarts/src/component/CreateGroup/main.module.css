@@ -1,38 +1,26 @@
- .content {
+.content {
+    transition: all 0.3s ease;
+    width: 90%;
+    height: 100%;
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
 
-     transition: all .3s ease;
-     width: 90%;
-     height: 100%;
-     position: relative;
-     background-color: #fff;
- }
+.mainbox {
+    width: 85%;
+    height: 100%;
+    margin: 0 auto;
+}
 
-.mainbox{
-    /* min-width: 600px;
-    max-width: 1200px; */
-    /* background-color:rgb(183, 186, 251); */
-   /* margin-left: 40px; */
-   width: 90%;
-    height:100%;
-    padding: 0;
-    /* padding-left: 70px; */
-   
-} 
 .formstyle {
-    /* background-color: rgb(183, 186, 251); */
-    /* padding: 20px; */
     border-radius: 6px;
-    height:90%;
-  padding-top: 5%;
-    /* padding: 10px 0px; */
-
 }
 
 .inputstyle {
     width: 100%;
     height: 100%;
-    /* height: 200px; */
-    background-color: #f7eded;
 }
 
 .round_radio_button {
@@ -46,34 +34,20 @@
     text-align: center;
     font-size: 16px;
 }
-.option{
-    margin-left: 10px;
-}
+
 .textareastyle {
     width: 100%;
     height: 30%;
-    background-color: #f7eded;
-}
-.Submitbtn{
-    width: 100%;
-    height: 10%;
-    /* display: flex; */
-   /* align-items: center; */
-   position: relative;
-}
-.SubmitButton {
-    position: absolute;
-    width: 20%;
-  left: 40%;
-top: 50%;
-    /* margin: 0 auto; */
-   background-color: #949eda;
 }
 
+.SubmitButton {
+    text-align: center;
+    background-color: #8f7bfb;
+}
 .success-modal-style {
     text-align: center;
     font-size: 18px;
-    width: 370px;
+    width: 50%;
 }
 
 @media (max-width: 576px) {
@@ -83,32 +57,10 @@ top: 50%;
         font-size: 14px;
     }
 }
-
-.parameters{
-    margin-left: 20px;
-    height: 30px;
-  
-}
-.parameters_input{
-    display: inline-block;
-    height: 30px;
-    margin: 0;
-   
-}
-input{
-    border: 1px solid #d7c3f0;
-    background-color: #e5dfdf;
-    border-radius: 4px;
-}
-.parameters input{
-    width: 55px;
-    height: 19px;
-    margin-right: 15px;
-    /* border:1px solid #8c54d0; */
-    background-color: #e5dfdf;
-    border-radius: 4px;
-   padding: 0;
-}
-input:focus{
-    outline: none;
+.radio {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }

@@ -1,11 +1,7 @@
-
-
 .login_demo_left {
-  
     height: 85%;
-   width: 100%;
-   margin-top: 15%;
-
+    width: 100%;
+    margin-top: 15%;
 }
 
 .login_demo_left_img {
@@ -19,8 +15,8 @@
     background-size: 100% 100%;
     position: absolute;
     width: 70%;
-    height:60%;
-   left: 5%;
+    height: 60%;
+    left: 5%;
     background-image: url("../../assets/login-demo2.png");
 }
 
@@ -37,7 +33,6 @@
 .index1 {
     width: 20%;
     height: 20%;
-  
     right: 10%;
     transform-origin: center;
     transform: rotateZ(180deg);
@@ -45,8 +40,8 @@
 
 .index2 {
     width: 9%;
-        height: 9%;
-    top:25%;
+    height: 9%;
+    top: 25%;
     right: 20%;
     transform: rotateZ(-143.75deg);
 }
@@ -61,16 +56,16 @@
 }
 
 .index4 {
-    width:9%;
+    width: 9%;
     height: 9%;
-    top:60%;
-  right: 40%;
+    top: 60%;
+    right: 40%;
     transform: rotateZ(-41.24deg);
 }
 
 .index5 {
-  width: 25%;
+    width: 25%;
     height: 25%;
-    top:40%;
+    top: 40%;
     right: 3%;
 }

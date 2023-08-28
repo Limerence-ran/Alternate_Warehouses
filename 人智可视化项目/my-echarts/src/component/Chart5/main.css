@@ -1,0 +1,21 @@
+.ant-table-content .ant-table-thead .ant-table-cell {
+    text-align: center;
+}
+.ant-steps {
+    height: 100%;
+    padding-left: 35%;
+}
+#radio .ant-radio-group {
+    flex-basis: 100%;
+}
+#radio .ant-radio-button-wrapper {
+    width: 50%;
+    text-align: center;
+}
+#chart .ant-btn,
+#dataweight .ant-btn {
+    width: 80%;
+}
+.ant-input-number-suffix {
+    transform: translateX(-200%); /* 调整后缀元素的垂直对齐方式 */
+}

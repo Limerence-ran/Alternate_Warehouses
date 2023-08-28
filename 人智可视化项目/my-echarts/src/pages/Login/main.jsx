@@ -18,8 +18,7 @@ const Login = function () {
                         <div className={styles.color_right}>
                             <LoginRegisterForm />
                         </div>
-                  </div>
-                   
+                    </div>
                 </div>
             </div>
         </div>

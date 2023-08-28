@@ -1,9 +1,7 @@
- .content {
-
-     transition: all .3s ease;
-     /* margin-left: 240px; */
-     width: 90%;
-     height: 100%;
-     position: relative;
-
- }
+.content {
+    transition: all 0.3s ease;
+    /* margin-left: 240px; */
+    width: 90%;
+    height: 100%;
+    position: relative;
+}

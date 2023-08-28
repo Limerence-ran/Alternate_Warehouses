@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Table, Button } from "antd";
-import { CaretRightOutlined } from "@ant-design/icons";
-import qs from "qs";
+import { Table, Button, Space } from "antd";
+import {
+    ExclamationCircleOutlined,
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+} from "@ant-design/icons";
 import "./main.css";
-import style from "./main.module.css";
-import { message } from "antd";
+import { message, Tag, notification } from "antd";
 import axios from "axios";
 
 const Abouttable = () => {
@@ -16,6 +18,43 @@ const Abouttable = () => {
             pageSize: 10,
         },
     });
+    const [api, contextHolder] = notification.useNotification();
+    const openNotification = (record) => {
+        const key = `open${Date.now()}`;
+        const btn = (
+            <Space>
+                <Button
+                    type="dashed"
+                    danger
+                    size="small"
+                    onClick={() => {
+                        api.destroy();
+                        Reject(record);
+                    }}
+                >
+                    Reject
+                </Button>
+                <Button
+                    type="primary"
+                    size="small"
+                    onClick={() => {
+                        api.destroy();
+                        Agree(record);
+                    }}
+                >
+                    Agree
+                </Button>
+            </Space>
+        );
+        api.open({
+            message: "Notification Title",
+            description:
+                'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+            btn,
+            key,
+            onClose: close,
+        });
+    };
 
     const fetchData = () => {
         setLoading(true);
@@ -36,22 +75,18 @@ const Abouttable = () => {
             )
             .then((response) => {
                 const { code, msg, data } = response.data;
-                console.log(response);
-                setData(response.data.data);
-                setLoading(false);
-                setTableParams({
-                    ...tableParams,
-                    pagination: {
-                        ...tableParams.pagination,
-                        total: 200,
-                        // 200 is mock data, you should read it from server
-                        // total: data.totalCount,
-                    },
-                });
                 if (code === 1) {
+                    setData(data);
+                    setLoading(false);
+                    setTableParams({
+                        ...tableParams,
+                        pagination: {
+                            ...tableParams.pagination,
+                            total: 200,
+                        },
+                    });
                     // 查询成功
                     message.success("查询成功");
-                    console.log("数据:", data);
                 } else {
                     // 其他错误
                     message.error("查询失败: " + msg);
@@ -61,11 +96,9 @@ const Abouttable = () => {
                 message.error("请求出错");
                 console.log("请求出错", error);
             });
-      
     };
 
     useEffect(() => {
-        //    const myid= localStorage.getItem('myGroupid')
         fetchData();
     }, [JSON.stringify(tableParams)]);
 
@@ -81,7 +114,7 @@ const Abouttable = () => {
                     {
                         groupId: groupId,
                         username: username,
-                        operate: 1,
+                        operate: "1",
                     },
                     {
                         headers: {
@@ -91,19 +124,17 @@ const Abouttable = () => {
                     }
                 )
                 .then((response) => {
-                    const { code, msg, data } = response;
-
+                    const { code, msg } = response.data;
                     if (code === 1) {
                         message.success(msg);
-                        console.log("data:" + data);
                     } else {
-                        message.error("创建失败: " + msg);
+                        message.error("Processing failed: " + msg);
                         // 在这里处理其他错误情况的逻辑
                     }
                 })
                 .catch((error) => {
-                    message.error("请求出错");
-                    console.log("请求出错", error);
+                    message.error("There is a problem with the network");
+                    console.log("There is a problem with the network", error);
                 });
         };
         AgreeApply(groupId, username);
@@ -121,7 +152,7 @@ const Abouttable = () => {
                     {
                         groupId: groupId,
                         username: username,
-                        operate: 2,
+                        operate: "2",
                     },
                     {
                         headers: {
@@ -131,19 +162,18 @@ const Abouttable = () => {
                     }
                 )
                 .then((response) => {
-                    const { code, msg, data } = response;
+                    const { code, msg } = response.data;
 
                     if (code === 1) {
                         message.success(msg);
-                        console.log("data:" + data);
                     } else {
-                        message.error("创建失败: " + msg);
+                        message.error("Processing failed:" + msg);
                         // 在这里处理其他错误情况的逻辑
                     }
                 })
                 .catch((error) => {
-                    message.error("请求出错");
-                    console.log("请求出错", error);
+                    message.error("There is a problem with the network");
+                    console.log("There is a problem with the network", error);
                 });
         };
         RejectApply(groupId, username);
@@ -162,12 +192,6 @@ const Abouttable = () => {
         }
     };
 
-    const getRandomuserParams = (params) => ({
-        results: params.pagination?.pageSize,
-        page: params.pagination?.current,
-        ...params,
-    });
-
     const columns = [
         {
             title: "Owners",
@@ -181,30 +205,23 @@ const Abouttable = () => {
             title: "Current status",
             render: (e, record) => (
                 <>
+                    {contextHolder}
                     {record.status === "0" ? (
-                        <span className={style.wait}>Waiting for reply</span>
+                        <Tag
+                            color="warning"
+                            icon={<ExclamationCircleOutlined />}
+                            onChange={openNotification(record)}
+                        >
+                            Waiting for reply
+                        </Tag>
                     ) : record.status === "1" ? (
-                        <Button className={style.get}> Agreed</Button>
-                    ) : record.status === "2" ? (
-                        <Button className={style.get}> Rejected</Button>
+                        <Tag color="success" icon={<CheckCircleOutlined />}>
+                            Agreed
+                        </Tag>
                     ) : (
-                        <>
-                            {" "}
-                            <Button
-                                className={style.get}
-                                onClick={() => Agree(record)}
-                            >
-                                {" "}
-                                Agreed
-                            </Button>
-                            <Button
-                                className={style.get}
-                                onClick={() => Rejected(record)}
-                            >
-                                {" "}
-                                Rejected
-                            </Button>
-                        </>
+                        <Tag color="error" icon={<CloseCircleOutlined />}>
+                            Rejected
+                        </Tag>
                     )}
                 </>
             ),
@@ -231,38 +248,3 @@ const Abouttable = () => {
 };
 
 export default Abouttable;
-
-// import { message } from "antd";
-// import axios from "axios";
-// const Applymessage = () => {
-//     const token = localStorage.getItem("token"); // 从本地存储获取 token
-//     axios
-//         .get(
-//             `http://39.98.41.126:31130/users/readMessages`,
-//             {
-//                 headers: {
-//                     Authorization: token, // 使用从本地存储中获取的 token
-//                     "Content-Type": "application/json",
-//                 },
-//             }
-//         )
-//         .then((response) => {
-//             const { code, msg, data } = response;
-
-//             if (code === 1) {
-//                 // 查询成功
-//                 message.success(msg);
-//                 console.log("数据:", data);
-//             } else {
-//                 // 其他错误
-//                 message.error("查询失败: " + msg);
-//             }
-//         })
-//         .catch((error) => {
-//             message.error("请求出错");
-//             console.log("请求出错", error);
-//         });
-// };
-
-// // 使用示例
-// Applymessage();

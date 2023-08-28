@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Table } from "antd";
-import { CaretRightOutlined } from "@ant-design/icons";
-import qs from "qs";
+import { useNavigate } from "react-router-dom";
 import "./main.css";
 import style from "./main.module.css";
 import axios from "axios";
-import { message } from "antd";
+import { message, Button } from "antd";
 
 const Pagetable1 = ({ handleAjaxChange }) => {
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
+    const [mydata, setMydata] = useState([]);
     const [loading, setLoading] = useState(false);
     const [tableParams, setTableParams] = useState({
         pagination: {
@@ -16,11 +16,12 @@ const Pagetable1 = ({ handleAjaxChange }) => {
             pageSize: 10,
         },
     });
-
-    const idGroup = (id) => {
+    const [disabledButtons, setDisabledButtons] = useState([]);
+    const navigate = useNavigate();
+    const idGroup = async (id) => {
         const token = localStorage.getItem("token"); // 从本地存储获取 token
         setLoading(true);
-        axios
+        await axios
             .post(
                 "http://39.98.41.126:31130/resource/page",
                 // 要上传的群组信息
@@ -36,37 +37,57 @@ const Pagetable1 = ({ handleAjaxChange }) => {
             )
             .then((response) => {
                 const { code, msg, data } = response.data;
-                // console.log(response);
-                setData(response.data.data);
-
-                setLoading(false);
-                setTableParams({
-                    ...tableParams,
-                    pagination: {
-                        ...tableParams.pagination,
-                        total: 200,
-                    },
-                });
                 if (code === 1) {
-                    message.success(msg);
-                    // console.log("data:" + data);
+                    setData(data.data);
+                    setLoading(false);
+                    setTableParams({
+                        ...tableParams,
+                        pagination: {
+                            ...tableParams.pagination,
+                            total: 200,
+                        },
+                    });
                 } else {
-                    message.error("连接失败: " + msg);
+                    message.error("The connection failed: " + msg);
                     // 在这里处理其他错误情况的逻辑
                 }
             })
             .catch((error) => {
-                message.error("请求出错");
-                console.log("请求出错", error);
+                message.error("There is a problem with the network");
+                console.log("There is a problem with the network", error);
+            });
+        await axios
+            .post(
+                "http://39.98.41.126:31130/resource/resource",
+                // 要上传的群组信息
+                {
+                    id: id,
+                },
+                {
+                    headers: {
+                        Authorization: token, // 使用从本地存储中获取的 token
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then((response) => {
+                const { code, msg, data } = response.data;
+                if (code === 1) {
+                    setMydata(data.data);
+                    message.success("Request Granted" + msg);
+                } else {
+                    message.error(msg);
+                }
+            })
+            .catch((error) => {
+                message.error(" An error occurred in the request");
+                console.log(error);
             });
     };
 
     useEffect(() => {
-        // fetchData();
         let Groupid = localStorage.getItem("myGroupid");
-        console.log(Groupid);
         idGroup(Groupid);
-        // fetchData();
     }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
@@ -82,16 +103,14 @@ const Pagetable1 = ({ handleAjaxChange }) => {
         }
     };
     const onclickGet = (record) => {
-        console.log("owner", record);
         let objectId = record.ownerId;
         let id = localStorage.getItem("myGroupid");
-
-        const Getpost = (id, objectId) => {
+        let recordId = record.id;
+        const Getpost = (id, objectId, recordId) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
                 .post(
                     "http://39.98.41.126:31130/users/putApplication",
-
                     {
                         groupId: id + "",
                         objectId: objectId + "",
@@ -104,30 +123,23 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                     }
                 )
                 .then((response) => {
-                    const { code, msg, data } = response.data;
+                    const { code, msg } = response.data;
                     if (code === 1) {
-                        console.log("data:" + data);
-                        // 在这里处理成功的逻辑
+                        message.success("Request sent");
+                        // 将被点击按钮的唯一标识添加到 disabledButtons 数组中
+                        setDisabledButtons([...disabledButtons, recordId]);
                     } else {
-                        message.error("创建失败: " + msg);
+                        message.error("The request failed: " + msg);
                     }
                 })
                 .catch((error) => {
-                    message.error("请求出错");
-                    console.log("请求出错", error);
+                    message.error("There is a problem with the network");
+                    console.log("There is a problem with the network", error);
                 });
         };
-
-        Getpost(id, objectId);
+        Getpost(id, objectId, recordId);
     };
-
-    const getRandomuserParams = (params) => ({
-        results: params.pagination?.pageSize,
-        page: params.pagination?.current,
-        ...params,
-    });
-
-    const columns = [
+    let columns = [
         {
             title: "ResourceName",
             dataIndex: "resourceName",
@@ -144,18 +156,76 @@ const Pagetable1 = ({ handleAjaxChange }) => {
             title: "ReferenceQuantity",
             dataIndex: "referenceQuantity",
         },
-
         {
             title: "",
-            render: (e, record) => (
-                <button
-                    className={style.getbtn}
-                    onClick={() => onclickGet(record)}
-                >
-                    {" "}
-                    Get
-                </button>
-            ),
+            render: (e, record) => {
+                console.log(mydata);
+                let useOrGet = mydata.some(
+                    (obj) => obj.resourceName === record.resourceName
+                );
+                if (useOrGet) {
+                    return (
+                        <Button
+                            className={style.getbtn}
+                            onClick={() => onclickGet(record)}
+                            disabled={disabledButtons.includes(record.id)} // 判断按钮是否被禁用
+                        >
+                            Get
+                        </Button>
+                    );
+                } else {
+                    return (
+                        <Button
+                            className={style.getbtn2}
+                            onClick={() => {
+                                //判断有无上传数据
+                                const ajax = async () => {
+                                    try {
+                                        // 发送请求
+                                        const response = await axios({
+                                            url: "http://39.98.41.126:31130/resource/resource",
+                                            method: "PUT",
+                                            headers: {
+                                                Authorization:
+                                                    localStorage.getItem(
+                                                        "token"
+                                                    ), // 替换为你的实际授权头部
+                                            },
+                                            data: {
+                                                id: localStorage.getItem(
+                                                    "myGroupid"
+                                                ),
+                                            },
+                                        });
+                                        // 处理成功状态
+                                        const { code, msg } = response.data;
+                                        if (code === 1) {
+                                            message.success(
+                                                "Data request successful"
+                                            );
+                                            navigate("/Chartdata/Chart5");
+                                        } else {
+                                            message.error(msg);
+                                            navigate(
+                                                "/Chartdata/Chart4/UploadMyData"
+                                            );
+                                        }
+                                    } catch (error) {
+                                        // 处理错误状态
+                                        message.error(
+                                            "The request failed. Please check your network connection"
+                                        );
+                                        throw error; // 可以选择抛出错误，供调用者处理
+                                    }
+                                };
+                                ajax();
+                            }}
+                        >
+                            Use
+                        </Button>
+                    );
+                }
+            },
         },
     ];
 
