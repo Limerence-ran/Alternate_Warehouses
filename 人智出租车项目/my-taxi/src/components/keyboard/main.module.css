@@ -7,11 +7,17 @@
     background: #0b62b8;
     /* opacity: 0.8; */
     color: #fff;
+    font-size: 10px;
 }
 .keyboard {
     position: relative;
+<<<<<<< HEAD
     width: 30%;
     height: 100%;
+=======
+    width: 25%;
+    height: 60%;
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
     /* background-color: #fff; */
 }
 
@@ -50,5 +56,5 @@
 }
 .search input::placeholder {
     color: aliceblue;
-    font-size: 10px;
+    font-size: 8px;
 }

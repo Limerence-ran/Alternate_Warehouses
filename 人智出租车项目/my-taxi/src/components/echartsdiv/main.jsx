@@ -20,13 +20,17 @@ export default function EchartsDiv(props) {
                     }}
                 >
                     {props.type === "Liner" ? (
-                        <Liner />
+                        <Liner/>
                     ) : props.type === "Liner1" ? (
-                        <Liner1 />
+                            <Liner1/>
                     ) : props.type === "BarChart" ? (
+<<<<<<< HEAD
                         <BarChart />
                     ) : props.type === "Keyboard" ? (
                         <Keyboard />
+=======
+                                <BarChart/>
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                     ) : null}
                 </div>
                 <div

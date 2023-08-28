@@ -4,8 +4,13 @@
 }
 
 .body {
+<<<<<<< HEAD
     /* height: 1000px; */
     height: 100vh;
+=======
+    height: 100vh;
+
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
     border: 1px solid rgba(25, 186, 139, 0.17);
     /* background: url(../assets/images/image\ 75.png); */
     /* background-color: rgb(2, 45, 95); */
@@ -159,6 +164,7 @@
     }
 }
 
+<<<<<<< HEAD
 .check_box {
     height: 15%;
     width: 75%;
@@ -237,6 +243,56 @@
     background: #1479ea;
 }
 /* .authButton:hover{
+=======
+                                    .authButton span {
+                                       position: absolute;
+                                       left: 0;
+                                       top: 0;
+                                       width: 94%;
+                                       height: 85%;
+                                       background: transparent;
+                                       z-index: -1;
+                                       border: 3px solid #1479ea;
+                                       box-shadow: inset 0px 0px 25px #1479ea;
+                                       border-radius: 2px;
+                                       margin-left: 1%;
+                                     
+                                   }
+                
+                                     .authButton span::before {
+                                       content: "";
+                                       display: block;
+               
+                                       position: absolute;
+                                       width: 10%;
+                                        border-radius: 2px;
+                                       height: 990%;
+                                       background: rgb(0,
+                                        19,
+                                        41);
+                                       top: 50%;
+                                       left: 50%;
+                                       transform: translate(-50%, -50%) rotate(-60deg);
+                                       transition: all 0.3s;
+                                   }
+                
+                                     .authButton:hover span::before {
+                                       transform: translate(-50%, -50%) rotate(-90deg);
+                                       width: 100%;
+                                       background: #1479ea;
+                                    border-radius: 10px;
+                                   }
+                
+                                   .authButton:hover {
+                                       color: white;
+                                   }
+                
+                                 .authButton:active span::before {
+                                       background: #1479ea;
+                                    
+                                   }
+     /* .authButton:hover{
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
              box-shadow: inset 0px 0px 25px #1479ea;
              cursor: pointer;
             }

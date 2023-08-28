@@ -23,6 +23,7 @@ export default function BarChart() {
     const option = {
         tooltip: {
             trigger: "axis",
+            fontSize:"10px",
             axisPointer: {
                 // 坐标轴指示器，坐标轴触发有效
                 type: "shadow",
@@ -33,9 +34,9 @@ export default function BarChart() {
         },
         grid: {
             left: "2%",
-            top: "10%",
+            top: "15%",
             right: "0%",
-            bottom: "25%",
+            bottom: "2%",
             containLabel: true,
         },
         legend: {
@@ -91,5 +92,5 @@ export default function BarChart() {
         ],
     };
 
-    return <ReactECharts option={option} />;
+    return <ReactECharts style={{ width: "100%", height: "100%" }} option={option} />;
 }

@@ -9,230 +9,231 @@ import adsIcon from "../../assets/images/ads.png";
 import "./main.css";
 const EchartMap = () => {
     const [icon, setIcon] = useState(carIcon);
-    useEffect(() => {
-        //时间生成器
-        const TimeLIne = Array.from(Array(24).keys());
-        var panyuData = [
-            { value: [113.393116, 23.039404], name: "华南师范" },
-            { value: [113.405492, 23.048527], name: "北京师范" },
-            { value: [113.352062, 23.139339], name: "华南理工" },
-            { value: [113.383799, 22.942212], name: "中山大学" },
-            { value: [113.366177, 22.946164], name: "广东工业大学" },
-            { value: [113.325536, 22.967779], name: "暨南大学" },
-            { value: [113.376519, 22.910552], name: "哈工大学" },
-        ];
-        // const panyuNameArray = panyuData.map((item) => item.name);
-        // console.log('panyuNameArray:', panyuNameArray)
-        // 热点圆区域
-        var HotPoints = [
-            {
-                value: [113.383917, 22.93756],
-                name: "番禺区",
-                scale: 1709,
-            },
-            {
-                value: [113.2732, 23.157159],
-                name: "白云区",
-                scale: 1709,
-            },
-            {
-                value: [113.361597, 23.124817],
-                name: "天河区",
-                scale: 17091709,
-            },
-            {
-                value: [113.238879, 23.128594],
-                name: "荔湾区",
-                scale: 17091709,
-            },
-            {
-                value: [113.261503, 23.131377],
-                name: "越秀区",
-                scale: 17091709,
-            },
-            {
-                value: [113.311916, 23.086615],
-                name: "海珠区",
-                scale: 17091709,
-            },
-            {
-                value: [113.45378, 23.10901],
-                name: "黄埔区",
-                scale: 17091709,
-            },
-        ];
-        //涟漪点-贝塞尔曲线数据
-        var color = [
-            "#6bcc75",
-            "#65c78b",
-            "#5fc2a0",
-            "#5abead",
-            "#52b9c7",
-            "#4fb6d2",
-            "#4ab2e5",
-            "#52b9c7",
-            "#5abead",
-            "#dfae10",
-            "#d5b314",
-            "#c1bb1f",
-            "#f34e2b",
-            "#f56321",
-            "#f56f1c",
-            "#4ab2e5",
-            "#4fb6d2",
-            "#f58414",
-            "#f58f0e",
-            "#f5a305",
-            "#e7ab0b",
-            "#b9be23",
-            "#e7ab0b",
-            "#dfae10",
-            "#d5b314",
-            "#c1bb1f",
-            "#b9be23",
-            "#a6c62c",
-            "#96cc34",
-            "#89d23b",
-            "#7ed741",
-            "#77d64c",
-            "#71d162",
-        ];
-        var points = [
-            {
-                value: [118.8062, 31.9208],
-            },
-            {
-                value: [127.9688, 45.368],
-            },
-            {
-                value: [110.3467, 41.4899],
-            },
-            {
-                value: [125.8154, 44.2584],
-            },
-            {
-                value: [116.4551, 40.2539],
-            },
-            {
-                value: [123.1238, 42.1216],
-            },
-            {
-                value: [114.4995, 38.1006],
-            },
-            {
-                value: [117.4219, 39.4189],
-            },
-            {
-                value: [112.3352, 37.9413],
-            },
-            {
-                value: [109.1162, 34.2004],
-            },
-            {
-                value: [103.5901, 36.3043],
-            },
-            {
-                value: [106.3586, 38.1775],
-            },
-            {
-                value: [101.4038, 36.8207],
-            },
-            {
-                value: [103.9526, 30.7617],
-            },
-            {
-                value: [108.384366, 30.439702],
-            },
-            {
-                value: [113.0823, 28.2568],
-            },
-            {
-                value: [102.9199, 25.46639],
-            },
-            {
-                value: [119.4543, 25.9222],
-            },
-            {
-                value: [91.11, 29.97],
-            },
-            {
-                value: [87.68, 43.77],
-            },
-        ];
-        //分类热点的数据
-        var geoCoordMap = {
-            北京: [116.46, 39.92],
-            成都: [104.06, 30.67],
-            杭州: [120.19, 30.26],
-            济南: [117, 36.65],
-            福州: [119.3, 26.08],
-            上海: [121.48, 31.22],
-            重庆: [106.54, 29.59],
-            深圳: [114.07, 22.62],
-            宁波: [121.56, 29.86],
-            南昌: [115.89, 28.68],
-            广州: [113.23, 23.16],
-            厦门: [118.1, 24.46],
-            太原: [112.53, 37.87],
-            哈尔滨: [126.63, 45.75],
-            西安: [108.95, 34.27],
-            沈阳: [123.38, 41.8],
-            大连: [121.62, 38.92],
-            海口: [110.35, 20.02],
-            长沙: [113, 28.21],
-            银川: [106.27, 38.47],
-            石家庄: [114.48, 38.03],
-            昆明: [102.73, 25.04],
-            武汉: [114.31, 30.52],
-            呼和浩特: [111.65, 40.82],
-            天津: [117.2, 39.13],
-            贵阳: [106.71, 26.57],
-            兰州: [103.73, 36.03],
-            青岛: [120.33, 36.07],
-            南京: [118.78, 32.04],
-            长春: [125.35, 43.88],
-            郑州: [113.65, 34.76],
-            西宁: [101.74, 36.56],
-            合肥: [117.27, 31.86],
-            南宁: [108.33, 22.84],
-            拉萨: [91.11, 29.97],
-            乌鲁木齐: [87.68, 43.77],
-        };
-        // var data = [
-        //     { name: "成都", value: 88.7 },
-        //     { name: "重庆", value: 87.38 },
-        //     { name: "深圳", value: 87.37 },
-        //     { name: "昆明", value: 87.26 },
-        //     { name: "宁波", value: 87.1 },
-        //     { name: "南昌", value: 86.06 },
-        //     { name: "广州", value: 85.89 },
-        //     { name: "西安", value: 83.24 },
-        //     { name: "海口", value: 82.88 },
-        //     { name: "长沙", value: 82.85 },
-        //     { name: "银川", value: 82.49 },
-        //     { name: "呼和浩特", value: 81.61 },
-        //     { name: "贵阳", value: 80.71 },
-        //     { name: "兰州", value: 80.69 },
-        //     { name: "西宁", value: 79.07 },
-        //     { name: "南宁", value: 78.2 },
-        //     { name: "合肥", value: 77.29 },
-        //     { name: "乌鲁木齐", value: 76.91 },
-        //     { name: "拉萨", value: 76.01 },
-        // ];
-        // var convertData = function (data) {
-        //     var res = [];
-        //     for (var i = 0; i < data.length; i++) {
-        //         var geoCoord = geoCoordMap[data[i].name];
-        //         if (geoCoord) {
-        //             res.push({
-        //                 name: data[i].name,
-        //                 value: geoCoord.concat(data[i].value),
-        //             });
-        //         }
-        //     }
-        //     return res;
-        // };
+    //时间生成器
+    const TimeLIne = Array.from(Array(24).keys());
+    var panyuData = [
+        { value: [113.393116, 23.039404], name: "华南师范" },
+        { value: [113.405492, 23.048527], name: "北京师范" },
+        { value: [113.352062, 23.139339], name: "华南理工" },
+        { value: [113.383799, 22.942212], name: "中山大学" },
+        { value: [113.366177, 22.946164], name: "广东工业大学" },
+        { value: [113.325536, 22.967779], name: "暨南大学" },
+        { value: [113.376519, 22.910552], name: "哈工大学" },
+    ];
+    // const panyuNameArray = panyuData.map((item) => item.name);
+    // console.log('panyuNameArray:', panyuNameArray)
+    // 热点圆区域
+    var HotPoints = [
+        {
+            value: [113.383917, 22.93756],
+            name: "番禺区",
+            scale: 1709,
+        },
+        {
+            value: [113.2732, 23.157159],
+            name: "白云区",
+            scale: 1709,
+        },
+        {
+            value: [113.361597, 23.124817],
+            name: "天河区",
+            scale: 17091709,
+        },
+        {
+            value: [113.238879, 23.128594],
+            name: "荔湾区",
+            scale: 17091709,
+        },
+        {
+            value: [113.261503, 23.131377],
+            name: "越秀区",
+            scale: 17091709,
+        },
+        {
+            value: [113.311916, 23.086615],
+            name: "海珠区",
+            scale: 17091709,
+        },
+        {
+            value: [113.45378, 23.10901],
+            name: "黄埔区",
+            scale: 17091709,
+        },
+    ];
+    //涟漪点-贝塞尔曲线数据
+    var color = [
+        "#6bcc75",
+        "#65c78b",
+        "#5fc2a0",
+        "#5abead",
+        "#52b9c7",
+        "#4fb6d2",
+        "#4ab2e5",
+        "#52b9c7",
+        "#5abead",
+        "#dfae10",
+        "#d5b314",
+        "#c1bb1f",
+        "#f34e2b",
+        "#f56321",
+        "#f56f1c",
+        "#4ab2e5",
+        "#4fb6d2",
+        "#f58414",
+        "#f58f0e",
+        "#f5a305",
+        "#e7ab0b",
+        "#b9be23",
+        "#e7ab0b",
+        "#dfae10",
+        "#d5b314",
+        "#c1bb1f",
+        "#b9be23",
+        "#a6c62c",
+        "#96cc34",
+        "#89d23b",
+        "#7ed741",
+        "#77d64c",
+        "#71d162",
+    ];
+    var points = [
+        {
+            value: [118.8062, 31.9208],
+        },
+        {
+            value: [127.9688, 45.368],
+        },
+        {
+            value: [110.3467, 41.4899],
+        },
+        {
+            value: [125.8154, 44.2584],
+        },
+        {
+            value: [116.4551, 40.2539],
+        },
+        {
+            value: [123.1238, 42.1216],
+        },
+        {
+            value: [114.4995, 38.1006],
+        },
+        {
+            value: [117.4219, 39.4189],
+        },
+        {
+            value: [112.3352, 37.9413],
+        },
+        {
+            value: [109.1162, 34.2004],
+        },
+        {
+            value: [103.5901, 36.3043],
+        },
+        {
+            value: [106.3586, 38.1775],
+        },
+        {
+            value: [101.4038, 36.8207],
+        },
+        {
+            value: [103.9526, 30.7617],
+        },
+        {
+            value: [108.384366, 30.439702],
+        },
+        {
+            value: [113.0823, 28.2568],
+        },
+        {
+            value: [102.9199, 25.46639],
+        },
+        {
+            value: [119.4543, 25.9222],
+        },
+        {
+            value: [91.11, 29.97],
+        },
+        {
+            value: [87.68, 43.77],
+        },
+    ];
+    //分类热点的数据
+    var geoCoordMap = {
+        北京: [116.46, 39.92],
+        成都: [104.06, 30.67],
+        杭州: [120.19, 30.26],
+        济南: [117, 36.65],
+        福州: [119.3, 26.08],
+        上海: [121.48, 31.22],
+        重庆: [106.54, 29.59],
+        深圳: [114.07, 22.62],
+        宁波: [121.56, 29.86],
+        南昌: [115.89, 28.68],
+        广州: [113.23, 23.16],
+        厦门: [118.1, 24.46],
+        太原: [112.53, 37.87],
+        哈尔滨: [126.63, 45.75],
+        西安: [108.95, 34.27],
+        沈阳: [123.38, 41.8],
+        大连: [121.62, 38.92],
+        海口: [110.35, 20.02],
+        长沙: [113, 28.21],
+        银川: [106.27, 38.47],
+        石家庄: [114.48, 38.03],
+        昆明: [102.73, 25.04],
+        武汉: [114.31, 30.52],
+        呼和浩特: [111.65, 40.82],
+        天津: [117.2, 39.13],
+        贵阳: [106.71, 26.57],
+        兰州: [103.73, 36.03],
+        青岛: [120.33, 36.07],
+        南京: [118.78, 32.04],
+        长春: [125.35, 43.88],
+        郑州: [113.65, 34.76],
+        西宁: [101.74, 36.56],
+        合肥: [117.27, 31.86],
+        南宁: [108.33, 22.84],
+        拉萨: [91.11, 29.97],
+        乌鲁木齐: [87.68, 43.77],
+    };
+    // var data = [
+    //     { name: "成都", value: 88.7 },
+    //     { name: "重庆", value: 87.38 },
+    //     { name: "深圳", value: 87.37 },
+    //     { name: "昆明", value: 87.26 },
+    //     { name: "宁波", value: 87.1 },
+    //     { name: "南昌", value: 86.06 },
+    //     { name: "广州", value: 85.89 },
+    //     { name: "西安", value: 83.24 },
+    //     { name: "海口", value: 82.88 },
+    //     { name: "长沙", value: 82.85 },
+    //     { name: "银川", value: 82.49 },
+    //     { name: "呼和浩特", value: 81.61 },
+    //     { name: "贵阳", value: 80.71 },
+    //     { name: "兰州", value: 80.69 },
+    //     { name: "西宁", value: 79.07 },
+    //     { name: "南宁", value: 78.2 },
+    //     { name: "合肥", value: 77.29 },
+    //     { name: "乌鲁木齐", value: 76.91 },
+    //     { name: "拉萨", value: 76.01 },
+    // ];
 
+    // var convertData = function (data) {
+    //     var res = [];
+    //     for (var i = 0; i < data.length; i++) {
+    //         var geoCoord = geoCoordMap[data[i].name];
+    //         if (geoCoord) {
+    //             res.push({
+    //                 name: data[i].name,
+    //                 value: geoCoord.concat(data[i].value),
+    //             });
+    //         }
+    //     }
+    //     return res;
+    // };
+
+    useEffect(() => {
         //1、加载动画的option
         let option1 = {
             graphic: {
@@ -722,7 +723,6 @@ const EchartMap = () => {
                 // },
             ],
         };
-
         const mapChart = echarts.init(document.getElementById("aMap"));
         mapChart.setOption(option1);
 
@@ -1222,7 +1222,7 @@ const EchartMap = () => {
                 function addPolygon(data, center, name) {
                     let polygon = new AMap.Polygon({
                         path: data,
-                        fillColor: "#3d6eff",
+                        fillColor: color,
                         strokeOpacity: 1,
                         fillOpacity: 0.5,
                         strokeColor: "#2b8cbe",
@@ -1256,7 +1256,7 @@ const EchartMap = () => {
                     polygon.on("mouseout", () => {
                         polygon.setOptions({
                             fillOpacity: 0.5,
-                            fillColor: "#3d6eff",
+                            fillColor: color,
                         });
                     });
                     // 添加鼠标点击事件
@@ -1269,6 +1269,7 @@ const EchartMap = () => {
                             },
                         });
                     });
+
                     //统一处理地图放缩事件
                     amap.on("zoomchange", function () {
                         if (amap.getZoom() < 9 || amap.getZoom() >= 12) {
@@ -1287,7 +1288,8 @@ const EchartMap = () => {
                         addPolygon(
                             guangzhoujson,
                             GuangZhouJson.features[i].properties.center,
-                            GuangZhouJson.features[i].properties.name
+                            GuangZhouJson.features[i].properties.name,
+                            colorArray[i]
                         );
                     }
                 }
@@ -1377,154 +1379,151 @@ const EchartMap = () => {
             // ThreeGuangzhou(amap);
 
             // 区域极光渲染
-                // let loca = (window.loca = new Loca.Container({
-                //     map: amap,
-                // }));
-                // let ambLight = new Loca.AmbientLight({
-                //     intensity: 0.6,
-                //     color: "#fff",
-                // });
-                // loca.addLight(ambLight);
-                // let dirLight = new Loca.DirectionalLight({
-                //     intensity: 0.6,
-                //     color: "#fff",
-                //     target: [0, 0, 0],
-                //     position: [0, 1, 0],
-                // });
-                // loca.addLight(dirLight);
-                // let pointLight = new Loca.PointLight({
-                //     color: "rgb(100,100,100)",
-                //     position: [120.24289, 30.341335, 20000],
-                //     intensity: 3,
-                //     distance: 50000,
-                // });
-                // loca.addLight(pointLight);
-                // let geo = new Loca.GeoJSONSource({
-                //     url: "https://a.amap.com/Loca/static/loca-v2/demos/mock_data/hz_gn.json",
-                // });
-                // let colors = [
-                //     "#00C6DA",
-                //     "#9FE084",
-                //     "#9FE084",
-                //     "#5ACA70",
-                //     "#00AF53",
-                //     "#00873A",
-                //     "#006B31",
-                //     "#004835",
-                //     "#003829",
-                // ];
-                // let height = [10, 20, 40, 60, 80, 100, 120, 140, 160];
-                // height = height.map((h) => h * 2);
-                // let pl = new Loca.PolygonLayer({
-                //     zIndex: 120,
-                //     cullface: "none",
-                //     shininess: 1,
-                //     hasBottom: false,
-                //     blockHide: false,
-                //     hasSide: true,
-                //     hasTop: false,
-                //     depth: false,
-                // });
-                // pl.setSource(geo);
-                // pl.setStyle({
-                //     topColor: function (index, feature) {
-                //         return "rgba(255,255,255,0)";
-                //     },
-                //     sideTopColor: function (index, feature) {
-                //         return "rgba(0,255,255,0)";
-                //     },
-                //     sideBottomColor: function (index, feature) {
-                //         var v = feature.properties.health * 100;
-                //         return v < 40
-                //             ? colors[8]
-                //             : v < 50
-                //             ? colors[7]
-                //             : v < 55
-                //             ? colors[6]
-                //             : v < 60
-                //             ? colors[5]
-                //             : v < 65
-                //             ? colors[4]
-                //             : v < 70
-                //             ? colors[3]
-                //             : v < 75
-                //             ? colors[2]
-                //             : v < 80
-                //             ? colors[1]
-                //             : v < 100
-                //             ? colors[0]
-                //             : "green";
-                //     },
-                //     height: function (index, feature) {
-                //         var v = feature.properties.health * 80;
-                //         return v * v;
-                //     },
-                //     altitude: 0,
-                // });
-                // loca.add(pl);
-                // // 图例
-                // new Loca.Legend({
-                //     loca: loca,
-                //     title: {
-                //         label: "流量值",
-                //         fontColor: "#eee",
-                //     },
-                //     style: {
-                //         backgroundColor: "rgba(255,255,255,0.1)",
-                //         left: "20px",
-                //         bottom: "40px",
-                //     },
-                //     dataMap: [
-                //         { label: 100, color: colors[8] },
-                //         { label: 80, color: colors[7] },
-                //         { label: 75, color: colors[6] },
-                //         { label: 70, color: colors[5] },
-                //         { label: 65, color: colors[4] },
-                //         { label: 60, color: colors[3] },
-                //         { label: 55, color: colors[2] },
-                //         { label: 50, color: colors[1] },
-                //         { label: 40, color: colors[0] },
-                //     ],
-                // });
-            }
+            // let loca = (window.loca = new Loca.Container({
+            //     map: amap,
+            // }));
+            // let ambLight = new Loca.AmbientLight({
+            //     intensity: 0.6,
+            //     color: "#fff",
+            // });
+            // loca.addLight(ambLight);
+            // let dirLight = new Loca.DirectionalLight({
+            //     intensity: 0.6,
+            //     color: "#fff",
+            //     target: [0, 0, 0],
+            //     position: [0, 1, 0],
+            // });
+            // loca.addLight(dirLight);
+            // let pointLight = new Loca.PointLight({
+            //     color: "rgb(100,100,100)",
+            //     position: [120.24289, 30.341335, 20000],
+            //     intensity: 3,
+            //     distance: 50000,
+            // });
+            // loca.addLight(pointLight);
+            // let geo = new Loca.GeoJSONSource({
+            //     url: "https://a.amap.com/Loca/static/loca-v2/demos/mock_data/hz_gn.json",
+            // });
+            // let colors = [
+            //     "#00C6DA",
+            //     "#9FE084",
+            //     "#9FE084",
+            //     "#5ACA70",
+            //     "#00AF53",
+            //     "#00873A",
+            //     "#006B31",
+            //     "#004835",
+            //     "#003829",
+            // ];
+            // let height = [10, 20, 40, 60, 80, 100, 120, 140, 160];
+            // height = height.map((h) => h * 2);
+            // let pl = new Loca.PolygonLayer({
+            //     zIndex: 120,
+            //     cullface: "none",
+            //     shininess: 1,
+            //     hasBottom: false,
+            //     blockHide: false,
+            //     hasSide: true,
+            //     hasTop: false,
+            //     depth: false,
+            // });
+            // pl.setSource(geo);
+            // pl.setStyle({
+            //     topColor: function (index, feature) {
+            //         return "rgba(255,255,255,0)";
+            //     },
+            //     sideTopColor: function (index, feature) {
+            //         return "rgba(0,255,255,0)";
+            //     },
+            //     sideBottomColor: function (index, feature) {
+            //         var v = feature.properties.health * 100;
+            //         return v < 40
+            //             ? colors[8]
+            //             : v < 50
+            //             ? colors[7]
+            //             : v < 55
+            //             ? colors[6]
+            //             : v < 60
+            //             ? colors[5]
+            //             : v < 65
+            //             ? colors[4]
+            //             : v < 70
+            //             ? colors[3]
+            //             : v < 75
+            //             ? colors[2]
+            //             : v < 80
+            //             ? colors[1]
+            //             : v < 100
+            //             ? colors[0]
+            //             : "green";
+            //     },
+            //     height: function (index, feature) {
+            //         var v = feature.properties.health * 80;
+            //         return v * v;
+            //     },
+            //     altitude: 0,
+            // });
+            // loca.add(pl);
+            // // 图例
+            // new Loca.Legend({
+            //     loca: loca,
+            //     title: {
+            //         label: "流量值",
+            //         fontColor: "#eee",
+            //     },
+            //     style: {
+            //         backgroundColor: "rgba(255,255,255,0.1)",
+            //         left: "20px",
+            //         bottom: "40px",
+            //     },
+            //     dataMap: [
+            //         { label: 100, color: colors[8] },
+            //         { label: 80, color: colors[7] },
+            //         { label: 75, color: colors[6] },
+            //         { label: 70, color: colors[5] },
+            //         { label: 65, color: colors[4] },
+            //         { label: 60, color: colors[3] },
+            //         { label: 55, color: colors[2] },
+            //         { label: 50, color: colors[1] },
+            //         { label: 40, color: colors[0] },
+            //     ],
+            // });
+        }
 
-            // 根据延迟时间设置定时器，用于隐藏加载动画并显示动画元素
+        // 根据延迟时间设置定时器，用于隐藏加载动画并显示动画元素
+        setTimeout(function () {
+            //加载动画
+            mapChart.showLoading();
+            //时间轴渲染
+            for (var n = 0; n < TimeLIne.length; n++) {
+                option2.timeline.data.push(TimeLIne[n]);
+                const timeName = (function () {
+                    return TimeLIne[n] >= 10 ? TimeLIne[n] : "0" + TimeLIne[n];
+                })();
+                option2.options.push({
+                    title: {
+                        show: true,
+                        text: timeName,
+                    },
+                    //     series: {
+                    //         name: TimeLIne[n],
+                    //         type: 'scatter',
+                    //         itemStyle: itemStyle,
+                    //         data: data.series[n],
+                    //         symbolSize: function(val) {
+                    //             return sizeFunction(val[2]);
+                    //         }
+                    //     },
+                });
+            }
+            mapChart.setOption(option2, true);
+            //延时处理
             setTimeout(function () {
-                //加载动画
-                mapChart.showLoading();
-                //时间轴渲染
-                for (var n = 0; n < TimeLIne.length; n++) {
-                    option2.timeline.data.push(TimeLIne[n]);
-                    const timeName = (function () {
-                        return TimeLIne[n] >= 10
-                            ? TimeLIne[n]
-                            : "0" + TimeLIne[n];
-                    })();
-                    option2.options.push({
-                        title: {
-                            show: true,
-                            text: timeName,
-                        },
-                        //     series: {
-                        //         name: TimeLIne[n],
-                        //         type: 'scatter',
-                        //         itemStyle: itemStyle,
-                        //         data: data.series[n],
-                        //         symbolSize: function(val) {
-                        //             return sizeFunction(val[2]);
-                        //         }
-                        //     },
-                    });
-                }
-                mapChart.setOption(option2, true);
-                //延时处理
-                setTimeout(function () {
-                    mapChart.hideLoading();
-                }, 1000);
-                //地图渲染
-                initialMap();
-            }, 2500);
-        
+                mapChart.hideLoading();
+            }, 1000);
+            //地图渲染
+            initialMap();
+        }, 2500);
     }, []);
     //广州极光动画
 

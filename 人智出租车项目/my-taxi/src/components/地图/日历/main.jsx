@@ -1,37 +1,3 @@
-// import React, { useState } from 'react';
-// import { DatePicker } from 'antd';
-// import moment from 'moment';
-
-// const Calendar = () => {
-//     const [selectedDate, setSelectedDate] = useState(null);
-
-//     const handleDateChange = (date, dateString) => {
-//         if (date) {
-//             const selectedMoment = moment(dateString, 'YYYY-MM-DD');
-//             const selectedDateObject = selectedMoment.toDate();
-//             setSelectedDate(selectedDateObject);
-//         }
-//     };
-
-//     const datePickerStyle = {
-//         width: '200px', // 设置宽度
-//     };
-
-//     return (
-//         <>
-//             <DatePicker
-//                 picker="date"
-//                 popupStyle={datePickerStyle}
-//                 onChange={handleDateChange}
-//             />
-//             {/* {selectedDate && (
-//                 <p>选中的日期：{selectedDate.getDate()}</p>
-//             )} */}
-//         </>
-//     );
-// };
-
-// export default Calendar;
 
 import React, { useState } from "react";
 import { DatePicker, Input, Button } from "antd";
