@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Table } from "antd";
-import { CaretRightOutlined } from "@ant-design/icons";
+import { TagsTwoTone } from "@ant-design/icons";
 import qs from "qs";
 import "./main.css";
 import style from "./main.module.css";
@@ -73,14 +73,9 @@ const Groupshow = () => {
     };
 
     const handleDelete = (record) => {
-        const groupId = record.id;
-        console.log("record:", record);
-        console.log("record:", record.id);
-        console.log("record:", record.groupName);
         const name = record.groupName;
         const updatedData = data.filter((item) => item.id !== record.id);
         setData(updatedData);
-
         const disbandGroup = (groupName) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
@@ -94,8 +89,7 @@ const Groupshow = () => {
                     },
                 })
                 .then((response) => {
-                    const { code, msg, data } = response;
-
+                    const { code, msg } = response.data;
                     if (code === 1) {
                         message.success(msg);
                     } else {
@@ -110,23 +104,23 @@ const Groupshow = () => {
         disbandGroup(name);
     };
 
-    const getRandomuserParams = (params) => ({
-        results: params.pagination?.pageSize,
-        page: params.pagination?.current,
-        ...params,
-    });
-
     const columns = [
         {
-            title: 'Group Name',
-            dataIndex: 'groupName',
-            render: (dataIndex, record) => (<li onClick={() => OnclickName(record)} className={style.onclickName}>{dataIndex}</li>)
+            title: "Group Name",
+            dataIndex: "groupName",
+            render: (dataIndex, record) => (
+                <li
+                    onClick={() => OnclickName(record)}
+                    className={style.onclickName}
+                >
+                    {dataIndex}
+                </li>
+            ),
         },
         {
             title: "Group Type",
             render: () => <span>Publice</span>,
         },
-
         {
             title: "Datanum",
             dataIndex: "resourceQuantity",
@@ -138,7 +132,7 @@ const Groupshow = () => {
         {
             title: "Detail",
             dataIndex: "description",
-            render: (e) => <CaretRightOutlined onClick={() => Cancelbox(e)} />,
+            render: (e) => <TagsTwoTone onClick={() => Cancelbox(e)} />,
         },
         {
             title: "Withdrawal",
@@ -147,7 +141,6 @@ const Groupshow = () => {
                     onClick={() => handleDelete(record)}
                     className={style.withdrawal}
                 >
-                    {" "}
                     Withdrawal
                 </button>
             ),

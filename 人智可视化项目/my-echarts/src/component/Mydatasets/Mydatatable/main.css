@@ -1,4 +1,4 @@
-/* .Paging1 {
+.Paging1 {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -12,9 +12,7 @@
 
 .Paging1 .ant-spin-container {
     margin-right: 60px;
-    height: 40PX;
-
-
+    height: 40px;
 }
 
 .Paging1 .ant-table {
@@ -22,7 +20,6 @@
     padding-left: 5px;
     overflow: scroll;
     background-color: #fff;
-
 }
 
 .Paging1 .ant-table::-webkit-scrollbar {
@@ -50,7 +47,7 @@
 
 .Paging1 .ant-table {
     height: 320px;
-} */
+}
 
 .Paging1 {
     display: flex;
@@ -62,7 +59,6 @@
 .Paging1 .ant-table-pagination {
     width: 100%;
     margin-top: auto;
-
 }
 
 .Paging1 .ant-table-wrapper {
@@ -70,21 +66,19 @@
     width: 100%;
 }
 
-.Paging1 .ant-table-wrapper .ant-table-thead>tr>th,
-.Paging1 .ant-table-wrapper .ant-table-thead>tr>td {
+.Paging1 .ant-table-wrapper .ant-table-thead > tr > th,
+.Paging1 .ant-table-wrapper .ant-table-thead > tr > td {
     background-color: transparent;
 }
 
 .Paging1 .ant-spin-nested-loading {
     width: 100%;
     height: 100%;
-
 }
 
 .Paging1 .ant-spin-container {
     width: 100%;
     height: 100%;
-
 }
 
 .Paging1 .ant-table {
@@ -116,7 +110,6 @@
 .Paging1 .ant-table-cell {
     height: 2px !important;
     padding: 3px !important;
-
 }
 
 .Paging1 .ant-table-thead .ant-table-cell {

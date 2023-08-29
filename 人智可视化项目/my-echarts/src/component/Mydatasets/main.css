@@ -21,9 +21,8 @@
 
 .Paging1 .ant-spin-container {
     margin-right: 60px;
-    height: 40PX;
+    height: 40px;
     background-color: #fff;
-
 }
 
 .Paging1 .ant-table {
@@ -31,7 +30,6 @@
     padding-left: 5px;
     overflow: scroll;
     background-color: #fff;
-
 }
 
 .Paging1 .ant-table::-webkit-scrollbar {
@@ -50,4 +48,13 @@
 .Paging1 .ant-table-tbody {
     height: 200px;
     overflow: scroll;
+}
+
+.Paging1 .ant-table-cell {
+    height: 2px !important;
+    padding: 3px !important;
+}
+
+.Paging1 .ant-table {
+    height: 320px;
 }

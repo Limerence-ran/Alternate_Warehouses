@@ -71,9 +71,15 @@ function MainPage() {
     }, []);
     const handleLiClick = (e) => {
         const currentTime = e.target.innerText;
+<<<<<<< HEAD
+        const dateArray = currentTime.split(".");
+        const day = dateArray[dateArray.length - 1];
+        console.log(day);
+=======
          const dateArray = currentTime.split(":");
          const day = dateArray[dateArray.length - 1];
         setDate(day);
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
         setShowDate(false);
     };
     const showMessage = (content, type) => {
@@ -89,13 +95,12 @@ function MainPage() {
             <div className={style.body}>
                 <div className={style.header}>
                     <header>
-                
                         <div className={style.header_text}>
                             <img
                                 src={headerIcon}
                                 className={style.header_icon}
                             />
-                            <h1>出租车的大数据可视化系统</h1>
+                            <h1>云端出租车大数据可视化平台</h1>
                         </div>
                         <div className={style.showTime}>{currentTime}</div>
                         <div className={style.navigate_left}>
@@ -137,15 +142,33 @@ function MainPage() {
                                                 fontFamily: "cursive",
                                             }}
                                         >
-                                            <li onClick={handleLiClick}>2017.3.1</li>
-                                            <li onClick={handleLiClick}>2017.3.2</li>
-                                            <li onClick={handleLiClick}>2017.3.2</li>
-                                            <li onClick={handleLiClick}>2017.3.2</li>
-                                            <li onClick={handleLiClick}>2017.3.3</li>
-                                            <li onClick={handleLiClick}>2017.3.4</li>
-                                            <li onClick={handleLiClick}>2017.3.5</li>
-                                            <li onClick={handleLiClick}>2017.3.6</li>
-                                            <li onClick={handleLiClick}>2017.3.7</li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.1
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.2
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.2
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.2
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.3
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.4
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.5
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.6
+                                            </li>
+                                            <li onClick={handleLiClick}>
+                                                2017.3.7
+                                            </li>
                                         </ul>
                                     </div>
                                 )}
@@ -201,6 +224,26 @@ function MainPage() {
                             <div
                                 style={{
                                     height: "100%",
+<<<<<<< HEAD
+                                    width: "100%",
+                                    margin: "0% 5% ",
+                                }}
+                            >
+                                <EchartsDiv
+                                    type="Keyboard"
+                                    cardwidth="100%"
+                                    cardheight="101%"
+                                    bgwidth="96.6%"
+                                    bgheight="98.5%"
+                                    blobwidth="60%"
+                                    blobheight="60%"
+                                    bgtop="0.8%"
+                                >
+                                    {/* {carPath ? <Page /> : <SearchCap />}  */}
+                                    {/* <Page /> */}
+                                    {/* <Hot/> */}
+                                </EchartsDiv>
+=======
                                     width: "96%",
                                     margin: "0% 2%",
                                     
@@ -211,15 +254,23 @@ function MainPage() {
                             
                                 <Hot/>
                                 {/* <Keyboard/> */}
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                             </div>
                         </div>
                         <div className={style.bigMap}>
                             <div
                                 className={style.map}
                                 style={{
+<<<<<<< HEAD
+                                    width: "98.5%",
+                                    height: "98%",
+                                    position: "relative",
+                                    margin: "0.55% 0.85% ",
+=======
                                     width: "100%",
                                     height: "100%",
                                     position: "relative",
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                 }}
                             >
                                 {/* {carPath ? <Map /> : <WrongCap />}  */}
@@ -231,6 +282,11 @@ function MainPage() {
                         <div className={style.column}>
                             <div
                                 style={{
+<<<<<<< HEAD
+                                    height: "96%",
+                                    width: "95%",
+                                    margin: "0% 2% 7% 3%",
+=======
                                     height: "100%",
                                     width: "100%",
                                
@@ -239,33 +295,55 @@ function MainPage() {
                                     flexDirection:"column",
                     
                                     justifyContent:"space-between"
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                 }}
                             >
                                 {/* <Echart /> */}
                                 <EchartsDiv
                                     type="Liner"
+<<<<<<< HEAD
+                                    cardwidth="106%"
+                                    cardheight="34%"
+                                    bgwidth="96.6%"
+                                    bgheight="95.5%"
+=======
                                     cardwidth="100%"
                                     cardheight="32%"
                                     bgwidth="97%"
                                     bgheight="96%"
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />
                                 <EchartsDiv
                                     type="Liner1"
+<<<<<<< HEAD
+                                    cardwidth="106%"
+                                    cardheight="34%"
+                                    bgwidth="96.6%"
+                                    bgheight="95.5%"
+=======
                                     cardwidth="100%"
                                     cardheight="32%"
                                     bgwidth="97%"
                                     bgheight="96%"
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />
                                 <EchartsDiv
                                     type="BarChart"
+<<<<<<< HEAD
+                                    cardwidth="106%"
+                                    cardheight="34%"
+                                    bgwidth="96.6%"
+                                    bgheight="95.5%"
+=======
                                     cardwidth="100%"
                                     cardheight="32%"
                                     bgwidth="97%"
                                     bgheight="96%"
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />

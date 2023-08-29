@@ -41,12 +41,19 @@ export default function Keyboard() {
                 >
                     <input
                         type="text"
-                        placeholder="输入要查询的车牌号..."
+                        required=""
+                        placeholder="   请点击右侧键盘"
                         style={{
+<<<<<<< HEAD
+                            height: "95%",
+                            width: "70%",
+=======
                             height: "60%",
                             width: "72%",
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                             background: "transparent",
                         }}
+                        readOnly
                         value={value}
                     />
 
@@ -55,7 +62,7 @@ export default function Keyboard() {
                             className={styles.button}
                             onClick={() => setShowKeyboard(!showKeyboard)}
                         >
-                            {"键盘⌨️"}
+                            {"车牌号⌨️"}
                         </button>
 
                         <LicenseKeyboard

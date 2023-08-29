@@ -2,7 +2,6 @@ import React from "react";
 
 import ReactECharts from "echarts-for-react";
 export default function Pointxy(props) {
-
     // 假设有两组数据分别是 data1 和 data2
     const data1 = props.data_xy.before_data; // 第一组数据的坐标点 props.before_data
     const data2 = props.data_xy.result_data; // 第二组数据的坐标点
@@ -21,11 +20,8 @@ export default function Pointxy(props) {
                 name: "Moving track",
                 data: dataline[i],
                 lineStyle: {
-                    width: 4,
+                    width: 2,
                     color: getColorByIndex(i), // 线条颜色
-                    emphasis: {
-                        focus: "self",
-                    },
                 },
                 symbolSize: 0,
             });
@@ -46,6 +42,9 @@ export default function Pointxy(props) {
 
     // 配置散点图的基本参数
     const option = {
+        grid: {
+            containLabel: true, // 将坐标轴标签的宽度计算在内
+        },
         backgroundColor: "rgb(214 216 254)",
         legend: {
             bottom: 10,
@@ -57,7 +56,11 @@ export default function Pointxy(props) {
                 "After processing",
                 { name: "Moving track", icon: "none" },
             ],
-
+            textStyle: {
+                fontFamily: "Futura",
+                color: "grey",
+                fontSize: "10px",
+            },
             itemStyle: {
                 color: "rgb(143 123 251)",
             },
@@ -79,10 +82,38 @@ export default function Pointxy(props) {
             },
             axisLabel: {
                 //  改变x轴字体颜色和大小
-                //formatter: '{value} m³ ', //  给x轴添加单位
+
+                formatter: function (value) {
+                    // 将数值改为以 10 的 n 次方形式展示
+                    // 判断数值是否为负数
+                    if (value < 0) {
+                        value = -value; // 取绝对值
+                        var exponent = Math.floor(Math.log10(value));
+                        var base = value / Math.pow(10, exponent);
+                        if (exponent === 0) {
+                            return "-" + base;
+                        } else if (exponent === 1) {
+                            return "-" + base + "e";
+                        }
+                        return "-" + base + "e" + exponent;
+                    } else if (value > 0) {
+                        var exponent = Math.floor(Math.log10(value));
+                        var base = value / Math.pow(10, exponent);
+                        if (exponent === 0) {
+                            return "-" + base;
+                        } else if (exponent === 1) {
+                            return "-" + base + "e";
+                        }
+                        return base + "e" + exponent;
+                    } else {
+                        return 0;
+                    }
+                },
+
                 textStyle: {
-                    color: "#333",
-                    fontSize: 12,
+                    fontSize: "10px",
+                    fontFamily: "Futura",
+                    color: "grey",
                 },
             },
             splitLine: {
@@ -102,16 +133,43 @@ export default function Pointxy(props) {
                 show: false,
             },
             axisLabel: {
+                formatter: function (value) {
+                    // 将数值改为以 10 的 n 次方形式展示
+                    // 判断数值是否为负数
+                    if (value < 0) {
+                        value = -value; // 取绝对值
+                        var exponent = Math.floor(Math.log10(value));
+                        var base = value / Math.pow(10, exponent);
+                        if (exponent === 0) {
+                            return "-" + base;
+                        } else if (exponent === 1) {
+                            return "-" + base + "e";
+                        }
+                        return "-" + base + "e" + exponent;
+                    } else if (value > 0) {
+                        var exponent = Math.floor(Math.log10(value));
+                        var base = value / Math.pow(10, exponent);
+                        if (exponent === 0) {
+                            return "-" + base;
+                        } else if (exponent === 1) {
+                            return "-" + base + "e";
+                        }
+                        return base + "e" + exponent;
+                    } else {
+                        return 0;
+                    }
+                },
                 //  改变y轴字体颜色和大小
                 //formatter: '{value} m³ ', //  给y轴添加单位
                 textStyle: {
-                    color: "#333",
-                    fontSize: 12,
+                    fontSize: "10px",
+                    fontFamily: "Futura",
+                    color: "grey",
                 },
             },
             splitLine: {
                 lineStyle: {
-                    color: "#333",
+                    color: "#E9E9E9",
                 },
             },
         },
@@ -127,11 +185,11 @@ export default function Pointxy(props) {
                         },
                     };
                 }),
-                symbolSize: 20,
+                symbolSize: 9,
                 symbol: "circle",
                 itemStyle: {
                     color: "#6c50f3",
-                    borderWidth: 3,
+                    borderWidth: 2,
                     borderColor: "#fff",
                 },
             },
@@ -147,11 +205,11 @@ export default function Pointxy(props) {
                     };
                 }),
 
-                symbolSize: 20,
+                symbolSize: 9,
                 symbol: "diamond",
                 itemStyle: {
                     color: "#6c50f3",
-                    borderWidth: 3,
+                    borderWidth: 2,
                     borderColor: "#fff",
                 },
             },
@@ -165,6 +223,7 @@ export default function Pointxy(props) {
             lazyUpdate={true}
             theme={"AI隐私差分"}
             style={{ width: "100%", height: "100%" }}
+            resize
         />
     );
 }

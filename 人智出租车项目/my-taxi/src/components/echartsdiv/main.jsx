@@ -3,6 +3,7 @@ import styles from "./main.module.css";
 import Liner from "../../components/地图/右侧盒子/右侧三图/车流量折线图";
 import Liner1 from "../../components/地图/右侧盒子/右侧三图/利用率折线图";
 import BarChart from "../../components/地图/右侧盒子/右侧三图/平均收入柱状图";
+import Keyboard from "../../components/keyboard/main";
 export default function EchartsDiv(props) {
     return (
         <>
@@ -12,14 +13,24 @@ export default function EchartsDiv(props) {
             >
                 <div
                     className={styles.bg}
-                    style={{ width: props.bgwidth, height: props.bgheight }}
+                    style={{
+                        width: props.bgwidth,
+                        height: props.bgheight,
+                        top: props.bgtop,
+                    }}
                 >
                     {props.type === "Liner" ? (
                         <Liner/>
                     ) : props.type === "Liner1" ? (
                             <Liner1/>
                     ) : props.type === "BarChart" ? (
+<<<<<<< HEAD
+                        <BarChart />
+                    ) : props.type === "Keyboard" ? (
+                        <Keyboard />
+=======
                                 <BarChart/>
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                     ) : null}
                 </div>
                 <div

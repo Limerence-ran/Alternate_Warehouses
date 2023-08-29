@@ -113,12 +113,12 @@ const showMessage = (content, type) => {
                            
                                     <form onSubmit={handleSubmit}>
                                         <div className={styles.formGroup}>
-                                    <UserOutlined style={{ fontSize: "26px", color: "#fff", marginRight: "0%" ,width:"18%" }} />
+                                    <UserOutlined style={{ fontSize: "2vw", color: "#fff", marginRight: "0%" ,width:"18%" }} />
                                     <input required=" " type="text" value={username} onChange={handleUsernameChange} placeholder="Your Name" />
                                         </div>
 
                                         <div className={styles.formGroup}>
-                                    <UnlockOutlined style={{ fontSize: "26px", color: "#fff", width:"18%" }}/>
+                                    <UnlockOutlined style={{ fontSize: "2vw", color: "#fff", width:"18%" }}/>
                                     <input required=" " type="password" value={password} onChange={handlePasswordChange} placeholder="Your Password" />
                                         </div>
                                 {/* <div className={styles.check_box}>

@@ -1,0 +1,11 @@
+.aMap
+    .amap-container
+    .amap-maps
+    .amap-layers
+    .amap-layer
+    .amap-ui-pathsimplifier-container
+    canvas {
+    top: 0;
+    left: 0;
+    position: absolute;
+}

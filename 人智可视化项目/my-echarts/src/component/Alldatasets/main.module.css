@@ -1,52 +1,34 @@
-
-
-
 .chartbox {
     width: 100%;
     height: 100%;
-    /* margin: 0 auto; */
-    /* align-items: center; */
 }
 
 .box {
     width: 100%;
-    height:45%;
+    height: 50%;
     text-align: center;
     font-size: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: #7e3939; */
 }
 
 .chart {
-    width:70%;
+    width: 80%;
     height: 100%;
-    /* background-color: rgb(173, 177, 254); */
-   
 }
 
 .chartbuttom {
     height: 50%;
     width: 100%;
-    margin-top: 4%;
-    /* background-color: #da5050; */
-    /* margin: 35px auto; */
+    margin-top: 1%;
 }
 
-/* table {
-    color: #333;
-    width: 100%;
-    height: 260px;
-    margin-bottom: 0.75rem;
-    border-collapse: collapse;
-    
-} */
+
 
 tr,
 td,
 th {
-    /* width: 100px; */
     height: 20px;
     padding: 8px;
     text-align: center;
@@ -57,19 +39,5 @@ th {
     color: black;
     font-size: 14px;
 }
-button {
-    background-color: #3f37b7;
-    color: aliceblue;
-    border-radius: 8px;
-    width: 50px;
-}
 
-/* Table */
-/* .div {
-    width: 100%;
-}
 
-.get {
-    width: 60px;
-    font-size: 12px;
-} */

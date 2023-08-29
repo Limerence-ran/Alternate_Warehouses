@@ -1,62 +1,61 @@
-
-
 .App {
-   
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 500px;
-   
 }
 
 .popupbox {
     width: 402px;
-   
     border-radius: 6px;
-   
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     opacity: 0;
-   
     transform: translateY(-50px);
     animation: fadeInOut 0.3s ease-out;
     animation-fill-mode: forwards;
     height: 380px;
     position: fixed;
-   top: 90px;
-   left: 600px;
-     
-        z-index: 9999;
-        /* background-color: rgba(0, 0, 0, 0.5); */
-        background-color: #fff;
-        /* 半透明黑色背景 */
-   
+    top: 90px;
+    left: 600px;
+    z-index: 9999;
+    background-color: #fff;
+    /* 半透明黑色背景 */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.textheader{
-  height: 30px;
+.textheader {
+    border-radius: 6px 6px 0 0;
+    height: 50px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #7f61d2;
+    background-color: rgb(173, 177, 254);
     font-size: 16px;
-} 
-.canceltext{
+    color: #fff;
+}
+.canceltext {
     width: 94%;
     height: 70%;
     padding: 10px 10px;
 }
-.textarea{
-border: none;
-
+.textarea {
+    border: none;
+    text-align: center;
     padding: 10px 10px;
-    color: #000;
+    color: #fff;
     font-size: 14px;
-    font-family:Arial, Helvetica, sans-serif;
-
+    font-family: Arial, Helvetica, sans-serif;
+    background: mediumturquoise;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
-.textarea:focus{
+
+.textarea:focus {
     outline: none;
 }
 @keyframes fadeInOut {
@@ -73,12 +72,10 @@ border: none;
 
 .cancelbutton {
     display: inline-block;
-    padding: 8px 16px;
     width: 120px;
     height: 35px;
-    margin-left: 130px;
-   border: none;
-    background-color: #9f92df;
+    border: none;
+    background-color: rgb(173, 177, 254);
     color: #ffffff;
     border-radius: 4px;
     cursor: pointer;

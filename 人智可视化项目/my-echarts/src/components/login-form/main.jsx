@@ -4,7 +4,7 @@ import { UserOutlined, UnlockOutlined, CheckOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import axios from "axios";
 import CheckIcon from "../check-box/main";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const LoginRegisterForm = () => {
     const [username, setUsername] = useState("");
@@ -12,7 +12,6 @@ const LoginRegisterForm = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isLoginMode, setIsLoginMode] = useState(true);
     const navigate = useNavigate();
-  
 
     const handleUsernameChange = (e) => {
         const value = e.target.value;
@@ -66,7 +65,6 @@ const LoginRegisterForm = () => {
     };
 
     const handleRegister = () => {
-        console.log("执行注册操作", username, password);
         axios
             .post(
                 "http://39.98.41.126:31130/users/register",
@@ -85,7 +83,7 @@ const LoginRegisterForm = () => {
                 if (response.data.code === 1) {
                     // 注册成功
                     resetForm();
-                    setIsLoginMode(!isLoginMode)
+                    setIsLoginMode(!isLoginMode);
                     showMessage(response.data.msg, "success");
                 } else {
                     // 注册失败
@@ -100,7 +98,7 @@ const LoginRegisterForm = () => {
     };
 
     const handleLogin = () => {
-        console.log("执行登陆操作", username, password);
+        localStorage.setItem("username", username);
         axios
             .post(
                 "http://39.98.41.126:31130/users/login",
@@ -119,14 +117,13 @@ const LoginRegisterForm = () => {
                     // 登录成功
                     const token = response.data.data; // 获取返回的token
                     localStorage.setItem("token", token); // 将token存储在本地
-                    console.log(response.data)
+                    console.log(response.data);
                     resetForm();
-                    navigate('/Chartdata');
-                    showMessage(response.data.msg, "success");
-
+                    navigate("/Chartdata");
+                    showMessage('Login success', "success");
                 } else {
                     // 登录失败
-                    showMessage(response.data.msg, "error");
+                    showMessage("Login failed", "error");
                 }
             })
             .catch((error) => {
@@ -269,7 +266,7 @@ const LoginRegisterForm = () => {
                     </>
                 )}
             </div>
-       </div>
+        </div>
     );
 };
 

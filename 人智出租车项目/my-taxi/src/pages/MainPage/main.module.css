@@ -5,7 +5,10 @@
 
 .body {
     height: 100vh;
+<<<<<<< HEAD
+=======
     /* min-height: 1000px; */
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
     border: 1px solid rgba(25, 186, 139, 0.17);
     /* background: url(../assets/images/image\ 75.png); */
     /* background-color: rgb(2, 45, 95); */
@@ -41,7 +44,7 @@
     left: 32%;
     display: flex;
     align-items: center;
-    font-family: cursive;
+    font-family: "" SourceHanSansSC-Bold-2 "";
 }
 
 .header_text h1 {
@@ -137,7 +140,7 @@ header .showTime {
     border-radius: 0.4em;
     font-size: 16px;
     font-weight: bold;
-    font-family: cursive;
+    font-family: "" SourceHanSansSC-Bold-2 "";
 }
 
 .btn_left button {
@@ -233,7 +236,7 @@ header .showTime {
 .content_header_left span {
     margin-left: 5%;
     color: #fff;
-    font-family: cursive;
+    font-family: "SourceHanSansSC-Bold-2";
     font-size: 20px;
     font-weight: bold;
 }
@@ -266,7 +269,7 @@ header .showTime {
     background-color: rgb(8, 55, 92);
     border: none;
     color: #fff;
-    font-family: cursive;
+    font-family: "SourceHanSansSC-Bold-2";
     font-size: 20px;
     font-weight: bold;
 }
@@ -294,32 +297,36 @@ header .showTime {
     width: 19%;
     margin-top: 10px;
     text-align: center;
-    /* background-color: #fff; */
-    /* border: 1px solid rgba(25, 186, 139, 0.17); */
-    /* background: url(../images/panel.jpg) rgba(255, 255, 255, 0.03); */
-    /* background: url(../../assets/images/3.png) no-repeat; */
-    background: url(../images/panel.jpg) rgba(255, 255, 255, 0.03);
-    background-size: 100% 100%;
 }
 
 /* 地图 */
 .bigMap {
-    margin-top: 10px;
     width: 60%;
+<<<<<<< HEAD
+    height: 103%;
+    margin-top: 10px;
+    background: url(../../assets/images/login_box.png) rgba(255, 255, 255, 0.03);
+=======
     /* height: 100%; */
     border: 1px solid rgba(25, 186, 139, 0.17);
     /* background: url(../../assets/images/3.png) no-repeat; */
     /* background-color: #fff; */
     background: url(../images/panel.jpg) rgba(255, 255, 255, 0.03);
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
     background-size: 100% 100%;
     text-align: center;
 }
+
 
 /* 右边盒子 */
 .column {
     width: 18%;
     margin-top: 10px;
+<<<<<<< HEAD
+    /* border: 1px solid rgba(25, 186, 139, 0.17); */
+=======
     border: 1px solid rgba(25, 186, 139, 0.17);
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
     display: flex;
     flex-direction: column;
     justify-content: space-between;

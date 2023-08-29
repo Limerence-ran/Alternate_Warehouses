@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- 原始地址：//webapi.amap.com/ui/1.1/ui/misc/PathSimplifier/examples/index.html -->
+        <!-- <base
+            href="//webapi.amap.com/ui/1.1/ui/misc/PathSimplifier/examples/"
+        /> -->
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0,user-scalable=no, width=device-width"
+        />
         <title>Vite + React</title>
+        <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+        <!--引入高德地图JSAPI -->
         <script src="https://webapi.amap.com/maps?v=2.0&key=8c4344f0c1fb8c79c638e2a67d2a900f&plugin=AMap.CustomLayer,AMap.Scale,AMap.PolygonEditor"></script>
         <script src="https://webapi.amap.com/loca?v=2.0.0&key=8c4344f0c1fb8c79c638e2a67d2a900f"></script>
+<<<<<<< HEAD
+        <script src="https://cdn.jsdelivr.net/npm/three@0.142/build/three.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@master/examples/js/loaders/GLTFLoader.js"></script>
+        <!--引入UI组件库（1.1版本） -->
+        <script src="//webapi.amap.com/ui/1.1/main.js"></script>
+        <!--引入UI组件库异步版本main-async.js（1.1版本） -->
+        <script src="//webapi.amap.com/ui/1.1/main-async.js"></script>
+=======
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
     </head>
     <style>
         body {
             margin: 0;
             overflow: hidden;
             padding: 0;
+            font-size: 16px; /* 设置全局字体大小为16px */
         }
         html {
             font-size: 6px; /* 公式16px*62.5rem=10px */
@@ -20,6 +40,10 @@
         @font-face {
             font-family: "DS-DIGIT";
             src: url(./src/utils/DS-DIGIT.ttf);
+        }
+        @font-face {
+            font-family: "SourceHanSansSC-Bold-2";
+            src: url(./src/utils/SourceHanSansSC-Bold-2.otf);
         }
 
         body

@@ -1,11 +1,10 @@
 import style from "./main.module.css";
-import { FieldBinaryOutlined } from "@ant-design/icons";
 import { useState, useEffect, useRef } from "react";
 import Pagetable1 from "./Pagetable/main";
 import "./main.css";
 import RelationChart from "../../components/relationship/main";
 import axios from "axios";
-import { message } from "antd";
+import { Skeleton, message } from "antd";
 
 function Alldatasets() {
     const box = useRef(null);
@@ -42,40 +41,33 @@ function Alldatasets() {
                 const { code, msg, data } = response.data;
                 if (code == 1) {
                     let newData = data;
-                    // console.log("newData:",newData);
                     setDatapoint(newData);
                     // 在这里处理成功的逻辑
                 } else {
-                    message.error("创建失败: " + msg);
+                    message.error("Failed:" + msg);
                 }
             })
             .catch((error) => {
-                message.error("请求出错");
-                console.log("请求出错", error);
+                message.error("An error occurred in the request");
+                console.log(error);
             });
     }, []);
-    useEffect(() => {
-        // console.log(datapoint, "datapoint");
-    }, [datapoint]);
-    return (        
-                    <div className={style.chartbox}>
-                        <div className={style.box} ref={box}>
-                            <div className={style.chart}>
-                                {datapoint ? (
-                                    <RelationChart
-                                        propdata={datapoint}
-                                    ></RelationChart>
-                                ) : (
-                                    ""
-                                )}
-                            </div>
-                        </div>
-                        <div className={style.chartbuttom}>
-                            <Pagetable1
-                                handleAjaxChange={onAjaxChange}
-                            />
-                        </div>
-                    </div>
+
+    return (
+        <div className={style.chartbox}>
+            <div className={style.box} ref={box}>
+                <div className={style.chart}>
+                    {datapoint ? (
+                        <RelationChart propdata={datapoint}></RelationChart>
+                    ) : (
+                        <Skeleton />
+                    )}
+                </div>
+            </div>
+            <div className={style.chartbuttom}>
+                <Pagetable1 handleAjaxChange={onAjaxChange} />
+            </div>
+        </div>
     );
 }
 

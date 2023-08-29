@@ -1,9 +1,12 @@
 .div {
-    width: 100%
+    width: 100%;
 }
 
 .get2 {
-    width: 60px;
     font-size: 12px;
-    background-color: #6482c6;
+    background-color: rgb(130, 100, 249);
+    color: aliceblue;
+    border-radius: 8px;
+    width: 50px;
+    border: none;
 }

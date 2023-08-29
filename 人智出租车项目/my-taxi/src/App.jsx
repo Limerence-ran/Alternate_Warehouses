@@ -15,11 +15,21 @@ const App = () => {
     const element = useRoutes(routes);
     return (
         <>
+<<<<<<< HEAD
+            {/* <EchartMap /> */}
+            <Rain />
+            {/* <Keyboard /> */}
+            {/* <EchartsDiv /> */}
+            <MainPage />
+            {/* <Login/> */}
+            {/* {element} */}
+=======
           
                 {element}
           
           
            
+>>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
         </>
     );
 };
