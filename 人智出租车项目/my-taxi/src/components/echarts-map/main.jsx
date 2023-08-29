@@ -1283,7 +1283,7 @@ const EchartMap = () => {
             //加载动画
             mapChart.showLoading();
 
-            // mapChart.setOption(option2, true);
+            mapChart.setOption(option2, true);
           
             if(area==='区域监控'){
                 mapChart.setOption(option3,true);
@@ -1482,7 +1482,7 @@ const EchartMap = () => {
             }, 1000);
 
             //地图渲染
-            // initialMap();
+            initialMap();
         }, 2500);
     }, [btnopen,area]);
 
