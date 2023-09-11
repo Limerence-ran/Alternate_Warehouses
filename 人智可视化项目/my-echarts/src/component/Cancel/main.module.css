@@ -14,7 +14,6 @@
     animation: fadeInOut 0.3s ease-out;
     animation-fill-mode: forwards;
     height: 380px;
-    position: fixed;
     top: 90px;
     left: 600px;
     z-index: 9999;
@@ -42,13 +41,14 @@
     padding: 10px 10px;
 }
 .textarea {
+    border-radius: 5px;
     border: none;
     text-align: center;
     padding: 10px 10px;
     color: #fff;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    background: mediumturquoise;
+    background: #d6d8fe;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,7 +73,7 @@
 .cancelbutton {
     display: inline-block;
     width: 120px;
-    height: 35px;
+    height: 30px;
     border: none;
     background-color: rgb(173, 177, 254);
     color: #ffffff;

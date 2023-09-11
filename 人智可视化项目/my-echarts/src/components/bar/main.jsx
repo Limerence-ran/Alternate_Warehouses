@@ -13,7 +13,7 @@ class Bar extends React.Component {
         let dataAxis = [];
         let data = this.props.data_xy.distance;
         for (let i = 0; i < data.length; i++) {
-            dataAxis.push("");
+            dataAxis.push(this.props.resourceFormat[i]);
         }
         let yMax = 500;
         let dataShadow = [];
@@ -35,7 +35,7 @@ class Bar extends React.Component {
             xAxis: {
                 data: dataAxis,
                 axisLabel: {
-                    inside: true,
+                    // inside: true,
                     color: "#fff",
                 },
                 axisTick: {
@@ -71,9 +71,9 @@ class Bar extends React.Component {
                             var exponent = Math.floor(Math.log10(value));
                             var base = value / Math.pow(10, exponent);
                             if (exponent === 0) {
-                                return "-" + base;
+                                return base;
                             } else if (exponent === 1) {
-                                return "-" + base + "e";
+                                return base + "e";
                             }
                             return base + "e" + exponent;
                         } else {
@@ -91,7 +91,7 @@ class Bar extends React.Component {
                 },
             ],
             tooltip: {
-                formatter: "distance : ( {c} ) ",
+                formatter: "distance :  {c}  ",
                 show: true,
             },
             toolbox: {

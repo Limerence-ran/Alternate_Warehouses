@@ -11,7 +11,6 @@ let slaveSymbol =
 
 export default function DynamicRelationChart(props) {
     const data = props.propdata;
-    console.log(props.propdata);
     const createNodesAndLinks = () => {
         const centerNode = {
             id: "center",

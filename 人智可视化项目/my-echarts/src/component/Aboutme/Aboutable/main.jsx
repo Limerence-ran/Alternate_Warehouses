@@ -46,10 +46,10 @@ const Abouttable = () => {
                 </Button>
             </Space>
         );
+        console.log(record);
         api.open({
-            message: "Notification Title",
-            description:
-                'A function will be be called after the notification is closed (automatically after the "duration" time of manually).',
+            message: record.username + " is requesting",
+            description: record.message,
             btn,
             key,
             onClose: close,
@@ -113,7 +113,7 @@ const Abouttable = () => {
                     // 要上传的群组信息
                     {
                         groupId: groupId,
-                        username: username,
+                        objectName: username,
                         operate: "1",
                     },
                     {
@@ -151,7 +151,7 @@ const Abouttable = () => {
                     // 要上传的群组信息
                     {
                         groupId: groupId,
-                        username: username,
+                        objectName: username,
                         operate: "2",
                     },
                     {
@@ -209,8 +209,11 @@ const Abouttable = () => {
                     {record.status === "0" ? (
                         <Tag
                             color="warning"
+                            style={{ cursor: "pointer" }}
                             icon={<ExclamationCircleOutlined />}
-                            onChange={openNotification(record)}
+                            onClick={() => {
+                                openNotification(record);
+                            }}
                         >
                             Waiting for reply
                         </Tag>

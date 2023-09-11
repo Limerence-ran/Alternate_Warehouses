@@ -15,29 +15,31 @@ function Slider() {
     //     setMenu(!menu);
     // };
     function CreateGroup() {
+        // 跳转到创建组页面
         navigate("CreateGroup");
     }
     function MyGroup() {
+        // 跳转到我的组页面
         navigate("Group");
     }
     function HotGroup() {
+        // 跳转到热门组页面
         navigate("HotGroup");
     }
     return (
         <>
             <div className={style.sidebar}>
                 <ul className={style.menu}>
+                    <li className={style.divider}>Menu</li>
                     <li onClick={CreateGroup}>
                         <a href="javascript:;">
                             <UsergroupAddOutlined />
                             Create Group
                         </a>
                     </li>
-                    <li className={style.divider}>Menu</li>
+
                     <li onClick={HotGroup}>
-                        {" "}
                         <a href="javascript:;">
-                            {" "}
                             <FireOutlined />
                             Hot Groups{" "}
                         </a>

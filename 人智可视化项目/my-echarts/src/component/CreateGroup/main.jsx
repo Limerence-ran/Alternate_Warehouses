@@ -38,13 +38,17 @@ const CreateGroup = () => {
         setOpenbottom(true);
     };
 
+    // 定义 handleFinish 函数，用于处理完成后的操作
     const handleFinish = (values) => {
+        // 设置提交标志为 true
         setIsSubmitting(true);
-        console.log(values);
+        // 获取参数
         const groupName = values.name;
         const dimension = values.text;
         const description = values.description;
+        // 初始化 resourceFormat 变量
         const resourceFormat = [];
+        // 遍历 values 对象，如果 key 不是数字，则将 value 添加到 resourceFormat 变量中
         for (let key in values) {
             if (!isNaN(key)) {
                 resourceFormat.push(values[key]);
@@ -188,23 +192,23 @@ const CreateGroup = () => {
                                 },
                             ]}
                         >
-                                <Select
-                                    placeholder="Arity Select"
-                                    name="select"
-                                    onChange={(value) => {
-                                        const newArray = [
-                                            ...Array(Number(value)),
-                                        ].map(() => "");
-                                        setArity(newArray);
-                                    }}
-                                >
-                                    <Select.Option value="1">1</Select.Option>
-                                    <Select.Option value="2">2</Select.Option>
-                                    <Select.Option value="3">3</Select.Option>
-                                    <Select.Option value="4">4</Select.Option>
-                                    <Select.Option value="5">5</Select.Option>
-                                    <Select.Option value="6">6</Select.Option>
-                                </Select>
+                            <Select
+                                placeholder="Arity Select"
+                                name="select"
+                                onChange={(value) => {
+                                    const newArray = [
+                                        ...Array(Number(value)),
+                                    ].map(() => "");
+                                    setArity(newArray);
+                                }}
+                            >
+                                <Select.Option value="1">1</Select.Option>
+                                <Select.Option value="2">2</Select.Option>
+                                <Select.Option value="3">3</Select.Option>
+                                <Select.Option value="4">4</Select.Option>
+                                <Select.Option value="5">5</Select.Option>
+                                <Select.Option value="6">6</Select.Option>
+                            </Select>
                         </Form.Item>
 
                         <Drawer

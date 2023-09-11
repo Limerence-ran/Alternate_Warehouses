@@ -2,13 +2,6 @@ import React, { useEffect } from "react";
 import * as echarts from "echarts";
 
 export default function EPie(props) {
-    console.log(
-        props.data_xy.normalizeDistance.map((item) => {
-            return {
-                value: item,
-            };
-        })
-    );
     let option = {
         backgroundColor: "rgb(214 216 254)",
         title: {
@@ -41,7 +34,7 @@ export default function EPie(props) {
                 data: props.data_xy.normalizeDistance[0].map((i, index) => {
                     return {
                         value: i,
-                        name: "noise" + (index + 1),
+                        name: props.resourceFormat[index],
                     };
                 }),
                 label: {

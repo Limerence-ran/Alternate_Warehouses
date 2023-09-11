@@ -43,23 +43,26 @@ const HotTable = () => {
                         total: 200,
                     },
                 });
-            });
-        await fetch(`http://39.98.41.126:31130/groups`, {
-            headers: {
-                Authorization: token,
-            },
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                dataset.forEach((i) => {
-                    res.data.forEach((j) => {
-                        if (i.id === j.id) {
-                            i.join = true;
-                        }
+            })
+            .then(() => {
+                fetch(`http://39.98.41.126:31130/groups`, {
+                    headers: {
+                        Authorization: token,
+                    },
+                })
+                    .then((res) => res.json())
+                    .then((res) => {
+                        console.log(i);
+                        dataset.forEach((i) => {
+                            res.data.forEach((j) => {
+                                if (i.id === j.id) {
+                                    i.join = true;
+                                }
+                            });
+                        });
+                        setData(dataset);
+                        setLoading(false);
                     });
-                });
-                setData(dataset);
-                setLoading(false);
             });
     };
 

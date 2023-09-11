@@ -11,13 +11,8 @@
 }
 .keyboard {
     position: relative;
-<<<<<<< HEAD
     width: 30%;
     height: 100%;
-=======
-    width: 25%;
-    height: 60%;
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
     /* background-color: #fff; */
 }
 

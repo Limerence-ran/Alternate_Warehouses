@@ -159,7 +159,6 @@ const Pagetable1 = ({ handleAjaxChange }) => {
         {
             title: "",
             render: (e, record) => {
-                console.log(mydata);
                 let useOrGet = mydata.some(
                     (obj) => obj.resourceName === record.resourceName
                 );

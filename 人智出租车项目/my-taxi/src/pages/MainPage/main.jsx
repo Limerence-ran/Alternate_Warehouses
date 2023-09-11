@@ -13,29 +13,26 @@ import Keyboard from "../../components/keyboard/main";
 import EchartsDiv from "../../components/echartsdiv/main.jsx";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
-import Rain from '../../components/rain/main'
-import Mymap from '../../components/main'
+import Rain from "../../components/rain/main";
+import Mymap from "../../components/main";
 
-import { useSelector } from 'react-redux' //用于从Redux状态树中选择需要的数据。
-import { useDispatch } from 'react-redux'   //用于触发Redux中定义的actions。
-import { areaChange } from "../../slice/sliceCounter";  //导入actions
-
-
+import { useSelector } from "react-redux"; //用于从Redux状态树中选择需要的数据。
+import { useDispatch } from "react-redux"; //用于触发Redux中定义的actions。
+import { areaChange } from "../../slice/sliceCounter"; //导入actions
 
 function MainPage() {
     const [currentTime, setCurrentTime] = useState("");
     const [showDate, setShowDate] = useState(false); //选择预测日期
-    const [date, setDate] = useState('2017.3.1')//展示预测时间
-    const [forecastModel, setForecastModel] = useState(false)//预测模式
-    const [model,setModel] = useState('区域监控')
-    const [carPath, setCarPath] = useState(false);  
-    const [witndrawnl, setWithdrawnl] = useState(false);//异常情况返回
+    const [date, setDate] = useState("2017.3.1"); //展示预测时间
+    const [forecastModel, setForecastModel] = useState(false); //预测模式
+    const [model, setModel] = useState("区域监控");
+    const [carPath, setCarPath] = useState(false);
+    const [witndrawnl, setWithdrawnl] = useState(false); //异常情况返回
     const navigate = useNavigate();
     const [rain, setRain] = useState(true);
-    
+
     //顶部功能按钮控制地图渲染
-    const disPatch = useDispatch()
- 
+    const disPatch = useDispatch();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -71,15 +68,9 @@ function MainPage() {
     }, []);
     const handleLiClick = (e) => {
         const currentTime = e.target.innerText;
-<<<<<<< HEAD
-        const dateArray = currentTime.split(".");
+        const dateArray = currentTime.split(":");
         const day = dateArray[dateArray.length - 1];
-        console.log(day);
-=======
-         const dateArray = currentTime.split(":");
-         const day = dateArray[dateArray.length - 1];
         setDate(day);
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
         setShowDate(false);
     };
     const showMessage = (content, type) => {
@@ -105,22 +96,54 @@ function MainPage() {
                         <div className={style.showTime}>{currentTime}</div>
                         <div className={style.navigate_left}>
                             <span className={style.btn_left}>
-                                <button onClick={() => { setModel('区域监控'); disPatch(areaChange('区域监控')); setWithdrawnl(false); setCarPath(false); }}>
+                                <button
+                                    onClick={() => {
+                                        setModel("区域监控");
+                                        disPatch(areaChange("区域监控"));
+                                        setWithdrawnl(false);
+                                        setCarPath(false);
+                                    }}
+                                >
                                     <div>区域监控</div>
                                 </button>
                             </span>
                             <span className={style.btn_left}>
-                                <button onClick={() => { setModel('热点分析'); disPatch(areaChange('热点分析')); setWithdrawnl(false); setCarPath(false); }}>
+                                <button
+                                    onClick={() => {
+                                        setModel("热点分析");
+                                        disPatch(areaChange("热点分析"));
+                                        setWithdrawnl(false);
+                                        setCarPath(false);
+                                    }}
+                                >
                                     <div>热点分析</div>
                                 </button>
                             </span>
                             <span className={style.btn_left}>
-                                <button onClick={() => { showMessage("管理员请先登录！", "success"); setModel('行车轨迹'); disPatch(areaChange('行车轨迹')); setCarPath(true) }}>
+                                <button
+                                    onClick={() => {
+                                        showMessage(
+                                            "管理员请先登录！",
+                                            "success"
+                                        );
+                                        setModel("行车轨迹");
+                                        disPatch(areaChange("行车轨迹"));
+                                        setCarPath(true);
+                                    }}
+                                >
                                     <div>行车轨迹</div>
                                 </button>
                             </span>
                             <span className={style.btn_left}>
-                                <button onClick={() => { setShowDate(!showDate); setForecastModel(true); setCarPath(false); setWithdrawnl(false); setModel('区域监控') }}>
+                                <button
+                                    onClick={() => {
+                                        setShowDate(!showDate);
+                                        setForecastModel(true);
+                                        setCarPath(false);
+                                        setWithdrawnl(false);
+                                        setModel("区域监控");
+                                    }}
+                                >
                                     <div>预测分析</div>
                                 </button>
 
@@ -174,14 +197,24 @@ function MainPage() {
                                 )}
                             </span>
                         </div>
-                    <div className={style.navigate_right}>
+                        <div className={style.navigate_right}>
                             <span className={style.btn_right}>
-                                <button onClick={()=>setRain(!rain)}>
+                                <button onClick={() => setRain(!rain)}>
                                     <div>天气主题</div>
                                 </button>
                             </span>
                             <span className={style.btn_right}>
-                                <button onClick={() => { showMessage("管理员请先登录！", "success"); setTimeout(() => { navigate('/Login') },3000)  }}>
+                                <button
+                                    onClick={() => {
+                                        showMessage(
+                                            "管理员请先登录！",
+                                            "success"
+                                        );
+                                        setTimeout(() => {
+                                            navigate("/Login");
+                                        }, 3000);
+                                    }}
+                                >
                                     <div>登录</div>
                                 </button>
                             </span>
@@ -190,32 +223,51 @@ function MainPage() {
                 </div>
                 <div className={style.content_header}>
                     <div className={style.content_header_left}>
-                        {witndrawnl&&
+                        {witndrawnl && (
                             <LeftOutlined
                                 className={style.withdrawnl}
-                            onClick={() => { setWithdrawnl(!witndrawnl);setModel('行车轨迹'); setCarPath(!carPath) }}
+                                onClick={() => {
+                                    setWithdrawnl(!witndrawnl);
+                                    setModel("行车轨迹");
+                                    setCarPath(!carPath);
+                                }}
                             />
-                        }
+                        )}
                         <span>{model}</span>
-                        
                     </div>
-                    {forecastModel && <div className={style.content_header_middle}>
-                        <span >当前预测日期：{date}</span>
-                    </div>}
-                  
-                    
+                    {forecastModel && (
+                        <div className={style.content_header_middle}>
+                            <span>当前预测日期：{date}</span>
+                        </div>
+                    )}
+
                     <div className={style.content_header_right}>
-                        {carPath && <span className={style.btn_wrong}>
-                            <button onClick={() => {setCarPath(!carPath);setModel('异常车辆');setWithdrawnl(!witndrawnl)}}>
-                                异常情况
-                            </button>
-                        </span>}
-                        {forecastModel && <span className={style.btn_wrong}>
-                            <button className={style.btn_forecast} onClick={() => { setCarPath(false); setForecastModel(false) }}>
-                                退出预测模式 <LogoutOutlined />
-                            </button>
-                        </span>}
-                        
+                        {carPath && (
+                            <span className={style.btn_wrong}>
+                                <button
+                                    onClick={() => {
+                                        setCarPath(!carPath);
+                                        setModel("异常车辆");
+                                        setWithdrawnl(!witndrawnl);
+                                    }}
+                                >
+                                    异常情况
+                                </button>
+                            </span>
+                        )}
+                        {forecastModel && (
+                            <span className={style.btn_wrong}>
+                                <button
+                                    className={style.btn_forecast}
+                                    onClick={() => {
+                                        setCarPath(false);
+                                        setForecastModel(false);
+                                    }}
+                                >
+                                    退出预测模式 <LogoutOutlined />
+                                </button>
+                            </span>
+                        )}
                     </div>
                 </div>
                 <div className={style.content}>
@@ -224,7 +276,6 @@ function MainPage() {
                             <div
                                 style={{
                                     height: "100%",
-<<<<<<< HEAD
                                     width: "100%",
                                     margin: "0% 5% ",
                                 }}
@@ -233,7 +284,7 @@ function MainPage() {
                                     type="Keyboard"
                                     cardwidth="100%"
                                     cardheight="101%"
-                                    bgwidth="96.6%"
+                                    bgwidth="97%"
                                     bgheight="98.5%"
                                     blobwidth="60%"
                                     blobheight="60%"
@@ -243,34 +294,16 @@ function MainPage() {
                                     {/* <Page /> */}
                                     {/* <Hot/> */}
                                 </EchartsDiv>
-=======
-                                    width: "96%",
-                                    margin: "0% 2%",
-                                    
-                                }}
-                            >
-                                {/* {carPath ? <Page /> : <SearchCap />}  */}
-                                {/* <Page /> */}
-                            
-                                <Hot/>
-                                {/* <Keyboard/> */}
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                             </div>
                         </div>
                         <div className={style.bigMap}>
                             <div
                                 className={style.map}
                                 style={{
-<<<<<<< HEAD
                                     width: "98.5%",
                                     height: "98%",
                                     position: "relative",
                                     margin: "0.55% 0.85% ",
-=======
-                                    width: "100%",
-                                    height: "100%",
-                                    position: "relative",
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                 }}
                             >
                                 {/* {carPath ? <Map /> : <WrongCap />}  */}
@@ -282,68 +315,36 @@ function MainPage() {
                         <div className={style.column}>
                             <div
                                 style={{
-<<<<<<< HEAD
                                     height: "96%",
                                     width: "95%",
                                     margin: "0% 2% 7% 3%",
-=======
-                                    height: "100%",
-                                    width: "100%",
-                               
-                                    display:"flex",
-
-                                    flexDirection:"column",
-                    
-                                    justifyContent:"space-between"
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                 }}
                             >
                                 {/* <Echart /> */}
                                 <EchartsDiv
                                     type="Liner"
-<<<<<<< HEAD
                                     cardwidth="106%"
-                                    cardheight="34%"
+                                    cardheight="33.3%"
                                     bgwidth="96.6%"
                                     bgheight="95.5%"
-=======
-                                    cardwidth="100%"
-                                    cardheight="32%"
-                                    bgwidth="97%"
-                                    bgheight="96%"
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />
                                 <EchartsDiv
                                     type="Liner1"
-<<<<<<< HEAD
                                     cardwidth="106%"
                                     cardheight="34%"
                                     bgwidth="96.6%"
                                     bgheight="95.5%"
-=======
-                                    cardwidth="100%"
-                                    cardheight="32%"
-                                    bgwidth="97%"
-                                    bgheight="96%"
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />
                                 <EchartsDiv
                                     type="BarChart"
-<<<<<<< HEAD
                                     cardwidth="106%"
                                     cardheight="34%"
                                     bgwidth="96.6%"
                                     bgheight="95.5%"
-=======
-                                    cardwidth="100%"
-                                    cardheight="32%"
-                                    bgwidth="97%"
-                                    bgheight="96%"
->>>>>>> b348d702dceb220d2fb748dc31e0e22b3784a9dc
                                     blobwidth="60%"
                                     blobheight="60%"
                                 />

@@ -1,14 +1,3 @@
-.content {
-    /* top: 64px; */
-
-    position: relative;
-    width: 90%;
-    left: 220px;
-    height: 100%;
-    margin-top: 11px;
-    background-color: rgb(60, 87, 168);
-    transition: all 0.3s ease;
-}
 .upload {
     height: 100%;
     width: 100%;
@@ -17,65 +6,28 @@
     text-align: center;
     /* margin-top: 5%; */
 }
-.upload .header {
-    margin: 0% 0;
-}
-.chart .header {
-    text-align: center;
-    width: 80%;
-    font-size: 14px;
-    height: 30px;
-    padding-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .chartbox {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .chart {
-    width: 800px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     background-color: rgb(195, 232, 251);
     margin: 0px auto;
     text-align: center;
 }
 
-.selectbtn {
-    height: 60px;
-    width: 350px;
-    /* background-color: #964747; */
-    text-align: center;
-    font-size: 16px;
-    line-height: 16px;
-    margin-left: 460px;
-}
-
-.selectbtn input {
-    margin: 25px 0 10px 10px;
-}
-
-.selectbtn Radio {
-    width: 20px;
-    margin-right: 4%;
-}
-
-.chartbox .btn {
-    height: 30px;
-}
-
-.chartbox .btn button {
-    width: 150px;
-    margin-top: 10px;
-    margin-left: 30px;
+.chartbox button {
     height: 30px;
     background-color: rgb(158, 146, 242);
+    color: aliceblue;
     border: none;
-}
-
-.chartbox .btn button:hover {
-    background-color: #5558e1;
 }

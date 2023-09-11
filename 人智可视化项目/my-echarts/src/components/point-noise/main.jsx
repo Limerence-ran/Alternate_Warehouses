@@ -41,7 +41,6 @@ export default function PointNoise(props) {
 
         xAxis: {
             axisLine: {
-
                 //  改变x轴颜色
                 lineStyle: {
                     color: "rgb(143 123 251)",
@@ -68,9 +67,9 @@ export default function PointNoise(props) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return "-" + base;
+                            return base;
                         } else if (exponent === 1) {
-                            return "-" + base + "e";
+                            return base + "e";
                         }
                         return base + "e" + exponent;
                     } else {
@@ -118,9 +117,9 @@ export default function PointNoise(props) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return "-" + base;
+                            return base;
                         } else if (exponent === 1) {
-                            return "-" + base + "e";
+                            return base + "e";
                         }
                         return base + "e" + exponent;
                     } else {

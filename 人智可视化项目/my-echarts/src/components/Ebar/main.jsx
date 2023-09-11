@@ -5,16 +5,17 @@ class EBar extends React.Component {
     constructor(props) {
         super(props);
     }
- 
+
     componentDidMount() {
         var chartDom = document.getElementById("Emainbar");
         var myChart = echarts.init(chartDom);
         var option;
         // prettier-ignore
         let dataAxis = [];
+        console.log(this.props.resourceFormat);
         let data = this.props.data_xy.every_dot_var[0];
         for (let i = 0; i < data.length; i++) {
-            dataAxis.push("");
+            dataAxis.push(this.props.resourceFormat[i]);
         }
         let yMax = 500;
         let dataShadow = [];
@@ -36,7 +37,7 @@ class EBar extends React.Component {
             xAxis: {
                 data: dataAxis,
                 axisLabel: {
-                    inside: true,
+                    // inside: true,
                     color: "#fff",
                 },
                 axisTick: {
@@ -72,9 +73,9 @@ class EBar extends React.Component {
                             var exponent = Math.floor(Math.log10(value));
                             var base = value / Math.pow(10, exponent);
                             if (exponent === 0) {
-                                return "-" + base;
+                                return  base;
                             } else if (exponent === 1) {
-                                return "-" + base + "e";
+                                return  base + "e";
                             }
                             return base + "e" + exponent;
                         } else {
@@ -92,7 +93,7 @@ class EBar extends React.Component {
                 },
             ],
             tooltip: {
-                formatter: "distance : ( {c} ) ",
+                formatter: "var :  {c}  ",
                 show: true,
             },
             toolbox: {

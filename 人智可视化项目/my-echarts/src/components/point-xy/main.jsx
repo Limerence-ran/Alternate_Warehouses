@@ -100,9 +100,9 @@ export default function Pointxy(props) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return "-" + base;
+                            return base;
                         } else if (exponent === 1) {
-                            return "-" + base + "e";
+                            return base + "e";
                         }
                         return base + "e" + exponent;
                     } else {
@@ -150,17 +150,15 @@ export default function Pointxy(props) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return "-" + base;
+                            return base;
                         } else if (exponent === 1) {
-                            return "-" + base + "e";
+                            return base + "e";
                         }
                         return base + "e" + exponent;
                     } else {
                         return 0;
                     }
                 },
-                //  改变y轴字体颜色和大小
-                //formatter: '{value} m³ ', //  给y轴添加单位
                 textStyle: {
                     fontSize: "10px",
                     fontFamily: "Futura",

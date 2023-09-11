@@ -388,7 +388,7 @@ const EchartMap = () => {
                 textStyle: {
                     fontSize: "100px",
                     opacity: 0.8,
-                    color: "#05e8fe",
+                    color: "rgb(0 126 197)",
                     fontFamily: "DS-DIGIT",
                 },
             },

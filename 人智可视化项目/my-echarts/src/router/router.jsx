@@ -13,6 +13,7 @@ import Aboutme from "../component/Aboutme/main";
 import UploadMyData from "../component/UploadMydata/main";
 import { Navigate } from "react-router-dom";
 
+//判断本地存储是否有token，没有则自动跳转登陆页面
 export default [
     {
         path: "/Login",

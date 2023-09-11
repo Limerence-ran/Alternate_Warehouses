@@ -35,7 +35,7 @@ function App() {
             {/* <Mysoftware/> */}
             
 
-            {/* <Login></Login> */}
+            <Login></Login>
             {/* <Home></Home> */}
             {/* <Buy></Buy> */}
             {/* <Update></Update> */}

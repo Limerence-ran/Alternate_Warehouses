@@ -1,7 +1,7 @@
 import style from "./main.module.css";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-// import '../../router/router'
+import { Button, Select, Divider } from "antd";
 
 function UploadMyData() {
     const [data_form, setData] = useState([]);
@@ -48,24 +48,30 @@ function UploadMyData() {
     return (
         <>
             <div className={style.upload}>
-                <div className={style.header}>
-                    <span>IMDB Movie Reviews Data</span>
-                </div>
-
+                <Divider style={{
+                    position:"absolute",
+                    top:"4%"
+                }}/>
                 <div className={style.chartbox}>
-                    <div className={style.chart}></div>
-                    <div className={style.selectbtn}>
+                    <div></div>
+                    <div></div>
+                    <Button
+                        type="primary"
+                        // onClick={showrightDrawer}
+                    >
+                        The Data to be Uploaded
+                    </Button>
+                    <Select className={style.selectbtn}>
                         <span>Please select the level of noise: </span>
                         <input type="radio" name="1"></input>1
                         <input type="radio" name="1"></input>2
                         <input type="radio" name="1"></input>3
-                    </div>
-                    <div className={style.btn}>
-                        <button onClick={handletoUpload}>
-                            Using my previous data
-                        </button>
-                        <button onClick={nextPage}>Upload my data</button>
-                    </div>
+                    </Select>
+
+                    <Button onClick={handletoUpload}>
+                        Using my previous data
+                    </Button>
+                    <Button onClick={nextPage}>Upload my data</Button>
                 </div>
             </div>
         </>

@@ -427,13 +427,15 @@ function Chart5() {
                 const { code, data } = responseData; // 获取返回的状态码
                 // 处理返回的数据
                 if (code === 1) {
-                    console.log(responseData);
                     message.success("Data request successful");
-                    localStorage.setItem("data-xy", data);
                     setisShow(!isshow);
                     setTimeout(() => {
-                        navigate("/Chartdata/Chart2");
-                    }, 3000);
+                        navigate("/Chartdata/Chart2", {
+                            state: {
+                                data: data, // 将数据作为state属性传递给目标组件
+                            },
+                        });
+                    }, 1000);
                 }
             })
             .catch((error) => {
