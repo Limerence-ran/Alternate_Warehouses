@@ -86,14 +86,14 @@ const Abouttable = () => {
                         },
                     });
                     // 查询成功
-                    message.success("查询成功");
+                    message.success("Query success" + msg);
                 } else {
                     // 其他错误
-                    message.error("查询失败: " + msg);
+                    message.error("Query failure " + msg);
                 }
             })
             .catch((error) => {
-                message.error("请求出错");
+                message.error("Request error");
                 console.log("请求出错", error);
             });
     };

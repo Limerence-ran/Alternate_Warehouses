@@ -120,10 +120,10 @@ const LoginRegisterForm = () => {
                     console.log(response.data);
                     resetForm();
                     navigate("/Chartdata");
-                    showMessage(response.data.msg, "success");
+                    showMessage('Login success', "success");
                 } else {
                     // 登录失败
-                    showMessage(response.data.msg, "error");
+                    showMessage("Login failed", "error");
                 }
             })
             .catch((error) => {
