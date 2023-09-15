@@ -80,20 +80,20 @@ const Mydatatable = () => {
 
     const columns = [
         {
-            title: "resourceName",
-            dataIndex: "resourceName",
+            title: "Dataname",
+            dataIndex: "dataname",
         },
         {
             title: "OwnerName",
             dataIndex: "ownerName",
         },
         {
-            title: "Type",
-            dataIndex: "type",
+            title: "DataType",
+            dataIndex: "dataType",
         },
         {
-            title: "referenceQuantity",
-            dataIndex: "referenceQuantity",
+            title: "DataScore",
+            dataIndex: "dataScore",
         },
 
         {

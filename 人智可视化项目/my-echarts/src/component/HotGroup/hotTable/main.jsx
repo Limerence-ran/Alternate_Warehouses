@@ -129,21 +129,35 @@ const HotTable = () => {
         {
             title: "Group Name",
             dataIndex: "groupName",
+            render: (text, record, index) => {
+                let color = "#9195a3"; // 默认颜色
+                if (index === 0) {
+                    color = "#FE2D46"; // 第一个索引设置为红色
+                } else if (index === 1) {
+                    color = "#F60"; // 第二个索引设置为橙色
+                } else if (index === 2) {
+                    color = "#FAA90E"; // 第三个索引设置为黄色
+                }
+                const style = {
+                    color: color,
+                };
+                return <span style={style}>{text}</span>;
+            },
         },
         {
-            title: "Group Popularity",
-            dataIndex: "popularity",
+            title: "Group Score",
+            dataIndex: "Group Score",
         },
         {
-            title: "Dimensions",
-            dataIndex: "dimension",
+            title: "Group Dimensions",
+            dataIndex: "Group dimension",
         },
         {
-            title: "Group Datanum",
-            dataIndex: "resourceQuantity",
+            title: "Group DataNum",
+            dataIndex: "Group DataNum",
         },
         {
-            title: "Withdrawal",
+            title: "Group Operate",
             render: (e, record) => {
                 console.log(record.join);
                 return (

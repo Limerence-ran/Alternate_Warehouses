@@ -141,20 +141,20 @@ const Pagetable1 = ({ handleAjaxChange }) => {
     };
     let columns = [
         {
-            title: "ResourceName",
-            dataIndex: "resourceName",
+            title: "Dataname",
+            dataIndex: "dataname",
         },
         {
             title: "OwnerName",
             dataIndex: "ownerName",
         },
         {
-            title: "Type",
-            dataIndex: "type",
+            title: "DataType",
+            dataIndex: "dataType",
         },
         {
-            title: "ReferenceQuantity",
-            dataIndex: "referenceQuantity",
+            title: "DataScore",
+            dataIndex: "dataScore",
         },
         {
             title: "",

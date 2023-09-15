@@ -24,7 +24,7 @@ import Bar from "./components/bar/main";
 import PointNoise from "./components/point-noise/main";
 import RelationChart from "./components/relationship/main";
 import EPie from "./components/EPie/main";
-
+import Card01 from "./components/card01/main";
 function App() {
     const element = useRoutes(routes);
     return (

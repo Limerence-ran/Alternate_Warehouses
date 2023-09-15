@@ -299,38 +299,53 @@ function Chart5() {
             const { data, code, msg } = response.data;
             if (code === 1) {
                 message.success("Data request successful");
+                // 创建一个空数组用于存放key和value
                 const keysArray = [];
                 const valuesArray = [];
+                // 遍历data中的每一个对象
                 data.data.forEach((obj) => {
+                    // 获取对象中的键
                     const key = Object.keys(obj)[0]; // 获取对象中的键
+                    // 获取对象中的值
                     const value = Object.values(obj)[0]; // 获取对象中的值
+                    // 将key和value添加到keysArray和valuesArray数组中
                     keysArray.push(key);
                     valuesArray.push(value);
                 });
+                // 将keysArray和valuesArray数组转换成数组
                 const resultArray = [keysArray, valuesArray];
+                // 设置表单数据
                 setFormdata(resultArray);
+                // 创建一个空数组用于存放key和value
                 const originData = [];
-                if (resultArray.length !== 0) {
+                // 如果resultArray数组不为空
+                if (resultArray.length!== 0) {
+                    // 遍历resultArray中的每一个元素
                     for (let j = 0; j < resultArray[1][0].length; j++) {
+                        // 创建一个对象
                         let objectform = {
                             key: j.toString(),
                             dimension: `dimension ${j + 1}`,
                         };
+                        // 遍历resultArray中的每一个元素，将其中的key和value添加到对象中
                         for (let i = 0; i < resultArray[0].length; i++) {
                             objectform[resultArray[0][i]] =
                                 resultArray[1][i][j];
                         }
+                        // 将对象添加到originData数组中
                         originData.push(objectform);
                     }
                 }
+                // 设置数据
                 setData(originData);
             } else {
+                // 如果resultArray数组为空，则报错
                 message.error(msg);
             }
         } catch (error) {
             // 处理错误状态
             message.error(
-                "The request failed. Please check your network connection"
+                "The request failed, please check your network connection"
             );
             throw error; // 可以选择抛出错误，供调用者处理
         }
@@ -463,23 +478,23 @@ function Chart5() {
                             items={[
                                 {
                                     title: "Step 1",
-                                    description: "The Data to be Uploaded",
+                                    description: "Upload Data",
                                 },
                                 {
                                     title: "Step 2",
-                                    description: "The iteration mode you want",
+                                    description: "Change Alogrithm",
                                 },
                                 {
                                     title: "Step 3",
-                                    description: "The datas you want to use",
+                                    description: "Change UsedData",
                                 },
                                 {
                                     title: "Step 4",
-                                    description: "The number of data exchanges",
+                                    description: "Set Data Iterations",
                                 },
                                 {
                                     title: "Step 5",
-                                    description: "The weight of the datas (%)",
+                                    description: "Set Data Weight",
                                 },
                             ]}
                         />
@@ -658,12 +673,14 @@ function Chart5() {
                                     <Form.Item key="me" name={`input_me`}>
                                         <InputNumber
                                             addonBefore={<PieChartOutlined />}
-                                            prefix="My Data Weight"
+                                            prefix="My Data Weight | "
                                             suffix="%"
                                             min={1}
                                             size="middle"
                                             placeholder="number"
-                                            style={{ width: "100%" }}
+                                            style={{
+                                                width: "100%",
+                                            }}
                                             onChange={(value) =>
                                                 handleInputChange(value, "me")
                                             }
@@ -678,7 +695,7 @@ function Chart5() {
                                                 addonBefore={
                                                     <PieChartOutlined />
                                                 }
-                                                prefix={value}
+                                                prefix={`${value} | `}
                                                 onChange={(value) =>
                                                     handleInputChange(
                                                         value,

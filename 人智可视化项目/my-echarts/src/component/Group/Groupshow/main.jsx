@@ -93,12 +93,12 @@ const Groupshow = () => {
                     if (code === 1) {
                         message.success(msg);
                     } else {
-                        message.error("解散失败: " + msg);
+                        message.error("Failed: " + msg);
                     }
                 })
                 .catch((error) => {
-                    message.error("请求出错");
-                    console.log("请求出错", error);
+                    message.error("Failed");
+                    console.log("Failed", error);
                 });
         };
         disbandGroup(name);
@@ -122,20 +122,20 @@ const Groupshow = () => {
             render: () => <span>Publice</span>,
         },
         {
-            title: "Datanum",
-            dataIndex: "resourceQuantity",
+            title: "Group DataNum",
+            dataIndex: "Group DataNum",
         },
         {
-            title: "Dimension",
-            dataIndex: "dimension",
+            title: "Group Dimension",
+            dataIndex: "Group dimension",
         },
         {
-            title: "Detail",
+            title: "Group Detail",
             dataIndex: "description",
             render: (e) => <TagsTwoTone onClick={() => Cancelbox(e)} />,
         },
         {
-            title: "Withdrawal",
+            title: "Group Operate",
             render: (e, record) => (
                 <button
                     onClick={() => handleDelete(record)}

@@ -13,22 +13,28 @@ export default function PointNoise(props) {
         backgroundColor: "rgb(214 216 254)",
         grid: { show: true, containLable: true },
         title: {
-            text: `Noise parameters : ${props.data_xy.var}`,
+            text: `Private Rank`,
+            subtext: `Noise parameters : ${props.data_xy.var}`,
             bottom: "4%",
             right: "center", // 标题水平居中
-            textStyle: {
+            subtextStyle: {
                 color: "#8998AC", // 标题字体颜色
-                fontSize: 8, // 标题字体大小
+                fontSize: 7, // 标题字体大小
+            },
+            textStyle: {
+                color: "rgb(143 123 251)",
+                fontSize: 10,
+                fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
             },
         },
         legend: {
-            bottom: "10%",
+            top: "5%",
             right: "center",
             data: ["noise"],
             textStyle: {
                 color: "#3E9FFF",
                 fontSize: "10px",
-                fontFamily: "Futura",
+                fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
             },
             itemHeight: 10,
             itemWidth: 10, // 修改icon图形大小
@@ -79,7 +85,7 @@ export default function PointNoise(props) {
                 //  改变x轴字体颜色和大小
                 textStyle: {
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                     color: "grey",
                 },
             },
@@ -129,7 +135,7 @@ export default function PointNoise(props) {
                 //  改变y轴字体颜色和大小
                 textStyle: {
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                     color: "grey",
                 },
             },

@@ -5,7 +5,7 @@ export default function Pointxy(props) {
     // 假设有两组数据分别是 data1 和 data2
     const data1 = props.data_xy.before_data; // 第一组数据的坐标点 props.before_data
     const data2 = props.data_xy.result_data; // 第二组数据的坐标点
-
+    //类别名 props.resourceFormat
     const dataline = []; //连线数组
     data1.forEach((item, index) => {
         let arr1 = [];
@@ -42,12 +42,22 @@ export default function Pointxy(props) {
 
     // 配置散点图的基本参数
     const option = {
+        title: {
+            text: "Changing Trends",
+            bottom: 10,
+            left: "center",
+            textStyle: {
+                color: "rgb(143 123 251)",
+                fontSize: "10px",
+                fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
+            },
+        },
         grid: {
             containLabel: true, // 将坐标轴标签的宽度计算在内
         },
         backgroundColor: "rgb(214 216 254)",
         legend: {
-            bottom: 10,
+            top: 5,
             left: "center",
             itemWidth: 9,
             itemHeight: 9,
@@ -57,7 +67,7 @@ export default function Pointxy(props) {
                 { name: "Moving track", icon: "none" },
             ],
             textStyle: {
-                fontFamily: "Futura",
+                fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                 color: "grey",
                 fontSize: "10px",
             },
@@ -112,7 +122,7 @@ export default function Pointxy(props) {
 
                 textStyle: {
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                     color: "grey",
                 },
             },
@@ -161,7 +171,7 @@ export default function Pointxy(props) {
                 },
                 textStyle: {
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                     color: "grey",
                 },
             },

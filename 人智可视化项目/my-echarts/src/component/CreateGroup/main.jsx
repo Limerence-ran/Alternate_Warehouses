@@ -125,8 +125,8 @@ const CreateGroup = () => {
                         className={style.formstyle}
                     >
                         <Form.Item
-                            label="Group name"
-                            name="name"
+                            label="Group Name"
+                            name="Group Name"
                             rules={[
                                 {
                                     required: true,
@@ -141,8 +141,8 @@ const CreateGroup = () => {
                         </Form.Item>
 
                         <Form.Item
-                            label="Type"
-                            name="type"
+                            label="Group Type"
+                            name="Group Type"
                             rules={[
                                 {
                                     required: true,
@@ -166,8 +166,8 @@ const CreateGroup = () => {
                         </Form.Item>
 
                         <Form.Item
-                            label="Input Dimension "
-                            name="text"
+                            label="Group Dimension"
+                            name="Group Dimension"
                             rules={[
                                 {
                                     required: true,
@@ -212,7 +212,7 @@ const CreateGroup = () => {
                         </Form.Item>
 
                         <Drawer
-                            title="Please input parameter name"
+                            title="Please input Dimension Parameter"
                             placement="bottom"
                             size="large"
                             height={500}
@@ -278,7 +278,7 @@ const CreateGroup = () => {
                                     type="primary"
                                     onClick={showbottomDrawer}
                                 >
-                                    Parameter Name
+                                    Dimension Parameters
                                 </Button>
                                 <Button
                                     style={{ flexBasis: "45%" }}

@@ -36,12 +36,12 @@ function Mydatasets() {
                 if (code === 1) {
                     setData(data);
                 } else {
-                    message.error("创建失败: " + msg);
+                    message.error("Create failed: " + msg);
                 }
             })
             .catch((error) => {
-                message.error("请求出错");
-                console.log("请求出错", error);
+                message.error("An error occurred in the request");
+                console.log("An error occurred in the request", error);
             });
     };
 

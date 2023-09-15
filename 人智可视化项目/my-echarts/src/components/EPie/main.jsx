@@ -5,11 +5,11 @@ export default function EPie(props) {
     let option = {
         backgroundColor: "rgb(214 216 254)",
         title: {
-            text: "Normalize Distance",
+            text: "Magnitude Of Change",
             textStyle: {
                 color: "rgb(143 123 251)",
                 fontSize: "10px",
-                fontFamily: "Futura",
+                fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
             },
             left: "center",
             bottom: "4%",
@@ -24,7 +24,7 @@ export default function EPie(props) {
             textStyle: {
                 color: "#8998AC",
                 fontSize: "10px",
-                fontFamily: "Futura",
+                fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
             },
         },
         series: [
@@ -40,7 +40,7 @@ export default function EPie(props) {
                 label: {
                     show: true,
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                 },
                 emphasis: {
                     itemStyle: {

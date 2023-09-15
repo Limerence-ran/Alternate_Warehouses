@@ -23,13 +23,13 @@ class Bar extends React.Component {
         option = {
             backgroundColor: "rgb(214 216 254)",
             title: {
-                text: "Magnitude of change",
+                text: "Specific Changes",
                 bottom: "4%",
                 left: "center",
                 textStyle: {
                     color: "rgb(143 123 251)",
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                 },
             },
             xAxis: {
@@ -81,7 +81,7 @@ class Bar extends React.Component {
                         }
                     },
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                     color: "grey",
                 },
             },

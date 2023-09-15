@@ -27,9 +27,9 @@ export default function DynamicRelationChart(props) {
 
             const groupNode = {
                 id: groupId,
-                name: `DataSet:${item.resourceName}`,
+                name: `Data:${item.resourceName}`,
                 value: 1,
-                category: "DataSet",
+                category: "Data",
             };
 
             const ownerNode = {
@@ -61,7 +61,7 @@ export default function DynamicRelationChart(props) {
             top: "bottom",
             left: "right",
         },
-        legend: { data: ["Group", "DataSet", "Owner"] },
+        legend: { data: ["Group", "Data", "Owner"] },
 
         tooltip: { show: true },
 
@@ -84,7 +84,7 @@ export default function DynamicRelationChart(props) {
                 categories: [
                     { name: "Group", itemStyle: { color: "red" } },
                     {
-                        name: "DataSet",
+                        name: "Data",
                         itemStyle: { color: "#ff6e7f" },
                     },
                     {
@@ -100,13 +100,13 @@ export default function DynamicRelationChart(props) {
                     symbolSize:
                         node.category === "Group"
                             ? 50
-                            : node.category === "DataSet"
+                            : node.category === "Data"
                             ? 40
                             : 20,
                     symbol:
                         node.category === "Group"
                             ? appSymbol
-                            : node.category === "DataSet"
+                            : node.category === "Data"
                             ? masterSymbol
                             : slaveSymbol,
                 })),

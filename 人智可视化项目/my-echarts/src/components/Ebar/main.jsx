@@ -25,13 +25,13 @@ class EBar extends React.Component {
         option = {
             backgroundColor: "rgb(214 216 254)",
             title: {
-                text: "The Var of Every Dot",
+                text: "The Mean Var Of Data",
                 bottom: "4%",
                 left: "center",
                 textStyle: {
                     color: "rgb(143 123 251)",
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                 },
             },
             xAxis: {
@@ -73,9 +73,9 @@ class EBar extends React.Component {
                             var exponent = Math.floor(Math.log10(value));
                             var base = value / Math.pow(10, exponent);
                             if (exponent === 0) {
-                                return  base;
+                                return base;
                             } else if (exponent === 1) {
-                                return  base + "e";
+                                return base + "e";
                             }
                             return base + "e" + exponent;
                         } else {
@@ -83,7 +83,7 @@ class EBar extends React.Component {
                         }
                     },
                     fontSize: "10px",
-                    fontFamily: "Futura",
+                    fontFamily: "Fieldstones-ExtraBold-BF64e566a80554d",
                     color: "grey",
                 },
             },

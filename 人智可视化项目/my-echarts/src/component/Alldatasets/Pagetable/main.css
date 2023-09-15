@@ -1,37 +1,33 @@
-
-.Paging2{
+.Paging2 {
     display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 .Paging2 .ant-table-pagination {
     width: 100%;
     margin-top: auto;
-   
 }
 
-.Paging2 .ant-table-wrapper{
+.Paging2 .ant-table-wrapper {
     height: 100%;
     width: 100%;
 }
-.Paging2 .ant-table-wrapper .ant-table-thead>tr>th,
-.Paging2 .ant-table-wrapper .ant-table-thead>tr>td{
+.Paging2 .ant-table-wrapper .ant-table-thead > tr > th,
+.Paging2 .ant-table-wrapper .ant-table-thead > tr > td {
     background-color: transparent;
 }
-.Paging2 .ant-spin-nested-loading{
+.Paging2 .ant-spin-nested-loading {
     width: 100%;
     height: 100%;
-
 }
-.Paging2 .ant-spin-container{
+.Paging2 .ant-spin-container {
     width: 100%;
     height: 100%;
-
 }
 
 .Paging2 .ant-table {
-    width:100%;
+    width: 100%;
     padding-left: 5px;
     overflow: scroll;
     height: 100%;
@@ -59,9 +55,7 @@
 .Paging2 .ant-table-cell {
     height: 2px !important;
     padding: 3px !important;
-   
 }
-.Paging2 .ant-table-thead .ant-table-cell{
+.Paging2 .ant-table-thead .ant-table-cell {
     text-align: center;
 }
-

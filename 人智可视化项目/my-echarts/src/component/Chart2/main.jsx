@@ -74,7 +74,10 @@ function Chart2() {
                     <div className={style.chart2}>
                         <div className={style.img}>
                             {!isLoading ? (
-                                <Pointxy data_xy={datas}></Pointxy>
+                                <Pointxy
+                                    data_xy={datas}
+                                    resourceFormat={resourceFormat}
+                                ></Pointxy>
                             ) : (
                                 <Skeleton />
                             )}
