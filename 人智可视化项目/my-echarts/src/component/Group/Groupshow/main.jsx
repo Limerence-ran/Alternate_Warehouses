@@ -122,12 +122,12 @@ const Groupshow = () => {
             render: () => <span>Publice</span>,
         },
         {
-            title: "Group DataNum",
-            dataIndex: "Group DataNum",
+            title: "Group Data Num",
+            dataIndex: "resourceQuantity",
         },
         {
             title: "Group Dimension",
-            dataIndex: "Group dimension",
+            dataIndex: "dimension",
         },
         {
             title: "Group Detail",
@@ -141,7 +141,7 @@ const Groupshow = () => {
                     onClick={() => handleDelete(record)}
                     className={style.withdrawal}
                 >
-                    Withdrawal
+                    Quit
                 </button>
             ),
         },

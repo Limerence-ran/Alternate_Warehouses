@@ -52,14 +52,15 @@ const HotTable = () => {
                 })
                     .then((res) => res.json())
                     .then((res) => {
-                        console.log(i);
-                        dataset.forEach((i) => {
-                            res.data.forEach((j) => {
-                                if (i.id === j.id) {
-                                    i.join = true;
-                                }
+                        if (res.data !== null) {
+                            dataset.forEach((i) => {
+                                res.data.forEach((j) => {
+                                    if (i.id === j.id) {
+                                        i.join = true;
+                                    }
+                                });
                             });
-                        });
+                        }
                         setData(dataset);
                         setLoading(false);
                     });
@@ -109,7 +110,6 @@ const HotTable = () => {
                 )
                 .then((response) => {
                     const { code, msg } = response.data;
-                    console.log(response);
                     if (code === 1) {
                         message.success("Join successfully: " + msg);
                     } else {
@@ -146,15 +146,15 @@ const HotTable = () => {
         },
         {
             title: "Group Score",
-            dataIndex: "Group Score",
+            dataIndex: "popularity",
         },
         {
             title: "Group Dimensions",
-            dataIndex: "Group dimension",
+            dataIndex: "dimension",
         },
         {
-            title: "Group DataNum",
-            dataIndex: "Group DataNum",
+            title: "Group Data Num",
+            dataIndex: "resourceQuantity",
         },
         {
             title: "Group Operate",

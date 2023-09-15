@@ -24,7 +24,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
         await axios
             .post(
                 "http://39.98.41.126:31130/resource/page",
-                // 要上传的群组信息
+                // 查询群组中的所有资源
                 {
                     id: id,
                 },
@@ -36,10 +36,15 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                 }
             )
             .then((response) => {
+                // 获取响应数据
                 const { code, msg, data } = response.data;
+                // 如果响应码为 1，则表示成功
                 if (code === 1) {
+                    // 如果成功，则将数据设置到 data 中
                     setData(data.data);
+                    // 关闭 loading 标志
                     setLoading(false);
+                    // 设置表格参数
                     setTableParams({
                         ...tableParams,
                         pagination: {
@@ -48,47 +53,47 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                         },
                     });
                 } else {
+                    // 如果失败，则在这里处理其他错误情况的逻辑
                     message.error("The connection failed: " + msg);
                     // 在这里处理其他错误情况的逻辑
                 }
             })
             .catch((error) => {
+                // 如果出现错误，则在这里处理其他错误情况的逻辑
                 message.error("There is a problem with the network");
-                console.log("There is a problem with the network", error);
-            });
-        await axios
-            .post(
-                "http://39.98.41.126:31130/resource/resource",
-                // 要上传的群组信息
-                {
-                    id: id,
-                },
-                {
-                    headers: {
-                        Authorization: token, // 使用从本地存储中获取的 token
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-            .then((response) => {
-                const { code, msg, data } = response.data;
-                if (code === 1) {
-                    setMydata(data.data);
-                    message.success("Request Granted" + msg);
-                } else {
-                    message.error(msg);
-                }
-            })
-            .catch((error) => {
-                message.error(" An error occurred in the request");
-                console.log(error);
+                axios
+                    .post(
+                        "http://39.98.41.126:31130/resource/resource",
+                        // 要上传的群组信息
+                        {
+                            id: id,
+                        },
+                        {
+                            headers: {
+                                Authorization: token, // 使用从本地存储中获取的 token
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        const { code, msg, data } = response.data;
+                        if (code === 1) {
+                            // 如果成功，则将数据设置到 mydata 中
+                            setMydata(data.data);
+                            // 成功授权，则提示用户
+                            message.success("Request Granted" + msg);
+                        } else {
+                            // 如果失败，则在这里处理其他错误情况的逻辑
+                            message.error(msg);
+                        }
+                    })
+                    .catch((error) => {
+                        // 如果出现错误，则在这里处理其他错误情况的逻辑
+                        message.error(" An error occurred in the request");
+                        console.log(error);
+                    });
             });
     };
-
-    useEffect(() => {
-        let Groupid = localStorage.getItem("myGroupid");
-        idGroup(Groupid);
-    }, [JSON.stringify(tableParams)]);
 
     const handleTableChange = (pagination, filters, sorter) => {
         setTableParams({
@@ -96,50 +101,13 @@ const Pagetable1 = ({ handleAjaxChange }) => {
             filters,
             ...sorter,
         });
-
         // `dataSource` is useless since `pageSize` changed
         if (pagination.pageSize !== tableParams.pagination?.pageSize) {
             setData([]);
         }
     };
-    const onclickGet = (record) => {
-        let objectId = record.ownerId;
-        let id = localStorage.getItem("myGroupid");
-        let recordId = record.id;
-        const Getpost = (id, objectId, recordId) => {
-            const token = localStorage.getItem("token"); // 从本地存储获取 token
-            axios
-                .post(
-                    "http://39.98.41.126:31130/users/putApplication",
-                    {
-                        groupId: id + "",
-                        objectId: objectId + "",
-                    },
-                    {
-                        headers: {
-                            Authorization: token, // 使用从本地存储中获取的 token
-                            "Content-Type": "application/json",
-                        },
-                    }
-                )
-                .then((response) => {
-                    const { code, msg } = response.data;
-                    if (code === 1) {
-                        message.success("Request sent");
-                        // 将被点击按钮的唯一标识添加到 disabledButtons 数组中
-                        setDisabledButtons([...disabledButtons, recordId]);
-                    } else {
-                        message.error("The request failed: " + msg);
-                    }
-                })
-                .catch((error) => {
-                    message.error("There is a problem with the network");
-                    console.log("There is a problem with the network", error);
-                });
-        };
-        Getpost(id, objectId, recordId);
-    };
-    let columns = [
+
+    const columns = [
         {
             title: "Dataname",
             dataIndex: "dataname",
@@ -149,12 +117,12 @@ const Pagetable1 = ({ handleAjaxChange }) => {
             dataIndex: "ownerName",
         },
         {
-            title: "DataType",
-            dataIndex: "dataType",
+            title: "NoiseLevel",
+            dataIndex: "noiseLevel",
         },
         {
             title: "DataScore",
-            dataIndex: "dataScore",
+            dataIndex: "popularity",
         },
         {
             title: "",
@@ -162,6 +130,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                 let useOrGet = mydata.some(
                     (obj) => obj.resourceName === record.resourceName
                 );
+
                 if (useOrGet) {
                     return (
                         <Button
