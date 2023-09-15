@@ -81,21 +81,20 @@ const Mydatatable = () => {
     const columns = [
         {
             title: "Dataname",
-            dataIndex: "dataname",
+            dataIndex: "resourceName",
         },
         {
             title: "OwnerName",
             dataIndex: "ownerName",
         },
         {
-            title: "DataType",
-            dataIndex: "dataType",
+            title: "NoiseLevel",
+            dataIndex: "noiseLevel",
         },
         {
             title: "DataScore",
-            dataIndex: "dataScore",
+            dataIndex: "popularity",
         },
-
         {
             title: "",
             render: (e, record) => (

@@ -86,7 +86,7 @@ const Abouttable = () => {
                         },
                     });
                     // 查询成功
-                    message.success("Query success" + msg);
+                    message.success("Query success : " + msg);
                 } else {
                     // 其他错误
                     message.error("Query failure " + msg);
@@ -94,7 +94,7 @@ const Abouttable = () => {
             })
             .catch((error) => {
                 message.error("Request error");
-                console.log("请求出错", error);
+                console.log("Failed:", error);
             });
     };
 
@@ -127,6 +127,10 @@ const Abouttable = () => {
                     const { code, msg } = response.data;
                     if (code === 1) {
                         message.success(msg);
+                        const newData = data.filter(
+                            (item) => item.username !== username
+                        );
+                        setData(newData);
                     } else {
                         message.error("Processing failed: " + msg);
                         // 在这里处理其他错误情况的逻辑
@@ -166,6 +170,10 @@ const Abouttable = () => {
 
                     if (code === 1) {
                         message.success(msg);
+                        const newData = data.filter(
+                            (item) => item.username !== username
+                        );
+                        setData(newData);
                     } else {
                         message.error("Processing failed:" + msg);
                         // 在这里处理其他错误情况的逻辑

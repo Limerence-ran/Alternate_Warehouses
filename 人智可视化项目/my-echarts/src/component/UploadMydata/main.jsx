@@ -6,10 +6,13 @@ import {
     Select,
     Divider,
     Drawer,
+    Input,
     Space,
     Form,
+    Popconfirm,
     Table,
-    Tag,
+    InputNumber,
+    Typography,
     message,
     Modal,
 } from "antd";
@@ -36,17 +39,21 @@ function UploadMyData() {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-    const [data_form, setData] = useState([]);
     const [data, setDataTabel] = useState([]);
     //定义我在群组中上传的资源
     const [formdata, setFormdata] = useState([]);
     const [openright, setOpenright] = useState(false);
     const [noiseLevel, setNoiseLevel] = useState();
+    const [resourceName, setResourceName] = useState("");
+    const [editingKey, setEditingKey] = useState("");
     const [form] = Form.useForm();
     const navigate = useNavigate();
     //选择噪音
     const handleChange = (value) => {
         setNoiseLevel(value);
+    };
+    const handleChangeResourceName = (e) => {
+        setResourceName(e.target.value);
     };
     const EditableCell = ({
         editing,
@@ -192,7 +199,7 @@ function UploadMyData() {
     //组件创建时调用的ajax函数
     const ajax = async () => {
         try {
-            // 发送请求
+            //     发送请求
             const response = await axios({
                 url: "http://39.98.41.126:31130/resource/resource",
                 method: "PUT",
@@ -206,10 +213,12 @@ function UploadMyData() {
             // 处理成功状态
             const { data, code, msg } = response.data;
             if (code === 1) {
+                console.log(data);
                 message.success("Data request successful");
                 const keysArray = [];
                 const valuesArray = [];
                 setNoiseLevel(data.noiseLevel);
+                setResourceName(data.resourceName);
                 data.data.forEach((obj) => {
                     const key = Object.keys(obj)[0]; // 获取对象中的键
                     const value = Object.values(obj)[0]; // 获取对象中的值
@@ -232,7 +241,7 @@ function UploadMyData() {
                         originData.push(objectform);
                     }
                 }
-                setData(originData);
+                setDataTabel(originData);
             } else {
                 message.error(msg);
             }
@@ -241,7 +250,6 @@ function UploadMyData() {
             message.error(
                 "The request failed, please check your network connection"
             );
-            throw error; // 可以选择抛出错误，供调用者处理
         }
     };
     //查看当前群组的规定数据格式
@@ -263,8 +271,12 @@ function UploadMyData() {
             if (code === 1) {
                 message.success("Successfully");
                 const valuesArray = [];
-                for (i = 0; i < data.dimension; i++) {
-                    valuesArray.push("");
+                for (let i = 0; i < data.resourceFormat.length; i++) {
+                    const valueArray = [];
+                    for (let i = 0; i < data.dimension; i++) {
+                        valueArray.push("");
+                    }
+                    valuesArray.push(valueArray);
                 }
                 // 将keysArray和valuesArray数组转换成数组
                 const resultArray = [data.resourceFormat, valuesArray];
@@ -291,7 +303,7 @@ function UploadMyData() {
                     }
                 }
                 // 设置数据
-                setData(originData);
+                setDataTabel(originData);
             } else {
                 message.error("Failed");
             }
@@ -303,39 +315,54 @@ function UploadMyData() {
             console.log(error);
         }
     };
+
     //定义表格提交事件
     const getTableData = () => {
-        // 创建空数组 tableData
-        const tableData = [];
-        // 遍历 data 数组，从第二行开始
-        for (let i = 1; i < data.length; i++) {
-            // 创建新数组 columnData
-            const columnData = [];
-            // 遍历 columns 数组，从第二列开始
-            for (let j = 1; j < columns.length; j++) {
-                // 获取当前列的 dataIndex 属性
-                const dataIndex = columns[j].dataIndex;
-                // 找到当前行中对应的数据值，并添加到 columnData 数组中
-                columnData.push(data[i][dataIndex]);
+        const tableData = {};
+        // 遍历每一列
+        columns.forEach((column, columnIndex) => {
+            const { dataIndex } = column;
+            // 跳过第一列和最后一列
+            if (columnIndex === 0 || columnIndex === columns.length - 1) {
+                return;
             }
-            // 将 columnData 数组添加到 tableData 数组中
-            tableData.push(columnData);
-        }
-        // 输出结果，tableData 数组为最终的二维数组
+            const columnData = [];
+            // 遍历每一行
+            data.forEach((record) => {
+                columnData.push(record[dataIndex]);
+            });
+            // 将列名作为键，该列下的每行数据作为值
+            tableData[dataIndex] = columnData;
+        });
+
         // 返回处理后的数据
         return tableData;
     };
 
+    //表格提交
     function handletoUpload() {
+        //处理格式不正确问题
+        if (resourceName === "") {
+            message.error("Resource Name cannot be empty.");
+            return;
+        } else if (getTableData().length === 0) {
+            message.error("Data cannot be empty.");
+            return;
+        }
         const token = localStorage.getItem("token"); // 从本地存储获取 token
         const id = localStorage.getItem("myGroupid");
+        if (getTableData().length === 0) {
+            return;
+        }
+        console.log(id, getTableData(), noiseLevel, resourceName);
         axios
             .put(
                 "http://39.98.41.126:31130/resource",
                 {
                     groupId: id,
-                    data: getTableData(),
+                    data: [getTableData()],
                     noiseLevel: noiseLevel,
+                    resourceName: resourceName,
                     type: "commercial",
                 },
                 {
@@ -346,9 +373,10 @@ function UploadMyData() {
                 }
             )
             .then((response) => {
-                const { code, msg, data } = response;
+                const { code, msg } = response.data;
                 if (code === 1) {
-                    message.success("Save successfully: " + msg);
+                    message.success("Save successfully : " + msg);
+                    onCloseright();
                 } else {
                     message.error("Create failed");
                 }
@@ -402,10 +430,10 @@ function UploadMyData() {
                                     danger
                                     onClick={showModal}
                                 >
-                                    Choose Noise
+                                    Basic information
                                 </Button>
                                 <Modal
-                                    title="Check Noise"
+                                    title="Basic information"
                                     open={isModalOpen}
                                     onOk={handleOk}
                                     onCancel={handleCancel}
@@ -436,12 +464,18 @@ function UploadMyData() {
                                         ]}
                                     />
                                     <Divider></Divider>
+                                    <Input
+                                        placeholder="ResourceName"
+                                        max={15}
+                                        disabled={isabled}
+                                        onClick={handleChangeResourceName}
+                                    ></Input>
+                                    <Divider></Divider>
                                 </Modal>
                                 <Button onClick={onCloseright}>Cancel</Button>
                                 <Button
                                     type="primary"
                                     onClick={() => {
-                                        onCloseright();
                                         handletoUpload();
                                     }}
                                 >

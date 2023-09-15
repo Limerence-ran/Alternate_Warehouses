@@ -33,7 +33,7 @@ export default function Pointxy(props) {
             "#6c50f3",
             "#00ffff",
             "#00ff00",
-            "#00ff99",
+            "yellow",
             "#FF0087",
             "#FFBF00",
         ];
@@ -101,20 +101,20 @@ export default function Pointxy(props) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return "-" + base;
+                            return "-" + base.toFixed(1);
                         } else if (exponent === 1) {
-                            return "-" + base + "e";
+                            return "-" + base.toFixed(1) + "e";
                         }
-                        return "-" + base + "e" + exponent;
+                        return "-" + base.toFixed(1) + "e" + exponent;
                     } else if (value > 0) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return base;
+                            return base.toFixed(1);
                         } else if (exponent === 1) {
-                            return base + "e";
+                            return base.toFixed(1) + "e";
                         }
-                        return base + "e" + exponent;
+                        return base.toFixed(1) + "e" + exponent;
                     } else {
                         return 0;
                     }
@@ -151,20 +151,20 @@ export default function Pointxy(props) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return "-" + base;
+                            return "-" + base.toFixed(1);
                         } else if (exponent === 1) {
-                            return "-" + base + "e";
+                            return "-" + base.toFixed(1) + "e";
                         }
-                        return "-" + base + "e" + exponent;
+                        return "-" + base.toFixed(1) + "e" + exponent;
                     } else if (value > 0) {
                         var exponent = Math.floor(Math.log10(value));
                         var base = value / Math.pow(10, exponent);
                         if (exponent === 0) {
-                            return base;
+                            return base.toFixed(1);
                         } else if (exponent === 1) {
-                            return base + "e";
+                            return base.toFixed(1) + "e";
                         }
-                        return base + "e" + exponent;
+                        return base.toFixed(1) + "e" + exponent;
                     } else {
                         return 0;
                     }

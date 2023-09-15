@@ -52,7 +52,6 @@ function Alldatasets() {
                 console.log(error);
             });
     }, []);
-
     return (
         <div className={style.chartbox}>
             <div className={style.box} ref={box}>

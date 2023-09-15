@@ -319,7 +319,7 @@ function Chart5() {
                 // 创建一个空数组用于存放key和value
                 const originData = [];
                 // 如果resultArray数组不为空
-                if (resultArray.length!== 0) {
+                if (resultArray.length !== 0) {
                     // 遍历resultArray中的每一个元素
                     for (let j = 0; j < resultArray[1][0].length; j++) {
                         // 创建一个对象
@@ -350,6 +350,8 @@ function Chart5() {
             throw error; // 可以选择抛出错误，供调用者处理
         }
     };
+
+    //获取数据集名字
     const getresourceName = () => {
         const groupid = localStorage.getItem("myGroupid");
         const usedata = (groupid) => {

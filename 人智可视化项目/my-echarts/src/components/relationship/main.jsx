@@ -11,6 +11,7 @@ let slaveSymbol =
 
 export default function DynamicRelationChart(props) {
     const data = props.propdata;
+    console.log(data);
     const createNodesAndLinks = () => {
         const centerNode = {
             id: "center",
@@ -24,7 +25,7 @@ export default function DynamicRelationChart(props) {
         data.resourceListEnhancedWithRelativeCode.forEach((item) => {
             const groupId = item.id;
             const ownerId = item.ownerId;
-
+            console.log(ownerId);
             const groupNode = {
                 id: groupId,
                 name: `Data:${item.resourceName}`,

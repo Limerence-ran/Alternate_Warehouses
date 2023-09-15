@@ -9,6 +9,7 @@ import {
     InputNumber,
     Select,
     Drawer,
+    Divider,
     Space,
 } from "antd";
 import style from "./main.module.css"; // 导入自定义的CSS文件
@@ -21,8 +22,9 @@ const CreateGroup = () => {
     const [form] = Form.useForm();
     const [openbottom, setOpenbottom] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [GroupName, setGroupName] = useState("");
     const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-
+    const [dem, setDem] = useState(1);
     // const [dimension, setDimension] = useState(1);
     const [arity, setArity] = useState([]);
     const [description, setDescription] = useState("");
@@ -69,14 +71,14 @@ const CreateGroup = () => {
         groupDescription
     ) => {
         const token = localStorage.getItem("token"); // 从本地存储获取 token
-
+        console.log(GroupName);
         axios
             .post(
                 "http://39.98.41.126:31130/groups",
                 // 要上传的群组信息
                 {
-                    groupName: groupName,
-                    dimension: dimension,
+                    groupName: GroupName,
+                    dimension: dem,
                     resourceFormat: resourceFormat,
                     description: groupDescription,
                 },
@@ -137,6 +139,7 @@ const CreateGroup = () => {
                             <Input
                                 className={style.inputstyle}
                                 prefix={<DatabaseOutlined />}
+                                onChange={(e) => setGroupName(e.target.value)}
                             />
                         </Form.Item>
 
@@ -178,6 +181,9 @@ const CreateGroup = () => {
                             <InputNumber
                                 className={style.inputstyle}
                                 prefix={<LineChartOutlined />}
+                                onChange={(e) => {
+                                    setDem(e.target.value);
+                                }}
                                 min={1}
                             />
                         </Form.Item>
@@ -301,7 +307,9 @@ const CreateGroup = () => {
                         centered
                         className="success-modal-style"
                     >
+                        <Divider></Divider>
                         <span>Submit success!</span>
+                        <Divider></Divider>
                     </Modal>
                 </main>
             </div>

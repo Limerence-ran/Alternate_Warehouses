@@ -1,6 +1,16 @@
 import React, { useEffect } from "react";
 import * as echarts from "echarts";
-
+function getColorByIndex(index) {
+    const colors = [
+        "#6c50f3",
+        "#00ffff",
+        "#00ff00",
+        "yellow",
+        "#FF0087",
+        "#FFBF00",
+    ];
+    return colors[index];
+}
 export default function EPie(props) {
     let option = {
         backgroundColor: "rgb(214 216 254)",
@@ -35,6 +45,9 @@ export default function EPie(props) {
                     return {
                         value: i,
                         name: props.resourceFormat[index],
+                        itemStyle: {
+                            color: getColorByIndex(index),
+                        },
                     };
                 }),
                 label: {

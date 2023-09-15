@@ -26,7 +26,7 @@ function Chart4() {
                                     className={style.btnheader}
                                     onClick={() => IsChart(0, "Alldatasets")}
                                 >
-                                    All data
+                                    All datas
                                 </button>
                             </li>
                             <li>
@@ -34,7 +34,7 @@ function Chart4() {
                                     className={style.btnheader}
                                     onClick={() => IsChart(1, "Mydatasets")}
                                 >
-                                    Data I link to
+                                    Linked data
                                 </button>
                             </li>
                             <li>
@@ -50,7 +50,7 @@ function Chart4() {
                                     className={style.btnheader}
                                     onClick={() => IsChart(3, "UploadMyData")}
                                 >
-                                    Upload my data
+                                    Upload data
                                 </button>
                             </li>
                         </ul>
