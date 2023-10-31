@@ -19,8 +19,8 @@ const App = () => {
             {/* <Rain /> */}
             {/* <Keyboard /> */}
             {/* <EchartsDiv /> */}
-            {/* <MainPage /> */}
-            <Login/>
+            <MainPage />
+            {/* <Login/> */}
             {/* {element} */}
         </>
     );

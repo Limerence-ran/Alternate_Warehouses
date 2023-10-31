@@ -1020,6 +1020,8 @@ const EchartMap = () => {
                 initLayer();
             }
             function PathSimplifier() {
+                //转换成2D模式
+
                 //加载PathSimplifier，loadUI的路径参数为模块名中 'ui/' 之后的部分
                 AMapUI.load(
                     ["ui/misc/PathSimplifier", "lib/$"],
@@ -1372,9 +1374,8 @@ const EchartMap = () => {
                 }
             }
 
-            //行车轨迹渲染
-            // PathSimplifier(amap, mapChart);
-
+            // 行车轨迹渲染
+            PathSimplifier(amap, mapChart);
             //单区域极光动画
             // ThreeGuangzhou(amap);
 

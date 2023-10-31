@@ -213,7 +213,6 @@ function UploadMyData() {
             // 处理成功状态
             const { data, code, msg } = response.data;
             if (code === 1) {
-                console.log(data);
                 message.success("Data request successful");
                 const keysArray = [];
                 const valuesArray = [];
@@ -226,6 +225,7 @@ function UploadMyData() {
                     valuesArray.push(value);
                 });
                 const resultArray = [keysArray, valuesArray];
+                console.log(resultArray);
                 setFormdata(resultArray);
                 const originData = [];
                 if (resultArray.length !== 0) {
@@ -242,6 +242,7 @@ function UploadMyData() {
                     }
                 }
                 setDataTabel(originData);
+                console.log(originData);
             } else {
                 message.error(msg);
             }
@@ -465,7 +466,7 @@ function UploadMyData() {
                                     />
                                     <Divider></Divider>
                                     <Input
-                                        placeholder="ResourceName"
+                                        placeholder={resourceName}
                                         max={15}
                                         disabled={isabled}
                                         onClick={handleChangeResourceName}
