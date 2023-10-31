@@ -1,4 +1,4 @@
-// pages/interview/interview.js
+// pages/B_resume/B_resume.js
 Page({
 
   /**

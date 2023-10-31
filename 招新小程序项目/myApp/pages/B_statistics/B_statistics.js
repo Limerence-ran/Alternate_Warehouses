@@ -1,4 +1,4 @@
-// pages/score/score.js
+// pages/B_statistics/B_statistics.js
 Page({
 
   /**

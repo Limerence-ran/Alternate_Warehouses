@@ -2,10 +2,13 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/team/team",
-    "pages/interview/interview",
-    "pages/score/score",
-    "pages/resume/resume"
+    "pages/C_team/C_team",
+    "pages/C_interview/C_interview",
+    "pages/C_score/C_score",
+    "pages/C_resume/C_resume",
+    "pages/B_resume/B_resume",
+    "pages/B_evaluate/B_evaluate",
+    "pages/B_statistics/B_statistics"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -1,4 +1,4 @@
-// pages/team/team.js
+// pages/C_resume/C_resume.js
 Page({
 
   /**
