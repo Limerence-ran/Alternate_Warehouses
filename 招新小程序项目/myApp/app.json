@@ -1,7 +1,7 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs",
+    "pages/home/home",
     "pages/C_team/C_team",
     "pages/C_interview/C_interview",
     "pages/C_score/C_score",
