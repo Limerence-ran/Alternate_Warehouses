@@ -5,14 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    loadingComplete: false,
+    movies: [
+      { url: 'https://qgailab.com/img/data.ae24d1bb.png' },
+      { url: 'https://qgailab.com/img/end.605b9896.png' },
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 模拟获取数据
+    setTimeout(() => {
+      this.setData({
+        loadingComplete: true
+      })
+      console.log(666);
+    }, 6000)
   },
 
   /**

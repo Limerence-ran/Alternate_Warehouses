@@ -18,6 +18,21 @@
     </block>
   </view>
   <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+    <!-- 环绕效果 -->
+    <view id="page">
+      <view id="container">
+        <view id="ring"></view>
+        <view id="ring"></view>
+        <view id="ring"></view>
+        <view id="ring"></view>
+      </view>
+    </view>
+    <!-- QG工作室字样 -->
+    <view class="loader">
+      <text class="text">
+        QG
+        STUDIO
+      </text>
+    </view>
   </view>
 </view>

@@ -1,4 +1,46 @@
-<!--pages/home/home.wxml-->
-<text>pages/home/home.wxml</text>
-<view class="container">
+<!-- 主页面加载动画 -->
+<view class="loading" wx:if="{{!loadingComplete}}">
+  <view class="loader">
+    <view class="box box0">
+      <view></view>
+    </view>
+    <view class="box box1">
+      <view></view>
+    </view>
+    <view class="box box2">
+      <view></view>
+    </view>
+    <view class="box box3">
+      <view></view>
+    </view>
+    <view class="box box4">
+      <view></view>
+    </view>
+    <view class="box box5">
+      <view></view>
+    </view>
+    <view class="box box6">
+      <view></view>
+    </view>
+    <view class="box box7">
+      <view></view>
+    </view>
+    <view class="ground">
+      <view></view>
+    </view>
+  </view>
+</view>
+
+<!-- 主页面显示内容 -->
+<view hidden="{{!loadingComplete}}">
+  <!--顶部轮播图-->
+  <swiper indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
+    <block wx:for="{{movies}}" wx:for-index="index">
+      <swiper-item>
+        <image src='{{item.url}}' mode='aspectFill' class="slide-image"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 模块导航 -->
+  
 </view>
