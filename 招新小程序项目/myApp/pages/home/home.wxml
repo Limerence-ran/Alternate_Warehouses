@@ -33,7 +33,22 @@
 
 <!-- 主页面显示内容 -->
 <view hidden="{{!loadingComplete}}">
-  <!--顶部轮播图-->
+  <!-- 顶部tab栏 -->
+  <view class="tab">
+    <!-- 便捷工具台 -->
+    <view class="utils">
+      <van-icon name="apps-o" size="30px"/>
+    </view>
+    <!-- QGlogo -->
+    <view class="logo">
+      <image src="../../utils/photos/QGlogo.png"></image>
+    </view>
+    <!-- 右侧占位符 -->
+    <view class="utils">
+    </view>
+  </view>
+
+  <!--上部轮播图-->
   <swiper indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
     <block wx:for="{{movies}}" wx:for-index="index">
       <swiper-item>
@@ -42,5 +57,5 @@
     </block>
   </swiper>
   <!-- 模块导航 -->
-  
+
 </view>

@@ -3,6 +3,34 @@ page{
   width: 100%;
   height: 100%;
 }
+
+.tab{
+  width: 100%;
+  height: 85rpx;
+  background-color: white;
+  display: flex;
+  padding-top: 75rpx;
+  position: sticky;
+}
+.tab .utils{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex: 0.1;
+}
+
+.tab .logo{
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab .logo image{
+  width: 110px;
+  height: 30px;
+}
+
 .loading{
 width: 100%;
 height: 100%;

@@ -93,7 +93,6 @@
   }
 }
 
-
 /* 环绕效果样式 */
 #page {
   transform: translateY(100px) scale(1.2);
@@ -107,10 +106,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-}
-
-#h3 {
-  color: white;
 }
 
 #ring {

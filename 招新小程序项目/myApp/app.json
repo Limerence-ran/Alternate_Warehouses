@@ -13,10 +13,13 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "QG2023招新小程序",
+    "navigationBarTitleText": "QG招新2023",
     "navigationBarTextStyle":"black",
     "navigationStyle": "custom"
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
 }
