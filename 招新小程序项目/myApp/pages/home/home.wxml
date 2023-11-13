@@ -34,28 +34,73 @@
 <!-- 主页面显示内容 -->
 <view hidden="{{!loadingComplete}}">
   <!-- 顶部tab栏 -->
-  <view class="tab">
-    <!-- 便捷工具台 -->
-    <view class="utils">
-      <van-icon name="apps-o" size="30px"/>
+  <titletabbar></titletabbar>
+
+  <!-- 主体页面 -->
+  <view class="main">
+    <!-- LOG大图 -->
+    <view class="logo_font">
+      <image src="../../utils/photos/logo_font.jpg" mode="" />
     </view>
-    <!-- QGlogo -->
-    <view class="logo">
-      <image src="../../utils/photos/QGlogo.png"></image>
+    <!-- 方向介绍icon -->
+    <view class="divider">
+      <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">欢迎来访</van-divider>
     </view>
-    <!-- 右侧占位符 -->
-    <view class="utils">
+    <!-- 各组介绍渲染 -->
+    <view wx:for="{{groups}}" wx:for-index="index" class="group {{item.isShow?'slident-item':''}}" wx:key="id">
+      <view class="group_name">
+        <image src="{{item.icon}}" alt="" /> |
+        {{item.group}}
+      </view>
+      <block wx:if="{{item.id % 2 === 0}}" class>
+        <view class="group_description">
+          <!-- 小组介绍 -->
+          <text class="typeout">
+            {{item.text}}
+          </text>
+        </view>
+        <view class="group_pic">
+          <!-- 小组图片 -->
+          <image src="{{item.url}}" mode="" />
+        </view>
+      </block>
+      <block wx:else>
+        <view class="group_pic {{index === 0 ? 'first-pic' : ''}}">
+          <!-- 小组图片 -->
+          <image src="{{item.url}}" mode="" />
+        </view>
+        <view class="group_description">
+          <!-- 小组介绍 -->
+          <text>
+            {{item.text}}
+          </text>
+        </view>
+      </block>
+    </view>
+    <!-- 首页页脚 -->
+    <view>
+      <view class="footer-content">
+        <view class="footer-content__other-links">
+          <a href="#" title="QG招新">
+            <view>项目合作</view>
+            <view class="footer-content__other-links__item-line"></view>
+          </a>
+          <a href="#" title="移动应用">
+            <view>移动应用</view>
+            <view class="footer-content__other-links__item-line"></view>
+          </a>
+          <a href="#" title="关于我们">
+            <view>关于我们</view>
+            <view class="footer-content__other-links__item-line"></view>
+          </a>
+          <a href="#" title="反馈问题" class="last-footer-content-other-links">
+            <view>问题反馈</view>
+            <view></view>
+          </a>
+        </view>
+        <view class="footer-content__copyright-eng">Copyright © 2023-2024 QG-studio. All Rights Reserved.</view>
+        <view class="footer-content__copyright-txt">QG工作室 版权所有</view>
+      </view>
     </view>
   </view>
-
-  <!--上部轮播图-->
-  <swiper indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
-    <block wx:for="{{movies}}" wx:for-index="index">
-      <swiper-item>
-        <image src='{{item.url}}' mode='aspectFill' class="slide-image"></image>
-      </swiper-item>
-    </block>
-  </swiper>
-  <!-- 模块导航 -->
-
 </view>

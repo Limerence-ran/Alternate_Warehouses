@@ -1,48 +1,34 @@
 /* pages/home/home.wxss */
-page{
+page {
   width: 100%;
   height: 100%;
 }
 
-.tab{
-  width: 100%;
-  height: 85rpx;
-  background-color: white;
-  display: flex;
-  padding-top: 75rpx;
-  position: sticky;
-}
-.tab .utils{
+.main {
+  width: 750rpx;
   height: 100%;
+  margin-top: 100rpx;
   display: flex;
-  justify-content: center;
-  flex: 0.1;
-}
-
-.tab .logo{
-  flex: 0.8;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
-.tab .logo image{
-  width: 110px;
-  height: 30px;
+.logo_font {
+  margin-bottom: 100rpx;
 }
 
-.loading{
-width: 100%;
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-swiper{
-  width: 750rpx;
-  height: 300rpx;
-  background-color:aqua;
+
+swiper-item image {
+  width: 100%;
+  height: 100%;
 }
 
 .loader {
@@ -62,7 +48,8 @@ swiper{
   }
 }
 
-.loader:before, .loader:after {
+.loader:before,
+.loader:after {
   --r: 20.5deg;
   content: "";
   width: 320rpx;
@@ -70,7 +57,7 @@ swiper{
   position: absolute;
   right: 32%;
   bottom: -11rpx;
-/* change the back groung color on switching from light to dark mood */
+  /* change the back groung color on switching from light to dark mood */
   background: white;
   transform: translateZ(200rpx) rotate(var(--r));
   -webkit-animation: mask var(--duration) linear forwards infinite;
@@ -102,7 +89,8 @@ swiper{
   animation: ground var(--duration) linear forwards infinite;
 }
 
-.loader .ground view:before, .loader .ground view:after {
+.loader .ground view:before,
+.loader .ground view:after {
   --rx: 90deg;
   --ry: 0deg;
   --x: 44rpx;
@@ -147,7 +135,8 @@ swiper{
   transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
 }
 
-.loader .box view:before, .loader .box view:after {
+.loader .box view:before,
+.loader .box view:after {
   --rx: 90deg;
   --ry: 0deg;
   --z: 24rpx;
@@ -311,7 +300,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  25%, 52% {
+  25%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -319,7 +309,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -329,7 +320,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  25%, 52% {
+  25%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -337,7 +329,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -347,7 +340,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  14%, 100% {
+  14%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -357,7 +351,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  14%, 100% {
+  14%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -367,7 +362,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  29%, 52% {
+  29%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -375,7 +371,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -385,7 +382,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  29%, 52% {
+  29%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -393,7 +391,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -403,7 +402,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  18%, 100% {
+  18%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -413,7 +413,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  18%, 100% {
+  18%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -423,7 +424,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  33%, 52% {
+  33%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -431,7 +433,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -441,7 +444,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  33%, 52% {
+  33%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -449,7 +453,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -459,7 +464,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  22%, 100% {
+  22%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -469,7 +475,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  22%, 100% {
+  22%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -479,7 +486,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  37%, 52% {
+  37%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -487,7 +495,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -497,7 +506,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  37%, 52% {
+  37%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -505,7 +515,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -515,7 +526,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  26%, 100% {
+  26%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -525,7 +537,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  26%, 100% {
+  26%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -535,7 +548,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  41%, 52% {
+  41%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -543,7 +557,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -553,7 +568,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  41%, 52% {
+  41%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -561,7 +577,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -571,7 +588,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  30%, 100% {
+  30%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -581,7 +599,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  30%, 100% {
+  30%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -591,7 +610,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  45%, 52% {
+  45%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -599,7 +619,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -609,7 +630,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  45%, 52% {
+  45%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -617,7 +639,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -627,7 +650,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  34%, 100% {
+  34%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -637,7 +661,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  34%, 100% {
+  34%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -647,7 +672,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  49%, 52% {
+  49%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -655,7 +681,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -665,7 +692,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  49%, 52% {
+  49%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -673,7 +701,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -683,7 +712,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  38%, 100% {
+  38%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -693,7 +723,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  38%, 100% {
+  38%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -703,7 +734,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  53%, 52% {
+  53%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -711,7 +743,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -721,7 +754,8 @@ swiper{
     transform: translate(var(--x), var(--y));
   }
 
-  53%, 52% {
+  53%,
+  52% {
     transform: translate(0, 0);
   }
 
@@ -729,7 +763,8 @@ swiper{
     transform: translate(0, -32rpx);
   }
 
-  90%, 100% {
+  90%,
+  100% {
     transform: translate(0, 188rpx);
   }
 }
@@ -739,7 +774,8 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  42%, 100% {
+  42%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
@@ -749,17 +785,21 @@ swiper{
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
 
-  42%, 100% {
+  42%,
+  100% {
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
   }
 }
 
 @-webkit-keyframes ground {
-  0%, 65% {
+
+  0%,
+  65% {
     transform: rotateX(90deg) rotateY(0deg) translate(-48rpx, -120rpx) translateZ(100rpx) scale(0);
   }
 
-  75%, 90% {
+  75%,
+  90% {
     transform: rotateX(90deg) rotateY(0deg) translate(-48rpx, -120rpx) translateZ(100rpx) scale(1);
   }
 
@@ -769,11 +809,14 @@ swiper{
 }
 
 @keyframes ground {
-  0%, 65% {
+
+  0%,
+  65% {
     transform: rotateX(90deg) rotateY(0deg) translate(-48rpx, -120rpx) translateZ(100rpx) scale(0);
   }
 
-  75%, 90% {
+  75%,
+  90% {
     transform: rotateX(90deg) rotateY(0deg) translate(-48rpx, -120rpx) translateZ(100rpx) scale(1);
   }
 
@@ -783,11 +826,14 @@ swiper{
 }
 
 @-webkit-keyframes ground-shine {
-  0%, 70% {
+
+  0%,
+  70% {
     opacity: 0;
   }
 
-  75%, 87% {
+  75%,
+  87% {
     opacity: 0.2;
   }
 
@@ -797,11 +843,14 @@ swiper{
 }
 
 @keyframes ground-shine {
-  0%, 70% {
+
+  0%,
+  70% {
     opacity: 0;
   }
 
-  75%, 87% {
+  75%,
+  87% {
     opacity: 0.2;
   }
 
@@ -811,22 +860,138 @@ swiper{
 }
 
 @-webkit-keyframes mask {
-  0%, 65% {
+
+  0%,
+  65% {
     opacity: 0;
   }
 
-  66%, 100% {
+  66%,
+  100% {
     opacity: 1;
   }
 }
 
 @keyframes mask {
-  0%, 65% {
+
+  0%,
+  65% {
     opacity: 0;
   }
 
-  66%, 100% {
+  66%,
+  100% {
     opacity: 1;
   }
 }
 
+/* 小组展示模块样式 */
+.group {
+  width: 750rpx;
+  margin: 100rpx 50rpx;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 15px;
+  color: #5a5656;
+  font-weight: 900;
+  opacity: 0;
+  transform: translateY(30%);
+  transition: transform 2s ease-in-out, opacity 2s ease-out;
+}
+
+.group_name {
+  color: #5b08c3;
+  flex: 100%;
+  font-size: 11px;
+}
+
+.group_name image {
+  width: 15px;
+  height: 15px;
+  vertical-align: bottom;
+  margin: 0 2rpx 0 10rpx;
+}
+
+.group_description {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.group_pic {
+  height: 200px;
+  width: 200px;
+  border-radius: 15px;
+}
+
+.group_pic image {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.divider {
+  width: 100%;
+}
+
+.main .slident-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 2s ease-in-out, opacity 2s ease-out;
+}
+
+/* 页脚样式 */
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  width: 100%;
+  height: 100px;
+  position: relative;
+  flex-direction: column;
+}
+
+
+.footer-content__other-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.footer-content__other-links a {
+  display: flex;
+  color: #5b08c3;
+}
+
+.footer-content__other-links__item-line {
+  content: "";
+  position: relative;
+  width: 1px;
+  height: 20px;
+  margin: 0 10px;
+  background: #5b08c3;
+  opacity: 0.2;
+  mix-blend-mode: normal;
+  border-radius: 4px;
+}
+
+.footer-content__copyright-eng,
+.footer-content__copyright-txt {
+  margin-top: 10px;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 10px;
+  color: #000;
+  opacity: .4;
+}
+
+.last-footer-content-other-links {
+  height: 20px;
+}

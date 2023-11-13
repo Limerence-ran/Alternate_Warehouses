@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "titletabbar": "../../components/titlebar/titlebar",
+    "van-divider": "@vant/weapp/divider/index"
+  }
 }

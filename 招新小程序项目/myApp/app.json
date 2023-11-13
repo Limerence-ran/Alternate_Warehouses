@@ -9,6 +9,7 @@
     "pages/B_resume/B_resume",
     "pages/B_evaluate/B_evaluate",
     "pages/B_statistics/B_statistics"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -19,7 +20,5 @@
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index",
-    "van-icon": "@vant/weapp/icon/index"
   }
 }
