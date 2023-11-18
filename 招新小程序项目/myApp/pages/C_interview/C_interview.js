@@ -1,11 +1,14 @@
 // pages/C_interview/C_interview.js
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    latitude: 0,
+    longitude: 0
   },
 
   /**
@@ -26,6 +29,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    let that = this
+    wx.getLocation({
+      type: "gcj02",
+      success(res) {
+        that.setData({latitude: res.latitude,
+          longitude: res.longitude})
+      }
+    })
 
   },
 

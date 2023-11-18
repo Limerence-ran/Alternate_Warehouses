@@ -35,7 +35,6 @@
 <view hidden="{{!loadingComplete}}">
   <!-- 顶部tab栏 -->
   <titletabbar></titletabbar>
-
   <!-- 主体页面 -->
   <view class="main">
     <!-- LOG大图 -->
@@ -43,8 +42,8 @@
       <image src="../../utils/photos/logo_font.jpg" mode="" />
     </view>
     <!-- 方向介绍icon -->
-    <view class="divider">
-      <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">欢迎来访</van-divider>
+    <view class="viewider">
+      <van-viewider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">欢迎来访</van-viewider>
     </view>
     <!-- 各组介绍渲染 -->
     <view wx:for="{{groups}}" wx:for-index="index" class="group {{item.isShow?'slident-item':''}}" wx:key="id">
@@ -77,8 +76,40 @@
         </view>
       </block>
     </view>
+    <!-- 动画效果 -->
+    <view class="rocket_container">
+      <view class="rocket">
+    <view class="rocket-body">
+      <view class="body"></view>
+      <view class="fin fin-left"></view>
+      <view class="fin fin-right"></view>
+      <view class="window"></view>
+    </view>
+    <view class="exhaust-flame"></view>
+    <view class="exhaust-fumes">
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+    </view>
+    <view class="star">
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+    </view>
+  </view>
+    </view>
     <!-- 首页页脚 -->
-    <view>
+ 
       <view class="footer-content">
         <view class="footer-content__other-links">
           <a href="#" title="QG招新">
@@ -102,5 +133,7 @@
         <view class="footer-content__copyright-txt">QG工作室 版权所有</view>
       </view>
     </view>
-  </view>
+
+    <!-- 悬浮工具箱 -->
+    <floatingtool></floatingtool>
 </view>
