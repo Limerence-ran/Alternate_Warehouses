@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/home/home",
     "pages/C_team/C_team",
@@ -9,16 +9,15 @@
     "pages/B_resume/B_resume",
     "pages/B_evaluate/B_evaluate",
     "pages/B_statistics/B_statistics"
-    
+   
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "QG招新2023",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
   "sitemapLocation": "sitemap.json",
-  "usingComponents": {
-  }
+  "usingComponents": {}
 }

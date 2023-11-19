@@ -1,2 +1,126 @@
 <!--pages/C_resume/C_resume.wxml-->
-<text>pages/C_resume/C_resume.wxml</text>
+
+<!-- 数据内容 -->
+<form catchsubmit="formSubmit" catchreset="formReset">
+  <view class="top">
+
+
+<view class="avatar">
+  <view class="userinfo-avatar">
+        <open-data type="userAvatarUrl"></open-data>
+   </view>
+    <view class="info">
+     <block wx:if="{{!formSubmitted}}"> <input name="name" placeholder="请输入姓名" maxlength="10" focus="{{inputFocus}}" required/>  <view bindtap="editClick" class="fix">🖊</view></block>
+   <block wx:else>{{name}}</block>
+    </view>
+</view>
+</view>
+  <view class="box">
+    <view class="level nav">
+      <view class="dot"></view>
+      <view class="title">基本信息</view>
+    </view>
+    <view class="row">
+      <view> <text class="required">*</text>性别</view>
+      <picker class="right" bindchange="bindPickerChangeSex" value="{{indexSex}}" range="{{arraySex}}" disabled="{{formSubmitted}}">
+        <text>{{arraySex[indexSex]}}</text>
+        <text class="triangle">▼</text>
+      </picker>
+    </view>
+    <view class="row">
+      <view><text class="required">*</text>年龄</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="age" placeholder="请输入年龄" type="number" maxlength="3" required/>
+      </view>
+      <view wx:else>{{age}}</view>
+    </view>
+    <view class="row">
+      <view> <text class="required">*</text>学号</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="studentId" placeholder="请输入学号" maxlength="10" required/>
+      </view>
+      <view wx:else>{{studentId}}</view>
+    </view>
+    <view class="row" >
+      <view> <text class="required">*</text>学院</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="college" placeholder="请输入学院" maxlength="11" required/>
+      </view>
+      <view wx:else>{{college}}</view>
+    </view>
+    <view class="row">
+      <view> <text class="required">*</text>手机号</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="phone" placeholder="请输入手机号码" maxlength="11" required/>
+      </view>
+      <view wx:else>{{phone}}</view>
+    </view>
+    <view class="row">
+      <view> <text class="required">*</text>意向组别</view>
+      <picker class="right" bindchange="bindPickerChangeDir" value="{{indexDir}}" range="{{arrayDir}}" disabled="{{formSubmitted}}">
+        <text>{{arrayDir[indexDir]}}</text>
+        <text class="triangle">▼</text>
+      </picker>
+    </view>
+    <view class="row">
+      <view> <text class="required">*</text>是否挂科</view>
+      <picker class="right" bindchange="bindPickerChangeMajor" value="{{indexMajor}}" range="{{arrayMajor}}" disabled="{{formSubmitted}}">
+        <text>{{arrayMajor[indexMajor]}}</text>
+        <text class="triangle">▼</text>
+      </picker>
+    </view>
+    <view class="row">
+      <view>宿舍</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="dormitory" placeholder="请输入宿舍号" maxlength="11" />
+      </view>
+      <view wx:else>{{dormitory}}</view>
+    </view>
+    <view class="row">
+      <view>英语成绩</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="english" placeholder="请输入英语成绩" maxlength="5" />
+      </view>
+      <view wx:else>{{english}}</view>
+    </view>
+    <view class="row">
+      <view>c理论成绩</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="cTheory" placeholder="请输入c理论成绩" maxlength="5" />
+      </view>
+      <view wx:else>{{cTheory}}</view>
+    </view>
+    <view class="row">
+      <view>c实验成绩</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="cExperiment" placeholder="请输入c实验成绩" maxlength="5" />
+      </view>
+      <view wx:else>{{cExperiment}}</view>
+    </view>
+    <view class="row">
+      <view>其他社团情况</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="club" placeholder="请输入参加的社团"  />
+      </view>
+      <view wx:else>{{club}}</view>
+    </view>
+    <view class="row">
+      <view>上学期成绩排名</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="rank" placeholder="请输入学院排名"  />
+      </view>
+      <view wx:else>{{rank}}</view>
+    </view>
+
+    <view class="row end">
+     <view>座右铭</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="motto" placeholder="请输入座右铭"  />
+      </view>
+      <view wx:else>{{motto}}</view>
+    </view>
+  </view>
+  <van-toast id="van-toast"></van-toast>
+
+  <button type="primary" formType="submit" wx:if="{{!formSubmitted}}">提交</button>
+</form>
