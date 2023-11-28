@@ -20,7 +20,7 @@ function Mydatasets() {
         const id = localStorage.getItem("myGroupid");
         axios
             .post(
-                "http://39.98.41.126:31130/dataVisualization/relative",
+                "http://39.98.41.126:31801/dataVisualization/relative",
                 {
                     id: id,
                 },

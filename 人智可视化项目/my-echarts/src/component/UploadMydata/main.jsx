@@ -201,7 +201,7 @@ function UploadMyData() {
         try {
             //     发送请求
             const response = await axios({
-                url: "http://39.98.41.126:31130/resource/resource",
+                url: "http://39.98.41.126:31801/resource/resource",
                 method: "PUT",
                 headers: {
                     Authorization: localStorage.getItem("token"), // 替换为你的实际授权头部
@@ -258,7 +258,7 @@ function UploadMyData() {
         try {
             // 发送请求
             const response = await axios({
-                url: "http://39.98.41.126:31130/dataVisualization/show",
+                url: "http://39.98.41.126:31801/dataVisualization/show",
                 method: "POST",
                 headers: {
                     Authorization: localStorage.getItem("token"), // 替换为你的实际授权头部
@@ -358,7 +358,7 @@ function UploadMyData() {
         console.log(id, getTableData(), noiseLevel, resourceName);
         axios
             .put(
-                "http://39.98.41.126:31130/resource",
+                "http://39.98.41.126:31801/resource",
                 {
                     groupId: id,
                     data: [getTableData()],

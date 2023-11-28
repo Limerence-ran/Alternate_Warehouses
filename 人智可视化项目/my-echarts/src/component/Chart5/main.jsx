@@ -286,7 +286,7 @@ function Chart5() {
         try {
             // 发送请求
             const response = await axios({
-                url: "http://39.98.41.126:31130/resource/resource",
+                url: "http://39.98.41.126:31801/resource/resource",
                 method: "PUT",
                 headers: {
                     Authorization: localStorage.getItem("token"), // 替换为你的实际授权头部
@@ -358,7 +358,7 @@ function Chart5() {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
                 .post(
-                    "http://39.98.41.126:31130/resource/resource",
+                    "http://39.98.41.126:31801/resource/resource",
                     // 要上传的群组信息
                     {
                         id: groupid,
@@ -415,7 +415,7 @@ function Chart5() {
         const request = async (requestData) => {
             try {
                 const response = await axios.post(
-                    "http://39.98.41.126:31130/resource/forward/operation",
+                    "http://39.98.41.126:31801/resource/forward/operation",
                     requestData,
                     {
                         headers: {

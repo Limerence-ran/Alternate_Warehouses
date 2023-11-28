@@ -32,7 +32,7 @@ function Chart2() {
         const token = localStorage.getItem("token"); // 从本地存储获取 token
         axios
             .post(
-                "http://39.98.41.126:31130/dataVisualization/show",
+                "http://39.98.41.126:31801/dataVisualization/show",
                 {
                     id: id,
                 },

@@ -9,32 +9,19 @@
     "pages/B_resume/B_resume",
     "pages/B_evaluate/B_evaluate",
     "pages/B_statistics/B_statistics"
-<<<<<<< HEAD
-   
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
-=======
-
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
->>>>>>> cfd6a580489ef0e67f50d6f1f70716ff2189e959
     "navigationBarTitleText": "QG招新2023",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
   "sitemapLocation": "sitemap.json",
-<<<<<<< HEAD
-  "usingComponents": {}
-=======
   "usingComponents": {},
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的功能展示"
     }
   }
->>>>>>> cfd6a580489ef0e67f50d6f1f70716ff2189e959
 }

@@ -29,7 +29,7 @@ const HotTable = () => {
             Authorization: `Bearer ${token}`,
         };
         setLoading(true);
-        await fetch(`http://39.98.41.126:31130/groups/page`, { headers })
+        await fetch(`http://39.98.41.126:31801/groups/page`, { headers })
             .then((res) => res.json())
             .then((res) => {
                 res.data.data.forEach((i) => {
@@ -45,7 +45,7 @@ const HotTable = () => {
                 });
             })
             .then(() => {
-                fetch(`http://39.98.41.126:31130/groups`, {
+                fetch(`http://39.98.41.126:31801/groups`, {
                     headers: {
                         Authorization: token,
                     },
@@ -97,7 +97,7 @@ const HotTable = () => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
                 .post(
-                    "http://39.98.41.126:31130/groups/join",
+                    "http://39.98.41.126:31801/groups/join",
                     {
                         groupName: groupName,
                     },

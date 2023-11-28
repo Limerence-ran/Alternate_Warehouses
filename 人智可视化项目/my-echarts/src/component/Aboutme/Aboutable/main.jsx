@@ -62,7 +62,7 @@ const Abouttable = () => {
         const token = localStorage.getItem("token"); // 从本地存储获取 token
         axios
             .post(
-                `http://39.98.41.126:31130/users/readMessages`,
+                `http://39.98.41.126:31801/users/readMessages`,
                 {
                     groupId: groupid,
                 },
@@ -109,7 +109,7 @@ const Abouttable = () => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
                 .post(
-                    "http://39.98.41.126:31130/users/processApplication",
+                    "http://39.98.41.126:31801/users/processApplication",
                     // 要上传的群组信息
                     {
                         groupId: groupId,
@@ -151,7 +151,7 @@ const Abouttable = () => {
 
             axios
                 .post(
-                    "http://39.98.41.126:31130/users/processApplication",
+                    "http://39.98.41.126:31801/users/processApplication",
                     // 要上传的群组信息
                     {
                         groupId: groupId,

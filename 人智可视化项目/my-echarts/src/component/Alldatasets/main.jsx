@@ -26,7 +26,7 @@ function Alldatasets() {
     useEffect(() => {
         axios
             .post(
-                "http://39.98.41.126:31130/dataVisualization/all",
+                "http://39.98.41.126:31801/dataVisualization/all",
                 {
                     id: id,
                 },

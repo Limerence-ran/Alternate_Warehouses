@@ -23,7 +23,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
         setLoading(true);
         await axios
             .post(
-                "http://39.98.41.126:31130/resource/page",
+                "http://39.98.41.126:31801/resource/page",
                 // 要上传的群组信息
                 {
                     id: id,
@@ -59,7 +59,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
             });
         await axios
             .post(
-                "http://39.98.41.126:31130/resource/resource",
+                "http://39.98.41.126:31801/resource/resource",
                 // 要上传的群组信息
                 {
                     id: id,
@@ -111,7 +111,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
                 .post(
-                    "http://39.98.41.126:31130/users/putApplication",
+                    "http://39.98.41.126:31801/users/putApplication",
                     {
                         groupId: id + "",
                         objectId: objectId + "",
@@ -197,7 +197,7 @@ const Pagetable1 = ({ handleAjaxChange }) => {
                                     try {
                                         // 发送请求
                                         const response = await axios({
-                                            url: "http://39.98.41.126:31130/resource/resource",
+                                            url: "http://39.98.41.126:31801/resource/resource",
                                             method: "PUT",
                                             headers: {
                                                 Authorization:

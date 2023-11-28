@@ -67,7 +67,7 @@ const LoginRegisterForm = () => {
     const handleRegister = () => {
         axios
             .post(
-                "http://39.98.41.126:31130/users/register",
+                "http://39.98.41.126:31801/users/register",
                 {
                     username: username,
                     type: "enterprise",
@@ -101,7 +101,7 @@ const LoginRegisterForm = () => {
         localStorage.setItem("username", username);
         axios
             .post(
-                "http://39.98.41.126:31130/users/login",
+                "http://39.98.41.126:31801/users/login",
                 {
                     username: username,
                     password: password,
