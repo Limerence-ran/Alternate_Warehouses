@@ -74,7 +74,7 @@ const CreateGroup = () => {
         console.log(GroupName);
         axios
             .post(
-                "http://39.98.41.126:31130/groups",
+                "http://39.98.41.126:31801/groups",
                 // 要上传的群组信息
                 {
                     groupName: GroupName,

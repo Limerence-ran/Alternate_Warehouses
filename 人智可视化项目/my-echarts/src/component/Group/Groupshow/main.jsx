@@ -35,7 +35,7 @@ const Groupshow = () => {
         const token = localStorage.getItem("token");
         setLoading(true);
 
-        fetch(`http://39.98.41.126:31130/groups`, {
+        fetch(`http://39.98.41.126:31801/groups`, {
             headers: {
                 Authorization: token,
             },
@@ -78,7 +78,7 @@ const Groupshow = () => {
         const disbandGroup = (groupName) => {
             const token = localStorage.getItem("token"); // 从本地存储获取 token
             axios
-                .delete("http://39.98.41.126:31130/groups", {
+                .delete("http://39.98.41.126:31801/groups", {
                     headers: {
                         Authorization: ` ${token}`, // 使用从本地存储中获取的 token，以 Bearer 认证方案传递
                         "Content-Type": "application/json",

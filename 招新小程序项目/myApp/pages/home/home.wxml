@@ -42,8 +42,8 @@
       <image src="../../utils/photos/logo_font.jpg" mode="" />
     </view>
     <!-- 方向介绍icon -->
-    <view class="viewider">
-      <van-viewider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">欢迎来访</van-viewider>
+    <view class="divider">
+      <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">欢迎来访</van-divider>
     </view>
     <!-- 各组介绍渲染 -->
     <view wx:for="{{groups}}" wx:for-index="index" class="group {{item.isShow?'slident-item':''}}" wx:key="id">
