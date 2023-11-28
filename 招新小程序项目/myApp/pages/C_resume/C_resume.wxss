@@ -1,50 +1,31 @@
 /* pages/C_resume/C_resume.wxss */
 page{
-  background-color: #f1f1f1;
-}
-.top{
-  margin-top: 120rpx;
-  background-color: #fff;
-}
-.avatar{
-height: 120rpx;
-/* background-color: rgb(240, 228, 228); */
-display: flex;
- align-items: center;
-margin: 0 30rpx;
-padding: 10rpx 0;
-/* justify-content: space-between; */
-}
-.userinfo-avatar{
-  height: 100rpx;
-  width: 100rpx;
+  /* background-color: #f1f1f1; */
+  background: url("https://hbimg.huaban.com/7f7d1b2538244bbcd76eb987da50c3556714fa805f2d-02xYkT") ;
+  background-size: auto;
 
 }
-.info{
-  height: 100rpx;
-  margin-left: 10rpx;
-  width:calc(100% - 90rpx);
-  /* background-color: rgb(146, 57, 57); */
-  display: flex;
-  align-items: center;
-  padding: 0 10rpx;
-  justify-content: space-between;
-}
-.info input{
-  background-color: rgb(221, 221, 208);
-  height: 80%;
-  width: 70%;
-  border-radius: 12rpx;
-  padding: 0 10rpx;
-}
-.info .fix{
-  font-size: larger;
-  color: rgb(219, 63, 43);
-}
+
+
+/* @keyframes shake{
+  0% { transform: rotateZ(-10deg); }
+  20% { transform: rotateZ(10deg); }
+  40% { transform: rotateZ(-10deg); }
+  60% { transform: rotateZ(10deg); }
+  80% { transform: rotateZ(-10deg); }
+  100% { transform: rotateZ(0); }
+} */
+
 .box{
   background-color: #fff;
-  margin-top: 20rpx;
+
+  /* margin-top: 20rpx; */
   padding: 25rpx 20rpx;
+  margin: 20rpx 30rpx;
+  border: 1px solid rgba(236, 236, 236, 1);
+box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25);
+border-radius: 16px;
+  /* box-shadow: 0 2px 6px rgb(63, 57, 57); */
 }
 .nav{
   margin-bottom: 15rpx;
@@ -52,7 +33,7 @@ padding: 10rpx 0;
   align-items: center;
 }
 .dot {
-  background-color: #2979ff;
+  background-color: #5b08c3;
   margin-right: 12rpx;
   border-radius: 50rpx;
   padding: 10rpx;
@@ -67,7 +48,7 @@ padding: 10rpx 0;
   display: flex;
   flex-direction: row;
   padding: 25rpx 0;
-  margin: 0 20rpx;
+  margin: 20rpx 30rpx;
   font-size: 30rpx;
   border-bottom: 1rpx solid #f1f1f1;
   justify-content: space-between;
@@ -84,8 +65,24 @@ padding: 10rpx 0;
 .right input {
   text-align: right;
   width: 100%;
+  text-overflow:unset;
+  overflow:auto;
 }
+
 .required {
   color: red;
   margin-right: 5px;
+}
+.submitBtn{
+  margin: 0 30rpx;
+  /* background: -webkit-gradient(linear, left top, left bottom, from(#eff7ff), color-stop(1, #4f41ce), to(#eff7ff)); */
+background-color: #5b08c3;
+color: white;
+}
+
+.triangle{
+  font-size: 10px;
+  
+
+  border-radius: 5px; /* 添加圆角 */
 }

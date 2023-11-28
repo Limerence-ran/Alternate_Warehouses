@@ -1,4 +1,28 @@
-function request(url, method, data, token, option) {
+
+const baseUrl = 'https://qgailab.com/newer2023/'
+
+
+const Request = (options)=> {
+  const {
+    url,
+    data,
+    method,
+    responseType,
+} = options;
+const option =  { 
+  loading: { title: "加载中", icon: "loading" }
+};
+const postHead = {
+  'content-type': "application/x-www-form-urlencoded"
+};
+let getHead = {
+  'content-type': 'application/json',
+  'appletToken': wx.getStorageSync("appletToken"),
+};
+let putHead = {
+  'content-type': "application/x-www-form-urlencoded",
+  'appletToken': wx.getStorageSync("appletToken")
+};
 
   return new Promise((resolve, reject) => {
     if (option && option.loading) {
@@ -10,13 +34,12 @@ function request(url, method, data, token, option) {
      }, 1000);
     }
     wx.request({
-      url: url,
-      method: method,
-      data: data,
-      header: {
-        Authorization: "Bearer " + token
-      },
+      url: url.startsWith("http")? url : baseUrl + url,
+      method: method|| 'POST',
+      data: data|| {},
+      header: method === 'GET' ? getHead : method === 'PUT' ? putHead : postHead, // 根据类型确定请求头
       success(res) {
+       
         if (option && option.loading) {
          setTimeout(() => {
           wx.hideToast(); // 请求成功后隐藏加载提示
@@ -35,28 +58,6 @@ function request(url, method, data, token, option) {
     });
   });
 }
-
-
-// 导入request
-module.exports={request}
-
-
-// request(
-//   "http://example.com/api", 
-//   "POST",
-//    {
-//       name: "mumu",
-//        age: 18
-//    },
-//     "your_token_here", 
-//     { 
-//     loading: { title: "加载中", icon: "loading" }
-//     }
-//     ).then(response => {
-//     console.log("请求成功:", response);
-//   })
-//   .catch(error => {
-//     console.error("请求失败:", error);
-//   });
-
-
+module.exports = {
+  Request
+};

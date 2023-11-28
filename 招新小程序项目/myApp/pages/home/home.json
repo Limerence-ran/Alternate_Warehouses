@@ -3,5 +3,8 @@
     "titletabbar": "../../components/titlebar/titlebar",
     "floatingtool":"../../components/floatingtool/floatingtool",
     "van-divider": "@vant/weapp/divider/index"
+  },
+  "window": {
+    "navigationStyle": "default"
   }
 }

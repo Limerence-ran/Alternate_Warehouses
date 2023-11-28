@@ -8,7 +8,28 @@
     "miniprogram": {
       "list": [
         {
-          "name": "个人简历",
+          "name": "管理员选择面试端",
+          "pathName": "pages/manage/manage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/C_interview/C_interview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "简历",
+          "pathName": "pages/B_resume/B_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "报名",
           "pathName": "pages/C_resume/C_resume",
           "query": "",
           "launchMode": "default",
@@ -16,5 +37,6 @@
         }
       ]
     }
-  }
+  },
+  "libVersion": "3.1.5"
 }

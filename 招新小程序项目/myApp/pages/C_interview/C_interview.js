@@ -15,7 +15,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+// const a;
+    let obj ={
+      a:1,
+      b:2,
+      c:3
+    };
+    let {a} =obj;
+  
   },
 
   /**
@@ -29,14 +36,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    let that = this
+    let that = this;
     wx.getLocation({
       type: "gcj02",
       success(res) {
         that.setData({latitude: res.latitude,
-          longitude: res.longitude})
+          longitude: res.longitude});
       }
-    })
+    });
 
   },
 
@@ -74,4 +81,4 @@ Page({
   onShareAppMessage() {
 
   }
-})
+});

@@ -1,2 +1,117 @@
-<!--pages/B_resume/B_resume.wxml-->
-<text>pages/B_resume/B_resume.wxml</text>
+<!-- 
+<view class="main">
+<view class="right">
+<view class="title">
+  <open-data type="userAvatarUrl" class="head" animation="{{shakeAnimation}}"></open-data>
+<text>前端组</text>
+</view>
+<view class="content">
+  <view class="box">
+  <view class="box_title">
+  <image src="/utils/photos/info.svg" mode="aspectFit" class="icon"/>
+  个人信息
+ </view>
+ <view class="box_text">
+ <view class="text_info">
+ <view>姓名<text>{{userInfo.name}}</text></view>
+ <view>学号<text>{{userInfo.studentId}}</text></view>
+ <view>专业<text>{{userInfo.class}}</text></view>
+ </view>
+ <view class="text_info">
+ <view>年龄<text>{{userInfo.age}}</text></view>
+ <view>学院<text>{{userInfo.college}}</text></view>
+ <view>电话<text>{{userInfo.phone}}</text></view>
+ </view>
+ </view>
+ </view>
+ <view class="box">
+ <view class="box_title">
+  <image src="/utils/photos/score.svg" mode="aspectFit" class="icon"/>
+  成绩情况
+ </view>
+ <view class="box_text">
+ <view class="text_info">
+ <view>挂科情况<text>{{userInfo.flunk ? '有' : '无'}}</text></view>
+ <view>英语成绩<text>{{userInfo.english}}</text></view>
+ <view>c实验成绩<text>{{userInfo.cExperiment}}</text></view>
+ </view>
+ <view class="text_info">
+  <view>绩点<text>5{{userInfo.rank}}</text></view>
+ <view>c理论成绩<text>{{userInfo.cTheory}}</text></view>
+ </view>
+ </view>
+ </view>
+ <view class="box">
+  <view class="box_title">
+  <image src="/utils/photos/social.svg" mode="aspectFit" class="icon"/>
+  其他
+ </view>
+ <view class="box_text">
+ <view class="text_info text_last">
+ <view>社团情况<text>{{userInfo.club}}</text></view>
+ <view>座右铭<text>c{{userInfo.motto}}</text></view>
+ </view>
+ </view>
+</view>
+</view>
+</view>
+</view> -->
+
+
+<view class="main">
+<view class="right">
+<view class="title">
+  <open-data type="userAvatarUrl" class="head" animation="{{shakeAnimation}}"></open-data>
+<text>前端组</text>
+</view>
+<view class="content">
+  <view class="box">
+  <view class="box_title">
+  <image src="/utils/photos/info.svg" mode="aspectFit" class="icon"/>
+  个人信息
+ </view>
+ <view class="box_text">
+ <view class="text_info">
+ <view>姓名<text>小A</text></view>
+ <view>学号<text>31009910</text></view>
+ <view>专业<text>软件工程</text></view>
+ </view>
+ <view class="text_info">
+ <view>年龄<text>18</text></view>
+ <view>学院<text>计算机学院</text></view>
+ <view>电话<text>13005190284</text></view>
+ </view>
+ </view>
+ </view>
+ <view class="box">
+ <view class="box_title">
+  <image src="/utils/photos/score.svg" mode="aspectFit" class="icon"/>
+  成绩情况
+ </view>
+ <view class="box_text">
+ <view class="text_info">
+ <view>挂科情况<text>无</text></view>
+ <view>英语成绩<text>90</text></view>
+ <view>c实验成绩<text>80</text></view>
+ </view>
+ <view class="text_info">
+  <view>绩点<text>5.00</text></view>
+ <view>c理论成绩<text>90</text></view>
+ </view>
+ </view>
+ </view>
+ <view class="box">
+  <view class="box_title">
+  <image src="/utils/photos/social.svg" mode="aspectFit" class="icon"/>
+  其他
+ </view>
+ <view class="box_text">
+ <view class="text_info text_last">
+ <view>社团情况<text>学生会</text></view>
+ <view>座右铭<text>风急天高猿啸哀，渚清沙白鸟飞回 </text></view>
+ </view>
+ </view>
+</view>
+</view>
+</view>
+</view>

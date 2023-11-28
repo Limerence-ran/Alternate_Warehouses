@@ -2,23 +2,17 @@
 
 <!-- 数据内容 -->
 <form catchsubmit="formSubmit" catchreset="formReset">
-  <view class="top">
-
-
-<view class="avatar">
-  <view class="userinfo-avatar">
-        <open-data type="userAvatarUrl"></open-data>
-   </view>
-    <view class="info">
-     <block wx:if="{{!formSubmitted}}"> <input name="name" placeholder="请输入姓名" maxlength="10" focus="{{inputFocus}}" required/>  <view bindtap="editClick" class="fix">🖊</view></block>
-   <block wx:else>{{name}}</block>
-    </view>
-</view>
-</view>
   <view class="box">
     <view class="level nav">
       <view class="dot"></view>
       <view class="title">基本信息</view>
+    </view>
+    <view class="row">
+      <view><text class="required">*</text>姓名</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="name" placeholder="请输入姓名" maxlength="10" />
+      </view>
+      <view wx:else>{{name}}</view>
     </view>
     <view class="row">
       <view> <text class="required">*</text>性别</view>
@@ -30,7 +24,7 @@
     <view class="row">
       <view><text class="required">*</text>年龄</view>
       <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="age" placeholder="请输入年龄" type="number" maxlength="3" required/>
+        <input name="age" placeholder="请输入年龄" type="number" maxlength="3" required />
       </view>
       <view wx:else>{{age}}</view>
     </view>
@@ -41,17 +35,24 @@
       </view>
       <view wx:else>{{studentId}}</view>
     </view>
-    <view class="row" >
+    <view class="row">
       <view> <text class="required">*</text>学院</view>
+      <picker class="right" bindchange="bindPickerChangeAcademy" value="{{indexAcademy}}" range="{{arrayAcademy}}" disabled="{{formSubmitted}}">
+        <text>{{arrayAcademy[indexAcademy]}}</text>
+        <text class="triangle">▼</text>
+      </picker>
+    </view>
+    <view class="row" >
+      <view> <text class="required">*</text>专业班级</view>
       <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="college" placeholder="请输入学院" maxlength="11" required/>
+        <input name="class" placeholder="例：计算机类1班" maxlength="11" required/>
       </view>
-      <view wx:else>{{college}}</view>
+      <view wx:else>{{class}}</view>
     </view>
     <view class="row">
       <view> <text class="required">*</text>手机号</view>
       <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="phone" placeholder="请输入手机号码" maxlength="11" required/>
+        <input name="phone" placeholder="请输入手机号码" maxlength="11" required />
       </view>
       <view wx:else>{{phone}}</view>
     </view>
@@ -70,9 +71,16 @@
       </picker>
     </view>
     <view class="row">
+      <view><text class="required">*</text>绩点</view>
+      <view class="right" wx:if="{{!formSubmitted}}">
+        <input name="rank" placeholder="例：5.00"/>
+      </view>
+      <view wx:else>{{rank}}</view>
+    </view>
+    <view class="row">
       <view>宿舍</view>
       <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="dormitory" placeholder="请输入宿舍号" maxlength="11" />
+        <input name="dormitory" placeholder="例：西15-626" maxlength="11" />
       </view>
       <view wx:else>{{dormitory}}</view>
     </view>
@@ -98,20 +106,12 @@
       <view wx:else>{{cExperiment}}</view>
     </view>
     <view class="row">
-      <view>其他社团情况</view>
+      <view>其他职位</view>
       <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="club" placeholder="请输入参加的社团"  />
+        <input name="club" placeholder="例：其他团队、班委等"  />
       </view>
       <view wx:else>{{club}}</view>
     </view>
-    <view class="row">
-      <view>上学期成绩排名</view>
-      <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="rank" placeholder="请输入学院排名"  />
-      </view>
-      <view wx:else>{{rank}}</view>
-    </view>
-
     <view class="row end">
      <view>座右铭</view>
       <view class="right" wx:if="{{!formSubmitted}}">
@@ -121,6 +121,6 @@
     </view>
   </view>
   <van-toast id="van-toast"></van-toast>
-
-  <button type="primary" formType="submit" wx:if="{{!formSubmitted}}">提交</button>
+  <van-dialog id="van-dialog" />
+  <button class="submitBtn" type="" formType="submit" wx:if="{{!formSubmitted}}" 	loading="{{loading}}">我想加入QG工作室!</button>
 </form>

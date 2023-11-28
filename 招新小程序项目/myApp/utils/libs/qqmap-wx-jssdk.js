@@ -275,8 +275,7 @@ var Utils = {
   },
     /**
      * 得到终点query字符串
-     * @param {Array|String} 检索数据
-     */
+     * @param {Array|String} 检
     location2query(data) {
         if (typeof data == 'string') {
             return data;

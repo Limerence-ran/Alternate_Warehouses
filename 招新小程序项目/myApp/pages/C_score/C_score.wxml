@@ -1,2 +1,44 @@
-<!--pages/C_score/C_score.wxml-->
-<text>pages/C_score/C_score.wxml</text>
+<view class="container">
+   
+   <view class="content">
+       <view class="back-btn" bindtap="goIndex">
+       <image src="../../images/back.svg"></image>
+       <text>返回</text>
+       </view>
+       <view class="result-ct-shadow">
+           <view class="result-ct">
+               <view class="result-real-ct">
+                   <header class="title">成绩通知</header>
+                   <view class="name-wrapper">
+                       <text>姓名</text>
+                       <input type="text" disabled="{{true}}" class="name-ipt" value="{{name_value}}"/>
+                   </view>
+                    <view class="direction-wrapper">
+                       <text>方向</text>
+                       <input type="text" disabled="{{true}}" class="direction-ipt" value="{{direction_value}}"/>
+                   </view>
+                    <view class="turn-wrapper">
+                       <text>考试轮次</text>
+                       <picker range="{{turnArray}}"  bindchange="turnPickerchange">
+                               {{turn_change == 1 ? turn_value :'请选择'}}
+                               <image class="chooseImg" src="../../images/option.svg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+                       </picker>
+                   </view>
+                    <view class="status-wrapper">
+                       <text>通过状态</text>
+                       <view class="unknown" hidden="{{turn_change}}">请选择轮次</view>
+                       <view class="noJoin" hidden="{{!noJoin_value}}">还未参加该轮考试</view>
+                      <view class="pass-wrapper" hidden="{{!pass_value}}">
+                           <text class="pass" >通过</text>
+                      </view>
+                       <view class="noPass-wrapper" hidden="{{!noPass_value}}">
+                           <text class="noPass">未通过</text>
+                           <text class="comfort">*希望你的编程之路不止于此！</text>
+                       </view>
+                   </view>
+                   <button class="{{comfirm_click == 1 ? 'comfirm' : 'noConfirm'}}" bindtap="confirmBtn" disabled="{{dis_value}}" >{{btn_value}}</button>
+               </view>
+           </view>
+       </view>
+   </view>
+   </view>
