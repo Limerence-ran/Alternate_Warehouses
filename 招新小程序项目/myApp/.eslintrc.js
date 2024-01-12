@@ -9,13 +9,12 @@ module.exports = {
     browser: true,
     node: true,
   },
-  // ecmaFeatures: {
-  //   modules: true,
-  // },
+  ecmaFeatures: {
+    modules: true,
+  },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
-    modules: true
   },
   globals: {
     wx: true,
@@ -28,11 +27,5 @@ module.exports = {
     requireMiniProgram: true,
   },
   // extends: 'eslint:recommended',
-  rules: {
-    "prefer-destructuring":["error",{
-      "array":false,
-      "object":true
-    }],
-    semi: "error"
-  },
+  rules: {},
 }

@@ -122,5 +122,5 @@
   </view>
   <van-toast id="van-toast"></van-toast>
   <van-dialog id="van-dialog" />
-  <button class="submitBtn" type="" formType="submit" wx:if="{{!formSubmitted}}" 	loading="{{loading}}">我想加入QG工作室!</button>
+  <button class="submitBtn" type="" formType="submit" wx:if="{{!formSubmitted}}">我想加入QG工作室!</button>
 </form>

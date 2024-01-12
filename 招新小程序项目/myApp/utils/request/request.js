@@ -1,5 +1,6 @@
 
-const baseUrl = 'https://qgailab.com/newer2023/'
+const baseUrl = 'http://39.98.41.126:31129/'
+import PopUp from '../tools/PopUp'
 
 
 const Request = (options)=> {
@@ -9,9 +10,9 @@ const Request = (options)=> {
     method,
     responseType,
 } = options;
-const option =  { 
-  loading: { title: "加载中", icon: "loading" }
-};
+// const option =  { 
+//   loading: { title: "加载中", icon: "loading" }
+// };
 const postHead = {
   'content-type': "application/x-www-form-urlencoded"
 };
@@ -25,14 +26,7 @@ let putHead = {
 };
 
   return new Promise((resolve, reject) => {
-    if (option && option.loading) {
-     setTimeout(() => {
-      wx.showToast({
-        title: option.loading.title || "加载中",
-        icon: option.loading.icon || "loading",
-      });
-     }, 1000);
-    }
+    PopUp.Loading(true,'加载中');
     wx.request({
       url: url.startsWith("http")? url : baseUrl + url,
       method: method|| 'POST',
@@ -40,19 +34,16 @@ let putHead = {
       header: method === 'GET' ? getHead : method === 'PUT' ? putHead : postHead, // 根据类型确定请求头
       success(res) {
        
-        if (option && option.loading) {
          setTimeout(() => {
-          wx.hideToast(); // 请求成功后隐藏加载提示
-         }, 5000);
-        }
+          PopUp.LoadingOff(); // 请求成功后隐藏加载提示
+         }, 3000);
+      
         resolve(res.data);
       },
       fail(err) {
-        if (option && option.loading) {
-       setTimeout(() => {
-        wx.hideToast(); // 请求失败时隐藏加载提示
-       }, 5000);
-        }
+        setTimeout(() => {
+          PopUp.LoadingOff(); // 请求成功后隐藏加载提示
+         }, 3000);
         reject(err);
       }
     });

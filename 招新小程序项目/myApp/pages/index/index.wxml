@@ -1,10 +1,11 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
+    <!-- <block wx:if="{{canIUseOpenData}}">
       <view class="userinfo-avatar" bindtap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
       </view>
+     
       <open-data type="userNickName"></open-data>
     </block>
     <block wx:elif="{{!hasUserInfo}}">
@@ -15,8 +16,36 @@
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block> -->
+    <!-- <view class="userInfoBox">
+            <view class="userInfo_yes" wx:if="{{userInfo}}">
+                <image class="userInfo_avatar" src="{{userInfo.avatarUrl}}" mode="aspectFit" />
+                <view class="userinfo_nickname">{{userInfo.nickName}}</view>
+            </view>
+            <view class="userInfo_no" wx:else>
+                <image class="userInfo_avatar" src="" mode="aspectFit" />
+                <view class="userinfo_nickname">微信用户</view>
+            </view>
+        </view>
+        <view class="controlBtn">
+            <button id="authorize" type="primary" bindtap="login">授权用户信息</button>
+        </view>
+    </view> -->
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+  <image class="avatar" src="{{avatarUrl}}"></image>
+</button> 
+<input type="nickname" class="weui-input" placeholder="请输入昵称"/>
+    <block wx:if="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
+ 
+        
   <view class="usermotto">
     <!-- 环绕效果 -->
     <view id="page">

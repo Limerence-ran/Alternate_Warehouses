@@ -1,0 +1,75 @@
+/* pages/C_queue/C_queue.wxss */
+page{
+padding: auto;
+}
+.box{
+  background-color: #fff;
+/* height: 500rpx; */
+
+  margin: 30rpx 30rpx;
+  padding: 30rpx;
+  border: 1px solid rgba(236, 236, 236, 1);
+box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25);
+border-radius: 16px;
+
+}
+.title{
+  display: flex;
+  flex-direction: column;
+}
+.info-item{
+  border-bottom: 1px solid rgb(226, 226, 222);
+  margin: 10rpx 0;
+  padding: 10rpx 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.info-content{
+  color: rgb(124, 127, 129);
+}
+.sign{
+  height: 300rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+ }
+ .sign button{
+   height: 250rpx;
+   width: 250rpx;
+   padding: 20rpx;
+   border-radius: 50%;
+   background-color: #5b08c3;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   color: rgb(212, 211, 211);
+   font-size: small;
+   box-shadow: 0 0 0 #5b08c3;
+   opacity: .8;
+   animation: pulse 3s infinite;
+ }
+ .sign button text:nth-child(2){
+   font-size: 70rpx;
+   line-height: 70rpx;
+   color: #fff;
+ }
+ @keyframes pulse {
+   0% {
+     box-shadow: 0 0 0 #5b08c3;
+   }
+   70% {
+     box-shadow: 0 0 60rpx rgba(0, 0, 255, 0);
+   }
+   100% {
+     box-shadow: 0 0 0 rgba(0, 0, 255, 0);
+   }
+ }
+.update button{
+  margin-top: 60rpx;
+  background: #5b08c3;
+  color: #fff;
+}

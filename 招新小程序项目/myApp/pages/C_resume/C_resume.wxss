@@ -70,7 +70,7 @@ border-radius: 16px;
 }
 
 .required {
-  color: red;
+  color: #5b08c3;
   margin-right: 5px;
 }
 .submitBtn{

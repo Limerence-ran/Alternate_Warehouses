@@ -4,7 +4,6 @@
     "floatingtool":"../../components/floatingtool/floatingtool",
     "van-divider": "@vant/weapp/divider/index"
   },
-  "window": {
-    "navigationStyle": "default"
-  }
+    "navigationStyle": "custom"
+  
 }

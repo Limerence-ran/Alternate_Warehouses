@@ -4,8 +4,8 @@
  
 }
 .icon{
-  height: 40rpx;
-  width: 40rpx;
+  height: 50rpx;
+  width: 60rpx;
   margin-right: 10rpx;
 }
 
@@ -54,7 +54,7 @@ font-size: 30rpx;
 color: rgb(46, 44, 44);
 }
 .box{
-  height: 420rpx;
+  /* height: 420rpx; */
   width: 678rpx;
   margin-bottom: 40rpx;
   border: 1px solid rgba(236, 236, 236, 1);
@@ -67,7 +67,6 @@ color: rgb(46, 44, 44);
   display: flex;
   justify-content: space-between;
   padding: 0 30rpx;
-
   overflow: hidden;
   /* white-space: nowrap; */
   text-overflow: ellipsis;
@@ -77,27 +76,34 @@ color: rgb(46, 44, 44);
   display: flex;
   flex-direction: column;
   width: 50%;
-   white-space: nowrap;
+   white-space:nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
+}
+.text_info .text_info_block{
+display: flex;
 }
 .text_info>view{
   margin: 20rpx 0;
 }
-.text_last{
-  white-space: normal;
+.text_info .text_info_block view:nth-child(2){
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.text_info .text_info_block text{
+  color: rgb(112, 112, 106);
+  margin-left: 15rpx;
+}
+.text_last {
   width: 100%;
-  text-overflow:unset;
-  overflow:auto;
+}
+.text_last .text_info_block text{
+  white-space: normal;
 }
 .text_info view{
   margin-bottom: 20rpx;
 }
-.text_info text{
-  color: rgb(112, 112, 106);
-  margin-left: 10rpx;
-  /* font-size: 24rpx; */
-}
+
 .content{
   height: 980rpx;
   padding: 20rpx 0 0 0;

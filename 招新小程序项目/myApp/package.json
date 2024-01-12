@@ -1,9 +1,5 @@
 {
   "dependencies": {
-    "@vant/weapp": "^1.11.1",
-    "vant-weapp": "^0.5.29"
-  },
-  "devDependencies": {
-    "eslint": "^8.54.0"
+    "@vant/weapp": "^1.11.1"
   }
 }

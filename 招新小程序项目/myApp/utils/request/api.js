@@ -6,8 +6,9 @@ const Api = {
   //导师端设置接口
 
   // 新生面试接口
-  formUrl:'https://example.com/',
-  signUp: 'newer/interview/newerSign'
+  formUrl:'newers/enroll',
+  resumeUrl:'newers/getResume',
+  signUp: 'newers/signIn'
  //统计接口
  
 }
@@ -32,10 +33,16 @@ const NewerInterview = {
       data: options
   })
 },
+resumeInfo: () => {
+  return Request({
+      url: Api.resumeUrl,
+      method: 'GET'
+  })
+},
   signUp: () => {
       return Request({
           url: Api.signUp,
-          method: 'GET'
+          method: 'POST'
       })
   }
 }
