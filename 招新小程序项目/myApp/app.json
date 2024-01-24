@@ -13,7 +13,8 @@
     "pages/B_evaluate/B_evaluate",
     "pages/B_statistics/B_statistics",
     "pages/B_manageInterview/B_manageInterview",
-    "pages/manage/manage"
+    "pages/manage/manage",
+    "pages/Freshman_side/Freshman_side"
   ],
   "window": {
     "backgroundTextStyle": "light",

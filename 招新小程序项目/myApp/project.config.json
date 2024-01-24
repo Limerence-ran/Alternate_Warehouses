@@ -46,9 +46,9 @@
     "tabIndent": "auto",
     "tabSize": 2
   },
-  "appid": "wx472d6a28eb73240f",
   "packOptions": {
     "ignore": [],
     "include": []
-  }
+  },
+  "appid": "wx472d6a28eb73240f"
 }

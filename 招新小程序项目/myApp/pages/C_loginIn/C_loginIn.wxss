@@ -2,7 +2,7 @@
 .box{
   background-color: #fff;
 /* height: 1100rpx; */
-  margin: 30rpx 30rpx;
+  margin: 80rpx 30rpx ;
   border: 1px solid rgba(236, 236, 236, 1);
 box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25);
 border-radius: 16px;
@@ -29,7 +29,7 @@ margin: 40rpx 0;
 }
 .sign{
  height: 300rpx;
- background-color: #fff;
+ /* background-color: #fff; */
  display: flex;
  justify-content: center;
  align-items: center;
@@ -81,4 +81,44 @@ margin: 40rpx 0;
 .message{
   padding: 0 20rpx;
   margin-top: 20rpx;
+}
+.cancel{
+  width: 100rpx;
+  height: 100rpx;
+  background-color: aquamarine;
+  position: fixed;
+  right: 30rpx;
+  bottom: 200rpx;
+  border-radius: 50%;
+  box-shadow: 0  0 20rpx rgb(110, 108, 108,.8);
+}
+.btn{
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 20rpx;
+  color: #fff;
+  background-color: #5b08c3;
+  letter-spacing: 3rpx;
+}
+@keyframes emit{
+  0%{}
+  100%{
+    border-width: 1px;
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+.line{
+  width: 100rpx;
+  height: 100rpx;
+  border: 1.5px solid rgb(188, 142, 240);
+  position: absolute;
+  top: 0;
+  /* left: 0; */
+  border-radius: 50%;
+  animation: emit 3s infinite;
 }

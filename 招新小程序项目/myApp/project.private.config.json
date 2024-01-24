@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "成绩通知",
+          "pathName": "pages/C_score/C_score",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "首页",
+          "pathName": "pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "登录",
           "pathName": "pages/home/home",
           "query": "",

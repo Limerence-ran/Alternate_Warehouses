@@ -9,9 +9,6 @@ import {
 import Dialog from '@vant/weapp/dialog/dialog';
 
 
-
-
-
 Page({
   /**
    * 页面的初始数据
@@ -176,6 +173,7 @@ Page({
   },
 
   formSubmit:async function (e) {
+
     const data = {
       name: e.detail.value.name,
       english: e.detail.value.english,
@@ -192,7 +190,8 @@ Page({
       gender: this.data.arraySex[this.data.indexSex],
       flunk: this.data.arrayMajor[this.data.indexMajor],
       intention: this.data.arrayDir[this.data.indexDir],
-      college: this.data.arrayAcademy[this.data.indexAcademy]
+      college: this.data.arrayAcademy[this.data.indexAcademy],
+    
     };
     this.setData({
       ...data
@@ -204,6 +203,8 @@ Page({
       if (result) {
         // on confirm
         try {
+        
+          
           console.log('data', data);
           const response = await NewerInterview.submitInfo(data);
           console.log('response', response);
@@ -234,11 +235,6 @@ Page({
           });
         }
       }
-
-
-
-
-
     }
   },
 
@@ -253,32 +249,31 @@ Page({
     this.setData({
       checkClass
     });
-    try {
-      
-      const response = await NewerInterview.submitInfo(data);
-      console.log('response', response);
-      let data = response.data;
-      if (response.code === 200&&data) {
-       this.setData({
-        ...data
-      });
-      console.log('data', data);
-      } else {
-        wx.showToast({
-          title: '未填写报名表单',
-          icon: 'none'
-        });
-      }
-    } catch (error) {
-      // 处理请求失败的情况
-      console.error('请求失败:', error);
-      wx.showToast({
-        title: '请求失败',
-        icon: 'none'
-      });
-    }
-
+    // try {
+    //   const response = await NewerInterview.submitInfo(data);
+    //   console.log('response', response);
+    //   let data = response.data;
+    //   if (response.code === 200&&data) {
+    //    this.setData({
+    //     ...data
+    //   });
+    //   console.log('data', data);
+    //   } else {
+    //     wx.showToast({
+    //       title: '未填写报名表单',
+    //       icon: 'none'
+    //     });
+    //   }
+    // } catch (error) {
+    //   // 处理请求失败的情况
+    //   console.error('请求失败:', error);
+    //   wx.showToast({
+    //     title: '请求失败',
+    //     icon: 'none'
+    //   });
+    // }
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

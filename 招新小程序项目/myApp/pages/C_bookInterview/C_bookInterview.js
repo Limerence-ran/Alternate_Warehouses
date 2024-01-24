@@ -1,63 +1,70 @@
 // pages/C_bookInterview/C_bookInterview.js
 import Dialog from '@vant/weapp/dialog/dialog';
+import PopUp from '../../utils/tools/PopUp'
+import { NewerInterview } from '../../utils/request/api'
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    isStart:false,
+    isStart: false,
     active: 0,
-    timeArr: {
-      day0: [
-        "9:00-10:00",
-        "10:30-11:30",
-        "12:00-13:00",
-        "13:00-14:00",
-        "14:30-15:30",
-        "16:00-17:00"
-      ],
-      day1: [
-        "13:00-14:00",
-        "14:30-15:30",
-        "16:00-17:00"
-      ],
-      day2: [
-        "19:00-20:00",
-        "20:30-21:30",
-        "22:00-23:00"
-      ]
-    },
-    day:'2024-3-10',
+    timeArr: [
+      { id: 0, day: '2024-12-05', time: "9:00-10:00" },
+      { id: 1, day: '2024-12-06', time: "10:30-11:30" },
+      { id: 2, day: '2024-12-07', time: "12:00-13:00" },
+      { id: 3, day: '2024-12-05', time: "13:00-14:00" },
+      { id: 4, day: '2024-12-04', time: "9:00-10:00" },
+      { id: 5, day: '2024-12-05', time: "9:00-10:00" },
+      { id: 6, day: '2024-12-01', time: "9:00-10:00" },
+      { id: 7, day: '2024-12-05', time: "9:00-10:00" },
+      { id: 8, day: '2024-12-04', time: "9:00-10:00" },
+      { id: 9, day: '2024-12-03', time: "9:00-10:00" }
+    ],
+
     selected: -1  // 初始化为-1，表示无选中项
   },
   onChange(event) {
-  
+
     this.setData({
       active: event.detail.index,
-      day:event.detail.title
+      day: event.detail.title
     });
     // wx.showToast({
     //   title: `切换到 ${event.detail.title}`,
     //   icon: 'none',
     // });
   },
-  Select(event){
+  Select: async function (event) {
+    console.log('event', event)
     const index = event.currentTarget.dataset.index;
     const active = this.data.active;
-    const day = this.data.timeArr[`day${active}`];
-    const time = day[index];
-    console.log("选择的日期：", this.data.day);
-    console.log("选择的时间段：", time);
-    // this.setData({
-    //   selected:index
-    // });
+    // console.log(this.data.timeArr[index].id)
+    // console.log(this.data.timeArr[index].day + ' ' + this.data.timeArr[index].time);
+    const id = this.data.timeArr[index].id;
+    const time = this.data.timeArr[index].day + ' ' + this.data.timeArr[index].time;
     Dialog.confirm({
-      title: '确认选择该预约时间?',
-      message: this.data.day + ' ' + time,
+      title: '确认预约场次' + id + '?',
+      message: time,
     })
-      .then(() => {
+      .then(async () => {
         // on confirm
+        try {
+          const response = await NewerInterview.bookTime(id);
+          console.log('response', response);
+          if (response.code == 200) {
+            setTimeout(() => {
+              PopUp.Toast('预约成功！', 1, 3000);
+            }, 1000);
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '../C_loginIn/C_loginIn'
+              })
+            }, 6000);
+          }
+        } catch {
+          PopUp.Toast('预约失败！', 2, 2000);
+        }
       })
       .catch(() => {
         // on cancel
@@ -66,12 +73,29 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  onLoad: async function (options) {
     wx.setNavigationBarTitle({
       title: '预约面试',
     });
-    console.log(this.data.isStart);
-    if(this.data.isStart){
+    // try {
+
+    //   const response = await NewerInterview.bookTime(id);
+
+    //   console.log('response', response);
+    //   if (response.code === 200) {
+       
+
+
+    //   } else {
+    //     PopUp.Toast('渲染预约场次失败', 2, 2000);
+    //   }
+    // } catch (error) {
+    //   // 处理请求失败的情况
+    //   console.error('请求失败:', error);
+    //   PopUp.Toast('请求失败', 3, 2000);
+    // }
+    // console.log(this.data.isStart);
+    if (this.data.isStart) {
       Dialog.confirm({
         message: '一轮面试还未开始',
       })

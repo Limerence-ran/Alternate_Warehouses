@@ -7,7 +7,7 @@ class checkForm {
       if (ch_reg.test(value?.trim()) || ch.test(value?.trim())) return true;
       else return false;
   }
-  
+
   // 限制范围为 min-max
   numberRange(min,max,value) {
       let reg = new RegExp(`^\d{${min},${max}}+$`)
@@ -23,8 +23,7 @@ class checkForm {
   }
 
   // 限制绩点
-  numberGpa(value) {
-      
+  numberGpa(value) { 
       let reg = /^\d{1}[.]\d{2}$/
       if (value.trim() != "" && reg.test(value.trim())) return true;
       else return false;
@@ -45,16 +44,13 @@ class checkForm {
       if (value.trim() != "" && reg.test(value.trim())) return true;
       else return false;
   }
+  
   // 年龄
   age(value) {
     let reg = /^\d{2}$/;
     if (value.trim() != "" && reg.test(value.trim())) return true;
     else return false;
 }
-
 }
-
-
-
 
 export {checkForm};

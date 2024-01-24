@@ -100,7 +100,7 @@
  </view>
  </view>
  </view>
- <view class="box">
+ <view class="box lastBox">
   <view class="box_title">
   <image src="/utils/photos/social.svg" mode="aspectFit" class="icon"/>
   其他
@@ -112,6 +112,15 @@
  </view>
  </view>
 </view>
+<view class="empty">
+<buttombar></buttombar>
 </view>
+
 </view>
+
 </view>
+
+</view>
+
+
+

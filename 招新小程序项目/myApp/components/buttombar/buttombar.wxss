@@ -1,0 +1,128 @@
+
+
+.nav {
+  /* 对导航栏位置进行定位处理，方便后续的图标位置的设置 */
+  /* position: relative; */
+  /* position:fixed; */
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  /* background: rgb(255, 238, 238); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+  box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25);
+}
+.nav_content{
+  display: flex;
+  width: 90%;
+  background-color: #fff;
+}
+.nav-item {
+  height: 100%;
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+.nav-item .circle{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 9px;
+  width: 90rpx;
+  height: 90rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  /* 设置动画过度事件以及延迟 */
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+.nav-item .circle::before{
+      content: '';
+        position: absolute;
+        top: 10rpx;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: orange;
+        border-radius: 50%;
+        filter: blur(40rpx);
+        transition: 0.5s;
+        opacity: 0.5;
+        transition-delay: 0.25s;
+}
+.nav-item.active {
+  color: orange;
+  transform: translateY(-27rpx);
+  transition-delay: 0.15s;
+}
+
+.iconfont {
+  font-size: 36rpx;
+}
+
+/* 背景园设置 */
+.indicator {
+  /* 这里进行了定位，并且设置了背景园的位置，同时将圆的背景颜色与背景颜色设为一致，会形成那种向下突兀的圆形，并且加入了动画 */
+  position: absolute;
+  top: -36rpx;
+  left: 92rpx;
+  width: 120.5rpx;
+  height: 120rpx;
+  /* background: #222327; */
+  background-color: rgba(250, 250, 250);
+  border-radius: 50%;
+  z-index: 1;
+  transition: 0.5s;
+}
+
+/* 设置左边半弧 */
+.indicator::before {
+  content: '';
+  position: absolute;
+  top: 16rpx;
+  left: -40rpx;
+  width: 20rpx;
+  height: 10rpx;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 20.5rpx 19rpx 0 4rpx #fff;
+}
+
+/* 设置右边半弧 */
+.indicator::after {
+  content: '';
+  position: absolute;
+  top: 16rpx;
+  left: 98rpx;
+  width: 20rpx;
+  height: 10rpx;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 20rpx 19rpx 0 4rpx #fff;
+}
+.nav-item:nth-child(1).active~.indicator {
+  transform: translateX(calc(224rpx*0));
+}
+
+.nav-item:nth-child(2).active~.indicator {
+  transform: translateX(calc(224rpx*1));
+}
+
+.nav-item:nth-child(3).active~.indicator {
+  transform: translateX(calc(224rpx*2));
+}
+
+.nav-item:nth-child(4).active~.indicator {
+  transform: translateX(calc(224rpx*3));
+}
+
+.nav-item:nth-child(5).active~.indicator {
+  transform: translateX(calc(70rpx*4));
+}

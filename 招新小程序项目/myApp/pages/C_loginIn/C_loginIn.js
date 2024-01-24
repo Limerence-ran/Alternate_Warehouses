@@ -10,15 +10,15 @@ Page({
    */
   data: {
     steps: [{
-        text: '定位成功  2023-03-11 12：30',
-        desc: '广东工业大学工学一号馆',
+      text: '定位成功  2023-03-11 12：30',
+      desc: '广东工业大学工学一号馆',
 
-      },
-      {
-        text: '签到成功 2023-03-11 12：30',
-        desc: '',
+    },
+    {
+      text: '签到成功 2023-03-11 12：30',
+      desc: '',
 
-      },
+    },
 
     ],
   },
@@ -41,6 +41,7 @@ Page({
 
   },
   location: function () {
+    // console.log('123')
     PopUp.Loading(true, '定位中');
     setTimeout(() => {
       PopUp.LoadingOff();
@@ -58,7 +59,10 @@ Page({
   },
   signUp: async function () {
     try {
-      const response = await NewerInterview.signUp(data);
+      var platformToken = wx.getStorageSync('platformToken');
+      console.log('platformToken', platformToken)
+      const response = await NewerInterview.signUp(platformToken);
+
       console.log('response', response);
       if (response.code === 200) {
         PopUp.Toast(response.message, 1, 2000);
@@ -72,6 +76,11 @@ Page({
             }
           ]
         });
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '../C_queue/C_queue',
+          })
+        }, 4000)
       } else {
         PopUp.Toast('签到失败', 2, 2000);
       }
@@ -81,7 +90,28 @@ Page({
       PopUp.Toast('请求失败', 3, 2000);
     }
   },
+//取消预约
+Cancel: async function(){
+  const result = await PopUp.Confirm('是否确认取消预约？');
+  if(result){
+    console.log('取消预约？',result);
+    try {
+    
+      const response = await NewerInterview.cancelBook();
+      console.log('response', response);
+      if (response.code === 200) {
+        PopUp.Toast(response.message, 1, 2000);
+      } else {
+        PopUp.Toast('取消预约失败', 2, 2000);
+      }
+    } catch (error) {
+      // 处理请求失败的情况
+      PopUp.Toast('请求失败', 3, 2000);
+    }
+  }else{
 
+  }
+},
   /**
    * 生命周期函数--监听页面加载
    */

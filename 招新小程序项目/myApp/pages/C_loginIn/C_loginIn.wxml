@@ -32,3 +32,8 @@
 </view>
 
 </view>
+<view class="cancel" bind:tap="Cancel">
+  <button class="btn"> 取消预约</button>
+  <view class="line"></view>
+</view>
+<buttombar></buttombar>

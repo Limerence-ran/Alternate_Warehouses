@@ -2,7 +2,7 @@
 <view class="tab">
 	<!-- 便捷工具台 -->
 	<view class="utils">
-		<van-icon name="apps-o" size="30px" />
+		<van-icon name="apps-o" size="30px" bind:tap="menu"/>
 	</view>
 	<!-- QGlogo -->
 	<view class="logo">

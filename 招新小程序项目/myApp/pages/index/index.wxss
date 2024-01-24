@@ -141,3 +141,18 @@
     transform: rotateX(70deg) rotateZ(630deg);
   }
 }
+.weui-input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20rpx;
+  height: 80rpx;
+  background-color: rgb(91, 8, 195);
+  box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25);
+  color: #fff;
+  border-radius: 20rpx;
+}
+.weui-input::placeholder{
+  color: #fff;
+}

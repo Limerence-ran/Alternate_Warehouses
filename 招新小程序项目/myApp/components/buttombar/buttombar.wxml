@@ -1,0 +1,29 @@
+<!--components/buttombar/buttombar.wxml-->
+
+
+<view class="nav">
+<view class="nav_content">
+  <view class="nav-item {{ activeIndex == 0 ? 'active' : '' }}" bindtap="handleNavTap" data-index="0">
+    <view class="circle">
+      <van-icon name="friends" size="18px"/>
+    <text>我的面试</text>
+    </view>
+  </view>
+  <view class="nav-item {{ activeIndex == 1 ? 'active' : '' }}" bindtap="handleNavTap" data-index="1">
+  <view class="circle">
+    <van-icon name="friends" size="18px"/>
+    <text>我的成绩</text>
+  </view>
+  
+  </view>
+
+  <view class="nav-item {{ activeIndex == 2 ? 'active' : '' }}" bindtap="handleNavTap" data-index="2">
+   <view class="circle">
+    <van-icon name="friends" size="18px"/>
+    <text>我的报名</text>
+   </view>
+  </view>
+  <view class="indicator"></view>
+</view>
+ 
+</view>

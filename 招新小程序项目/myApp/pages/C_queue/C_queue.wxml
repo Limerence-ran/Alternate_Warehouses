@@ -21,6 +21,11 @@
    </button>
  </view>
  <view class="update">
- <button>更新</button>
+ <button bind:tap="reflesh">更新</button>
  </view>
 </view>
+<view class="cancel" bind:tap="cancelSignIn">
+  <button class="btn"> 取消签到</button>
+  <view class="line"></view>
+</view>
+<buttombar></buttombar>

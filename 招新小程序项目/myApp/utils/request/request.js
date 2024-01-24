@@ -10,11 +10,10 @@ const Request = (options)=> {
     method,
     responseType,
 } = options;
-// const option =  { 
-//   loading: { title: "加载中", icon: "loading" }
-// };
+
 const postHead = {
-  'content-type': "application/x-www-form-urlencoded"
+  'content-type': "application/x-www-form-urlencoded",
+  'platformToken': wx.getStorageSync("platformToken")
 };
 let getHead = {
   'content-type': 'application/json',
@@ -33,11 +32,9 @@ let putHead = {
       data: data|| {},
       header: method === 'GET' ? getHead : method === 'PUT' ? putHead : postHead, // 根据类型确定请求头
       success(res) {
-       
          setTimeout(() => {
           PopUp.LoadingOff(); // 请求成功后隐藏加载提示
          }, 3000);
-      
         resolve(res.data);
       },
       fail(err) {

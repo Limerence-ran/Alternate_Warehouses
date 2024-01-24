@@ -2,7 +2,8 @@
   "usingComponents": {
     "titletabbar": "../../components/titlebar/titlebar",
     "floatingtool":"../../components/floatingtool/floatingtool",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-divider": "@vant/weapp/divider/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   },
     "navigationStyle": "custom"
   

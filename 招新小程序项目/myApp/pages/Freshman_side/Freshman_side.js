@@ -1,19 +1,18 @@
-// pages/C_interview/C_interview.js
+// pages/Freshman_side/Freshman_side.js
 Page({
-  /* 页面的初始数据*/
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    latitude: 0,
-    longitude: 0
+
   },
 
-  /* 生命周期函数--监听页面加载*/
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad(options) {
-    let obj ={
-      a:1,
-      b:2,
-      c:3
-    };
-    let {a} =obj;
+
   },
 
   /**
@@ -27,14 +26,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    let that = this;
-    wx.getLocation({
-      type: "gcj02",
-      success(res) {
-        that.setData({latitude: res.latitude,
-          longitude: res.longitude});
-      }
-    });
 
   },
 
@@ -72,4 +63,4 @@ Page({
   onShareAppMessage() {
 
   }
-});
+})

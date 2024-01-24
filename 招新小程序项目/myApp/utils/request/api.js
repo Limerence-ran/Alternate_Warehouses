@@ -2,20 +2,22 @@ import {Request} from './request'
 // 放接口url
 const Api = {
   // 登录接口
-  loginUrl: 'newer/applet/login',
+  loginUrl: 'newers/login',
   //导师端设置接口
 
   // 新生面试接口
   formUrl:'newers/enroll',
-  resumeUrl:'newers/getResume',
-  signUp: 'newers/signIn'
+  resumeUrl:'newers/newersInfo',
+  signUp: 'newers/signIn',
+  cancelBook:'newers/cancelReserve',
+  cancelSignIn:'newers/cancelSignIn',
+  bookTime:'newers/reserve'
  //统计接口
  
 }
 
 // 放各类请求
 const NewerInterview = {
-
   login: (param) => {
     console.log(param,'param');
     return Request({
@@ -39,11 +41,29 @@ resumeInfo: () => {
       method: 'GET'
   })
 },
-  signUp: () => {
+  signUp: (platformToken) => {
       return Request({
           url: Api.signUp,
           method: 'POST'
       })
+  },
+  cancelBook: () => {
+    return Request({
+      url: Api.cancelBook,
+      method: 'POST'
+  })
+  },
+  cancelSignIn: () => {
+    return Request({
+      url: Api.cancelSignIn,
+      method: 'POST'
+  })
+  },
+  bookTime:() =>{
+    return Request({
+      url: Api.bookTime,
+      method: 'POST'
+  })
   }
 }
 

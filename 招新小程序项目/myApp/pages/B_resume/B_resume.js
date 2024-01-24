@@ -1,5 +1,5 @@
 // pages/B_resume/B_resume.js
-  // import { NewerInterview} from '/utils/request/api.js'
+  import { NewerInterview} from '../../utils/request/api'
 Page({
 
   /**
@@ -11,19 +11,19 @@ Page({
   },
   initInfo: async function () {
   try {
-    const response = await NewerInterview.resumeInfo();
-    let data =response.data;
-    if (response.code === 200 && data) {
-      this.setData({
-        userInfo:data
-      });
+    // const response = await NewerInterview.resumeInfo();
+    // let data =response.data;
+    // if (response.code === 200 && data) {
+    //   this.setData({
+    //     userInfo:data
+    //   });
       // wx.setStorageSync('userInfo', response.data);// 如果接口返回的数据中包含了用户信息，可以将用户信息存储到本地缓存中
-    } else {
-      wx.showToast({
-        title: '简历渲染失败',
-        icon: 'none'
-      });
-    }
+    // } else {
+    //   wx.showToast({
+    //     title: '简历渲染失败',
+    //     icon: 'none'
+    //   });
+    // }
   } catch (error) {
     // 处理请求失败的情况
     console.error('请求失败:', error);
@@ -37,7 +37,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+  onLoad:async function(options) {
   wx.setNavigationBarTitle({
     title: '个人简历',
   });
@@ -61,7 +61,13 @@ this.initInfo();
   setTimeout(() => {
     shake.call(this); // 调用 shake 函数开始执行抖动动画
   }, 1000);
+try{
+ const result = await NewerInterview.resumeInfo();
+ console.log('result',result);
 
+}catch{
+
+}
   },
 
   /**

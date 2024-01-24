@@ -136,4 +136,6 @@
 
     <!-- 悬浮工具箱 -->
     <floatingtool></floatingtool>
+    <van-dialog id="van-dialog" />
+
 </view>
