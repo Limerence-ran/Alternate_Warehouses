@@ -1,8 +1,0 @@
-<!--pages/manage/manage.wxml-->
-<scroll-view scroll-y="true">
-  <view class='scroll_super_view'>
-    <block wx:for="{{dateRangeInfo.list}}" wx:key="id">
-      <view class="{{item.isDisabled ? 'date_item_view_disabled' : (item.checked ? 'date_item_view_checked' : 'date_item_view')}}" style="margin-right: {{(index + 1) % 4 == 0 ? '0rpx;' : '23rpx;'}}" bindtap="{{item.isDisabled ? '' : '_checkedDateClick'}}" data-idx='{{index}}'>{{item.dateStr}}</view>
-    </block>
-  </view>
-</scroll-view>
