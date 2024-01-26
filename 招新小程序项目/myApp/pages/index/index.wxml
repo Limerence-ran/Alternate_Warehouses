@@ -1,0 +1,39 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+     <block wx:if="{{hasLogin}}"> 
+      <block wx:if="{{!avatarUrl}}"> 
+     <button class="weui-input avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      获取用户头像
+     </button> 
+    </block>
+    <block wx:else>
+     <image class="avatar" src="{{avatarUrl}}"></image> 
+     <input type="nickname" class="weui-input" placeholder="点击获取昵称" onchange="onNicknameChange"/>
+    </block>
+   </block>
+    <block wx:else>
+      <button id="authorize" type="primary" bindtap="login" class="weui-input">授权用户信息</button>
+    </block>
+  </view>
+ 
+        
+  <view class="usermotto">
+    <!-- 环绕效果 -->
+    <view id="page">
+      <view id="container">
+        <view id="ring"></view>
+        <view id="ring"></view>
+        <view id="ring"></view>
+        <view id="ring"></view>
+      </view>
+    </view>
+    <!-- QG工作室字样 -->
+    <view class="loader">
+      <text class="text">
+        QG
+        STUDIO
+      </text>
+    </view>
+  </view>
+</view>

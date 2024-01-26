@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "buttombar":"../../components/buttombar/buttombar"
+  }
+}

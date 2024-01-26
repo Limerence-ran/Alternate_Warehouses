@@ -1,0 +1,39 @@
+<view class="box">
+  <van-notice-bar
+  left-icon="volume-o"
+  scrollable="{{ true }}"
+  background="#5b08c3"
+  color="#fff"
+  class="custom-class" 
+  text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+/>
+
+ <view class="title">
+  <view>面试组别：<text>前端组</text></view>
+  <view>面试导师：<text>蒋卓然、温惠兰</text></view>
+  <view>面试地点：<text>教三-311</text></view>
+ </view>
+ <view class="sign">
+   <button hover-class="custom-class" bind:tap="signUp">签到</button>
+ </view>
+ <view class="position">
+  <van-icon name="location-o" color="#5b08c3" size="30"/>
+  <text>广东工业大学工学一号馆</text>
+  <view bind:tap="location">重新定位</view>
+ </view>
+
+<view class="message">
+  <van-steps
+  steps="{{ steps }}"
+  active="{{ active }}"
+  direction="vertical"
+  active-color="#5b08c3"
+/>
+</view>
+
+</view>
+<view class="cancel" bind:tap="Cancel">
+  <button class="btn"> 取消预约</button>
+  <view class="line"></view>
+</view>
+<buttombar></buttombar>

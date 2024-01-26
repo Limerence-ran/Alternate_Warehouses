@@ -1,0 +1,14 @@
+<!--components/titlebar/titlebar.wxml-->
+<view class="tab">
+	<!-- 便捷工具台 -->
+	<view class="utils">
+		<van-icon name="apps-o" size="30px" bind:tap="menu"/>
+	</view>
+	<!-- QGlogo -->
+	<view class="logo">
+		<image src="../../utils/photos/QGlogo.png" class="titleimage"></image>
+	</view>
+	<!-- 右侧占位符 -->
+	<view class="utils">
+	</view>
+</view>
