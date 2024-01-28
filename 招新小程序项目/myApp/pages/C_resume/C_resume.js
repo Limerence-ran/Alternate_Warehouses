@@ -1,13 +1,7 @@
 import Toast from '@vant/weapp/toast/toast';
 import PopUp from '../../utils/tools/PopUp'
-import {
-  NewerInterview
-} from '../../utils/request/api'; //接口
-import {
-  checkForm
-} from "../../utils/tools/checkForm"; //方法
-import Dialog from '@vant/weapp/dialog/dialog';
-
+import { NewerInterview } from '../../utils/request/api'; //接口
+import { checkForm } from "../../utils/tools/checkForm"; //方法
 
 Page({
   /**
@@ -16,7 +10,7 @@ Page({
   data: {
     arraySex: ['男', '女'],
     indexSex: 0,
-    arrayDir: ['前端组', '后台组', '移动组', '人工智能组', '嵌入式组', '图形组', '设计组'],
+    arrayDir: ['人工智能组','工业软件-前端组', '工业软件-后台组', '工业软件-移动组','嵌入式组', '图形组', '设计组'],
     indexDir: 0,
     arrayAcademy: ['计算机学院', '自动化学院', '信息工程学院', '物理与光电工程学院', '外国语学院', '机电工程学院', '土木与交通工程学院', '轻工化工学院', '材料与能源学院', '管理学院', '环境科学与工程学院', '艺术与设计学院', '法学院', '继续教育学院', '数学与统计学院', '马克思主义学院', '建筑与城市规划学院', '经济与贸易学院', '生物医药学院', '集成电路学院', '国际教育学院', '生态环境与资源学院', '先进制造学院'],
     indexAcademy: 0,
@@ -31,14 +25,15 @@ Page({
     motto: "",
     studentId: "",
     phone: "",
-    rank: "",
-    class: "",
+    gpa: "",
+    major: "",
     cExperiment: "",
     cTheory: "",
     formSubmitted: false, // 控制表单是否已经提交
     loading: false,
     // 检查表单对象
     checkClass: {},
+    isHide:false
   },
 
   // 公共函数，用于更改选择器的值
@@ -75,9 +70,9 @@ Page({
     let nameVal = this.data.name.trim();
     let ageVal = this.data.age.trim();
     let studentIdVal = this.data.studentId.trim();
-    let classVal = this.data.class.trim();
+    let majorVal = this.data.major.trim();
     let phoneVal = this.data.phone.trim();
-    let rankVal = this.data.rank.trim();
+    let gpaVal = this.data.gpa.trim();
     let {
       checkClass
     } = this.data;
@@ -125,7 +120,7 @@ Page({
       });
       return false;
     };
-    if (!classVal) {
+    if (!majorVal) {
       wx.showToast({
         title: '请输入专业班级',
         icon: 'none'
@@ -155,14 +150,14 @@ Page({
       return false;
     };
 
-    if (!rankVal) {
+    if (!gpaVal) {
       wx.showToast({
-        title: '请输入绩点',
+        title: '请输入绩点排名',
         icon: 'none'
       });
       return false;
     };
-    if (!checkClass.numberGpa(rankVal)) {
+    if (!checkClass.number(gpaVal)) {
       wx.showToast({
         title: '绩点格式不正确，请检查',
         icon: 'none'
@@ -173,25 +168,23 @@ Page({
   },
 
   formSubmit:async function (e) {
-
     const data = {
       name: e.detail.value.name,
       english: e.detail.value.english,
       age: e.detail.value.age,
-      club: e.detail.value.club,
+      organization: e.detail.value.club,
       dormitory: e.detail.value.dormitory,
       motto: e.detail.value.motto,
       studentId: e.detail.value.studentId,
       phone: e.detail.value.phone,
-      rank: e.detail.value.rank,
-      class: e.detail.value.class,
+      gpa: e.detail.value.gpa,//rank绩点string改成绩点排名gpa int
+      major: e.detail.value.major,
       cExperiment: e.detail.value.cExperiment,
-      cTheory: e.detail.value.cTheory,
+      ctheory: e.detail.value.cTheory,
       gender: this.data.arraySex[this.data.indexSex],
-      flunk: this.data.arrayMajor[this.data.indexMajor],
-      intention: this.data.arrayDir[this.data.indexDir],
+      flunk: this.data.indexMajor,//0挂科，1没挂
+      intention: this.data.indexDir + 1,
       college: this.data.arrayAcademy[this.data.indexAcademy],
-    
     };
     this.setData({
       ...data
@@ -203,8 +196,6 @@ Page({
       if (result) {
         // on confirm
         try {
-        
-          
           console.log('data', data);
           const response = await NewerInterview.submitInfo(data);
           console.log('response', response);
@@ -245,33 +236,36 @@ Page({
     wx.setNavigationBarTitle({
       title: '报名QG工作室'
     });
+    
     let checkClass = new checkForm();
     this.setData({
       checkClass
     });
-    // try {
-    //   const response = await NewerInterview.submitInfo(data);
-    //   console.log('response', response);
-    //   let data = response.data;
-    //   if (response.code === 200&&data) {
-    //    this.setData({
-    //     ...data
-    //   });
-    //   console.log('data', data);
-    //   } else {
-    //     wx.showToast({
-    //       title: '未填写报名表单',
-    //       icon: 'none'
-    //     });
-    //   }
-    // } catch (error) {
-    //   // 处理请求失败的情况
-    //   console.error('请求失败:', error);
-    //   wx.showToast({
-    //     title: '请求失败',
-    //     icon: 'none'
-    //   });
-    // }
+    try {
+      const response = await NewerInterview.fool();
+      console.log('response', response);
+      let data = response.data;
+      if (!data) {
+       this.setData({
+        isHide:data
+      });
+      } else {
+      }
+    } catch (error) {
+      // 处理请求失败的情况
+      console.error('请求失败:', error);
+      wx.showToast({
+        title: '请求失败',
+        icon: 'none'
+      });
+    }
+  
+
+
+ 
+
+ 
+    
   },
 
 

@@ -1,6 +1,4 @@
 <!--components/buttombar/buttombar.wxml-->
-
-
 <view class="nav">
 <view class="nav_content">
   <view class="nav-item {{ activeIndex == 0 ? 'active' : '' }}" bindtap="handleNavTap" data-index="0">

@@ -18,7 +18,8 @@
  </view>
  <view class="position">
   <van-icon name="location-o" color="#5b08c3" size="30"/>
-  <text>广东工业大学工学一号馆</text>
+  <!-- <text>广东工业大学工学一号馆</text> -->
+  <text>{{address}}</text>
   <view bind:tap="location">重新定位</view>
  </view>
 

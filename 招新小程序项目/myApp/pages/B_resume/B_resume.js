@@ -7,7 +7,7 @@ Page({
    */
   data: {
     shakeAnimation:{},
-    userInfo:{}
+   avatarUrl:wx.getStorageSync("avatarUrl")
   },
   initInfo: async function () {
   try {
@@ -62,7 +62,7 @@ this.initInfo();
     shake.call(this); // 调用 shake 函数开始执行抖动动画
   }, 1000);
 try{
- const result = await NewerInterview.resumeInfo();
+ const result = await NewerInterview.getResume();
  console.log('result',result);
 
 }catch{

@@ -1,8 +1,7 @@
 
-const baseUrl = 'http://39.98.41.126:31129/'
+// const baseUrl = 'http://8.138.82.135:8082/'
+const baseUrl = 'https://qgailab.com/newer/'
 import PopUp from '../tools/PopUp'
-
-
 const Request = (options)=> {
   const {
     url,
@@ -12,7 +11,7 @@ const Request = (options)=> {
 } = options;
 
 const postHead = {
-  'content-type': "application/x-www-form-urlencoded",
+  'content-type': "application/json",
   'platformToken': wx.getStorageSync("platformToken")
 };
 let getHead = {
@@ -20,10 +19,9 @@ let getHead = {
   'appletToken': wx.getStorageSync("appletToken"),
 };
 let putHead = {
-  'content-type': "application/x-www-form-urlencoded",
+  'content-type': "application/json",
   'appletToken': wx.getStorageSync("appletToken")
 };
-
   return new Promise((resolve, reject) => {
     PopUp.Loading(true,'加载中');
     wx.request({

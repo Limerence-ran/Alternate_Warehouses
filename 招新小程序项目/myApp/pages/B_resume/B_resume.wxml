@@ -61,7 +61,7 @@
 <view class="main">
 <view class="right">
 <view class="title">
-  <open-data type="userAvatarUrl" class="head" animation="{{shakeAnimation}}"></open-data>
+<image src="{{avatarUrl}}" class="head" animation="{{shakeAnimation}}"></image> 
 <text>前端组</text>
 </view>
 <view class="content">

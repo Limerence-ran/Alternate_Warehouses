@@ -1,10 +1,13 @@
-// app.js
+// app.js 
+// import connectWebSocket from './utils/tools/websocket'
 import socket from './utils/tools/websocket'
 App({
   globalData: {
     message: '',
-    userInfo: null
+    userInfo: null,
+    activeIndex: 0//底部导航栏索引
   },
+  
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -17,44 +20,8 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-
-    // const header = {
-    //   'content-type': 'application/json',
-    //   'platformToken': wx.getStorageSync("platformToken")
-    // };
-    // const that = this;
-    // const socket = connectWebSocket(header, function (res) {
-    //   // handleMessage(res);
-    //   console.log('收到的信息', res.data);
-    //   const result = res.data.split('|');
-    //   const part1 = result[0];
-    //   const part2 = result[1];
-    //   console.log('part1', part1);
-    //   console.log('part2', part2);
-    //   that.globalData.message = {
-    //     type: part1,
-    //     response: part2
-    //   };
-    // });
-    console.log(socket)
+    const that = this;
     socket.connect();
-    socket.send('init');
-    // this.globalData.socket = socket;
-  
+    
   },
- 
 })
-// function handleMessage(res) {
-//   console.log('收到的信息', res.data);
-//   const result = res.data.split('|');
-//   const part1 = result[0];
-//   const part2 = result[1];
-//   console.log('part1', part1);
-//   console.log('part2', part2);
-  
-//   const app = getApp();
-//   app.globalData.message = {
-//     type: part1,
-//     response: part2
-//   };
-// }

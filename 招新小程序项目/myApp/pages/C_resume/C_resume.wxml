@@ -1,7 +1,7 @@
 <!--pages/C_resume/C_resume.wxml-->
-
+<van-skeleton title row="3" wx:if="{{!isHide}}"/>
 <!-- 数据内容 -->
-<form catchsubmit="formSubmit" catchreset="formReset">
+<form catchsubmit="formSubmit" catchreset="formReset" wx:else="">
   <view class="box">
     <view class="level nav">
       <view class="dot"></view>
@@ -45,9 +45,9 @@
     <view class="row" >
       <view> <text class="required">*</text>专业班级</view>
       <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="class" placeholder="例：计算机类1班" maxlength="11" required/>
+        <input name="major" placeholder="例：计算机类1班" maxlength="11" required/>
       </view>
-      <view wx:else>{{class}}</view>
+      <view wx:else>{{major}}</view>
     </view>
     <view class="row">
       <view> <text class="required">*</text>手机号</view>
@@ -71,11 +71,11 @@
       </picker>
     </view>
     <view class="row">
-      <view><text class="required">*</text>绩点</view>
+      <view><text class="required">*</text>绩点排名</view>
       <view class="right" wx:if="{{!formSubmitted}}">
-        <input name="rank" placeholder="例：5.00"/>
+        <input name="gpa" placeholder="例：100"/>
       </view>
-      <view wx:else>{{rank}}</view>
+      <view wx:else>{{gpa}}</view>
     </view>
     <view class="row">
       <view>宿舍</view>

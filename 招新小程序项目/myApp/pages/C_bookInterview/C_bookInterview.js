@@ -21,7 +21,6 @@ Page({
       { id: 8, day: '2024-12-04', time: "9:00-10:00" },
       { id: 9, day: '2024-12-03', time: "9:00-10:00" }
     ],
-
     selected: -1  // 初始化为-1，表示无选中项
   },
   onChange(event) {
@@ -77,35 +76,31 @@ Page({
     wx.setNavigationBarTitle({
       title: '预约面试',
     });
-    // try {
+    try {
+      const response = await NewerInterview.getInterviewInfo();
+      console.log('response', response);
+      if (response.code === 200) {
+        console.log('渲染预约场次成功')
 
-    //   const response = await NewerInterview.bookTime(id);
-
-    //   console.log('response', response);
-    //   if (response.code === 200) {
-       
-
-
-    //   } else {
-    //     PopUp.Toast('渲染预约场次失败', 2, 2000);
-    //   }
-    // } catch (error) {
-    //   // 处理请求失败的情况
-    //   console.error('请求失败:', error);
-    //   PopUp.Toast('请求失败', 3, 2000);
-    // }
-    // console.log(this.data.isStart);
-    if (this.data.isStart) {
-      Dialog.confirm({
-        message: '一轮面试还未开始',
-      })
-        .then(() => {
-          // on confirm
-        })
-        .catch(() => {
-          // on cancel
-        });
+      } else {
+        PopUp.Toast('渲染预约场次失败', 2, 2000);
+      }
+    } catch (error) {
+      // 处理请求失败的情况
+      console.error('请求失败:', error);
+      PopUp.Toast('请求失败', 3, 2000);
     }
+    // if (this.data.isStart) {
+    //   Dialog.confirm({
+    //     message: '一轮面试还未开始',
+    //   })
+    //     .then(() => {
+    //       // on confirm
+    //     })
+    //     .catch(() => {
+    //       // on cancel
+    //     });
+    // }
   },
 
   /**

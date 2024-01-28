@@ -8,12 +8,15 @@ const Api = {
   // 新生面试接口
   formUrl:'newers/enroll',
   resumeUrl:'newers/newersInfo',
+  getResume:'newers/getResume',
   signUp: 'newers/signIn',
   cancelBook:'newers/cancelReserve',
   cancelSignIn:'newers/cancelSignIn',
-  bookTime:'newers/reserve'
+  bookTime:'newers/reserve',
+  getInterviewInfo:'newers/getInterviewInfo',//查询场次
  //统计接口
- 
+ //fool
+ fool:'newers/fool'
 }
 
 // 放各类请求
@@ -29,6 +32,7 @@ const NewerInterview = {
     })
 },
   submitInfo: (options) => {
+    console.log('报名信息',options)
   return Request({
       url: Api.formUrl,
       method: 'POST',
@@ -39,6 +43,12 @@ resumeInfo: () => {
   return Request({
       url: Api.resumeUrl,
       method: 'GET'
+  })
+},
+getResume: () => {
+  return Request({
+    url: Api.getResume,
+    method: 'POST'
   })
 },
   signUp: (platformToken) => {
@@ -59,10 +69,25 @@ resumeInfo: () => {
       method: 'POST'
   })
   },
-  bookTime:() =>{
+  bookTime:(id) =>{
     return Request({
       url: Api.bookTime,
-      method: 'POST'
+      method: 'POST',
+      data:{
+        id:id
+      }
+  })
+  },
+  fool:() =>{
+    return Request({
+      url: Api.fool,
+      method: 'POST', 
+  })
+  },
+  getInterviewInfo:() =>{
+    return Request({
+      url: Api.getInterviewInfo,
+      method: 'POST', 
   })
   }
 }

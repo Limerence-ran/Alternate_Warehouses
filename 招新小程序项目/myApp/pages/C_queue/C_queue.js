@@ -4,7 +4,6 @@ import NewerInterview from '../../utils/request/api'
 import socket from '../../utils/tools/websocket'
 
 const app = getApp();
-
 Page({
 
   /* 页面的初始数据*/
@@ -19,8 +18,8 @@ Page({
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });
-    // socket.connect();
-    socket.send('init');
+   
+  
     // const header = {
     //   'content-type': 'application/json',
     //   'platformToken': wx.getStorageSync("platformToken")
@@ -46,33 +45,54 @@ Page({
     // this.data.socket.send('init'); // 发送消息
   },
 
-  reflesh: function () {
-    
-   socket.send('flush');
-    const message = app.globalData.message;
-    if (message) {
-      const { type, response } = message;
-    console.log(type, response);
+  reflesh: async function () {
+    // console.log(555)
+    try{
+      // const socket = await connectWebSocket(function (res) {
+      //   // console.log(111)
+      //   console.log('收到更新的信息', res.data);
+      //   // const result = res.data.split('|');
+      //   // const part1 = result[0];
+      //   // const part2 = result[1];
+      //   // console.log('part1', part1);
+      //   // console.log('part2', part2);
+      //   // that.globalData.message = {
+      //   //   type: part1,
+      //   //   response: part2
+      //   // };
+      // });
+      // socket.send('flush');
+      socket.request('flush', 'flush', (res)=>{
+        console.log('收到更新的信息', res);
+            });
+    }catch{
+   console.log('无法更新')
     }
+
   },
   cancelSignIn: async function () {
     const result = await PopUp.Confirm('是否确认取消签到？');
+    console.log(result)
     if (result) {
       console.log('取消签到？', result);
       try {
-        const response = await NewerInterview.cancelSignIn();
-        console.log('response', response);
-        if (response.code === 200) {
-          PopUp.Toast(response.message, 1, 2000);
-        } else {
-          PopUp.Toast('取消签到失败', 2, 2000);
-        }
+        socket.request('cancelSignIn', 'cancelSignIn', (res)=>{
+          console.log('收到更新的信息', res)
+          const response = JSON.parse(res);
+          if (response.code === 200) {
+            PopUp.Toast(response.message, 1, 2000);
+          }else if(response.code === 205){
+            PopUp.Toast(response.message, 2, 2000);
+          }else {
+            PopUp.Toast('取消签到失败', 2, 2000);
+          }
+        });
       } catch (error) {
         // 处理请求失败的情况
         PopUp.Toast('请求失败', 3, 2000);
       }
     } else {
-
+      PopUp.Toast('操作取消', 3, 2000);
     }
   },
 
@@ -100,9 +120,9 @@ Page({
    */
   onUnload() {
    
-    if (socket) {
-      socket.close()
-    }
+    // if (socket) {
+    //   socket.close()
+    // }
   },
 
   /**
