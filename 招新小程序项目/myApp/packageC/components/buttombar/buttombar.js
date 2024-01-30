@@ -1,4 +1,4 @@
-// packageA/pages/C_loginIn/C_loginIn.js
+// packageC/components/buttombar/buttombar.js
 Page({
 
   /**

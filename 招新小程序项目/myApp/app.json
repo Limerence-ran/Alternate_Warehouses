@@ -1,15 +1,43 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/home/home",
-    "pages/C_queue/C_queue",
-    "pages/C_score/C_score",
-    "pages/C_resume/C_resume",
-    "pages/B_resume/B_resume",
-    "pages/C_bookInterview/C_bookInterview",
-        "pages/C_loginIn/C_loginIn"
+    "pages/index/index"
   ],
-
+  "subpackages": [
+    {
+      "root": "packageA",
+      "name": "pack1",
+      "pages":[
+        "pages/C_bookInterview/C_bookInterview"
+      ]
+    },{
+      "root": "packageB",
+      "name": "pack2",
+      "pages": [
+        "pages/home/home",
+        "pages/C_queue/C_queue",
+        "pages/C_score/C_score",
+        "pages/C_resume/C_resume",
+        "pages/B_resume/B_resume",
+        "pages/C_loginIn/C_loginIn"
+      ],
+      "independent": true 
+    },
+    {
+     "root": "packageC",
+     "name":"pack3",
+     "pages": [
+  "components/buttombar/buttombar",
+  "components/floatingtool/floatingtool",
+  "components/titlebar/titlebar"
+     ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["packageA", "packageB","packageC"]
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5b08c3",
