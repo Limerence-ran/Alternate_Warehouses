@@ -37,13 +37,6 @@
           "scene": null
         },
         {
-          "name": "管理面试",
-          "pathName": "pages/B_manageInterview/B_manageInterview",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "排队",
           "pathName": "pages/C_queue/C_queue",
           "query": "",
@@ -51,29 +44,8 @@
           "scene": null
         },
         {
-          "name": "定位",
-          "pathName": "pages/C_interview/C_interview",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "签到",
           "pathName": "pages/C_loginIn/C_loginIn",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "管理员选择面试端",
-          "pathName": "pages/manage/manage",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/C_interview/C_interview",
           "query": "",
           "launchMode": "default",
           "scene": null

@@ -1,4 +1,4 @@
-// pages/C_team/C_team.js
+// packageB/pages/C_resume/C_resume.js
 Page({
 
   /**

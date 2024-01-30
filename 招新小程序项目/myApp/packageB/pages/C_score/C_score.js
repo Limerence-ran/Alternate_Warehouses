@@ -1,4 +1,4 @@
-// pages/B_evaluate/B_evaluate.js
+// packageB/pages/C_score/C_score.js
 Page({
 
   /**

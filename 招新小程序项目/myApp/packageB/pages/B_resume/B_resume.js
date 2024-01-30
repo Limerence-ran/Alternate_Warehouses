@@ -1,37 +1,13 @@
-// pages/manage/manage.js
+// packageB/pages/B_resume/B_resume.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    dateRangeInfo: {
-      list: [
-        { dateStr: '2023-01-01 9:00-10:00', isDisabled: false, checked: false },
-        { dateStr: '2023-01-02 10:30-11:30', isDisabled: false, checked: false },
-        
-      ]
-    }
+
   },
 
-  _checkedDateClick(e) {
-    const { idx } = e.currentTarget.dataset;
-    const { dateRangeInfo } = this.data;
-
-    // 更新选中状态
-    dateRangeInfo.list.forEach((item, index) => {
-      item.checked = index === idx;
-    });
-
-    // 更新数据
-    this.setData({
-      dateRangeInfo: dateRangeInfo
-    });
-
-    // 处理点击事件
-    // TODO: 根据实际需求进行处理
-    console.log('点击了日期:', dateRangeInfo.list[idx].dateStr);
-  },
   /**
    * 生命周期函数--监听页面加载
    */

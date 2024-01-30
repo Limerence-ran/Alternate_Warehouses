@@ -2,18 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/home/home",
-    "pages/C_team/C_team",
-    "pages/C_interview/C_interview",
-    "pages/C_loginIn/C_loginIn",
     "pages/C_queue/C_queue",
     "pages/C_score/C_score",
     "pages/C_resume/C_resume",
-    "pages/C_bookInterview/C_bookInterview",
     "pages/B_resume/B_resume",
-    "pages/B_evaluate/B_evaluate",
-    "pages/manage/manage",
-    "pages/Freshman_side/Freshman_side"
+    "pages/C_bookInterview/C_bookInterview",
+        "pages/C_loginIn/C_loginIn"
   ],
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5b08c3",

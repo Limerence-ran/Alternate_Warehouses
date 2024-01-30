@@ -1,4 +1,4 @@
-// pages/Freshman_side/Freshman_side.js
+// packageA/pages/C_bookInterview/C_bookInterview.js
 Page({
 
   /**
