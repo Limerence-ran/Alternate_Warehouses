@@ -14,6 +14,7 @@ const Api = {
   cancelSignIn:'newers/cancelSignIn',
   bookTime:'newers/reserve',
   getInterviewInfo:'newers/getInterviewInfo',//查询场次
+  getScore:'newers/getScore',
  //统计接口
  //fool
  fool:'newers/fool'
@@ -89,6 +90,12 @@ getResume: () => {
       url: Api.getInterviewInfo,
       method: 'POST', 
   })
+  },
+  getScore:()=>{
+    return Request({
+      url:Api.getScore,
+      method: 'POST'
+    })
   }
 }
 

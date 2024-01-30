@@ -33,7 +33,7 @@ Component({
     }
   },
   created() {
-    console.log('组件 created');
+    // console.log('组件 created');
    const activeIndex = app.globalData.activeIndex;
    this.setData({
     activeIndex:activeIndex

@@ -10,6 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    place:'',
+    groupName:'',
     steps: [{
       text: '定位成功  2023-03-11 12：30',
       desc: '广东工业大学工学一号馆',
@@ -159,6 +161,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(options)
+    this.setData({
+      place:options.param1,
+      groupName:options.param2
+    })
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });

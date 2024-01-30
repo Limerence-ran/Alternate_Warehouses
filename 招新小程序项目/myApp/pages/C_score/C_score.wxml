@@ -26,12 +26,12 @@
           </view>
           <view class="status-wrapper">
             <text>通过状态</text>
-            <view class="unknown" hidden="{{indexTurn==0||indexTurn==1||indexTurn==2}}">请选择轮次</view>
-            <view class="noJoin" hidden="{{indexTurn==0||indexTurn==1||indexTurn==2||!indexTurn}}">还未参加该轮考试</view>
-            <view class="pass-wrapper" wx:if="{{isThrough}}" hidden="{{!indexTurn}}">
+            <view class="unknown" hidden="{{indexTurn!=null}}">请选择轮次</view>
+            <view class="noJoin" wx:if="{{isThrough==null}}">待审批</view>
+            <view class="pass-wrapper" wx:if="{{isThrough}}" hidden="{{indexTurn==null||isThrough==null}}">
               <text class="pass">通过</text>
             </view>
-            <view wx:else class="noPass-wrapper" hidden="{{!indexTurn}}">
+            <view wx:else  class="noPass-wrapper" hidden="{{indexTurn==null||isThrough==null}}">
               <text class="noPass">未通过</text>
               <text class="comfort">*希望你的编程之路不止于此！</text>
             </view>

@@ -11,8 +11,6 @@
     "pages/C_bookInterview/C_bookInterview",
     "pages/B_resume/B_resume",
     "pages/B_evaluate/B_evaluate",
-    "pages/B_statistics/B_statistics",
-    "pages/B_manageInterview/B_manageInterview",
     "pages/manage/manage",
     "pages/Freshman_side/Freshman_side"
   ],

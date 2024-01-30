@@ -2,6 +2,7 @@
 import Dialog from '@vant/weapp/dialog/dialog';
 import PopUp from '../../utils/tools/PopUp'
 import { NewerInterview } from '../../utils/request/api'
+import formatTimestamp from '../../utils/tools/time'
 Page({
   /**
    * 页面的初始数据
@@ -9,25 +10,29 @@ Page({
   data: {
     isStart: false,
     active: 0,
+    name:'',
+    groupName:'',
+    place:'',
+    total:'',//当前场次预约面试的人数
     timeArr: [
-      { id: 0, day: '2024-12-05', time: "9:00-10:00" },
-      { id: 1, day: '2024-12-06', time: "10:30-11:30" },
-      { id: 2, day: '2024-12-07', time: "12:00-13:00" },
-      { id: 3, day: '2024-12-05', time: "13:00-14:00" },
-      { id: 4, day: '2024-12-04', time: "9:00-10:00" },
-      { id: 5, day: '2024-12-05', time: "9:00-10:00" },
-      { id: 6, day: '2024-12-01', time: "9:00-10:00" },
-      { id: 7, day: '2024-12-05', time: "9:00-10:00" },
-      { id: 8, day: '2024-12-04', time: "9:00-10:00" },
-      { id: 9, day: '2024-12-03', time: "9:00-10:00" }
+      // { id: 0, start: '2024-12-05', end: "9:00-10:00" },
+      // { id: 1, start: '2024-12-06', end: "10:30-11:30" },
+      // { id: 2, start: '2024-12-07', end: "12:00-13:00" },
+      // { id: 3, start: '2024-12-05', end: "13:00-14:00" },
+      // { id: 4, start: '2024-12-04', end: "9:00-10:00" },
+      // { id: 5, start: '2024-12-05', end: "9:00-10:00" },
+      // { id: 6, start: '2024-12-01', end: "9:00-10:00" },
+      // { id: 7, start: '2024-12-05', end: "9:00-10:00" },
+      // { id: 8, start: '2024-12-04', end: "9:00-10:00" },
+      // { id: 9, start: '2024-12-03', end: "9:00-10:00" }
     ],
-    selected: -1  // 初始化为-1，表示无选中项
+    selected: -1,  // 初始化为-1，表示无选中项
+    avatarUrl:wx.getStorageSync('avatarUrl')
   },
   onChange(event) {
-
+    console.log(event)
     this.setData({
       active: event.detail.index,
-      day: event.detail.title
     });
     // wx.showToast({
     //   title: `切换到 ${event.detail.title}`,
@@ -37,14 +42,16 @@ Page({
   Select: async function (event) {
     console.log('event', event)
     const index = event.currentTarget.dataset.index;
-    const active = this.data.active;
-    // console.log(this.data.timeArr[index].id)
-    // console.log(this.data.timeArr[index].day + ' ' + this.data.timeArr[index].time);
     const id = this.data.timeArr[index].id;
-    const time = this.data.timeArr[index].day + ' ' + this.data.timeArr[index].time;
+    const time = this.data.timeArr[index].start + ' 到 ' + this.data.timeArr[index].end;
+    const place = this.data.timeArr[index].place;
+    const total = this.data.timeArr[index].total;
+    const msg = '时间：' + time +'\n' + '地点：' + place + '\n' + '已预约面试的人数：' + total
+    console.log(time)
     Dialog.confirm({
       title: '确认预约场次' + id + '?',
-      message: time,
+      message: msg,
+      messageAlign: 'left',
     })
       .then(async () => {
         // on confirm
@@ -57,9 +64,9 @@ Page({
             }, 1000);
             setTimeout(() => {
               wx.redirectTo({
-                url: '../C_loginIn/C_loginIn'
+                url: '../C_loginIn/C_loginIn?param1=' + this.data.place + '&param2=' + this.data.groupName
               })
-            }, 6000);
+            }, 5000);
           }
         } catch {
           PopUp.Toast('预约失败！', 2, 2000);
@@ -67,21 +74,36 @@ Page({
       })
       .catch(() => {
         // on cancel
+        PopUp.Toast('取消操作成功！', 1, 2000);
       });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+
     wx.setNavigationBarTitle({
       title: '预约面试',
     });
     try {
       const response = await NewerInterview.getInterviewInfo();
-      console.log('response', response);
+      // console.log('response', response);
       if (response.code === 200) {
-        console.log('渲染预约场次成功')
-
+        const {data,message} = response;
+        const {name,groupName,interviewPeriodVos} = data;
+        // console.log(interviewPeriodVos)
+        const Array = interviewPeriodVos.map(item => {
+          const startTime = formatTimestamp(item.start);
+          const endDay = formatTimestamp(item.end);
+          const endTime = endDay.slice(5);
+          return { id: item.id,start:startTime,end:endTime,total:item.total,place:item.place}
+        });
+        this.setData({
+          name:name,
+          groupName:groupName,
+          timeArr:Array
+        })
+        // console.log(Array)
       } else {
         PopUp.Toast('渲染预约场次失败', 2, 2000);
       }
@@ -90,17 +112,7 @@ Page({
       console.error('请求失败:', error);
       PopUp.Toast('请求失败', 3, 2000);
     }
-    // if (this.data.isStart) {
-    //   Dialog.confirm({
-    //     message: '一轮面试还未开始',
-    //   })
-    //     .then(() => {
-    //       // on confirm
-    //     })
-    //     .catch(() => {
-    //       // on cancel
-    //     });
-    // }
+    
   },
 
   /**

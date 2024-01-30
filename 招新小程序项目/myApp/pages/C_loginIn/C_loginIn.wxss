@@ -65,18 +65,22 @@ margin: 40rpx 0;
   }
 }
 .position{
-  display: flex;
-  align-items: center;
-  margin-bottom: 50rpx;
+  margin-bottom: 0rpx;
   padding-left: 35rpx;
 }
 
 .position text{
   color: rgb(110, 111, 112);
+  overflow: hidden;
+  white-space: nowrap; /* 不换行 */
+  text-overflow: ellipsis; /* 显示省略号 */
 }
 .position view{
+    display: flex; 
+ align-items: center;
   color: #5b08c3;
   margin-left: 20rpx;
+  justify-content: center;
 }
 .message{
   padding: 0 20rpx;

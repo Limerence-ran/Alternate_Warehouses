@@ -5,29 +5,17 @@
 <view class="box" wx:else>
   <view class="detail">
     <view>
-      <van-icon name="user" size="100" />
+    <image src="{{avatarUrl}}" mode="" class="user"/>
     </view>
     <view>
-      <text>刘亦菲</text>
-      <text>前端组</text>
-      <text>教三-626</text>
+      <text>{{name}}</text>
+      <text>{{groupName}}</text>
     </view>
   </view>
 
   <view class="time">
     <view class="time_text">请选择预约时间</view>
-    <!-- <van-tabs active="{{ active }}" bind:change="onChange" animated="true" title-active-color="#5b08c3" color="#5b08c3"> -->
-
-      <!-- <van-tab title="2024-3-10" class="custom-tab"> -->
-        <view class="{{'time_tab'}} {{active===0&&index === selected ? 'highlight' : ''}}" wx:for="{{timeArr}}" data-index="{{index}}" wx:key="id" bind:tap="Select">{{'场次'+item.id+' '+item.day+' '+item.time}}</view>
-      <!-- </van-tab> -->
-      <!-- <van-tab title="2024-3-11" class="custom-tab">
-        <view class="{{'time_tab'}} {{active===1&&index === selected ? 'highlight' : ''}}" wx:for="{{timeArr.day1}}" wx:key="id" data-index="{{index}}" bind:tap="Select">{{item}}</view>
-      </van-tab>
-      <van-tab title="2024-3-12" class="custom-tab">
-        <view class="{{'time_tab'}} {{active===2&&index === selected ? 'highlight' : ''}}" wx:for="{{timeArr.day2}}" wx:key="id" data-index="{{index}}" bind:tap="Select">{{item}}</view>
-      </van-tab> -->
-    <!-- </van-tabs> -->
+        <view class="{{'time_tab'}} {{active===0&&index === selected ? 'highlight' : ''}}" wx:for="{{timeArr}}" data-index="{{index}}" wx:key="id" bind:tap="Select">{{item.start+' 到 '+item.end}}</view>
   </view>
 </view>
 <van-dialog id="van-dialog" />

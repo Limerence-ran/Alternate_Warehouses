@@ -18,12 +18,12 @@ padding: 20rpx 0 100rpx 0;
   
 }
 .detail{
-  height: 300rpx;
+  height: 250rpx;
 
   display: flex;
 }
 .detail view:first-child{
-  height: 300rpx;
+  height: 250rpx;
   width: 200rpx;
   display: flex;
   align-items: center;
@@ -31,11 +31,12 @@ padding: 20rpx 0 100rpx 0;
 }
 .detail view:nth-child(2){
   /* background-color: rgb(106, 163, 163); */
-  height: 300rpx;
+  height: 250rpx;
   width: calc(100% - 200rpx);
   display: flex;
   flex-direction: column;
   color: rgb(112, 113, 114);
+  padding: 20rpx 0;
 }
 .detail text{
   margin: 20rpx 40rpx;
@@ -68,9 +69,15 @@ padding: 0 30rpx;
  align-items: center;
  justify-content: center;
  border-bottom: 1px solid rgb(194, 188, 188);
+ font-size: 28rpx;
+ color: rgb(122, 114, 103);
 }
 
 
 .van-tabs--line{
   background-color: none;
+}
+.user{
+  height: 100%;
+  border-radius: 16rpx;
 }
