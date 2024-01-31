@@ -105,7 +105,7 @@ const TuTorInterview = {
 const CountView = {
   
 }
-export {
+module.exports = {
   NewerInterview,
   TuTorInterview,
   CountView
