@@ -171,46 +171,46 @@ Page({
       title: 'QG面试',
     });
     const that = this;
-    // wx.getLocation({
-    //   type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-    //   success(res) {
-    //     console.log('定位')
-    //     console.log(res)
-    //     that.setData({
-    //       latitude: res.latitude,
-    //       longitude: res.longitude
-    //     });
-    //     var qqmapsdk = new QQMapWX({
-    //       key: 'MWRBZ-DFZCZ-JPBXP-ZRVVD-6WBHE-SFBZ4'
-    //     });
-    //     // 使用 qqmapsdk 对象的 reverseGeocoder 方法进行逆地址解析：通过用户的经纬度获取用户所在的地址信息
-    //     qqmapsdk.reverseGeocoder({
-    //       location: {
-    //         latitude: that.data.latitude,
-    //         longitude: that.data.longitude
-    //       },
-    //       success: function (res) {
-    //         console.log('成功', res);
-    //         var standardAddress = res.result.formatted_addresses;
-    //         var address = standardAddress.standard_address;
-    //         console.log(address);//获取到了地址信息
-    //         let time = that.currentTime();
-    //         that.setData({
-    //           address:address,
-    //           steps: [
-    //             {
-    //               text: '定位成功 ' + time,
-    //               desc: address
-    //             }
-    //           ]
-    //         });
-    //       },
-    //       fail: function (res) {
-    //         console.log(res);
-    //       },
-    //     });
-    //   }
-    // });
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success(res) {
+        console.log('定位')
+        console.log(res)
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        });
+        var qqmapsdk = new QQMapWX({
+          key: 'MWRBZ-DFZCZ-JPBXP-ZRVVD-6WBHE-SFBZ4'
+        });
+        // 使用 qqmapsdk 对象的 reverseGeocoder 方法进行逆地址解析：通过用户的经纬度获取用户所在的地址信息
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: that.data.latitude,
+            longitude: that.data.longitude
+          },
+          success: function (res) {
+            console.log('成功', res);
+            var standardAddress = res.result.formatted_addresses;
+            var address = standardAddress.standard_address;
+            console.log(address);//获取到了地址信息
+            let time = that.currentTime();
+            that.setData({
+              address:address,
+              steps: [
+                {
+                  text: '定位成功 ' + time,
+                  desc: address
+                }
+              ]
+            });
+          },
+          fail: function (res) {
+            console.log(res);
+          },
+        });
+      }
+    });
   },
 
   /**
