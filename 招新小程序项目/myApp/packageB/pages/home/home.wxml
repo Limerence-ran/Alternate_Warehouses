@@ -1,2 +1,141 @@
-<!--packageB/pages/home/home.wxml-->
-<text>packageB/pages/home/home.wxml</text>
+<!-- 主页面加载动画 -->
+<view class="loading" wx:if="{{!loadingComplete}}">
+  <view class="loader">
+    <view class="box box0">
+      <view></view>
+    </view>
+    <view class="box box1">
+      <view></view>
+    </view>
+    <view class="box box2">
+      <view></view>
+    </view>
+    <view class="box box3">
+      <view></view>
+    </view>
+    <view class="box box4">
+      <view></view>
+    </view>
+    <view class="box box5">
+      <view></view>
+    </view>
+    <view class="box box6">
+      <view></view>
+    </view>
+    <view class="box box7">
+      <view></view>
+    </view>
+    <view class="ground">
+      <view></view>
+    </view>
+  </view>
+</view>
+
+<!-- 主页面显示内容 -->
+<view hidden="{{!loadingComplete}}">
+  <!-- 顶部tab栏 -->
+  <titletabbar></titletabbar>
+  <!-- 主体页面 -->
+  <view class="main">
+    <!-- LOG大图 -->
+    <view class="logo_font">
+      <image src="../../utils/photos/logo_font.jpg" mode="" />
+    </view>
+    <!-- 方向介绍icon -->
+    <view class="divider">
+      <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">欢迎来访</van-divider>
+    </view>
+    <!-- 各组介绍渲染 -->
+    <view wx:for="{{groups}}" wx:for-index="index" class="group {{item.isShow?'slident-item':''}}" wx:key="id">
+      <view class="group_name">
+        <image src="{{item.icon}}" alt="" /> |
+        {{item.group}}
+      </view>
+      <block wx:if="{{item.id % 2 === 0}}" class>
+        <view class="group_description">
+          <!-- 小组介绍 -->
+          <text class="typeout">
+            {{item.text}}
+          </text>
+        </view>
+        <view class="group_pic">
+          <!-- 小组图片 -->
+          <image src="{{item.url}}" mode="" />
+        </view>
+      </block>
+      <block wx:else>
+        <view class="group_pic {{index === 0 ? 'first-pic' : ''}}">
+          <!-- 小组图片 -->
+          <image src="{{item.url}}" mode="" />
+        </view>
+        <view class="group_description">
+          <!-- 小组介绍 -->
+          <text>
+            {{item.text}}
+          </text>
+        </view>
+      </block>
+    </view>
+    <!-- 动画效果 -->
+    <view class="rocket_container">
+      <view class="rocket">
+    <view class="rocket-body">
+      <view class="body"></view>
+      <view class="fin fin-left"></view>
+      <view class="fin fin-right"></view>
+      <view class="window"></view>
+    </view>
+    <view class="exhaust-flame"></view>
+    <view class="exhaust-fumes">
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+    </view>
+    <view class="star">
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+      <view></view>
+    </view>
+  </view>
+    </view>
+    <!-- 首页页脚 -->
+ 
+      <view class="footer-content">
+        <view class="footer-content__other-links">
+          <a href="#" title="QG招新">
+            <view>项目合作</view>
+            <view class="footer-content__other-links__item-line"></view>
+          </a>
+          <a href="#" title="移动应用">
+            <view>移动应用</view>
+            <view class="footer-content__other-links__item-line"></view>
+          </a>
+          <a href="#" title="关于我们">
+            <view>关于我们</view>
+            <view class="footer-content__other-links__item-line"></view>
+          </a>
+          <a href="#" title="反馈问题" class="last-footer-content-other-links">
+            <view>问题反馈</view>
+            <view></view>
+          </a>
+        </view>
+        <view class="footer-content__copyright-eng">Copyright © 2023-2024 QG-studio. All Rights Reserved.</view>
+        <view class="footer-content__copyright-txt">QG工作室 版权所有</view>
+      </view>
+    </view>
+
+    <!-- 悬浮工具箱 -->
+    <floatingtool></floatingtool>
+    <van-dialog id="van-dialog" />
+
+</view>

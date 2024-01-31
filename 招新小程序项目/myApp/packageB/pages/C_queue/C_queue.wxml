@@ -1,2 +1,31 @@
-<!--packageB/pages/C_queue/C_queue.wxml-->
-<text>packageB/pages/C_queue/C_queue.wxml</text>
+<!--pages/C_queue/C_queue.wxml-->
+<view class="box">
+<view class="title">
+  <view class="info-item">
+    <text>面试者</text>
+    <text class="info-content">刘亦菲</text>
+  </view>
+  <view class="info-item">
+    <text>面试地点</text>
+    <text class="info-content">教三-311</text>
+  </view>
+  <view class="info-item">
+    <text>我的序号</text>
+    <text class="info-content">16</text>
+  </view>
+</view>
+<view class="sign">
+   <button hover-class="custom-class" bind:tap="signUp">
+   <text>前方排队人数</text>
+   <text>31</text>
+   </button>
+ </view>
+ <view class="update">
+ <button bind:tap="reflesh">更新</button>
+ </view>
+</view>
+<view class="cancel" bind:tap="cancelSignIn">
+  <button class="btn"> 取消签到</button>
+  <view class="line"></view>
+</view>
+<buttombar></buttombar>

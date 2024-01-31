@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "buttombar":"../../../components/buttombar/buttombar",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-picker": "@vant/weapp/picker/index"
+  }
+}

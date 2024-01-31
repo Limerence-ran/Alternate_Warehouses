@@ -1,18 +1,78 @@
-// packageB/pages/C_score/C_score.js
+// pages/C_score/C_score.js
+import { NewerInterview } from '../../../utils/request/api'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  /* 页面的初始数据*/
   data: {
-
+    name_value: '获取中...',
+    direction_value: '获取中...',
+    arrayTurn: ['一轮面试', '二轮面试', '笔试'],
+    turnsResult: [],
+    indexTurn: null,
+    isThrough: false
+  },
+  // 公共函数，用于更改选择器的值
+  changePickerValue(value, key) {
+    const data = {};
+    data[key] = value;
+    data.showPickerPop = false;
+    this.setData(data);
   },
 
+  bindPickerChange: function (e) {
+    this.changePickerValue(e.detail.value, 'indexTurn');
+    this.data.turnsResult.forEach((element, index) => {
+      if (index == this.data.indexTurn) {
+        if (element == '通过') {
+          this.setData({
+            isThrough: true
+          })
+        } else if (element == '未通过') {
+          this.setData({
+            isThrough: false
+          })
+        } else {
+          this.setData({
+            isThrough: null
+          })
+        }
+      }
+    });
+    console.log(this.data.indexTurn)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  onLoad: async function (options) {
+    try {
+      const response = await NewerInterview.getScore();
+      console.log('response', response)
+      const { code, data, message } = response;
+      if (code === 200 && data) {
+        const { scoreVos } = data;
+        const turns = scoreVos.map(item => item.stage);
+        const turnsResult = scoreVos.map(item => item.result);
+        console.log(turnsResult)
+        this.setData({
+          name_value: data.name,
+          direction_value: data.groupName,
+          arrayTurn: turns,
+          turnsResult: turnsResult
+        });
+        console.log(message)
+      } else {
+        wx.showToast({
+          title: '成绩获取失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      // 处理请求失败的情况
+      console.error('请求失败:', error);
+      wx.showToast({
+        title: '成绩请求失败',
+        icon: 'none'
+      });
+    }
   },
 
   /**
