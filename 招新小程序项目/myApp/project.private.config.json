@@ -17,7 +17,7 @@
         },
         {
           "name": "成绩通知",
-          "pathName": "pages/C_score/C_score",
+          "pathName": "packageB/pages/C_score/C_score",
           "query": "",
           "launchMode": "default",
           "scene": null
@@ -31,14 +31,14 @@
         },
         {
           "name": "新生预约",
-          "pathName": "pages/C_bookInterview/C_bookInterview",
+          "pathName": "packageA/pages/C_bookInterview/C_bookInterview",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "排队",
-          "pathName": "pages/C_queue/C_queue",
+          "pathName": "packageB/pages/C_queue/C_queue",
           "query": "",
           "launchMode": "default",
           "scene": null
@@ -52,7 +52,7 @@
         },
         {
           "name": "简历",
-          "pathName": "pages/B_resume/B_resume",
+          "pathName": "packageB/pages/B_resume/B_resume",
           "query": "",
           "launchMode": "default",
           "scene": null

@@ -39,7 +39,7 @@
   <view class="main">
     <!-- LOG大图 -->
     <view class="logo_font">
-      <image src="../../utils/photos/logo_font.jpg" mode="" />
+      <image src="../../../utils/photos/logo_font.jpg" mode="" />
     </view>
     <!-- 方向介绍icon -->
     <view class="divider">

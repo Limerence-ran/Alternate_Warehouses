@@ -2,22 +2,22 @@ import {Request} from './request'
 // 放接口url
 const Api = {
   // 登录接口
-  loginUrl: 'newers/login',
+  loginUrl: 'login',
   //导师端设置接口
 
   // 新生面试接口
-  formUrl:'newers/enroll',
-  resumeUrl:'newers/newersInfo',
-  getResume:'newers/getResume',
-  signUp: 'newers/signIn',
-  cancelBook:'newers/cancelReserve',
-  cancelSignIn:'newers/cancelSignIn',
-  bookTime:'newers/reserve',
-  getInterviewInfo:'newers/getInterviewInfo',//查询场次
-  getScore:'newers/getScore',
+  formUrl:'enroll',
+  resumeUrl:'newersInfo',
+  getResume:'getResume',
+  signUp: 'signIn',
+  cancelBook:'cancelReserve',
+  cancelSignIn:'cancelSignIn',
+  bookTime:'reserve',
+  getInterviewInfo:'getInterviewInfo',//查询场次
+  getScore:'getScore',
  //统计接口
  //fool
- fool:'newers/fool'
+ fool:'fool'
 }
 
 // 放各类请求

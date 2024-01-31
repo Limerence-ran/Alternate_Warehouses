@@ -32,7 +32,7 @@ Page({
     console.log('昵称改变了')
     setTimeout(() => {
       wx.redirectTo({
-        url: '../home/home'
+        url: '../../packageB/pages/home/home'
       })
     }, 2000)
 

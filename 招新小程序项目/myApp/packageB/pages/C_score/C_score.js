@@ -43,6 +43,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    
     try {
       const response = await NewerInterview.getScore();
       console.log('response', response)
