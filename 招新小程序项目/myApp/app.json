@@ -19,8 +19,7 @@
         "pages/C_resume/C_resume",
         "pages/B_resume/B_resume",
         "pages/C_loginIn/C_loginIn"
-      ],
-      "independent": true 
+      ]
     }
   ],
   "preloadRule": {

@@ -1,5 +1,5 @@
 import Toast from '@vant/weapp/toast/toast';
-import PopUp from '../../../utils/tools/PopUp'
+import PopUp from '../../../utils/tools/PopUp';
 import { NewerInterview } from '../../../utils/request/api'; //接口
 import { checkForm } from "../../../utils/tools/checkForm"; //方法
 
