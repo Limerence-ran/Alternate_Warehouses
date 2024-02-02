@@ -1,0 +1,20 @@
+<!--components/launchswitch.wxml-->
+<view class="button" bind:tap="handleTap">
+	<view class="lid  {{istap && '.lid_hover'}}">
+		<view class="side top"></view>
+		<view class="side front"></view>
+		<view class="side back"> </view>
+		<view class="side left"></view>
+		<view class="side right"></view>
+	</view>
+	<view class="panels">
+		<view class="panel-1">
+			<view class="panel-2">
+				<view class="btn-trigger">
+					<view class="btn-trigger-1"></view>
+					<view class="btn-trigger-2"></view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

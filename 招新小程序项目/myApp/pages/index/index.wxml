@@ -1,23 +1,24 @@
 <!--index.wxml-->
+<titletabbar style="width: 100%;padding: 0;margin: 0;"></titletabbar>
 <view class="container">
   <view class="userinfo">
-     <block wx:if="{{hasLogin}}"> 
-      <block wx:if="{{!avatarUrl}}"> 
-     <button class="weui-input avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      获取用户头像
-     </button> 
+    <block wx:if="{{hasLogin}}">
+      <block wx:if="{{!avatarUrl}}">
+        <button class="weui-input avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          授权用户头像
+        </button>
+      </block>
+      <block wx:else>
+        <van-image width="60" height="60" round="true" fit="cover" class="avatar" src="{{avatarUrl}}" />
+        <input type="nickname" class="weui-input" placeholder="授权微信昵称" onchange="onNicknameChange" />
+      </block>
     </block>
     <block wx:else>
-     <image class="avatar" src="{{avatarUrl}}"></image> 
-     <input type="nickname" class="weui-input" placeholder="点击获取昵称" onchange="onNicknameChange"/>
-    </block>
-   </block>
-    <block wx:else>
-      <button id="authorize" type="primary" bindtap="login" class="weui-input">授权用户信息</button>
+      <button id="authorize" type="primary" bindtap="login" class="weui-input">授权个人信息</button>
     </block>
   </view>
- 
-        
+
+<!-- 动画效果 -->
   <view class="usermotto">
     <!-- 环绕效果 -->
     <view id="page">

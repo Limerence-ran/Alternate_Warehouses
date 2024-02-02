@@ -10,6 +10,9 @@ Page({
     hasLogin: false,
     // canIUseGetUserProfile: false
   },
+  /**
+   * load生命周期函数
+   */
   onLoad() {
     wx.getSetting({
       success (res) {
@@ -26,10 +29,13 @@ Page({
     //   })
     //   console.log(app.globalData)
     // }
-
   },
+
+  /**
+   * 授权姓名跳转
+   */
   onNicknameChange() {
-    console.log('昵称改变了')
+    console.log('登陆成功')
     setTimeout(() => {
       wx.redirectTo({
         url: '../../packageB/pages/home/home'
@@ -37,14 +43,16 @@ Page({
     }, 2000)
 
   },
+
+  /**
+   * 登录获取code/token
+   */
   login() {
     wx.login({
       async success(res) {
         if (res.code) {
-          console.log(res.code, 'code', res);
           try {
             const response = await NewerInterview.login(res.code);
-            console.log('成功:', response);
             if (response.code === 200 && response.data) {
               //把新生端Token存储到本地
               wx.setStorageSync('platformToken', response.data.platformToken);
@@ -68,6 +76,10 @@ Page({
     })
   },
 
+  /**
+   * 登录获取用户头像
+   * @param {*} e 
+   */
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail
     wx.setStorageSync('avatarUrl',avatarUrl);
