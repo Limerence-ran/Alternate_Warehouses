@@ -1299,3 +1299,19 @@ swiper-item image {
   }
 }
  
+.movablebox {
+  position: fixed;
+  width: 100%;
+}
+
+.movableview {
+  position: fixed;
+  width: 100rpx;
+  z-index: 100;
+}
+
+image {
+  width: 100%;
+  height: 100%;
+}
+

@@ -11,7 +11,7 @@
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
     "preloadBackgroundData": false,
-    "minified": true,
+    "minified": false,
     "autoAudits": false,
     "newFeature": false,
     "uglifyFileName": false,

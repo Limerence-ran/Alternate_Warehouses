@@ -156,3 +156,7 @@
 .weui-input::placeholder{
   color: #fff;
 }
+.avatar{
+  height: 200rpx;
+  width: 200rpx;
+}

@@ -10,6 +10,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "首页",
+          "pathName": "packageB/pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "登录",
           "pathName": "pages/index/index",
           "query": "",
@@ -54,13 +61,6 @@
         {
           "name": "报名",
           "pathName": "packageB/pages/C_resume/C_resume",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "首页",
-          "pathName": "packageB/pages/home/home",
           "query": "",
           "launchMode": "default",
           "scene": null

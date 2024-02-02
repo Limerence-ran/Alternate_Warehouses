@@ -137,5 +137,11 @@
     <!-- 悬浮工具箱 -->
     <floatingtool></floatingtool>
     <van-dialog id="van-dialog" />
-
+    <movable-area class="movablebox" style="height:{{phoneHeight}}px">
+  <movable-view x="{{x}}" y="{{y}}" direction="all" class='movableview'> 
+    <image mode="widthFix" src='/utils/svg/home.svg'>点击</image>
+  </movable-view>
+</movable-area>
 </view>
+
+
