@@ -6,7 +6,7 @@ const connectWebSocket = function () {
 
   function connect() {
     socketTask = wx.connectSocket({
-      url: 'wss://qgailab.com/newer/interview',
+      url: 'wss://qgailab.com/newer/newers/interview',
       header: {
         'content-type': 'application/json',
         'platformToken': wx.getStorageSync("platformToken")

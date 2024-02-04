@@ -1,6 +1,6 @@
 import PopUp from '../tools/PopUp'
 const baseUrl = 'https://qgailab.com/newer/newers/'
-const Request = (options) => {
+const Request = (options)=> {
   const {
     url,
     data,

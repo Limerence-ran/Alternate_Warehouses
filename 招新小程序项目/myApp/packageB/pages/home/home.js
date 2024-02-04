@@ -65,6 +65,10 @@ Page({
         isShow: false
       }
     ],
+    x: 750, //x轴方向的偏移
+    y: 750, //y轴方向的偏移
+    phoneWidth: 0, //设备可用宽度
+    phoneHeight: 0 //设备可用高度
   },
 
   /**
@@ -113,6 +117,21 @@ Page({
       })
     }, 3100)
   },
+//获取设备信息
+getPhoneInfo() {
+  wx.getSystemInfo({
+    success: (res) => {
+      console.log(res)
+      this.setData({
+        phoneWidth: res.windowWidth,
+        phoneHeight: res.windowHeight,
+        x: res.windowWidth - 80,
+        y: res.windowHeight - 200
+      })
+    }
+  })
+},
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

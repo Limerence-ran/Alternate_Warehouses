@@ -107,7 +107,7 @@
     <view class="content">
       <view class="box">
         <view class="box_title">
-          <image src="/utils/photos/info.svg" mode="aspectFit" class="icon" />
+          <image src="/utils/svg/info.svg" mode="aspectFit" class="icon" />
           个人信息
         </view>
         <view class="box_text">
@@ -143,7 +143,7 @@
       </view>
       <view class="box">
         <view class="box_title">
-          <image src="/utils/photos/score.svg" mode="aspectFit" class="icon" />
+          <image src="/utils/svg/score.svg" mode="aspectFit" class="icon" />
           成绩情况
         </view>
         <view class="box_text">
@@ -175,7 +175,7 @@
       </view>
       <view class="box lastBox">
         <view class="box_title">
-          <image src="/utils/photos/social.svg" mode="aspectFit" class="icon" />
+          <image src="/utils/svg/social.svg" mode="aspectFit" class="icon" />
           其他
         </view>
         <view class="box_text">
