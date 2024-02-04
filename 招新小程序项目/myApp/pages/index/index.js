@@ -1,62 +1,45 @@
 // index.js
 // 获取应用实例
-import { NewerInterview } from '../../utils/request/api'
+import {
+  NewerInterview
+} from '../../utils/request/api'
 import PopUp from '../../utils/tools/PopUp'
 const app = getApp()
 Page({
   data: {
-    avatarUrl: '',
-    // userInfo: {},
-    hasLogin: false,
-    // canIUseGetUserProfile: false
+    avatarUrl: app.globalData.avatarUrl, //头像
+    nickName: app.globalData.nickName, //昵称
+    platformToken: app.globalData.platformToken, //token/登录痕迹
   },
   /**
    * load生命周期函数
    */
   onLoad() {
-    wx.getSetting({
-      success (res) {
-        console.log(res.authSetting)
-        // res.authSetting = {
-        //   "scope.userInfo": true,
-        //   "scope.userLocation": true
-        // }
-      }
-    })
-    // if (wx.getUserProfile) {
-    //   this.setData({
-    //     canIUseGetUserProfile: true
-    //   })
-    //   console.log(app.globalData)
-    // }
-  },
-
-  /**
-   * 授权姓名跳转
-   */
-  onNicknameChange() {
-    console.log('登陆成功')
-    setTimeout(() => {
-      wx.redirectTo({
-        url: '../../packageB/pages/home/home'
-      })
-    }, 2000)
 
   },
 
+
   /**
-   * 登录获取code/token
+   * @description 登录请求-获取新的token
    */
   login() {
+    const that = this
     wx.login({
       async success(res) {
         if (res.code) {
           try {
             const response = await NewerInterview.login(res.code);
             if (response.code === 200 && response.data) {
-              //把新生端Token存储到本地
+              //token存储本地
               wx.setStorageSync('platformToken', response.data.platformToken);
+              //token注入全局
+              app.globalData.platformToken = response.data.platformToken
+              //成功消息提醒
               PopUp.Toast(response.message, 1, 2000);
+              //刷新页面状态
+              that.setData({
+                platformToken: response.data.platformToken
+              })
             } else {
               // 处理登录失败的情况
               PopUp.Toast('授权失败', 2, 2000);
@@ -71,9 +54,22 @@ Page({
         }
       }
     });
-    this.setData({
-      hasLogin: true
-    })
+  },
+
+  /**
+   * @description 登陆获取用户昵称
+   */
+  onNicknameChange(e) {
+    if (e.detail.value === "") {
+      return
+    }
+    //token存储本地
+    wx.setStorageSync('nickName', e.detail.value);
+    setTimeout(() => {
+      this.setData({
+        nickName: e.detail.value
+      })
+    }, 1000)
   },
 
   /**
@@ -81,37 +77,23 @@ Page({
    * @param {*} e 
    */
   onChooseAvatar(e) {
-    const { avatarUrl } = e.detail
-    wx.setStorageSync('avatarUrl',avatarUrl);
+    const {
+      avatarUrl
+    } = e.detail
+    wx.setStorageSync('avatarUrl', avatarUrl);
     this.setData({
       avatarUrl,
     })
+  },
+
+  /**
+   * @description home页跳转
+   */
+  goToHome() {
+    setTimeout(() => {
+      wx.redirectTo({
+        url: '../../packageB/pages/home/home',
+      })
+    }, 500)
   }
 })
-
-// import { NewerInterview} from '../../Request/api'
-// fun: async function () {
-
-//   try {
-//     const response = await NewerInterview.login(code);
-//     console.log('成功:', response);
-
-//     // 如果接口返回的数据中包含了用户信息，可以将用户信息存储到本地缓存中
-//     if (response.code === 200 && response.data) {
-//       wx.setStorageSync('userInfo', response.data);
-//     } else {
-//       // 处理登录失败的情况
-//       wx.showToast({
-//         title: '失败',
-//         icon: 'none'
-//       });
-//     }
-//   } catch (error) {
-//     // 处理请求失败的情况
-//     console.error('请求失败:', error);
-//     wx.showToast({
-//       title: '请求失败',
-//       icon: 'none'
-//     });
-//   }
-// }

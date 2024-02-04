@@ -2,8 +2,7 @@
   "usingComponents": {
     "titletabbar": "../../../components/titlebar/titlebar",
     "van-divider": "@vant/weapp/divider/index",
-    "van-dialog": "@vant/weapp/dialog/index",
-    "launchswitch":"../../../components/launchswitch/launchswitch"
+    "van-dialog": "@vant/weapp/dialog/index"
   },
     "navigationStyle": "custom"
   

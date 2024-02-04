@@ -7,17 +7,18 @@
       "root": "packageA",
       "name": "pack1",
       "pages":[
-        "pages/C_bookInterview/C_bookInterview"
+        "pages/B_resume/B_resume"
       ]
     },{
       "root": "packageB",
       "name": "pack2",
       "pages": [
         "pages/home/home",
+        "pages/hub/hub",
         "pages/C_queue/C_queue",
         "pages/C_score/C_score",
         "pages/C_resume/C_resume",
-        "pages/B_resume/B_resume",
+        "pages/C_bookInterview/C_bookInterview",
         "pages/C_loginIn/C_loginIn"
       ]
     }
@@ -47,4 +48,5 @@
     "chooseAddress",
     "getLocation"
   ]
+  
 }

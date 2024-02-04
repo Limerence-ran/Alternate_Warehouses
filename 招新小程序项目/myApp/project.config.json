@@ -38,7 +38,10 @@
       "outputPath": ""
     },
     "condition": false,
-    "ignoreUploadUnusedFiles": false
+    "ignoreUploadUnusedFiles": false,
+    "useCompilerPlugins": [
+      "sass"
+    ]
   },
   "compileType": "miniprogram",
   "condition": {},

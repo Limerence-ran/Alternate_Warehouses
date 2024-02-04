@@ -1,0 +1,359 @@
+$bg-color: white;
+$shdow-gray: #d3d3d5;
+// 颜色
+$red:#bd2530;
+$orange: #DA4D1D;
+$yellow:#756d16;
+$green:#166818;
+$cyan:#206a74;
+$blue: #2b26c3;
+$purple:#4f3174;
+// 图片
+$img-url: "https://qgailab.com/img/%E5%B7%A5%E4%BD%9C%E5%AE%A4%E6%88%90%E7%AB%8B.0fb9b1ae.png";
+$img-url2: "https://qgailab.com/img/5.6bdab9f6.jpg";
+$img-url3:"https://qgailab.com/img/1.f01df507.jpg";
+$img-url4:'https://qgailab.com/img/14.edae773a.jpg';
+$img-url5:'https://qgailab.com/img/1.8b679305.jpg';
+$img-url6:'https://qgailab.com/img/1.7ad49bbc.jpg';
+$img-url7:'https://qgailab.com/img/graduation.fd4f4fde.jpg';
+
+.logo_font {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  margin-bottom: 100rpx;
+}
+
+.divider {
+	width: 100%;
+}
+
+.ispan {
+	width: 16px;
+	height: 16px;
+	opacity: 0;
+	font-size: 18px;
+	color: #fff;
+	will-change: transform;
+	-webkit-transform: scale(0.1);
+	transform: scale(0.1);
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+
+.hview {
+	pointer-events: none;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.module_name {
+		color: #5b08c3;
+		flex: 100%;
+		font-size: 11px;
+		margin-bottom: 50rpx;
+		font-weight: bolder;
+	}
+
+	.module_name image {
+		width: 15px;
+		height: 15px;
+		vertical-align: bottom;
+	}
+
+	// 第一张样式
+	.card {
+		position: relative;
+		width: 90%;
+		height: 130px;
+		background-color: #e5e4e1;
+		overflow: hidden;
+		margin-bottom: 100rpx;
+
+		&:before {
+			content: "";
+			z-index: 99;
+			position: absolute;
+			top: -10px;
+			left: 30px;
+			display: block;
+			width: 16px;
+			height: 16px;
+			border-radius: 16px;
+			background-color: $bg-color;
+		}
+
+		&:after {
+			content: "";
+			z-index: 99;
+			position: absolute;
+			bottom: -10px;
+			left: 30px;
+			display: block;
+			width: 16px;
+			height: 16px;
+			border-radius: 16px;
+			background-color: $bg-color;
+		}
+
+		.ulview {
+			z-index: 99;
+			position: absolute;
+			left: 37px;
+			top: 5px;
+			list-style-type: none;
+
+			.liview {
+				width: 2px;
+				height: 2px;
+				border-radius: 2px;
+				margin: 6px 0;
+				background-color: $bg-color;
+			}
+		}
+
+		.hview {
+			z-index: 99;
+			font-family: "Poppins", sans-serif;
+			position: absolute;
+			bottom: 0;
+			right: 90px;
+			font-size: 25px;
+			font-weight: 700;
+			color: #fff;
+		}
+
+		.fa-arrow-right {
+			width: 40px;
+			height: 40px;
+			z-index: 100;
+			position: absolute;
+			right: 25px;
+			bottom: 0px;
+			font-size: 40px;
+			cursor: pointer;
+		}
+
+		.pview {
+			z-index: 99;
+			position: absolute;
+			top: 10px;
+			right: 40px;
+			color: #333;
+			opacity: 0.7;
+			font-size: 8px;
+			letter-spacing: 1px;
+			writing-mode: vertical-lr;
+			-webkit-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+		}
+
+		.pic {
+			z-index: 100;
+			width: 80%;
+			height: 100%;
+			background-image: url($img-url);
+			background-size: 100% 100%;
+			filter: grayscale(100%);
+		}
+
+		.social {
+			position: absolute;
+			left: 60px;
+			top: 0;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-pack: distribute;
+			justify-content: space-around;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			width: 120px;
+			height: 40px;
+			border-radius: 80px;
+		}
+
+		.social .ispan:nth-of-type(1) {
+			-webkit-transition-delay: 0.4s;
+			transition-delay: 0.4s;
+		}
+
+		.social .ispan:nth-of-type(2) {
+			-webkit-transition-delay: 0.3s;
+			transition-delay: 0.3s;
+		}
+
+		.social .ispan:nth-of-type(3) {
+			-webkit-transition-delay: 0.2s;
+			transition-delay: 0.2s;
+		}
+
+		.social .ispan:nth-of-type(4) {
+			-webkit-transition-delay: 0.1s;
+			transition-delay: 0.1s;
+		}
+
+		&:hover .ispan {
+			opacity: 1;
+			-webkit-transform: scale(1);
+			transform: scale(1);
+		}
+
+		.buttonspan {
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			width: 20px;
+			height: 20px;
+			background-color: $red;
+			border: none;
+			border-radius: 20px;
+			cursor: pointer;
+			outline: none;
+			transition: all 0.3s ease;
+			mix-blend-mode: hard-light;
+
+			.ispan {
+				font-size: 3rem;
+			}
+		}
+
+		&:hover .buttonspan {
+			transform: scale(15);
+		}
+
+		&:hover .pview {
+			color: #fff;
+		}
+
+		&:hover .pic {
+			filter: grayscale(0);
+		}
+	}
+
+	// 第二张样式
+	.card2 {
+		.pic {
+			background-image: url($img-url2);
+		}
+
+		.buttonspan {
+			background-color: $orange;
+		}
+	}
+
+	//第三张样式
+	.card3 {
+		.pic {
+			background-image: url($img-url3);
+		}
+
+		.buttonspan {
+			background-color: $yellow;
+		}
+	}
+
+	//第四张样式
+	.card4 {
+		.pic {
+			background-image: url($img-url4);
+		}
+
+		.buttonspan {
+			background-color: $green;
+		}
+	}
+
+	//第五张样式
+	.card5 {
+		.pic {
+			background-image: url($img-url5);
+		}
+
+		.buttonspan {
+			background-color: $cyan;
+		}
+	}
+
+	//第六张样式
+	.card6 {
+		.pic {
+			background-image: url($img-url6);
+		}
+
+		.buttonspan {
+			background-color: $blue;
+		}
+	}
+
+	//第七张样式
+	.card7 {
+		.pic {
+			background-image: url($img-url7);
+		}
+
+		.buttonspan {
+			background-color: $purple;
+		}
+	}
+}
+
+	/* 页脚样式 */
+	.footer-content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #fff;
+		font-size: 10px;
+		font-weight: bold;
+		width: 100%;
+		height: 100px;
+		position: relative;
+		flex-direction: column;
+	}
+
+	.footer-content__other-links {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+	}
+
+	.footer-content__other-links a {
+		display: flex;
+		color: #5b08c3;
+	}
+
+	.footer-content__other-links__item-line {
+		content: "";
+		position: relative;
+		width: 1px;
+		height: 20px;
+		margin: 0 10px;
+		background: #5b08c3;
+		opacity: 0.2;
+		mix-blend-mode: normal;
+		border-radius: 4px;
+	}
+
+	.footer-content__copyright-eng,
+	.footer-content__copyright-txt {
+		margin-top: 10px;
+		font-family: PingFang SC;
+		font-style: normal;
+		font-weight: 400;
+		font-size: 9px;
+		line-height: 10px;
+		color: #000;
+		opacity: .4;
+	}
+
+	.last-footer-content-other-links {
+		height: 20px;
+	}

@@ -4,8 +4,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    loadingComplete: false,
-    system: null,
+    isStop: false, //动画暂停键
+    loadingComplete: false, //加载状态
+    isFly: false, //火箭起飞状态
+    istap: false, //点击状态
     groups: [{
         id: 0,
         group: '工业软件-前端组',
@@ -116,7 +118,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-  
+
 
 
   },
@@ -159,7 +161,38 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  onShareAppMessage() {},
 
+  /**
+   * @description 开启玻璃罩
+   */
+  handleTap() {
+    this.setData({
+      istap: true
+    })
+  },
+  /**
+   * @description Hub页跳转
+   */
+  goToHub() {
+    //火箭起飞
+    this.setData({
+      isFly: true
+    })
+    setTimeout(() => {
+      wx.navigateTo({
+        url: "../hub/hub",
+      })
+    }, 1000)
+  },
+
+  /**
+   * @description 暂停平板动画
+   */
+  stopAnimation() {
+    let status = this.data.isStop
+    this.setData({
+      isStop: !status
+    })
   }
 })

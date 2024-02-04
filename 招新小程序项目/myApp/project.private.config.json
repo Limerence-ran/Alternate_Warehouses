@@ -64,6 +64,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "分流页",
+          "pathName": "packageB/pages/hub/hub",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
