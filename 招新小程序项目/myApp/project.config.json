@@ -55,11 +55,5 @@
     "ignore": [],
     "include": []
   },
-<<<<<<< HEAD
   "projectname": "%E6%8B%9B%E6%96%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE"
-=======
-  "appid": "wx472d6a28eb73240f",
-  "projectname": "%E6%8B%9B%E6%96%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE",
-  "libVersion": "3.3.3"
->>>>>>> 38129d19418d07ecaae685182c32f8d25aa6fbba
 }
