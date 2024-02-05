@@ -26,7 +26,7 @@
       </van-swipe-cell>
     </view>
 
-    <!-- <view class="{{'time_tab'}} {{active===0&&index === selected ? 'highlight' : ''}}" wx:for="{{timeArr}}" data-index="{{index}}" wx:key="id" bind:tap="Select">{{item.start+' 到 '+item.end}}</view> -->
+   
   </view> 
   </view>
   <van-dialog id="van-dialog" />
