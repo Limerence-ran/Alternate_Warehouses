@@ -1,19 +1,18 @@
 
 
 .nav {
-  /* 对导航栏位置进行定位处理，方便后续的图标位置的设置 */
-  /* position: relative; */
-  /* position:fixed; */
-  position: sticky;
-  bottom: 0;
+ 
   width: 100%;
   height: 100rpx;
   /* background: rgb(255, 238, 238); */
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20rpx;
-  box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25);
+  border-radius: 20rpx 20rpx 0 0;
+  box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 1);
+  background-color: #fff;
+  opacity: 1;
+ z-index: 100;
 }
 .nav_content{
   display: flex;
@@ -42,6 +41,7 @@
   /* 设置动画过度事件以及延迟 */
   transition: 0.5s;
   transition-delay: 0s;
+  
 }
 .nav-item .circle::before{
       content: '';
@@ -51,6 +51,7 @@
         width: 100%;
         height: 100%;
         background: orange;
+        background: #5b08c3;
         border-radius: 50%;
         filter: blur(40rpx);
         transition: 0.5s;
@@ -58,7 +59,8 @@
         transition-delay: 0.25s;
 }
 .nav-item.active {
-  color: orange;
+  color: #5b08c3;
+  /* color:  orange; */
   transform: translateY(-27rpx);
   transition-delay: 0.15s;
 }
@@ -75,7 +77,7 @@
   left: 92rpx;
   width: 120.5rpx;
   height: 120rpx;
-  /* background: #222327; */
+
   background-color: rgba(250, 250, 250);
   border-radius: 50%;
   z-index: 1;
@@ -107,6 +109,7 @@
   border-radius: 50%;
   box-shadow: 20rpx 19rpx 0 4rpx #fff;
 }
+
 .nav-item:nth-child(1).active~.indicator {
   transform: translateX(calc(224rpx*0));
 }
@@ -118,11 +121,3 @@
 .nav-item:nth-child(3).active~.indicator {
   transform: translateX(calc(224rpx*2));
 }
-/* 
-.nav-item:nth-child(4).active~.indicator {
-  transform: translateX(calc(224rpx*3));
-}
-
-.nav-item:nth-child(5).active~.indicator {
-  transform: translateX(calc(70rpx*4));
-} */

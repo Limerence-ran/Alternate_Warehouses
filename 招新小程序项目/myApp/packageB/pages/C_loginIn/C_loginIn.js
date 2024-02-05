@@ -12,6 +12,7 @@ Page({
   data: {
     place:'',
     groupName:'',
+    name:'',
     steps: [{
       text: '定位成功  2023-03-11 12：30',
       desc: '广东工业大学工学一号馆',
@@ -147,6 +148,11 @@ Page({
         console.log('response', response);
         if (response.code === 200) {
           PopUp.Toast(response.message, 1, 2000);
+          setTimeout(()=>{
+          wx.navigateTo({
+            url: '/packageB/pages/C_bookInterview/C_bookInterview',
+          })
+          },2000)
         } else {
           PopUp.Toast('取消预约失败', 2, 2000);
         }
@@ -165,8 +171,9 @@ Page({
     console.log(options)
     this.setData({
       place:options.param1,
-      groupName:options.param2
-    })
+      groupName:options.param2,
+      name:options.param3
+        })
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });

@@ -34,114 +34,224 @@
 <!-- 主页面显示内容 -->
 <view hidden="{{!loadingComplete}}">
   <!-- 顶部tab栏 -->
-  <titletabbar></titletabbar>
+  <titletabbar style="width: 100%;padding: 0;margin: 0;"></titletabbar>
   <!-- 主体页面 -->
   <view class="main">
-    <!-- LOG大图 -->
-    <view class="logo_font">
-      <image src="../../../utils/photos/logo_font.jpg" mode="" />
+    <!-- 平板动画 -->
+    <view style="height: 400px;">
+      <!-- 动画部分 -->
+      <view class="macbook" bindtap="stopAnimation">
+        <view class="inner" style="{{isStop?'animation-play-state:paused':''}}">
+          <view class="screen" style="{{isStop?'animation-play-state:paused':''}}">
+            <view class="face-one">
+              <view class="camera"></view>
+              <view class="display">
+                <view class="shade" style="{{isStop?'animation-play-state:paused':''}}">
+                  <video src="https://qg-recruit-video.oss-cn-guangzhou.aliyuncs.com/video.mp4" controls="{{false}}" play-btn-position="center" loop="{{true}}" muted="{{true}}" autoplay="{{true}}" style="width: 100%;height: 100%;" />
+                </view>
+              </view>
+              <span>MacBook Air</span>
+            </view>
+          </view>
+          <view class="macbody" style="{{isStop?'animation-play-state:paused':''}}">
+            <view class="face-one" style="{{isStop?'animation-play-state:paused':''}}">
+              <view class="touchpad">
+              </view>
+              <view class="keyboard">
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key space" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+                <view class="key f" style="{{isStop?'animation-play-state:paused':''}}"></view>
+              </view>
+            </view>
+            <view class="pad one"></view>
+            <view class="pad two"></view>
+            <view class="pad three"></view>
+            <view class="pad four"></view>
+          </view>
+        </view>
+        <view class="shadow" style="{{isStop?'animation-play-state:paused':''}}"></view>
+      </view>
     </view>
-    <!-- 方向介绍icon -->
+    <!-- 分界线 -->
     <view class="divider">
       <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">欢迎来访</van-divider>
     </view>
     <!-- 各组介绍渲染 -->
-    <view wx:for="{{groups}}" wx:for-index="index" class="group {{item.isShow?'slident-item':''}}" wx:key="id">
-      <view class="group_name">
-        <image src="{{item.icon}}" alt="" /> |
-        {{item.group}}
-      </view>
-      <block wx:if="{{item.id % 2 === 0}}" class>
+    <view class="group_container">
+      <view wx:for="{{groups}}" wx:for-index="index" class="group {{item.isShow?'slident-item':''}}" wx:key="id">
+        <!-- 方向介绍icon -->
+        <view class="group_name">
+          <image src="{{item.icon}}" alt="" /> |
+          {{item.group}}
+        </view>
+        <!-- 小组图片 -->
+        <view class="group_pic">
+          <image src="{{item.url}}" mode="" />
+        </view>
+        <!-- 小组介绍 -->
         <view class="group_description">
-          <!-- 小组介绍 -->
           <text class="typeout">
             {{item.text}}
           </text>
         </view>
-        <view class="group_pic">
-          <!-- 小组图片 -->
-          <image src="{{item.url}}" mode="" />
-        </view>
-      </block>
-      <block wx:else>
-        <view class="group_pic {{index === 0 ? 'first-pic' : ''}}">
-          <!-- 小组图片 -->
-          <image src="{{item.url}}" mode="" />
-        </view>
-        <view class="group_description">
-          <!-- 小组介绍 -->
-          <text>
-            {{item.text}}
-          </text>
-        </view>
-      </block>
-    </view>
-    <!-- 动画效果 -->
-    <view class="rocket_container">
-      <view class="rocket">
-    <view class="rocket-body">
-      <view class="body"></view>
-      <view class="fin fin-left"></view>
-      <view class="fin fin-right"></view>
-      <view class="window"></view>
-    </view>
-    <view class="exhaust-flame"></view>
-    <view class="exhaust-fumes">
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-    </view>
-    <view class="star">
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-      <view></view>
-    </view>
-  </view>
-    </view>
-    <!-- 首页页脚 -->
- 
-      <view class="footer-content">
-        <view class="footer-content__other-links">
-          <a href="#" title="QG招新">
-            <view>项目合作</view>
-            <view class="footer-content__other-links__item-line"></view>
-          </a>
-          <a href="#" title="移动应用">
-            <view>移动应用</view>
-            <view class="footer-content__other-links__item-line"></view>
-          </a>
-          <a href="#" title="关于我们">
-            <view>关于我们</view>
-            <view class="footer-content__other-links__item-line"></view>
-          </a>
-          <a href="#" title="反馈问题" class="last-footer-content-other-links">
-            <view>问题反馈</view>
-            <view></view>
-          </a>
-        </view>
-        <view class="footer-content__copyright-eng">Copyright © 2023-2024 QG-studio. All Rights Reserved.</view>
-        <view class="footer-content__copyright-txt">QG工作室 版权所有</view>
       </view>
     </view>
 
-    <!-- 悬浮工具箱 -->
-    <floatingtool></floatingtool>
-    <van-dialog id="van-dialog" />
-    <movable-area class="movablebox" style="height:{{phoneHeight}}px">
-  <movable-view x="{{x}}" y="{{y}}" direction="all" class='movableview'> 
-    <image mode="widthFix" src='/utils/svg/home.svg'>点击</image>
-  </movable-view>
-</movable-area>
+    <!-- 火箭动画 -->
+    <view class="rocket_container">
+      <view class="rocket">
+        <view class="{{isFly?'flyToSky':''}}">
+          <view class="rocket-body">
+            <view class="body"></view>
+            <view class="fin fin-left"></view>
+            <view class="fin fin-right"></view>
+            <view class="window"></view>
+          </view>
+          <view class="exhaust-flame"></view>
+        </view>
+        <view class="exhaust-fumes">
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+        </view>
+        <view class="star">
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+          <view></view>
+        </view>
+      </view>
+    </view>
+    <!-- 方向介绍icon -->
+    <view class="divider" style="z-index: 999;background-color: #fff;">
+      <van-divider contentPosition="center" border-color="grey" textColor="#fffff" fontSize="10" display="block">点击发射按钮🚀，一起启程吧😋
+      </van-divider>
+    </view>
+    <!-- 首页页脚 -->
+    <view class="footer-content" style="padding-top: 70px;">
+      <!-- 发射按钮 -->
+      <view style="padding: 100px 0;">
+        <view class="button" bindtap="handleTap">
+          <view class="lid  {{istap && '.lid_hover'}}">
+            <view class="side top"></view>
+            <view class="side front"></view>
+            <view class="side back"> </view>
+            <view class="side left"></view>
+            <view class="side right"></view>
+          </view>
+          <view class="panels">
+            <view class="panel-1" bindtap="goToHub">
+              <view class="panel-2">
+                <view class="btn-trigger">
+                  <view class="btn-trigger-1"></view>
+                  <view class="btn-trigger-2"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="footer-content__other-links">
+        <a href="#" title="QG招新">
+          <view>项目合作</view>
+          <view class="footer-content__other-links__item-line"></view>
+        </a>
+        <a href="#" title="移动应用">
+          <view>移动应用</view>
+          <view class="footer-content__other-links__item-line"></view>
+        </a>
+        <a href="#" title="关于我们">
+          <view>关于我们</view>
+          <view class="footer-content__other-links__item-line"></view>
+        </a>
+        <a href="#" title="反馈问题" class="last-footer-content-other-links">
+          <view>问题反馈</view>
+          <view></view>
+        </a>
+      </view>
+      <view class="footer-content__copyright-eng">Copyright © 2023-2024 QG-studio. All Rights Reserved.</view>
+      <view class="footer-content__copyright-txt">QG工作室 版权所有</view>
+    </view>
+  </view>
 </view>
-
-

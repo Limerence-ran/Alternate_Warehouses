@@ -1,8 +1,8 @@
 <!--components/titlebar/titlebar.wxml-->
-<view class="tab">
+<view class="tab" style="height:{{navBarHeight-4}}px;">
 	<!-- 便捷工具台 -->
 	<view class="utils">
-		<van-icon name="apps-o" size="30px" bind:tap="menu"/>
+		<van-icon name="apps-o" size="30px" bind:tap="menu" />
 	</view>
 	<!-- QGlogo -->
 	<view class="logo">

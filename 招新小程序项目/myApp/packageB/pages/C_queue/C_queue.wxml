@@ -28,4 +28,6 @@
   <button class="btn"> 取消签到</button>
   <view class="line"></view>
 </view>
-<buttombar></buttombar>
+<view class="buttombar">
+  <buttombar></buttombar>
+</view>

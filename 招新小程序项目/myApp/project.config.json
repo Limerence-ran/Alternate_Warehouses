@@ -11,7 +11,7 @@
     "compileHotReLoad": false,
     "lazyloadPlaceholderEnable": false,
     "preloadBackgroundData": false,
-    "minified": false,
+    "minified": true,
     "autoAudits": false,
     "newFeature": false,
     "uglifyFileName": false,
@@ -38,7 +38,10 @@
       "outputPath": ""
     },
     "condition": false,
-    "ignoreUploadUnusedFiles": false
+    "ignoreUploadUnusedFiles": false,
+    "useCompilerPlugins": [
+      "sass"
+    ]
   },
   "compileType": "miniprogram",
   "condition": {},
@@ -46,9 +49,11 @@
     "tabIndent": "auto",
     "tabSize": 2
   },
+  "appid": "wx472d6a28eb73240f",
+  "libVersion": "3.3.3",
   "packOptions": {
     "ignore": [],
     "include": []
   },
-  "appid": "wx472d6a28eb73240f"
+  "projectname": "%E6%8B%9B%E6%96%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE"
 }

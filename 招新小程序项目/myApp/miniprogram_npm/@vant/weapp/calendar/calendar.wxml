@@ -1,5 +1,3 @@
-<wxs src="./index.wxs" module="computed" />
-<wxs src="../wxs/utils.wxs" module="utils" />
 <view class="van-calendar">
   <header
     title="{{ title }}"

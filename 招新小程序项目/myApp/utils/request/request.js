@@ -1,48 +1,52 @@
-// const baseUrl = 'http://8.138.82.135:8082/'
-import PopUp from '../tools/PopUp'
-const baseUrl = 'https://qgailab.com/newer/newers/'
-const Request = (options)=> {
-  const {
-    url,
-    data,
-    method,
-    responseType,
-} = options;
+import PopUp from '../tools/PopUp';
 
-const postHead = {
-  'content-type': "application/json",
-  'platformToken': wx.getStorageSync("platformToken")
-};
-let getHead = {
-  'content-type': 'application/json',
-  'appletToken': wx.getStorageSync("appletToken"),
-};
-let putHead = {
-  'content-type': "application/json",
-  'appletToken': wx.getStorageSync("appletToken")
-};
+const baseUrl = 'https://qgailab.com/newer/newers/';
+
+const Request = (options) => {
+  const { url, data, method, responseType, showLoading } = { showLoading: true, ...options };
+
+  const postHead = {
+    'content-type': "application/json",
+    'platformToken': wx.getStorageSync("platformToken")
+  };
+  
+  let getHead = {
+    'content-type': 'application/json',
+    'platformToken': wx.getStorageSync("platformToken"),
+  };
+  let putHead = {
+    'content-type': "application/json",
+    'platformToken': wx.getStorageSync("platformToken")
+  };
   return new Promise((resolve, reject) => {
-    PopUp.Loading(true,'加载中');
+    if (showLoading) { // 根据传入的showLoading参数判断是否显示加载提示
+      PopUp.Loading(true, '加载中');
+    }
     wx.request({
-      url: url.startsWith("http")? url : baseUrl + url,
-      method: method|| 'POST',
-      data: data|| {},
-      header: method === 'GET' ? getHead : method === 'PUT' ? putHead : postHead, // 根据类型确定请求头
+      url: url.startsWith("http") ? url : baseUrl + url,
+      method: method || 'POST',
+      data: data || {},
+      header: method === 'GET' ? getHead : method === 'PUT' ? putHead : postHead,
       success(res) {
-         setTimeout(() => {
-          PopUp.LoadingOff(); // 请求成功后隐藏加载提示
-         }, 3000);
+        if (showLoading) { // 请求成功后隐藏加载提示
+          setTimeout(() => {
+            PopUp.LoadingOff();
+          }, 500);
+        }
         resolve(res.data);
       },
       fail(err) {
-        setTimeout(() => {
-          PopUp.LoadingOff(); // 请求成功后隐藏加载提示
-         }, 3000);
+        if (showLoading) { // 请求失败后隐藏加载提示
+          setTimeout(() => {
+            PopUp.LoadingOff();
+          }, 1000);
+        }
         reject(err);
       }
     });
   });
 }
+
 module.exports = {
   Request
 };

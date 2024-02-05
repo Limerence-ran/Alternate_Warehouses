@@ -60,7 +60,6 @@ var defaultFieldNames = {
             value: defaultFieldNames,
             observer: 'updateFieldNames',
         },
-        useTitleSlot: Boolean,
     },
     data: {
         tabs: [],

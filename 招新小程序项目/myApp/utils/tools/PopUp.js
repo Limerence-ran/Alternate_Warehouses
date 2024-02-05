@@ -21,12 +21,11 @@ const PopUp = {
   /**
   * Toast提示
   * @param {string} msg - 提示内容
-  * @param {string} icon - icon图标 成功success 加载中loading 无样式none
+  * @param {string} icon - icon图标 成功success(1) 失败error(2) 无样式none
   * @param {number} time - 提示存在时长
   */
   Toast (msg, icon, time){
     let Icon = icon === 1 ? "success" :icon === 2 ? "error": "none";
-    
     wx.showToast({
       title: msg,
       icon: Icon,
@@ -52,6 +51,7 @@ const PopUp = {
       })
     })
   },
+
   /**
   * 带确认和取消的提示框
   * @param {string} msg - 提示内容

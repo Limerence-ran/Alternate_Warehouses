@@ -1,9 +1,9 @@
 <view class="box">
-  <van-notice-bar left-icon="volume-o" scrollable="{{ true }}" background="#5b08c3" color="#fff" class="custom-class" text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。" />
+  <van-notice-bar left-icon="volume-o" scrollable="{{ true }}" background="#5b08c3" color="#fff" class="custom-class" text="请已经预约的新生尽快来到面试地点签到，避免错过面试时间😀" />
 
   <view class="title">
+    <view>面试新生：<text>{{name}}</text></view>
     <view>面试组别：<text>{{groupName}}</text></view>
-    <view>面试导师：<text>蒋卓然、温惠兰</text></view>
     <view>面试地点：<text>{{place}}</text></view>
   </view>
   <view class="sign">
@@ -26,4 +26,6 @@
   <button class="btn"> 取消预约</button>
   <view class="line"></view>
 </view>
-<buttombar></buttombar>
+<view class="buttombar">
+  <buttombar></buttombar>
+</view>
