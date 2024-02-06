@@ -5,7 +5,7 @@
 <view class="box" wx:else>
   <view class="detail">
     <view>
-    <image src="{{avatarUrl}}" mode="" class="user"/>
+      <image src="{{avatarUrl}}" mode="" class="user" />
     </view>
     <view>
       <text>{{name}}</text>
@@ -14,9 +14,22 @@
   </view>
 
   <view class="time">
-    <view class="time_text">请选择预约时间</view>
-        <view class="{{'time_tab'}} {{active===0&&index === selected ? 'highlight' : ''}}" wx:for="{{timeArr}}" data-index="{{index}}" wx:key="id" bind:tap="Select">{{item.start+' 到 '+item.end}}</view>
+    <view class="time_text">右滑选择预约时间<van-icon name="exchange" /></view>
+    <view wx:for="{{timeArr}}" wx:key="id" class="time-tab">
+      <van-swipe-cell right-width="50" bind:open="onOpen" bind:close="onClose" class="{{index === selected ? 'highlight' : ''}}" data-index="{{index}}">
+        <view slot="right" class="right-content" >
+          <button type="primary" size="big" class="delete-btn" bind:tap="Select" data-index="{{index}}" >预约</button>
+        </view>
+        <view class="content">
+          <text class="title">{{item.start + ' —— ' + item.end}}</text>
+        </view>
+      </van-swipe-cell>
+    </view>
+
+   
+  </view> 
   </view>
-</view>
-<van-dialog id="van-dialog" />
-<buttombar></buttombar>
+  <van-dialog id="van-dialog" />
+  <view class="buttombar">
+    <buttombar></buttombar>
+  </view>

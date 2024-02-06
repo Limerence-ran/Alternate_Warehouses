@@ -7,23 +7,22 @@ height: auto;
 .box{
   /* background-color: #fff; */
 /* height: 1100rpx; */
-  margin: 30rpx;
+  margin: 0;
   border: 1px solid rgba(236, 236, 236, 1);
-box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25);
-border-radius: 16px;
-padding: 20rpx 0 100rpx 0;
+/* box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25); */
+/* border-radius: 16px; */
+padding: 30rpx 30rpx 130rpx 30rpx;
 }
-.empty{
-  margin-top: 300rpx;
-  
-}
-.detail{
-  height: 250rpx;
 
+.detail{
+  height: 200rpx;
   display: flex;
+  border: 1px solid rgba(236, 236, 236, 1);
+  box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25); 
+   border-radius: 16px;
 }
 .detail view:first-child{
-  height: 250rpx;
+  height: 200rpx;
   width: 200rpx;
   display: flex;
   align-items: center;
@@ -50,27 +49,36 @@ padding: 20rpx 0 100rpx 0;
 .time{
   display: flex;
   flex-direction: column;
+  
 }
-
+.time_choose{
+  border: 1px solid rgba(236, 236, 236, 1);
+  box-shadow: 0px 4px 16px 0px rgba(133, 133, 133, 0.25); 
+   border-radius: 16px;
+   height: 730rpx;
+   overflow: scroll;  
+}
+.time_choose view:last-child{
+  border-bottom: none;
+}
 .time_text{
 margin: 20rpx 0;
-/* background-color: rgb(218, 216, 216); */
-height: 80rpx;
+background-color: rgb(218, 216, 216);
+height: 60rpx;
 display: flex;
 align-items: center;
 padding: 0 30rpx;
 }
 .time_tab{
   margin-bottom: 20rpx;
-  /* background-color: #db3a3a; */
-  height: 100rpx;
-  /* background-color: aqua; */
   display: flex;
  align-items: center;
  justify-content: center;
  border-bottom: 1px solid rgb(194, 188, 188);
  font-size: 28rpx;
  color: rgb(122, 114, 103);
+ line-height: 120rpx;
+ /* padding: 0 10rpx; */
 }
 
 
@@ -80,4 +88,32 @@ padding: 0 30rpx;
 .user{
   height: 100%;
   border-radius: 16rpx;
+}
+.buttombar{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.content{
+  line-height: 100rpx;
+  background-color: #e7e3ec;
+  height: 100%;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  /* color: #fff; */
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-content{
+  height: 100rpx;
+}
+.right-content .delete-btn{
+  /* height: 100rpx; */
+  height: 100%;
+  border-radius: none;
+  background-color: #5b08c3;
 }

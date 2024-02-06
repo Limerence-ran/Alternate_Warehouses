@@ -150,7 +150,7 @@
           <view class="text_info">
             <view class="text_info_block">
               <view>挂科情况</view>
-              <view><text>{{flunk==1?'是':'无'}}</text></view>
+              <view><text>{{userInfo.flunk==1?'是':'无'}}</text></view>
             </view>
             <view class="text_info_block">
               <view>英语成绩</view>
@@ -168,7 +168,7 @@
             </view>
             <view class="text_info_block">
               <view>C理论成绩</view>
-              <view><text>90</text></view>
+              <view><text>{{userInfo.ctheory}}</text></view>
             </view>
           </view>
         </view>
@@ -191,9 +191,10 @@
           </view>
         </view>
       </view>
-      <view class="empty">
-        <buttombar></buttombar>
-      </view>
+
     </view>
   </view>
+</view>
+<view class="buttombar">
+  <buttombar></buttombar>
 </view>

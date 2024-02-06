@@ -43,7 +43,7 @@ exports.mediaProps = {
     },
     mediaType: {
         type: Array,
-        value: ['image', 'video', 'mix'],
+        value: ['image', 'video'],
     },
     maxDuration: {
         type: Number,

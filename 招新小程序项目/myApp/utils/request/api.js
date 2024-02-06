@@ -72,13 +72,14 @@ const NewerInterview = {
       method: 'POST'
     })
   },
-  bookTime: (id) => {
+  bookTime: (id,showLoading) => {
     return Request({
       url: Api.bookTime,
       method: 'POST',
       data: {
         id: id
-      }
+      },
+      showLoading: showLoading
     })
   },
   fool: () => {

@@ -36,7 +36,7 @@
               <text class="comfort">*希望你的编程之路不止于此！</text>
             </view>
           </view>
-          <button class="{{comfirm_click == 1 ? 'comfirm' : 'noConfirm'}}" bindtap="confirmBtn" disabled="{{dis_value}}">{{btn_value}}</button>
+         
         </view>
       </view>
     </view>
@@ -44,4 +44,6 @@
 </view>
 
 
-<buttombar></buttombar>
+<view class="buttombar">
+  <buttombar></buttombar>
+</view>

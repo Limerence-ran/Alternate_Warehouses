@@ -67,10 +67,6 @@ var utils_1 = require("../common/utils");
             type: String,
             value: 'scale',
         },
-        rootPortal: {
-            type: Boolean,
-            value: false,
-        },
     },
     data: {
         loading: {

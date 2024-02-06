@@ -50,72 +50,60 @@ function transition(showDefaultValue) {
             },
             enter: function () {
                 var _this = this;
-                if (this.enterFinishedPromise)
+                var _a = this.data, duration = _a.duration, name = _a.name;
+                var classNames = getClassNames(name);
+                var currentDuration = (0, validator_1.isObj)(duration) ? duration.enter : duration;
+                if (this.status === 'enter') {
                     return;
-                this.enterFinishedPromise = new Promise(function (resolve) {
-                    var _a = _this.data, duration = _a.duration, name = _a.name;
-                    var classNames = getClassNames(name);
-                    var currentDuration = (0, validator_1.isObj)(duration) ? duration.enter : duration;
-                    if (_this.status === 'enter') {
+                }
+                this.status = 'enter';
+                this.$emit('before-enter');
+                (0, utils_1.requestAnimationFrame)(function () {
+                    if (_this.status !== 'enter') {
                         return;
                     }
-                    _this.status = 'enter';
-                    _this.$emit('before-enter');
+                    _this.$emit('enter');
+                    _this.setData({
+                        inited: true,
+                        display: true,
+                        classes: classNames.enter,
+                        currentDuration: currentDuration,
+                    });
                     (0, utils_1.requestAnimationFrame)(function () {
                         if (_this.status !== 'enter') {
                             return;
                         }
-                        _this.$emit('enter');
-                        _this.setData({
-                            inited: true,
-                            display: true,
-                            classes: classNames.enter,
-                            currentDuration: currentDuration,
-                        });
-                        (0, utils_1.requestAnimationFrame)(function () {
-                            if (_this.status !== 'enter') {
-                                return;
-                            }
-                            _this.transitionEnded = false;
-                            _this.setData({ classes: classNames['enter-to'] });
-                            resolve();
-                        });
+                        _this.transitionEnded = false;
+                        _this.setData({ classes: classNames['enter-to'] });
                     });
                 });
             },
             leave: function () {
                 var _this = this;
-                if (!this.enterFinishedPromise)
+                if (!this.data.display) {
                     return;
-                this.enterFinishedPromise.then(function () {
-                    if (!_this.data.display) {
+                }
+                var _a = this.data, duration = _a.duration, name = _a.name;
+                var classNames = getClassNames(name);
+                var currentDuration = (0, validator_1.isObj)(duration) ? duration.leave : duration;
+                this.status = 'leave';
+                this.$emit('before-leave');
+                (0, utils_1.requestAnimationFrame)(function () {
+                    if (_this.status !== 'leave') {
                         return;
                     }
-                    var _a = _this.data, duration = _a.duration, name = _a.name;
-                    var classNames = getClassNames(name);
-                    var currentDuration = (0, validator_1.isObj)(duration) ? duration.leave : duration;
-                    _this.status = 'leave';
-                    _this.$emit('before-leave');
+                    _this.$emit('leave');
+                    _this.setData({
+                        classes: classNames.leave,
+                        currentDuration: currentDuration,
+                    });
                     (0, utils_1.requestAnimationFrame)(function () {
                         if (_this.status !== 'leave') {
                             return;
                         }
-                        _this.$emit('leave');
-                        _this.setData({
-                            classes: classNames.leave,
-                            currentDuration: currentDuration,
-                        });
-                        (0, utils_1.requestAnimationFrame)(function () {
-                            if (_this.status !== 'leave') {
-                                return;
-                            }
-                            _this.transitionEnded = false;
-                            setTimeout(function () {
-                                _this.onTransitionEnd();
-                                _this.enterFinishedPromise = null;
-                            }, currentDuration);
-                            _this.setData({ classes: classNames['leave-to'] });
-                        });
+                        _this.transitionEnded = false;
+                        setTimeout(function () { return _this.onTransitionEnd(); }, currentDuration);
+                        _this.setData({ classes: classNames['leave-to'] });
                     });
                 });
             },

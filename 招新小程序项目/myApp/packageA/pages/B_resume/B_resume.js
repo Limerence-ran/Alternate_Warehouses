@@ -1,5 +1,6 @@
 // pages/B_resume/B_resume.js
   import { NewerInterview} from '../../../utils/request/api'
+  const app = getApp()
 Page({
 
   /**
@@ -7,7 +8,7 @@ Page({
    */
   data: {
     shakeAnimation:{},
-   avatarUrl:wx.getStorageSync("avatarUrl"),
+   avatarUrl:app.globalData.avatarUrl,
    userInfo:null
   },
   initInfo: async function () {

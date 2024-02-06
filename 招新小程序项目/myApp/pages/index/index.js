@@ -15,26 +15,22 @@ Page({
    * load生命周期函数
    */
   onLoad() {
-
   },
-
-
-  /**
-   * @description 登录请求-获取新的token
-   */
+ 
+  /* @description 登录请求-获取新的token
+    */
   login() {
-    const that = this
+    const that = this;
     wx.login({
       async success(res) {
         if (res.code) {
           try {
             const response = await NewerInterview.login(res.code);
             if (response.code === 200 && response.data) {
-              //token存储本地
-              wx.setStorageSync('platformToken', response.data.platformToken);
-              //token注入全局
-              app.globalData.platformToken = response.data.platformToken
-              //成功消息提醒
+            const {permissions,platformToken} = response.data;
+            wx.setStorageSync('identity',permissions);
+              //把新生端Token存储到本地
+              wx.setStorageSync('platformToken',response.data.platformToken);
               PopUp.Toast(response.message, 1, 2000);
               //刷新页面状态
               that.setData({

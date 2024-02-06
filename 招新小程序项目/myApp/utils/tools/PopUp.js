@@ -26,7 +26,6 @@ const PopUp = {
   */
   Toast (msg, icon, time){
     let Icon = icon === 1 ? "success" :icon === 2 ? "error": "none";
-    
     wx.showToast({
       title: msg,
       icon: Icon,
