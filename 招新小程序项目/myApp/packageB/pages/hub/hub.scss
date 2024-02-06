@@ -51,6 +51,7 @@ $img-url7:'https://qgailab.com/img/graduation.fd4f4fde.jpg';
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 70rpx;
 
 	.module_name {
 		color: #5b08c3;
@@ -73,7 +74,7 @@ $img-url7:'https://qgailab.com/img/graduation.fd4f4fde.jpg';
 		height: 130px;
 		background-color: #e5e4e1;
 		overflow: hidden;
-		margin-bottom: 100rpx;
+		margin-bottom: 120rpx;
 
 		&:before {
 			content: "";
