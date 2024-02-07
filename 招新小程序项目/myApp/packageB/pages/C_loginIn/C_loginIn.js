@@ -4,7 +4,7 @@ import {
 } from "../../../utils/request/api";
 import socket from '../../../utils/tools/websocket'
 import QQMapWX from '../../../utils/libs/qqmap-wx-jssdk'
-import distance from '../../../utils/tools/Haversine'
+import distance from '../../../utils/tools/Haversine'//判断距离是否超过1千米
 Page({
   /**
    * 页面的初始数据
@@ -100,7 +100,8 @@ Page({
   signUp: async function () {
     //简化代码
     const result = await PopUp.Confirm('是否确认签到？');
-    if (result) {
+    const that =this;
+        if (result) {
       console.log('签到？', result);
       try {
         socket.request('signIn', 'signIn', (res) => {
@@ -120,7 +121,7 @@ Page({
             });
             setTimeout(() => {
               wx.redirectTo({
-                url: '../C_queue/C_queue',
+                url: '../C_queue/C_queue?param1=' + this.data.name + '&param2=' + this.data.place
               })
             }, 4000)
           } else if (response.code === 205) {

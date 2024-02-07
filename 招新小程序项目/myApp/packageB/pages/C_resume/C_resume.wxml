@@ -1,5 +1,5 @@
 <!--pages/C_resume/C_resume.wxml-->
-<van-skeleton title row="3" wx:if="{{isHide}}"/>
+<van-skeleton title row="3" wx:if="{{!isHide}}"/>
 <!-- 数据内容 -->
 <form catchsubmit="formSubmit" catchreset="formReset" wx:else="">
   <view class="box">

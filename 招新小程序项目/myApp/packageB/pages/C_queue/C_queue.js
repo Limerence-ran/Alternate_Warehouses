@@ -1,8 +1,6 @@
 // pages/C_queue/C_queue.js
 import PopUp from '../../../utils/tools/PopUp'
-import NewerInterview from '../../../utils/request/api'
 import socket from '../../../utils/tools/websocket'
-
 const app = getApp();
 Page({
 
@@ -18,8 +16,8 @@ Page({
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });
-   
-  
+console.log(options)
+console.log(3333)
     // const header = {
     //   'content-type': 'application/json',
     //   'platformToken': wx.getStorageSync("platformToken")
@@ -47,7 +45,7 @@ Page({
 
   reflesh: async function () {
     // console.log(555)
-    try{
+    try {
       // const socket = await connectWebSocket(function (res) {
       //   // console.log(111)
       //   console.log('收到更新的信息', res.data);
@@ -62,13 +60,19 @@ Page({
       //   // };
       // });
       // socket.send('flush');
-      socket.request('flush', 'flush', (res)=>{
+      socket.request('flush', 'flush', (res) => {
+        if(res.code == 200){
+          PopUp.Toast(res.message,1,2000);
+        }else if(res.code == 205){
+          PopUp.Toast(res.message,2,2000)
+        }else{
+          PopUp.Toast('更新失败',2,2000)
+        }
         console.log('收到更新的信息', res);
-            });
-    }catch{
-   console.log('无法更新')
+      });
+    } catch {
+      console.log('无法更新')
     }
-
   },
   cancelSignIn: async function () {
     const result = await PopUp.Confirm('是否确认取消签到？');
@@ -76,14 +80,19 @@ Page({
     if (result) {
       console.log('取消签到？', result);
       try {
-        socket.request('cancelSignIn', 'cancelSignIn', (res)=>{
+        socket.request('cancelSignIn', 'cancelSignIn', (res) => {
           console.log('收到更新的信息', res)
           const response = JSON.parse(res);
           if (response.code === 200) {
             PopUp.Toast(response.message, 1, 2000);
-          }else if(response.code === 205){
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '../C_loginIn/C_loginIn',
+              })
+            }, 3000)
+          } else if (response.code === 205) {
             PopUp.Toast(response.message, 2, 2000);
-          }else {
+          } else {
             PopUp.Toast('取消签到失败', 2, 2000);
           }
         });
@@ -119,7 +128,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-   
+
     // if (socket) {
     //   socket.close()
     // }

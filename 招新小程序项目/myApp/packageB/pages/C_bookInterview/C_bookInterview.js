@@ -79,7 +79,6 @@ Page({
               PopUp.Toast(response.message, 3, 2000);
             }, 1000);
           }else{
-            
               PopUp.Toast(response.message, 2, 2000);
           }
         } catch {
