@@ -16,50 +16,10 @@ Page({
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });
-console.log(options)
-console.log(3333)
-    // const header = {
-    //   'content-type': 'application/json',
-    //   'platformToken': wx.getStorageSync("platformToken")
-    // };
-    // const that = this; // 保存页面对象的引用
-    // const socket = connectWebSocket(header, function (res) {
-    //   // 处理接收到的消息
-    //   console.log('收到的信息', res.data);
-    //   const result = res.data.split('|');
-    //   const part1 = result[0];
-    //   const part2 = result[1];
-    //   console.log('part1', part1);
-    //   console.log('part2', part2);
-    //  that.setData({
-    //     type: part1,
-    //     response: part2
-    //   })
-    // });
-    // this.setData({
-    //   socket: socket
-    // });
-    // this.data.socket.connect(); // 建立WebSocket连接
-    // this.data.socket.send('init'); // 发送消息
   },
 
   reflesh: async function () {
-    // console.log(555)
     try {
-      // const socket = await connectWebSocket(function (res) {
-      //   // console.log(111)
-      //   console.log('收到更新的信息', res.data);
-      //   // const result = res.data.split('|');
-      //   // const part1 = result[0];
-      //   // const part2 = result[1];
-      //   // console.log('part1', part1);
-      //   // console.log('part2', part2);
-      //   // that.globalData.message = {
-      //   //   type: part1,
-      //   //   response: part2
-      //   // };
-      // });
-      // socket.send('flush');
       socket.request('flush', 'flush', (res) => {
         if(res.code == 200){
           PopUp.Toast(res.message,1,2000);
@@ -87,13 +47,13 @@ console.log(3333)
             PopUp.Toast(response.message, 1, 2000);
             setTimeout(() => {
               wx.redirectTo({
-                url: '../C_loginIn/C_loginIn',
+                url: '../C_signIn/C_signIn',
               })
             }, 3000)
           } else if (response.code === 205) {
             PopUp.Toast(response.message, 2, 2000);
           } else {
-            PopUp.Toast('取消签到失败', 2, 2000);
+            PopUp.Toast(response.message, 2, 2000);
           }
         });
       } catch (error) {

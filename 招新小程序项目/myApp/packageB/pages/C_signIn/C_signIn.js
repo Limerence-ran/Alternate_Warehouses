@@ -5,6 +5,7 @@ import {
 import socket from '../../../utils/tools/websocket'
 import QQMapWX from '../../../utils/libs/qqmap-wx-jssdk'
 import distance from '../../../utils/tools/Haversine'//判断距离是否超过1千米
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -43,7 +44,6 @@ Page({
     return timeString;
   },
   location: function () {
-    // console.log('123')
     PopUp.Loading(true, '定位中');
     setTimeout(() => {
       PopUp.LoadingOff();
@@ -107,25 +107,53 @@ Page({
         socket.request('signIn', 'signIn', (res) => {
           console.log('收到更新的信息', res);
           const response = JSON.parse(res);
+          let time = this.currentTime();
           if (response.code === 200) {
             PopUp.Toast(response.message, 1, 2000);
-            let time = this.currentTime();
             this.setData({
               steps: [
                 ...this.data.steps,
                 {
                   text: '签到成功 ' + time,
-                  desc: '广东工业大学工学一号馆'
+                  desc:this.data.address
                 }
               ]
             });
             setTimeout(() => {
               wx.redirectTo({
-                url: '../C_queue/C_queue?param1=' + this.data.name + '&param2=' + this.data.place
+                url: '../C_queue/C_queue'
               })
-            }, 4000)
+            }, 3000)
           } else if (response.code === 205) {
             PopUp.Toast(response.message, 2, 2000);
+            this.setData({
+              steps: [
+                ...this.data.steps,
+                {
+                  text: ' 签到失败 ' + time,
+                }
+              ]
+            });
+            setTimeout(()=>{
+              wx.redirectTo({
+                url: '../C_queue/C_queue',
+              })
+               },3000)
+          } else if (response.code === 109) {
+            PopUp.Toast(response.message, 2, 2000)
+            this.setData({
+              steps: [
+                ...this.data.steps,
+                {
+                  text:response.message + ' ' + time,
+                }
+              ]
+            });
+            setTimeout(()=>{
+           wx.redirectTo({
+             url: '../C_queue/C_queue',
+           })
+            },3000)
           } else {
             PopUp.Toast('签到失败', 2, 2000);
           }
@@ -169,16 +197,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options)
-    this.setData({
-      place:options.param1,
-      groupName:options.param2,
-      name:options.param3
-        })
+    console.log('freshmanInfo',app.globalData.freshmanInfo)
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });
+   //ws
+   try {
+    socket.request('flush', 'flush', (res) => {
+      console.log('flush',res)
+      console.log(res.data)
+      console.log(res.code)
+      if(res.code == 200){
+        app.globalData.freshmanInfo = res.data;
+        console.log(app.globalData.freshmanInfo);
+      }else if(res.code == 205){
+        console.log(res.message)
+      }else{
+      }
+    });
+  } catch {
+    console.log('无法更新')
+  }
     const that = this;
+    //定位
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success(res) {

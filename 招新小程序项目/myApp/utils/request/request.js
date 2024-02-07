@@ -39,7 +39,7 @@ const Request = (options) => {
         if (showLoading) { // 请求失败后隐藏加载提示
           setTimeout(() => {
             PopUp.LoadingOff();
-          }, 1000);
+          }, 500);
         }
         reject(err);
       }

@@ -20,7 +20,7 @@
         "pages/C_score/C_score",
         "pages/C_resume/C_resume",
         "pages/C_bookInterview/C_bookInterview",
-        "pages/C_loginIn/C_loginIn"
+        "pages/C_signIn/C_signIn"
       ]
     }
   ],

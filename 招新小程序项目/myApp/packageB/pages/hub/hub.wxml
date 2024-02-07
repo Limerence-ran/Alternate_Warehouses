@@ -7,15 +7,15 @@
 <block wx:if="{{true}}">
   <!-- 分割线 -->
   <view class="divider">
-    <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">QG十九🧗‍♂️，共赴龙年🐉</van-divider>
+    <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">QG十九🌈，共赴龙年🐉</van-divider>
   </view>
   <view class="container">
     <!-- 第一张 -->
-    <view class="module_name">
+    <view class="module_name" style="color: #bd2530;">
       <image src="../../../utils/svg/introduction.svg" mode="" /> | 团队介绍
     </view>
     <!-- 介绍模块-->
-    <view class="card">
+    <view class="card" bindtap="goToHome">
       <view class="hview">Introduction</view>
       <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
       <view class="pview">QG STUDIO.</view>
@@ -55,11 +55,11 @@
       </span>
     </view>
     <!-- 第二张 -->
-    <view class="module_name">
+    <view class="module_name" style="color: #DA4D1D;">
       <image src="../../../utils/svg/resume.svg" mode="" /> | 简历信息
     </view>
     <!-- 简历模块 resume -->
-    <view class="card card2">
+    <view class="card card2" bindtap="goToC_resume">
       <view class="hview">Resume</view>
       <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
       <view class="pview">QG STUDIO.</view>
@@ -99,11 +99,11 @@
       </span>
     </view>
     <!-- 第三张 -->
-    <view class="module_name">
+    <view class="module_name" style="color: #756d16;">
       <image src="../../../utils/svg/schedule.svg" mode="" /> | 面试预约
     </view>
     <!-- 预约模块 interview -->
-    <view class="card card3">
+    <view class="card card3" bindtap="goToC_bookInterview">
       <view class="hview">Schedule</view>
       <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
       <view class="pview">QG STUDIO.</view>
@@ -143,11 +143,11 @@
       </span>
     </view>
     <!-- 第四张 -->
-    <view class="module_name">
+    <view class="module_name" style="color: #166818;">
       <image src="../../../utils/svg/signin.svg" mode="" /> | 面试签到
     </view>
     <!-- 签到模块 loginin -->
-    <view class="card card4">
+    <view class="card card4" bindtap="goToC_signIn">
       <view class="hview">Sign-in</view>
       <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
       <view class="pview">QG STUDIO.</view>
@@ -187,11 +187,11 @@
       </span>
     </view>
     <!-- 第五张 -->
-    <view class="module_name">
+    <view class="module_name" style="color: #206a74;">
       <image src="../../../utils/svg/queue_up.svg" mode="" /> | 面试队列
     </view>
     <!-- 队列模块 queue -->
-    <view class="card card5">
+    <view class="card card5" bindtap="goToC_queue">
       <view class="hview">Queue-up</view>
       <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
       <view class="pview">QG STUDIO.</view>
@@ -231,11 +231,11 @@
       </span>
     </view>
     <!-- 第六张 -->
-    <view class="module_name">
+    <view class="module_name" style="color: #2b26c3;">
       <image src="../../../utils/svg/score.svg" mode="" /> | 面试结果
     </view>
     <!-- 成绩模块 score -->
-    <view class="card card6">
+    <view class="card card6" bindtap="goToC_score">
       <view class="hview">Score</view>
       <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
       <view class="pview">QG STUDIO.</view>
@@ -275,7 +275,7 @@
       </span>
     </view>
     <!-- 第七张 -->
-    <view class="module_name">
+    <view class="module_name" style="color: #4f3174;">
       <image src="../../../utils/svg/visualization.svg" mode="" /> | 数据可视化
     </view>
     <!-- 可视化模块 visualization -->
@@ -321,7 +321,7 @@
   </view>
 </block>
 <!-- 首页页脚 -->
-<view class="footer-content" style="padding-top: 70px;">
+<view class="footer-content" >
   <view class="footer-content__other-links">
     <a href="#" title="QG招新">
       <view>项目合作</view>

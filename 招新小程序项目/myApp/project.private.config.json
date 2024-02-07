@@ -7,20 +7,6 @@
     "miniprogram": {
       "list": [
         {
-          "name": "报名",
-          "pathName": "packageB/pages/C_resume/C_resume",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "签到",
-          "pathName": "packageB/pages/C_loginIn/C_loginIn",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "统计",
           "pathName": "pages/statistics/statistics",
           "query": "",
@@ -30,6 +16,55 @@
         {
           "name": "排队",
           "pathName": "packageB/pages/C_queue/C_queue",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "简历",
+          "pathName": "packageA/pages/B_resume/B_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "报名",
+          "pathName": "packageB/pages/C_resume/C_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "hub",
+          "pathName": "packageB/pages/hub/hub",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "首页",
+          "pathName": "packageB/pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "签到",
+          "pathName": "packageB/pages/C_signIn/C_signIn",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "预约",
+          "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "成绩",
+          "pathName": "packageB/pages/C_score/C_score",
           "query": "",
           "launchMode": "default",
           "scene": null

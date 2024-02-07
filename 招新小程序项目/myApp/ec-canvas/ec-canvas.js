@@ -2,6 +2,7 @@ import WxCanvas from './wx-canvas';
 import * as echarts from './echarts';
 
 let ctx;
+
 function compareVersion(v1, v2) {
   v1 = v1.split('.')
   v2 = v2.split('.')
