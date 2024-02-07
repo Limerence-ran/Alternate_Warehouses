@@ -1,0 +1,97 @@
+<!--packageB/pages/Introduction/Introduction.wxml-->
+<titletabbar style="width: 100%;padding: 0;margin: 0;"></titletabbar>
+<!-- 地球转动 -->
+<view class="earth-container">
+	<view class="section-banner">
+		<view class="star-1">
+			<view class="curved-corner-star">
+				<view class="curved-corner-bottomright"></view>
+				<view class="curved-corner-bottomleft"></view>
+			</view>
+			<view class="curved-corner-star">
+				<view class="curved-corner-topright"></view>
+				<view class="curved-corner-topleft"></view>
+			</view>
+		</view>
+
+		<view class="star-2">
+			<view class="curved-corner-star">
+				<view class="curved-corner-bottomright"></view>
+				<view class="curved-corner-bottomleft"></view>
+			</view>
+			<view class="curved-corner-star">
+				<view class="curved-corner-topright"></view>
+				<view class="curved-corner-topleft"></view>
+			</view>
+		</view>
+
+		<view class="star-3">
+			<view class="curved-corner-star">
+				<view class="curved-corner-bottomright"></view>
+				<view class="curved-corner-bottomleft"></view>
+			</view>
+			<view class="curved-corner-star">
+				<view class="curved-corner-topright"></view>
+				<view class="curved-corner-topleft"></view>
+			</view>
+		</view>
+
+		<view class="star-4">
+			<view class="curved-corner-star">
+				<view class="curved-corner-bottomright"></view>
+				<view class="curved-corner-bottomleft"></view>
+			</view>
+			<view class="curved-corner-star">
+				<view class="curved-corner-topright"></view>
+				<view class="curved-corner-topleft"></view>
+			</view>
+		</view>
+
+		<view class="star-5">
+			<view class="curved-corner-star">
+				<view class="curved-corner-bottomright"></view>
+				<view class="curved-corner-bottomleft"></view>
+			</view>
+			<view class="curved-corner-star">
+				<view class="curved-corner-topright"></view>
+				<view class="curved-corner-topleft"></view>
+			</view>
+		</view>
+
+		<view class="star-6">
+			<view class="curved-corner-star">
+				<view class="curved-corner-bottomright"></view>
+				<view class="curved-corner-bottomleft"></view>
+			</view>
+			<view class="curved-corner-star">
+				<view class="curved-corner-topright"></view>
+				<view class="curved-corner-topleft"></view>
+			</view>
+		</view>
+
+		<view class="star-7">
+			<view class="curved-corner-star">
+				<view class="curved-corner-bottomright"></view>
+				<view class="curved-corner-bottomleft"></view>
+			</view>
+			<view class="curved-corner-star">
+				<view class="curved-corner-topright"></view>
+				<view class="curved-corner-topleft"></view>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 团队文字 -->
+<view >
+
+
+	No <span class="logo-font">Quest</span>，No <span class="logo-font">Gain</span>
+</view>
+<!-- 卡片主体 -->
+<!-- 指导老师 -->
+
+<!-- 小组介绍 -->
+
+<!-- 团队文化 -->
+
+<!-- 团队荣誉 -->

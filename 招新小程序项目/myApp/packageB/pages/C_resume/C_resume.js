@@ -168,6 +168,7 @@ Page({
   },
 
   formSubmit:async function (e) {
+    console.log(e);
     const data = {
       name: e.detail.value.name,
       english: e.detail.value.english,
@@ -183,7 +184,7 @@ Page({
       ctheory: e.detail.value.cTheory,
       gender: this.data.arraySex[this.data.indexSex],
       flunk: this.data.indexMajor,//0挂科，1没挂
-      intention: this.data.indexDir + 1,
+      intention:this.data.arrayAcademy[this.data.indexDir] ,
       college: this.data.arrayAcademy[this.data.indexAcademy],
     };
     this.setData({

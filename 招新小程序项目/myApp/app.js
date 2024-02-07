@@ -10,7 +10,7 @@ App({
     activeIndex: 0, //底部导航栏索引
     systemInfo: null, //系统信息
     menuButtonBoundingClientRect: null, //胶囊位置信息
-    identity: wx.getStorageSync('identity') || ''//用户身份User已报名，Tourist未报名,Admin管理员
+    identity: wx.getStorageSync('identity') || '' //用户身份User已报名，Tourist未报名,Admin管理员
   },
 
   onLaunch() {
