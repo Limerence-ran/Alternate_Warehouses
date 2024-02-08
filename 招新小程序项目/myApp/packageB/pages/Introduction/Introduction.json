@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "titletabbar": "../../../components/titlebar/titlebar"
+  },
+  "navigationStyle": "custom"
+}

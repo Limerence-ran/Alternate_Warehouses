@@ -7,10 +7,11 @@
     {
       "root": "packageA",
       "name": "pack1",
-      "pages":[
+      "pages": [
         "pages/B_resume/B_resume"
       ]
-    },{
+    },
+    {
       "root": "packageB",
       "name": "pack2",
       "pages": [
@@ -20,14 +21,18 @@
         "pages/C_score/C_score",
         "pages/C_resume/C_resume",
         "pages/C_bookInterview/C_bookInterview",
-        "pages/C_signIn/C_signIn"
+        "pages/C_signIn/C_signIn",
+        "pages/Introduction/Introduction"
       ]
     }
   ],
   "preloadRule": {
     "pages/index/index": {
       "network": "all",
-      "packages": ["packageA", "packageB"]
+      "packages": [
+        "packageA",
+        "packageB"
+      ]
     }
   },
   "window": {
@@ -49,5 +54,4 @@
     "chooseAddress",
     "getLocation"
   ]
-  
 }
