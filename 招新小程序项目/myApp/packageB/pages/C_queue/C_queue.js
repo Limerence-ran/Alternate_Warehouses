@@ -19,7 +19,6 @@ Page({
   },
 
   reflesh: async function () {
-<<<<<<< HEAD
     // console.log(555)
     try{
       // const socket = await connectWebSocket(function (res) {
@@ -41,21 +40,6 @@ Page({
             });
     }catch{
    console.log('无法更新')
-=======
-    try {
-      socket.request('flush', 'flush', (res) => {
-        if(res.code == 200){
-          PopUp.Toast(res.message,1,2000);
-        }else if(res.code == 205){
-          PopUp.Toast(res.message,2,2000)
-        }else{
-          PopUp.Toast('更新失败',2,2000)
-        }
-        console.log('收到更新的信息', res);
-      });
-    } catch {
-      console.log('无法更新')
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
     }
   },
   cancelSignIn: async function () {

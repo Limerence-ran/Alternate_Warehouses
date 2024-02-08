@@ -38,7 +38,7 @@
       "outputPath": ""
     },
     "condition": false,
-    "ignoreUploadUnusedFiles": false,
+    "ignoreUploadUnusedFiles": true,
     "useCompilerPlugins": [
       "sass"
     ]
