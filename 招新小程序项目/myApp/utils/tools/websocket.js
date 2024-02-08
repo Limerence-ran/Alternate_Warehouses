@@ -16,6 +16,7 @@ const connectWebSocket = function () {
       },
       fail: function (res) {
         console.log('WebSocket连接打开失败', res);
+        wx.setStorageSync('platformToken', '')
       }
     });
 

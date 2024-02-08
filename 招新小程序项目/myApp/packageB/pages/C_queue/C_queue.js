@@ -63,7 +63,7 @@ Page({
       // });
       // socket.send('flush');
       socket.request('flush', 'flush', (res)=>{
-        console.log('收到更新的信息', res);
+        console.log('收到更新的信息', JSON.parse(res).data);
             });
     }catch{
    console.log('无法更新')

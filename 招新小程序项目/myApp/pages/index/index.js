@@ -30,7 +30,7 @@ Page({
             const {permissions,platformToken} = response.data;
             wx.setStorageSync('identity',permissions);
               //把新生端Token存储到本地
-              wx.setStorageSync('platformToken',response.data.platformToken);
+              wx.setStorage('platformToken',response.data.platformToken);
               PopUp.Toast(response.message, 1, 2000);
               //刷新页面状态
               that.setData({
