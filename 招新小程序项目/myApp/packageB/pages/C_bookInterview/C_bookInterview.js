@@ -3,6 +3,7 @@ import Dialog from '@vant/weapp/dialog/dialog';
 import PopUp from '../../../utils/tools/PopUp'
 import { NewerInterview } from '../../../utils/request/api'
 import formatTimestamp from '../../../utils/tools/time'
+import socket from '../../../utils/tools/websocket'
 const app =getApp()
 Page({
   /**
@@ -57,38 +58,105 @@ Page({
           console.log('response', response);
           if (response.code == 200) {
             setTimeout(() => {
-              PopUp.Toast('预约成功！', 1, 2000);
-            }, 1000);
+              PopUp.Toast('预约成功！', 1, 1500);
+            }, 500);
+            try {
+              socket.request('flush', 'flush', (res) => {
+                console.log('flush',res)
+                console.log(res.data)
+                console.log(res.code)
+                if(res.code == 200){
+                  app.globalData.freshmanInfo = res.data;
+                  console.log(app.globalData.freshmanInfo);
+                }else if(res.code == 205){
+                  console.log(res.message)
+                }else{
+                }
+              });
+            } catch {
+              console.log('无法更新')
+            }
             setTimeout(() => {
               wx.redirectTo({
-                url: '/packageB/pages/C_loginIn/C_loginIn?param1=' + this.data.place + '&param2=' + this.data.groupName+'&param3=' + this.data.name
+                url: '../C_signIn/C_signIn'
               })
-            }, 4000);
+            }, 2000);
           }else if(response.code == 205){
             setTimeout(() => {
-              PopUp.Toast(response.message, 2, 2000);
-            }, 1000);
+              PopUp.Toast(response.message, 2, 1500);
+            }, 500);
+            try {
+              socket.request('flush', 'flush', (res) => {
+                console.log('flush',res)
+                if(res.code == 200){
+                  app.globalData.freshmanInfo = res.data;
+                  console.log(app.globalData.freshmanInfo);
+                }else if(res.code == 205){
+                  console.log(res.message)
+                }else{
+                }
+              });
+            } catch {
+              console.log('无法更新')
+            }
             setTimeout(() => {
               wx.redirectTo({
-                url: '/packageB/pages/C_loginIn/C_loginIn?param1=' + this.data.place + '&param2=' + this.data.groupName
-                +'&param3=' + this.data.name
+                url: '../C_signIn/C_signIn'
               })
-            }, 4000);
+            }, 2000);
           }else if(response.code == 107){
             setTimeout(() => {
-              PopUp.Toast(response.message, 3, 2000);
-            }, 1000);
+              PopUp.Toast(response.message, 3, 1500);
+            }, 500);
+            try {
+              socket.request('flush', 'flush', (res) => {
+                console.log('flush',res)
+                if(res.code == 200){
+                  app.globalData.freshmanInfo = res.data;
+                  console.log(app.globalData.freshmanInfo);
+                }else if(res.code == 205){
+                  console.log(res.message)
+                }else{
+                }
+              });
+            } catch {
+              console.log('无法更新')
+            }
+          }else if(response.code == 108){
+            //重复预约
+            setTimeout(() => {
+              PopUp.Toast(response.message, 2, 1500);
+            }, 500);
+            // try {
+            //   console.log('108res')
+              socket.request('flush', 'flush', (res) => {
+                console.log('flush',res)
+                if(res.code == 200){
+                  app.globalData.freshmanInfo = res.data;
+                  console.log(app.globalData.freshmanInfo);
+                }else if(res.code == 205){
+                  console.log(res.message)
+                }else{
+                }
+              });
+            // } catch {
+            //   console.log('无法更新')
+            // }
+            // setTimeout(() => {
+            //   wx.redirectTo({
+            //     url: '../C_signIn/C_signIn'
+            //   })
+            // }, 2000);
           }else{
-            
-              PopUp.Toast(response.message, 2, 2000);
+              PopUp.Toast(response.message, 2, 1500);
           }
         } catch {
-          PopUp.Toast('预约失败！', 2, 2000);
+          PopUp.Toast('预约失败！', 2, 1500);
         }
       })
       .catch(() => {
         // on cancel
-        PopUp.Toast('取消操作成功！', 1, 2000);
+        PopUp.Toast('取消操作成功！', 1, 1500);
       });
   },
   /**
@@ -124,7 +192,22 @@ Page({
       console.error('请求失败:', error);
       PopUp.Toast('请求失败', 3, 2000);
     }
-   
+      try {
+              socket.request('flush', 'flush', (res) => {
+                console.log('flush',res)
+                console.log(res.data)
+                console.log(res.code)
+                if(res.code == 200){
+                  app.globalData.freshmanInfo = res.data;
+                  console.log(app.globalData.freshmanInfo);
+                }else if(res.code == 205){
+                  console.log(res.message)
+                }else{
+                }
+              });
+            } catch {
+              console.log('无法更新')
+            }
   },
 
   /**

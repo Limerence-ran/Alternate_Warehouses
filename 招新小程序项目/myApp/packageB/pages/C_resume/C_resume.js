@@ -37,7 +37,7 @@ Page({
     loading: false,
     // 检查表单对象
     checkClass: {},
-    isHide: false
+    isHide:true
   },
 
   // 公共函数，用于更改选择器的值
@@ -255,11 +255,9 @@ Page({
       const response = await NewerInterview.fool();
       console.log('response', response);
       let data = response.data;
-      if (!data) {
-        this.setData({
-          isHide: data
-        });
-      } else {}
+       this.setData({
+        isHide:data
+      });
     } catch (error) {
       // 处理请求失败的情况
       console.error('请求失败:', error);

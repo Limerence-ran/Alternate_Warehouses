@@ -39,6 +39,8 @@ const connectWebSocket = function () {
       const result = res.data.split('|');
       const type = result[0];
       const data = result[1];
+      // console.log('data',data)
+    
       // 根据消息类型找到对应的回调函数
       const callback = callbackMap.get(type);
       if (callback) {

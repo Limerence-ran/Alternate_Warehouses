@@ -1,8 +1,6 @@
 // pages/C_queue/C_queue.js
 import PopUp from '../../../utils/tools/PopUp'
-import NewerInterview from '../../../utils/request/api'
 import socket from '../../../utils/tools/websocket'
-
 const app = getApp();
 Page({
 
@@ -18,34 +16,10 @@ Page({
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });
-   
-  
-    // const header = {
-    //   'content-type': 'application/json',
-    //   'platformToken': wx.getStorageSync("platformToken")
-    // };
-    // const that = this; // 保存页面对象的引用
-    // const socket = connectWebSocket(header, function (res) {
-    //   // 处理接收到的消息
-    //   console.log('收到的信息', res.data);
-    //   const result = res.data.split('|');
-    //   const part1 = result[0];
-    //   const part2 = result[1];
-    //   console.log('part1', part1);
-    //   console.log('part2', part2);
-    //  that.setData({
-    //     type: part1,
-    //     response: part2
-    //   })
-    // });
-    // this.setData({
-    //   socket: socket
-    // });
-    // this.data.socket.connect(); // 建立WebSocket连接
-    // this.data.socket.send('init'); // 发送消息
   },
 
   reflesh: async function () {
+<<<<<<< HEAD
     // console.log(555)
     try{
       // const socket = await connectWebSocket(function (res) {
@@ -67,8 +41,22 @@ Page({
             });
     }catch{
    console.log('无法更新')
+=======
+    try {
+      socket.request('flush', 'flush', (res) => {
+        if(res.code == 200){
+          PopUp.Toast(res.message,1,2000);
+        }else if(res.code == 205){
+          PopUp.Toast(res.message,2,2000)
+        }else{
+          PopUp.Toast('更新失败',2,2000)
+        }
+        console.log('收到更新的信息', res);
+      });
+    } catch {
+      console.log('无法更新')
+>>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
     }
-
   },
   cancelSignIn: async function () {
     const result = await PopUp.Confirm('是否确认取消签到？');
@@ -76,15 +64,20 @@ Page({
     if (result) {
       console.log('取消签到？', result);
       try {
-        socket.request('cancelSignIn', 'cancelSignIn', (res)=>{
+        socket.request('cancelSignIn', 'cancelSignIn', (res) => {
           console.log('收到更新的信息', res)
           const response = JSON.parse(res);
           if (response.code === 200) {
             PopUp.Toast(response.message, 1, 2000);
-          }else if(response.code === 205){
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '../C_signIn/C_signIn',
+              })
+            }, 3000)
+          } else if (response.code === 205) {
             PopUp.Toast(response.message, 2, 2000);
-          }else {
-            PopUp.Toast('取消签到失败', 2, 2000);
+          } else {
+            PopUp.Toast(response.message, 2, 2000);
           }
         });
       } catch (error) {
@@ -119,7 +112,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-   
+
     // if (socket) {
     //   socket.close()
     // }
