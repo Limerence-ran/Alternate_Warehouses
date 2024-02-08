@@ -19,29 +19,6 @@ Page({
   },
 
   reflesh: async function () {
-<<<<<<< HEAD
-    // console.log(555)
-    try{
-      // const socket = await connectWebSocket(function (res) {
-      //   // console.log(111)
-      //   console.log('收到更新的信息', res.data);
-      //   // const result = res.data.split('|');
-      //   // const part1 = result[0];
-      //   // const part2 = result[1];
-      //   // console.log('part1', part1);
-      //   // console.log('part2', part2);
-      //   // that.globalData.message = {
-      //   //   type: part1,
-      //   //   response: part2
-      //   // };
-      // });
-      // socket.send('flush');
-      socket.request('flush', 'flush', (res)=>{
-        console.log('收到更新的信息', JSON.parse(res).data);
-            });
-    }catch{
-   console.log('无法更新')
-=======
     try {
       socket.request('flush', 'flush', (res) => {
         if(res.code == 200){
@@ -55,7 +32,6 @@ Page({
       });
     } catch {
       console.log('无法更新')
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
     }
   },
   cancelSignIn: async function () {
