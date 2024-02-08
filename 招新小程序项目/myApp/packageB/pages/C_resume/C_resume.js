@@ -208,7 +208,7 @@ Page({
             }, 1000);
             setTimeout(() => {
               wx.navigateTo({
-                url: '/pages/home/home'
+                url: '../hub/hub'
               });
             }, 3000);
           } else {
@@ -245,11 +245,9 @@ Page({
       const response = await NewerInterview.fool();
       console.log('response', response);
       let data = response.data;
-     
        this.setData({
         isHide:data
       });
-     
     } catch (error) {
       // 处理请求失败的情况
       console.error('请求失败:', error);
