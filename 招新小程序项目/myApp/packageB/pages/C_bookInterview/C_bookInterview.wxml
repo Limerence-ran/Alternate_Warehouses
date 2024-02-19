@@ -1,4 +1,5 @@
 <!--pages/C_bookInterview/C_bookInterview.wxml-->
+<titletabbar></titletabbar>
 <view class="empty" wx:if="{{isStart}}">
   <van-skeleton title row="4" />
 </view>

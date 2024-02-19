@@ -1,23 +1,24 @@
+<titletabbar></titletabbar>
 <!--pages/C_queue/C_queue.wxml-->
 <view class="box">
 <view class="title">
   <view class="info-item">
     <text>面试者</text>
-    <text class="info-content">刘亦菲</text>
+    <text class="info-content">{{name}}</text>
   </view>
   <view class="info-item">
     <text>面试地点</text>
-    <text class="info-content">教三-311</text>
+    <text class="info-content">{{place}}</text>
   </view>
   <view class="info-item">
     <text>我的序号</text>
-    <text class="info-content">16</text>
+    <text class="info-content">{{mySigned}}</text>
   </view>
 </view>
 <view class="sign">
    <button hover-class="custom-class" bind:tap="signUp">
-   <text>前方排队人数</text>
-   <text>31</text>
+   <text>当前面试序号</text>
+   <text>{{now}}</text>
    </button>
  </view>
  <view class="update">

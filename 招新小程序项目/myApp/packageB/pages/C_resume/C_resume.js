@@ -6,7 +6,7 @@ import {
 import {
   checkForm
 } from "../../../utils/tools/checkForm"; //方法
-
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -37,7 +37,7 @@ Page({
     loading: false,
     // 检查表单对象
     checkClass: {},
-    isHide:true
+    isHide: true
   },
 
   // 公共函数，用于更改选择器的值
@@ -53,6 +53,7 @@ Page({
   },
 
   bindPickerChangeDir: function (e) {
+    console.log(e.detail.value)
     this.changePickerValue(e.detail.value, 'indexDir');
   },
 
@@ -188,7 +189,7 @@ Page({
       ctheory: e.detail.value.cTheory,
       gender: this.data.arraySex[this.data.indexSex],
       flunk: this.data.indexMajor, //0挂科，1没挂
-      intention: this.data.arrayAcademy[this.data.indexDir],
+      intention: parseInt(this.data.indexDir) + 1,
       college: this.data.arrayAcademy[this.data.indexAcademy],
     };
     this.setData({
@@ -246,7 +247,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '报名QG工作室'
     });
-
     let checkClass = new checkForm();
     this.setData({
       checkClass
@@ -255,8 +255,8 @@ Page({
       const response = await NewerInterview.fool();
       console.log('response', response);
       let data = response.data;
-       this.setData({
-        isHide:data
+      this.setData({
+        isHide: data
       });
     } catch (error) {
       // 处理请求失败的情况
@@ -266,13 +266,34 @@ Page({
         icon: 'none'
       });
     }
+    try {
+      const response = await NewerInterview.getResume();
+      let data = response.data;
+      if (response.code === 200 && data) {
+        let result = await PopUp.Confirm('已经报名成功，是否重新填报报名信息？');
+        if (result) {
+          // on confirm
+        } else {
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '/packageA/pages/B_resume/B_resume',
+            })
+          }, 500)
+        }
+      } else {
+        console.log('未报名或者未通过上一轮')
+      }
+    } catch (error) {
+      // 处理请求失败的情况
+      console.error('请求失败:', error);
+    }
 
-
-
-
-
-
-
+    // if(app.globalData.identity=='User'){
+    //   console.log('已填完简历')
+    //   wx.navigateTo({
+    //     url: '../../../packageA/pages/B_resume/B_resume',
+    //   })
+    //   }
   },
 
 

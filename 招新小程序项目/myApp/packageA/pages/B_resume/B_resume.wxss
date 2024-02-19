@@ -26,23 +26,21 @@
   padding: 30rpx 0;
 }
 .title .head{
-  /* position: absolute; */
-  /* margin-top: 30rpx; */
-  height: 70px;
-  width: 70px;
+  height: 120rpx;
+  width: 120rpx;
   box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.55);
 border-radius: 50%;
 overflow: hidden;
 }
 .title text{
   font-family: PingFang SC;
-font-size: 16px;
+font-size: 30rpx;
 font-weight: 600;
-line-height: 22px;
+/* line-height: 22px; */
 letter-spacing: 0em;
 text-align: left;
 color: rgba(91, 8, 195, 1);
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
 }
 .title_top{
   font-size: 50rpx;

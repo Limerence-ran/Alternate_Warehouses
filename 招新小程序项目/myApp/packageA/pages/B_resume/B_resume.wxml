@@ -97,12 +97,14 @@
     </view>
   </view>
 </view> -->
-
+<titletabbar></titletabbar>
 <view class="main">
   <view class="right">
     <view class="title">
       <image src="{{avatarUrl}}" class="head" animation="{{shakeAnimation}}"></image>
-      <text>前端组</text>
+      <text>
+        {{userInfo.intention==1?'人工智能组':userInfo.intention==2?'工业软件-前端组':userInfo.intention==3?'工业软件-后台组':userInfo.intention==4?'工业软件移动组':userInfo.intention==5?'嵌入式组':userInfo.intention==6?'图形组':userInfo.intention==7?'设计组':''}}
+      </text>
     </view>
     <view class="content">
       <view class="box">

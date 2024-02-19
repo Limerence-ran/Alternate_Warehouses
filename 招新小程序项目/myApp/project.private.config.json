@@ -1,26 +1,10 @@
 {
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-<<<<<<< HEAD
-=======
-  "setting": {
-    "urlCheck": false
-  },
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
   "condition": {
     "miniprogram": {
       "list": [
         {
-<<<<<<< HEAD
-          "name": "",
-=======
-          "name": "统计",
-          "pathName": "pages/statistics/statistics",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "排队",
+          "name": "队列",
           "pathName": "packageB/pages/C_queue/C_queue",
           "query": "",
           "launchMode": "default",
@@ -34,95 +18,30 @@
           "scene": null
         },
         {
-          "name": "报名",
-          "pathName": "packageB/pages/C_resume/C_resume",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "hub",
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
           "pathName": "packageB/pages/hub/hub",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-<<<<<<< HEAD
-          "name": "",
-          "pathName": "packageB/pages/C_resume/C_resume",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "packageB/pages/Introduction/Introduction",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "packageB/pages/Introduction/Introduction",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-=======
-          "name": "首页",
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
-          "pathName": "packageB/pages/home/home",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-<<<<<<< HEAD
-          "name": "",
-          "pathName": "packageB/pages/C_queue/C_queue",
-=======
           "name": "签到",
           "pathName": "packageB/pages/C_signIn/C_signIn",
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-<<<<<<< HEAD
-          "name": "",
-          "pathName": "pages/index/index",
-=======
-          "name": "预约",
-          "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-<<<<<<< HEAD
-          "name": "",
-          "pathName": "packageB/pages/C_signIn/C_signIn",
-=======
-          "name": "成绩",
-          "pathName": "packageB/pages/C_score/C_score",
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
+          "name": "报名",
+          "pathName": "packageB/pages/C_resume/C_resume",
           "query": "",
           "launchMode": "default",
           "scene": null
         }
       ]
     }
-<<<<<<< HEAD
   },
   "setting": {
     "urlCheck": false
-=======
->>>>>>> 975179e07a066601b3bd0b79663f82d0035364f2
   }
 }

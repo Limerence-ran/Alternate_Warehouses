@@ -30,7 +30,10 @@ Component({
    */
   methods: {
     menu() {
-      return
+      // return
+      wx.redirectTo({
+        url: '/packageB/pages/hub/hub',
+      })
     }
   }
 })

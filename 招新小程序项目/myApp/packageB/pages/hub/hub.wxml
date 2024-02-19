@@ -56,7 +56,7 @@
     </view>
     <!-- 第二张 -->
     <view class="module_name" style="color: #DA4D1D;">
-      <image src="../../../utils/svg/resume.svg" mode="" /> | 简历信息
+      <image src="../../../utils/svg/resume.svg" mode="" /> | 面试报名
     </view>
     <!-- 简历模块 resume -->
     <view class="card card2" bindtap="goToC_resume">

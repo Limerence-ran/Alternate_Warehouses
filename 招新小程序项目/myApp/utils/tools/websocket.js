@@ -1,4 +1,6 @@
-const app = getApp();
+
+import PopUp from '../../utils/tools/PopUp'
+
 const connectWebSocket = function () {
   let socketOpen = false;
   let socketTask = null;
@@ -32,6 +34,35 @@ const connectWebSocket = function () {
     socketTask.onClose(function (res) {
       console.log('WebSocket连接已关闭', res);
       socketOpen = false;
+      try {
+        if (wx.getStorageSync('platformToken')) {
+          wx.removeStorageSync({
+            key: 'platformToken',
+            success: function (res) {
+              PopUp.Toast('登录失效，请重新登录！', 2, 2000);
+              setTimeout(() => {
+                wx.redirectTo({
+                  url: '/pages/index/index',
+                })}, 2000)
+              console.log('数据清除成功')
+            },
+            fail: function (res) {
+              setTimeout(() => {
+                wx.navigateTo({
+                  url: '/pages/index/index',
+                })
+              }, 2000)
+              console.log('数据清除失败')
+            }
+          })
+        } else {
+          wx.redirectTo({
+            url: '/pages/index/index',
+          })
+        }
+      } catch {
+        console.log('缓存清除失败！')
+      }
     });
 
     socketTask.onMessage(function (res) {
@@ -39,8 +70,13 @@ const connectWebSocket = function () {
       const result = res.data.split('|');
       const type = result[0];
       const data = result[1];
-      // console.log('data',data)
-    
+      console.log('data', data)
+      const response = JSON.parse(data);
+      const app = getApp()
+      app.globalData.wssInitInfo = {
+        code: response.code,
+        message: response.message
+      }
       // 根据消息类型找到对应的回调函数
       const callback = callbackMap.get(type);
       if (callback) {

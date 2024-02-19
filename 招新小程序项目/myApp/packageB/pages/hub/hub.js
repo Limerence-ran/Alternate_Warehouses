@@ -1,18 +1,24 @@
 // packageB/pages/hub/hub.js
+import socket from '../../../utils/tools/websocket'
+import PopUp from '../../../utils/tools/PopUp'
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    wssInitInfo:app.globalData.wssInitInfo || ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+  
+      
+ 
+ 
   },
 
   /**
@@ -76,47 +82,74 @@ Page({
     /**
    * @description 简历信息页跳转
    */
-  goToC_resume() {
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '../C_resume/C_resume',
-      })
-    }, 500)
+  goToC_resume:async function(){
+    const {code,message} = this.data.wssInitInfo
+    app.globalData.activeIndex = 2;
+ 
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../C_resume/C_resume',
+        })
+      }, 500)
+   
+   
   },
     /**
    * @description 面试预约页跳转
    */
   goToC_bookInterview() {
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '../C_bookInterview/C_bookInterview',
-      })
-    }, 500)
+    const {code,message} = this.data.wssInitInfo
+    if(code ==103){//未预约
+      app.globalData.activeIndex = 0;
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../C_bookInterview/C_bookInterview',
+        })
+      }, 500)
+    }else{
+    PopUp.Toast('你已经约过了！',2,1500)
+    }
+   
   },
     /**
    * @description 面试签到页跳转
    */
   goToC_signIn() {
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '../C_signIn/C_signIn',
-      })
-    }, 500)
+    const {code,message} = this.data.wssInitInfo
+    if(code == 104){ //未签到
+      app.globalData.activeIndex = 0;
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../C_signIn/C_signIn',
+        })
+      }, 500)
+    }else{
+      PopUp.Toast(message,2,1500)
+    }
+   
   },
     /**
    * @description 面试队列页跳转
    */
   goToC_queue() {
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '../C_queue/C_queue',
-      })
-    }, 500)
+    const {code,message} = this.data.wssInitInfo
+    if(code == 105||code == 102||code==103||code ==104){
+   PopUp.Toast(message,2,1500)
+    }else{
+      app.globalData.activeIndex = 0;
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../C_queue/C_queue',
+        })
+      }, 500)
+    }
+  
   },  
   /**
   * @description 面试结果页跳转
   */
  goToC_score() {
+  app.globalData.activeIndex = 1;
    setTimeout(() => {
      wx.navigateTo({
        url: '../C_score/C_score',

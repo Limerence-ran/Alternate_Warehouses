@@ -11,14 +11,13 @@ App({
     systemInfo: null, //系统信息
     menuButtonBoundingClientRect: null, //胶囊位置信息
     identity: wx.getStorageSync('identity') || '',//用户身份User已报名，Tourist未报名,Admin管理员
-    freshmanInfo:null
+    freshmanInfo:null,
+    wssInitInfo:null
   },
 
   onLaunch() {
     //获取机型和胶囊信息
     this.getSystemInfomation()
-    //连接websocket
-    socket.connect();
   },
 
   /**
