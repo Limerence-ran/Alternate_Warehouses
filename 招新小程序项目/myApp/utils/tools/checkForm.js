@@ -17,9 +17,10 @@ class checkForm {
 
   // 限制学号
   numberNum(value) {
-      let reg = /^\d{10}$/
-      if (reg.test(value?.trim())) return true;
-      else return false;
+//       let reg = /^3[12]2\\d{7}$/;
+//  let isValid = reg.test(value?.trim());
+//   return isValid;
+return true
   }
 
   // 限制绩点
@@ -33,7 +34,8 @@ class checkForm {
 
   // 限制手机
   numberPhone(value) {
-      let reg = /^\d{11}$/;
+      // let reg = /^\d{11}$/;
+      let reg = /^1[3-9][0-9]{9}$/;
       if (value.trim() != "" && reg.test(value.trim())) return true;
       else return false;
   }
@@ -47,7 +49,8 @@ class checkForm {
   
   // 年龄
   age(value) {
-    let reg = /^\d{2}$/;
+    // let reg = /^\d{2}$/;
+    let reg = /^(1[0-9]|20|30)$/;
     if (value.trim() != "" && reg.test(value.trim())) return true;
     else return false;
 }

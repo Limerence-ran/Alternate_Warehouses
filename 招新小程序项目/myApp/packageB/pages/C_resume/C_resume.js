@@ -33,6 +33,9 @@ Page({
     major: "",
     cExperiment: "",
     cTheory: "",
+    gender:'',
+    flunk:'',
+    college:'',
     formSubmitted: false, // 控制表单是否已经提交
     loading: false,
     // 检查表单对象
@@ -75,6 +78,7 @@ Page({
     let nameVal = this.data.name.trim();
     let ageVal = this.data.age.trim();
     let studentIdVal = this.data.studentId.trim();
+  
     let majorVal = this.data.major.trim();
     let phoneVal = this.data.phone.trim();
     let gpaVal = this.data.gpa.trim();
@@ -82,91 +86,51 @@ Page({
       checkClass
     } = this.data;
     if (!nameVal) {
-      wx.showToast({
-        title: '请输入姓名',
-        icon: 'none'
-      });
+      PopUp.Toast('请输入姓名',3,500)
       return false;
     };
     if (!checkClass.chinese(nameVal)) {
-      wx.showToast({
-        title: '姓名格式不正确，请检查',
-        icon: 'none'
-      });
+      PopUp.Toast('姓名格式不正确，请检查',3,500)
       return false;
     };
 
     if (!ageVal) {
-      wx.showToast({
-        title: '请输入年龄',
-        icon: 'none'
-      });
+      PopUp.Toast('请输入年龄',3,500)
       return false;
     };
     if (!checkClass.age(ageVal)) {
-      wx.showToast({
-        title: '年龄格式不正确，请检查',
-        icon: 'none'
-      });
+      
+      PopUp.Toast('年龄格式不正确，请检查',3,500)
       return false;
     };
 
     if (!studentIdVal) {
-      wx.showToast({
-        title: '请输入学号',
-        icon: 'none'
-      });
+      PopUp.Toast('请输入学号',3,500)
       return false;
     };
     if (!checkClass.numberNum(studentIdVal)) {
-      wx.showToast({
-        title: '学号格式不正确，请检查',
-        icon: 'none'
-      });
+      PopUp.Toast('学号格式不正确',3,500)
       return false;
     };
     if (!majorVal) {
-      wx.showToast({
-        title: '请输入专业班级',
-        icon: 'none'
-      });
+      PopUp.Toast('请输入专业班级',3,500)
       return false;
     };
-    // if (!checkClass.chinese(classVal)) {
-    //   wx.showToast({
-    //     title: '专业班级格式不正确，请检查',
-    //     icon: 'none'
-    //   });
-    //   return false;
-    // };
-
     if (!phoneVal) {
-      wx.showToast({
-        title: '请输入手机号',
-        icon: 'none'
-      });
+      PopUp.Toast('请输入手机号',3,500)
       return false;
     };
     if (!checkClass.numberPhone(phoneVal)) {
-      wx.showToast({
-        title: '手机号格式不正确，请检查',
-        icon: 'none'
-      });
+      PopUp.Toast('手机号格式不正确，请检查',3,500)
       return false;
     };
 
     if (!gpaVal) {
-      wx.showToast({
-        title: '请输入绩点排名',
-        icon: 'none'
-      });
+      PopUp.Toast('请输入绩点排名',3,500)
       return false;
     };
     if (!checkClass.number(gpaVal)) {
-      wx.showToast({
-        title: '绩点格式不正确，请检查',
-        icon: 'none'
-      });
+      PopUp.Toast('绩点格式不正确，请检查',3,500)
       return false;
     };
     return true; // 验证通过，返回true
@@ -187,10 +151,10 @@ Page({
       major: e.detail.value.major,
       cExperiment: e.detail.value.cExperiment,
       ctheory: e.detail.value.cTheory,
-      gender: this.data.arraySex[this.data.indexSex],
+      gender: this.data.indexSex,
       flunk: this.data.indexMajor, //0挂科，1没挂
       intention: parseInt(this.data.indexDir) + 1,
-      college: this.data.arrayAcademy[this.data.indexAcademy],
+      college: this.data.indexAcademy,
     };
     this.setData({
       ...data
@@ -205,36 +169,37 @@ Page({
           console.log('data', data);
           const response = await NewerInterview.submitInfo(data);
           console.log('response', response);
+          console.log(response.code)
           if (response.code === 200) {
             setTimeout(() => {
               this.setData({
                 formSubmitted: true
               });
-              Toast.success('报名成功');
-            }, 1000);
+              PopUp.Toast(response.data,1,500)
+            }, 500);
             setTimeout(() => {
               wx.navigateTo({
                 url: '../hub/hub'
               });
-            }, 3000);
-          } else if (response.code === 111) {
-            wx.showToast({
-              title: '报名时间已过',
-              icon: 'none'
-            });
-          } else {
-            wx.showToast({
-              title: '报名失败',
-              icon: 'none'
-            });
+            }, 1500);
+          } else if (response.code === 111) {  //已过报名时间
+            PopUp.Toast(response.data,2,500)
+          } else if(response.code === 401){
+            console.log(response.code)
+            PopUp.Toast(response.message,2,1000)
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '/pages/index/index',
+              })
+            }, 1500)
+          }
+          else {
+            PopUp.Toast(response.data,2,500)
           }
         } catch (error) {
           // 处理请求失败的情况
           console.error('请求失败:', error);
-          wx.showToast({
-            title: '请求失败',
-            icon: 'none'
-          });
+          PopUp.Toast('请求失败',2,1000)
         }
       }
     }
@@ -261,26 +226,40 @@ Page({
     } catch (error) {
       // 处理请求失败的情况
       console.error('请求失败:', error);
-      wx.showToast({
-        title: '请求失败',
-        icon: 'none'
-      });
+      PopUp.Toast('请求失败',2,1000)
+
     }
     try {
       const response = await NewerInterview.getResume();
       let data = response.data;
+      console.log(data)
+      this.setData({
+        ...data,
+        indexDir:parseInt(data.intention) - 1,
+        indexMajor:data.flunk,
+        indexAcademy:data.college,
+        indexSex:data.gender
+      })
       if (response.code === 200 && data) {
         let result = await PopUp.Confirm('已经报名成功，是否重新填报报名信息？');
         if (result) {
           // on confirm
         } else {
           setTimeout(() => {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/packageA/pages/B_resume/B_resume',
             })
           }, 500)
         }
+      }else if(response.code===401){
+        PopUp.Toast(response.message,2,1000)
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '/pages/index/index',
+          })
+        }, 1500)
       } else {
+        PopUp.Toast(response.message,2,1000)
         console.log('未报名或者未通过上一轮')
       }
     } catch (error) {
@@ -288,12 +267,6 @@ Page({
       console.error('请求失败:', error);
     }
 
-    // if(app.globalData.identity=='User'){
-    //   console.log('已填完简历')
-    //   wx.navigateTo({
-    //     url: '../../../packageA/pages/B_resume/B_resume',
-    //   })
-    //   }
   },
 
 

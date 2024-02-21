@@ -1,4 +1,5 @@
 const app = getApp();
+import PopUp from '../../utils/tools/PopUp'
 Component({
   // behaviors: [GlobalDataBehavior],
   properties: {
@@ -23,7 +24,7 @@ Component({
       console.log("app.globalData.activeIndex", app.globalData.activeIndex)
       if (index == 0) {
         console.log('进去了')
-        const { code } = app.globalData.wssInitInfo
+        const { code,message } = app.globalData.wssInitInfo
         if (code == 103) {//未预约
           setTimeout(() => {
             wx.redirectTo({
@@ -37,7 +38,7 @@ Component({
             })
           }, 1000)
         } else if (code == 105) {//面试已结束
-
+          PopUp(message,2,1000)
         } else if (code == 200) {//已签到
           setTimeout(() => {
             wx.redirectTo({
@@ -45,7 +46,7 @@ Component({
             })
           }, 1000)
         } else if (code == 102) { //未报名
-
+          PopUp(message,2,1000)
         }
 
       } else if (index == 1) {

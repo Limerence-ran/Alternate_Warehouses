@@ -3,7 +3,6 @@ import PopUp from '../../../utils/tools/PopUp'
 import socket from '../../../utils/tools/websocket'
 const app = getApp();
 Page({
-
   /* 页面的初始数据*/
   data: {
     socket: null,
@@ -25,7 +24,7 @@ Page({
       console.log('flush',res)
       const result = JSON.parse(res);
       if(result.code == 200){
-        console.log(app.globalData.freshmanInfo);
+
         const {groupName,name,interviewPeriodVos} = result.data;
         this.setData({
           name:name,
@@ -49,7 +48,11 @@ Page({
   } catch {
     console.log('无法更新')
   }
-
+// 注册消息监听器
+socket.registerOnMessageCallback(function(response) {
+  // 处理收到的消息
+  console.log('Received message:', response);
+});
 
   },
 

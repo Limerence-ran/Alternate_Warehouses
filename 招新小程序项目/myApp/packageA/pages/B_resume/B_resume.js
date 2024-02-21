@@ -2,6 +2,7 @@
 import {
   NewerInterview
 } from '../../../utils/request/api'
+import PopUp from '../../../utils/tools/PopUp'
 const app = getApp()
 Page({
 
@@ -21,11 +22,15 @@ Page({
         this.setData({
           userInfo: data
         });
+      }else if(response.code === 401){
+        PopUp.Toast(response.message,2,1000)
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '/pages/index/index',
+          })
+        }, 1500)
       } else {
-        wx.showToast({
-          title: '简历渲染失败',
-          icon: 'none'
-        });
+        PopUp.Toast(response.message,2,1000)
       }
     } catch (error) {
       // 处理请求失败的情况
