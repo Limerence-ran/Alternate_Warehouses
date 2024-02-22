@@ -1,3 +1,4 @@
+<titletabbar></titletabbar>
 <view class="box">
   <van-notice-bar left-icon="volume-o" scrollable="{{ true }}" background="#5b08c3" color="#fff" class="custom-class" text="请已经预约的新生尽快来到面试地点签到，避免错过面试时间😀" />
 

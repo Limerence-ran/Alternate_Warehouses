@@ -60,22 +60,6 @@ Page({
             setTimeout(() => {
               PopUp.Toast('预约成功！', 1, 1500);
             }, 500);
-            try {
-              socket.request('flush', 'flush', (res) => {
-                console.log('flush',res)
-                console.log(res.data)
-                console.log(res.code)
-                if(res.code == 200){
-                  app.globalData.freshmanInfo = res.data;
-                  console.log(app.globalData.freshmanInfo);
-                }else if(res.code == 205){
-                  console.log(res.message)
-                }else{
-                }
-              });
-            } catch {
-              console.log('无法更新')
-            }
             setTimeout(() => {
               wx.redirectTo({
                 url: '../C_signIn/C_signIn'
@@ -85,20 +69,6 @@ Page({
             setTimeout(() => {
               PopUp.Toast(response.message, 2, 1500);
             }, 500);
-            try {
-              socket.request('flush', 'flush', (res) => {
-                console.log('flush',res)
-                if(res.code == 200){
-                  app.globalData.freshmanInfo = res.data;
-                  console.log(app.globalData.freshmanInfo);
-                }else if(res.code == 205){
-                  console.log(res.message)
-                }else{
-                }
-              });
-            } catch {
-              console.log('无法更新')
-            }
             setTimeout(() => {
               wx.redirectTo({
                 url: '../C_signIn/C_signIn'
@@ -108,45 +78,26 @@ Page({
             setTimeout(() => {
               PopUp.Toast(response.message, 3, 1500);
             }, 500);
-            try {
-              socket.request('flush', 'flush', (res) => {
-                console.log('flush',res)
-                if(res.code == 200){
-                  app.globalData.freshmanInfo = res.data;
-                  console.log(app.globalData.freshmanInfo);
-                }else if(res.code == 205){
-                  console.log(res.message)
-                }else{
-                }
-              });
-            } catch {
-              console.log('无法更新')
-            }
           }else if(response.code == 108){
             //重复预约
             setTimeout(() => {
               PopUp.Toast(response.message, 2, 1500);
             }, 500);
-            // try {
-            //   console.log('108res')
-              socket.request('flush', 'flush', (res) => {
-                console.log('flush',res)
-                if(res.code == 200){
-                  app.globalData.freshmanInfo = res.data;
-                  console.log(app.globalData.freshmanInfo);
-                }else if(res.code == 205){
-                  console.log(res.message)
-                }else{
-                }
-              });
-            // } catch {
-            //   console.log('无法更新')
-            // }
-            // setTimeout(() => {
-            //   wx.redirectTo({
-            //     url: '../C_signIn/C_signIn'
-            //   })
-            // }, 2000);
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '../C_signIn/C_signIn'
+              })
+            }, 2000);
+          }else if(response.code == 401){
+            //登录失效
+            setTimeout(() => {
+              PopUp.Toast(response.message, 2, 1500);
+            }, 500);
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '/pages/index/index'
+              })
+            }, 2000);
           }else{
               PopUp.Toast(response.message, 2, 1500);
           }
@@ -173,7 +124,6 @@ Page({
         const {name,groupName,interviewPeriodVos} = data;
         const Array = interviewPeriodVos.map(item => {
           const startTime = formatTimestamp(item.start);
-          // console.log('startTime',startTime)
           const endDay = formatTimestamp(item.end);
           const endTime = endDay.slice(5);
           return { id: item.id,start:startTime,end:endTime,total:item.total,place:item.place}
@@ -184,6 +134,16 @@ Page({
           timeArr:Array
         })
         // console.log(Array)
+      }else if(response.code == 401){
+        //登录失效
+        setTimeout(() => {
+          PopUp.Toast(response.message, 2, 1500);
+        }, 500);
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '/pages/index/index'
+          })
+        }, 2000);
       } else {
         PopUp.Toast(response.message, 2, 2000);
       }
@@ -192,22 +152,6 @@ Page({
       console.error('请求失败:', error);
       PopUp.Toast('请求失败', 3, 2000);
     }
-      try {
-              socket.request('flush', 'flush', (res) => {
-                console.log('flush',res)
-                console.log(res.data)
-                console.log(res.code)
-                if(res.code == 200){
-                  app.globalData.freshmanInfo = res.data;
-                  console.log(app.globalData.freshmanInfo);
-                }else if(res.code == 205){
-                  console.log(res.message)
-                }else{
-                }
-              });
-            } catch {
-              console.log('无法更新')
-            }
   },
 
   /**

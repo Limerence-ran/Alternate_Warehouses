@@ -4,6 +4,7 @@ import {
   NewerInterview
 } from '../../utils/request/api'
 import PopUp from '../../utils/tools/PopUp'
+import socket from '../../utils/tools/websocket'
 const app = getApp()
 Page({
   data: {
@@ -15,8 +16,13 @@ Page({
    * load生命周期函数
    */
   onLoad() {
+    if (this.data.platformToken)//已登录
+    {
+      //连接websocket
+      socket.connect();
+    }
   },
- 
+
   /* @description 登录请求-获取新的token
     */
   login() {
@@ -27,15 +33,18 @@ Page({
           try {
             const response = await NewerInterview.login(res.code);
             if (response.code === 200 && response.data) {
-            const {permissions,platformToken} = response.data;
-            wx.setStorageSync('identity',permissions);
+              const { permissions, platformToken } = response.data;
+              wx.setStorageSync('identity', permissions);
               //把新生端Token存储到本地
-              wx.setStorage('platformToken',response.data.platformToken);
+              console.log(response.data.platformToken)
+              wx.setStorageSync('platformToken', response.data.platformToken);
               PopUp.Toast(response.message, 1, 2000);
               //刷新页面状态
               that.setData({
                 platformToken: response.data.platformToken
               })
+              //连接websocket
+              socket.connect();
             } else {
               // 处理登录失败的情况
               PopUp.Toast('授权失败', 2, 2000);

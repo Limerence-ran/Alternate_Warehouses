@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "buttombar":"../../../components/buttombar/buttombar"
-  }
+    "buttombar":"../../../components/buttombar/buttombar",
+    "titletabbar": "../../../components/titlebar/titlebar"
+  },
+  "navigationStyle": "custom"
 }

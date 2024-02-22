@@ -4,8 +4,36 @@
     "miniprogram": {
       "list": [
         {
-          "name": "",
+          "name": "队列",
+          "pathName": "packageB/pages/C_queue/C_queue",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "简历",
+          "pathName": "packageA/pages/B_resume/B_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "hub",
+          "pathName": "packageB/pages/hub/hub",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "签到",
           "pathName": "packageB/pages/C_signIn/C_signIn",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "报名",
+          "pathName": "packageB/pages/C_resume/C_resume",
           "query": "",
           "launchMode": "default",
           "scene": null

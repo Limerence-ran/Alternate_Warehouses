@@ -1,5 +1,7 @@
 // pages/home/home.js
 import PopUp from '../../../utils/tools/PopUp'
+//防抖标识符
+let timer = null
 Page({
   /**
    * 页面的初始数据
@@ -112,36 +114,36 @@ Page({
    */
   onLoad(options) {
     // console.log(options)
-    if(options.param1=='User'){
+    if (options.param1 == 'User') {
       console.log('已报名的新生')
-    }else if(options.param1=='Tourist'){
-    console.log('游客')
-    setTimeout(() => {
-      let result = PopUp.Confirm('你还未报名，是否要跳转到报名页面？');
-      console.log('result', result)
-      if (result) {
-        // on confirm
-        console.log('确定')
-        try {
-          setTimeout(() => {
-            wx.navigateTo({
-              url: '../C_resume/C_resume',
-              events: {
-                // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-              },
-              success: function (res) {
-                // 通过eventChannel向被打开页面传送数据
-              }
-            })
-          }, 1000)
-        } catch (error) {
-          // 处理请求失败的情况
+    } else if (options.param1 == 'Tourist') {
+      console.log('游客')
+      setTimeout(() => {
+        let result = PopUp.Confirm('你还未报名，是否要跳转到报名页面？');
+        console.log('result', result)
+        if (result) {
+          // on confirm
+          console.log('确定')
+          try {
+            setTimeout(() => {
+              wx.navigateTo({
+                url: '../C_resume/C_resume',
+                events: {
+                  // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+                },
+                success: function (res) {
+                  // 通过eventChannel向被打开页面传送数据
+                }
+              })
+            }, 1000)
+          } catch (error) {
+            // 处理请求失败的情况
+          }
         }
-      }
-    }, 5000)
-    }else if(options.param1=='Admin'){
+      }, 5000)
+    } else if (options.param1 == 'Admin') {
       console.log('管理员')
-      }
+    }
     // 模拟页面加载
     setTimeout(() => {
       this.setData({
@@ -149,20 +151,20 @@ Page({
       })
     }, 3100)
   },
-//获取设备信息
-getPhoneInfo() {
-  wx.getSystemInfo({
-    success: (res) => {
-      console.log(res)
-      this.setData({
-        phoneWidth: res.windowWidth,
-        phoneHeight: res.windowHeight,
-        x: res.windowWidth - 80,
-        y: res.windowHeight - 200
-      })
-    }
-  })
-},
+  //获取设备信息
+  getPhoneInfo() {
+    wx.getSystemInfo({
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          phoneWidth: res.windowWidth,
+          phoneHeight: res.windowHeight,
+          x: res.windowWidth - 80,
+          y: res.windowHeight - 200
+        })
+      }
+    })
+  },
 
 
   /**
@@ -223,17 +225,19 @@ getPhoneInfo() {
     })
   },
   /**
-   * @description Hub页跳转
+   * @description Hub页跳转-按钮防抖
    */
   goToHub() {
-    //火箭起飞
+    clearTimeout(timer)
+    // 火箭起飞
     this.setData({
       isFly: true
     })
-    setTimeout(() => {
-      wx.navigateTo({
-        url: "../hub/hub",
-      })
+    // 页面跳转 
+    timer = setTimeout(function(){
+    wx.navigateTo({
+      url: '../hub/hub',
+    })
     }, 1000)
   },
 

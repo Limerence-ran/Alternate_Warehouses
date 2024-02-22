@@ -160,7 +160,6 @@ $img-url7:'https://qgailab.com/img/graduation.fd4f4fde.jpg';
 			height: 100%;
 			background-image: url($img-url);
 			background-size: 100% 100%;
-			filter: grayscale(100%);
 			image-rendering: crisp-edges;
 			image-rendering: -webkit-optimize-contrast;
 		}
@@ -235,9 +234,6 @@ $img-url7:'https://qgailab.com/img/graduation.fd4f4fde.jpg';
 			color: #fff;
 		}
 
-		&:hover .pic {
-			filter: grayscale(0);
-		}
 	}
 
 	// 第二张样式

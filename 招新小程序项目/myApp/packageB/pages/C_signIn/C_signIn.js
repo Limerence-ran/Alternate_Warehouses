@@ -154,8 +154,26 @@ Page({
              url: '../C_queue/C_queue',
            })
             },3000)
-          } else {
-            PopUp.Toast('签到失败', 2, 2000);
+          }else if(response.code === 103){
+            PopUp.Toast(response.message,2,2000)
+            this.setData({
+              steps: [
+                ...this.data.steps,
+                {
+                  text:response.message + ' ' + time,
+                }
+              ]
+            });
+          }else {
+            PopUp.Toast(response.message,2,2000)
+            this.setData({
+              steps: [
+                ...this.data.steps,
+                {
+                  text:response.message + ' ' + time,
+                }
+              ]
+            });
           }
         });
       } catch (error) {
@@ -183,7 +201,7 @@ Page({
           })
           },2000)
         } else {
-          PopUp.Toast('取消预约失败', 2, 2000);
+          PopUp.Toast(response.message, 3, 2000);
         }
       } catch (error) {
         // 处理请求失败的情况
@@ -197,22 +215,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log('freshmanInfo',app.globalData.freshmanInfo)
-    wx.setNavigationBarTitle({
-      title: 'QG面试',
-    });
+    // wx.setNavigationBarTitle({
+    //   title: 'QG面试',
+    // });
    //ws
    try {
     socket.request('flush', 'flush', (res) => {
       console.log('flush',res)
-      console.log(res.data)
-      console.log(res.code)
-      if(res.code == 200){
-        app.globalData.freshmanInfo = res.data;
+      const result = JSON.parse(res);
+      if(result.code == 200){
+        app.globalData.freshmanInfo = result.data;
         console.log(app.globalData.freshmanInfo);
-      }else if(res.code == 205){
-        console.log(res.message)
+        const {groupName,name,interviewPeriodVos} = result.data;
+        this.setData({
+          place:interviewPeriodVos[0].place,
+          groupName:groupName,
+          name:name,
+        })
+      }else if(result.code == 205){
+        PopUp.Toast(result.message,2,2000)
+      }else if(result.code == 401){
+        PopUp.Toast(result.message,2,2000)
+        setTimeout(()=>{
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+        },2000)
       }else{
+        PopUp.Toast(result.message,2,2000)
       }
     });
   } catch {
