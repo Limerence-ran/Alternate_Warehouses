@@ -6,13 +6,13 @@ App({
     userInfo: null,
     avatarUrl: wx.getStorageSync('avatarUrl') || '', //头像
     nickName: wx.getStorageSync('nickName') || '', //昵称
-    platformToken: wx.getStorageSync('platformToken') || '', //token
+    platformToken: '', //token占位符(在index页面中进行注入)
     activeIndex: 0, //底部导航栏索引
     systemInfo: null, //系统信息
     menuButtonBoundingClientRect: null, //胶囊位置信息
-    identity: wx.getStorageSync('identity') || '',//用户身份User已报名，Tourist未报名,Admin管理员
-    freshmanInfo:null,
-    wssInitInfo:null
+    identity: wx.getStorageSync('identity') || '', //用户身份User已报名，Tourist未报名,Admin管理员
+    freshmanInfo: null,
+    wssInitInfo: null
   },
 
   onLaunch() {

@@ -1,37 +1,44 @@
 import PopUp from '../../utils/tools/PopUp'
+/**
+ * @description 
+ * @param {*} onMessageCallback 
+ */
 const connectWebSocket = function (onMessageCallback) {
-  let socketOpen = false;
-  let socketTask = null;
+  let socketOpen = false; // ws的开启状态
+  let socketTask = null; // ws的连接实例
   let callbackMap = new Map(); // 用于存储每个请求对应的回调函数
-  let heartbeatInterval = null;
-  // 发送心跳包
+  let heartbeatInterval = null; // 心跳定时器
+
+  /**
+   *@description 发送心跳包
+   */
   function sendHeartbeat() {
-    if (socketOpen) {
-      socketTask.send({
-        data: 'ping',
-        success: function (res) {
-          if (res.errMsg === 'sendSocketMessage:ok') {
-            console.log('心跳包发送成功');
-            // 连接活跃，继续保持连接
-          } else {
-            console.log('发送心跳包失败');
-            reconnect(); // 执行重新连接操作
-          }
+    socketTask.send({
+      data: 'ping',
+      success: function (res) {
+        if (res.errMsg === 'sendSocketMessage:ok') {
+          console.log('心跳包发送成功');
+          // 连接活跃，继续保持连接
+        } else {
+          console.log('发送心跳包失败');
+          reconnect(); // 执行重新连接操作
         }
-      });
-    } else {
-      console.log('WebSocket连接未打开');
-    }
+      }
+    });
   }
 
-  // 开始定时发送心跳包
+  /**
+   * @description 开始定时发送心跳包
+   */
   function startHeartbeatInterval() {
     heartbeatInterval = setInterval(() => {
       sendHeartbeat();
     }, 30000); // 每30秒发送一次心跳包
   }
 
-  // 清除心跳包定时器
+  /**
+   *@description  清除心跳包定时器
+   */
   function clearHeartbeatInterval() {
     if (heartbeatInterval) {
       clearInterval(heartbeatInterval);
@@ -40,15 +47,17 @@ const connectWebSocket = function (onMessageCallback) {
   }
 
   /**
-   * @description ws建立连接
-   */ 
+   * @description ws建立连接 --> 调用connect函数即默认本地存储存在token记录
+   */
   function connect() {
+    // 创建ws连接任务
     socketTask = wx.connectSocket({
       url: 'wss://qgailab.com/newer/interview',
       header: {
         'content-type': 'application/json',
         'platformToken': wx.getStorageSync("platformToken")
       },
+      //网络状态
       success: function (res) {
         console.log('WebSocket连接打开成功', res);
       },
@@ -57,8 +66,18 @@ const connectWebSocket = function (onMessageCallback) {
         wx.setStorageSync('platformToken', '')
       }
     });
+
     // 建立连接后立即发送第一个心跳包
-    sendHeartbeat();
+    if (socketOpen) {
+      sendHeartbeat();
+    } else {
+      console.log('WebSocket连接未打开,无法发送心跳包');
+    }
+
+
+    /**
+     * @description 连接开启
+     */
     socketTask.onOpen(function (res) {
       console.log('WebSocket连接已打开', res);
       socketOpen = true;
@@ -66,46 +85,39 @@ const connectWebSocket = function (onMessageCallback) {
       startHeartbeatInterval();
     });
 
+    /**
+     * @description 连接异常
+     */
     socketTask.onError(function (res) {
       console.log('WebSocket连接出错', res);
     });
 
+    /**
+     * @description 连接关闭
+     */
     socketTask.onClose(function (res) {
+      PopUp.Toast('请重新登录', 2, 2000);
       console.log('WebSocket连接已关闭', res);
       socketOpen = false;
       clearHeartbeatInterval()
       try {
-        if (wx.getStorageSync('platformToken')) {
-          wx.removeStorageSync({
-            key: 'platformToken',
-            success: function (res) {
-              PopUp.Toast('登录失效，请重新登录！', 2, 2000);
-              setTimeout(() => {
-                wx.redirectTo({
-                  url: '/pages/index/index',
-                })
-              }, 2000)
-              console.log('数据清除成功')
-            },
-            fail: function (res) {
-              setTimeout(() => {
-                wx.navigateTo({
-                  url: '/pages/index/index',
-                })
-              }, 1000)
-              console.log('数据清除失败')
-            }
-          })
-        } else {
-          wx.redirectTo({
+        wx.removeStorageSync('platformToken');
+        console.log('数据清除成功')
+      } catch (e) {
+        PopUp.Toast('未开放本地数据权限', 2, 2000);
+        console.log('数据清除失败', e)
+      };
+      // 无论是否成功都进行跳转
+        setTimeout(() => {
+          wx.reLaunch({
             url: '/pages/index/index',
           })
-        }
-      } catch {
-        console.log('缓存清除失败！')
-      }
+        }, 1000)
     });
 
+    /**
+     * @description 连接数据
+     */
     socketTask.onMessage(function (res) {
       console.log('收到的信息', res.data);
       if (res.data === 'ping') {
@@ -114,7 +126,7 @@ const connectWebSocket = function (onMessageCallback) {
         console.log('连接断开')
         reconnect(); // 执行重新连接操作
       } else {
-
+        // 数据处理
         const result = res.data.split('|');
         const type = result[0];
         const data = result[1];
@@ -125,6 +137,7 @@ const connectWebSocket = function (onMessageCallback) {
           onMessageCallback(response);
         }
         const app = getApp()
+        // 数据注入全局
         app.globalData.wssInitInfo = {
           code: response.code,
           message: response.message
@@ -141,7 +154,9 @@ const connectWebSocket = function (onMessageCallback) {
     });
   }
 
-  // 发送消息
+  /**
+   *@description ws发送消息
+   */
   function send(msg, type) {
     if (socketOpen) {
       socketTask.send({
@@ -152,19 +167,26 @@ const connectWebSocket = function (onMessageCallback) {
     }
   }
 
-  // 发送请求并处理返回的信息
+  /**
+   *@description 发送请求并处理返回的信息
+   */
   function request(msg, type, callback) {
     // 将回调函数存储到 Map 中
     callbackMap.set(type, callback);
     send(msg, type);
   }
 
-
+  /**
+   * @description 关闭连接
+   */
   function close() {
     socketTask.close();
     clearHeartbeatInterval(); // 清除心跳包定时器
   }
-  // 重新连接
+
+  /**
+   *@description 重新连接
+   */
   function reconnect() {
     close(); // 关闭当前连接
     // 延迟一定时间后再次发起连接
@@ -172,6 +194,8 @@ const connectWebSocket = function (onMessageCallback) {
       connect(); // 重新发起连接
     }, 3000); // 例如延迟3秒后再次发起连接
   }
+
+  // 函数返回方法集
   return {
     connect: connect,
     request: request,
@@ -183,6 +207,6 @@ const connectWebSocket = function (onMessageCallback) {
   };
 }
 
+// 对外暴露函数返回值
 const socket = connectWebSocket();
-
 module.exports = socket;

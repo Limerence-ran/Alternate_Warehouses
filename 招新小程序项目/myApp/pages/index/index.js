@@ -8,23 +8,24 @@ import socket from '../../utils/tools/websocket'
 const app = getApp()
 Page({
   data: {
-    avatarUrl: app.globalData.avatarUrl, //头像
-    nickName: app.globalData.nickName, //昵称
-    platformToken: app.globalData.platformToken, //token/登录痕迹
+    avatarUrl: app.globalData.avatarUrl, // 头像
+    nickName: app.globalData.nickName, // 昵称
+    platformToken: '', //token
   },
   /**
    * load生命周期函数
    */
   onLoad() {
-    if (this.data.platformToken)//已登录
+    const logined = wx.getStorageSync('platformToken')
+    if (logined) // 登录过
     {
-      //连接websocket
+      // 连接websocket
       socket.connect();
-    }
+    } 
   },
 
   /* @description 登录请求-获取新的token
-    */
+   */
   login() {
     const that = this;
     wx.login({
@@ -33,15 +34,19 @@ Page({
           try {
             const response = await NewerInterview.login(res.code);
             if (response.code === 200 && response.data) {
-              const { permissions, platformToken } = response.data;
+              const {
+                permissions,
+                platformToken
+              } = response.data;
               wx.setStorageSync('identity', permissions);
               //把新生端Token存储到本地
-              console.log(response.data.platformToken)
-              wx.setStorageSync('platformToken', response.data.platformToken);
+              wx.setStorageSync('platformToken', platformToken);
+              //把新生端Token注入到全局
+              app.globalData.platformToken = platformToken;
               PopUp.Toast(response.message, 1, 2000);
-              //刷新页面状态
+              //把新生端Token注入到当前页面
               that.setData({
-                platformToken: response.data.platformToken
+                platformToken: platformToken
               })
               //连接websocket
               socket.connect();
