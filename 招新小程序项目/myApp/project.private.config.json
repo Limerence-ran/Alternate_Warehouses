@@ -37,6 +37,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

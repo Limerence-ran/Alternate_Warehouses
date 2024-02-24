@@ -23,7 +23,7 @@ Component({
       app.globalData.activeIndex = index;
       console.log("app.globalData.activeIndex", app.globalData.activeIndex)
       if (index == 0) {
-        console.log('进去了')
+        console.log(app.globalData.wssInitInfo);
         const { code,message } = app.globalData.wssInitInfo
         if (code == 103) {//未预约
           setTimeout(() => {
