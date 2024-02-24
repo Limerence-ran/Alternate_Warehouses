@@ -125,7 +125,6 @@ Page({
     } else {
       PopUp.Toast('你已经约过了！', 2, 1500)
     }
-
   },
   /**
  * @description 面试签到页跳转
@@ -142,7 +141,6 @@ Page({
     } else {
       PopUp.Toast(message, 2, 1500)
     }
-
   },
   /**
  * @description 面试队列页跳转
@@ -160,7 +158,6 @@ Page({
         })
       }, 500)
     }
-
   },
   /**
   * @description 面试结果页跳转
@@ -183,7 +180,4 @@ Page({
       })
     }, 500)
   },
-
-
-
 })

@@ -175,8 +175,8 @@ Page({
               this.setData({
                 formSubmitted: true
               });
-              PopUp.Toast(response.message,1,1000)
             }, 500);
+            PopUp.Toast(response.message,1,1000)
             setTimeout(() => {
               wx.navigateTo({
                 url: '../hub/hub'
@@ -232,16 +232,15 @@ Page({
     }
     try {
       const response = await NewerInterview.getResume();
-      let data = response.data;
-      console.log(data)
-      this.setData({
-        ...data,
-        indexDir:parseInt(data.intention) - 1,
-        indexMajor:data.flunk,
-        indexAcademy:data.college,
-        indexSex:data.gender
-      })
-      if (response.code === 200 && data) {
+      if (response.code === 200 && response.data) {
+         let data = response.data;
+        this.setData({
+          ...data,
+          indexDir:parseInt(data.intention) - 1,
+          indexMajor:data.flunk,
+          indexAcademy:data.college,
+          indexSex:data.gender
+        })
         let result = await PopUp.Confirm('已经报名成功，是否重新填报报名信息？');
         if (result) {
           // on confirm

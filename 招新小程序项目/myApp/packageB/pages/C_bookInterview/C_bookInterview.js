@@ -58,7 +58,7 @@ Page({
           console.log('response', response);
           if (response.code == 200) {
             setTimeout(() => {
-              PopUp.Toast('预约成功！', 1, 1500);
+              PopUp.Toast(response.data, 1, 1500);
             }, 500);
             setTimeout(() => {
               wx.redirectTo({
