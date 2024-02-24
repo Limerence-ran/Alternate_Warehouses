@@ -63,23 +63,14 @@ const connectWebSocket = function (onMessageCallback) {
       },
       fail: function (res) {
         console.log('WebSocket连接打开失败', res);
-        wx.setStorageSync('platformToken', '')
       }
     });
-
-    // 建立连接后立即发送第一个心跳包
-    if (socketOpen) {
-      sendHeartbeat();
-    } else {
-      console.log('WebSocket连接未打开,无法发送心跳包');
-    }
-
 
     /**
      * @description 连接开启
      */
     socketTask.onOpen(function (res) {
-      console.log('WebSocket连接已打开', res);
+      console.log('WebSocket已连接', res);
       socketOpen = true;
       // 建立连接后开始定时发送心跳包
       startHeartbeatInterval();
