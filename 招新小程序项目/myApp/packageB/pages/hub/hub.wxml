@@ -1,4 +1,4 @@
-<titletabbar></titletabbar>
+<titletabbar contentRoute='hub'></titletabbar>
 <!-- LOG大图 -->
 <view class="logo_font">
   <image src="../../../utils/photos/logo_font.jpg" mode="" />
@@ -15,7 +15,7 @@
       <image src="../../../utils/svg/introduction.svg" mode="" /> | 团队介绍
     </view>
     <!-- 介绍模块-->
-    <view class="card" bindtap="goToHome">
+    <view class="card" bindtap="goToIntroduction">
       <view class="hview">Introduction</view>
       <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
       <view class="pview">QG STUDIO.</view>

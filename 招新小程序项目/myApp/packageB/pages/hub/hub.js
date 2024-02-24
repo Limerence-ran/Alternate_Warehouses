@@ -18,7 +18,6 @@ Page({
     try {
       socket.request('init', 'init', (res) => {
         console.log('收到init的信息', res)
-
         const response = JSON.parse(res);
         console.log(response.code)
         const app = getApp()
@@ -88,10 +87,10 @@ Page({
   /**
  * @description 团队介绍页跳转
  */
-  goToHome() {
+  goToIntroduction() {
     setTimeout(() => {
       wx.navigateTo({
-        url: '../home/home',
+        url: '../Introduction/Introduction',
       })
     }, 500)
   },

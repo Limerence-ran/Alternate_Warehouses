@@ -87,23 +87,30 @@ const connectWebSocket = function (onMessageCallback) {
      * @description 连接关闭
      */
     socketTask.onClose(function (res) {
-      PopUp.Toast('请重新登录', 2, 2000);
       console.log('WebSocket连接已关闭', res);
-      socketOpen = false;
-      clearHeartbeatInterval()
-      try {
-        wx.removeStorageSync('platformToken');
-        console.log('数据清除成功')
-      } catch (e) {
-        PopUp.Toast('未开放本地数据权限', 2, 2000);
-        console.log('数据清除失败', e)
-      };
-      // 无论是否成功都进行跳转
+      // 情况一：切屏断开
+      if (res.reason === 'interrupted') {
+        // 进行重连
+        reconnect(); // 执行重新连接操作
+      } else {
+        PopUp.Toast('请重新登录', 2, 2000);
+        socketOpen = false;
+        clearHeartbeatInterval()
+        try {
+          wx.removeStorageSync('platformToken');
+          console.log('数据清除成功')
+        } catch (e) {
+          PopUp.Toast('未开放本地数据权限', 2, 2000);
+          console.log('数据清除失败', e)
+        };
+        // 无论是否成功都进行跳转
         setTimeout(() => {
           wx.reLaunch({
             url: '/pages/index/index',
           })
         }, 2000)
+      }
+
     });
 
     /**
