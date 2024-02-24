@@ -30,11 +30,10 @@
     </view>
   </view>
 </view>
-
 <!-- 主页面显示内容 -->
 <view hidden="{{!loadingComplete}}">
   <!-- 顶部tab栏 -->
-  <titletabbar style="width: 100%;padding: 0;margin: 0;"></titletabbar>
+  <titletabbar style="width: 100%;padding: 0;margin: 0;" contentRoute='home'></titletabbar>
   <!-- 主体页面 -->
   <view class="main">
     <!-- 平板动画 -->

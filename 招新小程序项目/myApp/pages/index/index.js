@@ -19,9 +19,15 @@ Page({
     const logined = wx.getStorageSync('platformToken')
     if (logined) // 登录过
     {
+      //把新生端Token注入到当前页面
+      this.setData({
+        platformToken: logined
+      })
+      //把新生端Token注入到全局
+      app.globalData.platformToken = logined;
       // 连接websocket
       socket.connect();
-    } 
+    }
   },
 
   /* @description 登录请求-获取新的token

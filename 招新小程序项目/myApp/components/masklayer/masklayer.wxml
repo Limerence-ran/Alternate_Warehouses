@@ -1,0 +1,5 @@
+<!--components/masklayer/masklayer.wxml-->
+<!-- 遮罩层 -->
+<view style="width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.1);position: absolute;z-index: 9999;">
+
+</view>

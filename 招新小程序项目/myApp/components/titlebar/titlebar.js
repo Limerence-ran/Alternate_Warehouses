@@ -6,15 +6,11 @@ Component({
    */
   properties: {
     //要接收数据的名称
-    contentType: {
+    contentRoute: {
       // type 要接收的数据的类型
       type: String,
-      // value 默认值（没穿是的默认值）
-      value: 'logo'
-    },
-    fontContent: {
-      type: String,
-      value: 'QG工作室'
+      // value 默认值（contentRoute默认值）
+      value: 'other'
     },
   },
 
@@ -29,7 +25,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    menu() {
+    gotoHub() {
       // return
       wx.redirectTo({
         url: '/packageB/pages/hub/hub',
