@@ -175,7 +175,7 @@ Page({
               this.setData({
                 formSubmitted: true
               });
-              PopUp.Toast(response.data,1,500)
+              PopUp.Toast(response.message,1,500)
             }, 500);
             setTimeout(() => {
               wx.navigateTo({
@@ -183,10 +183,11 @@ Page({
               });
             }, 1500);
           } else if (response.code === 111) {  //已过报名时间
-            PopUp.Toast(response.data,2,500)
+            PopUp.Toast(response.message,2,500)
           } else if(response.code === 401){
             console.log(response.code)
             PopUp.Toast(response.message,2,1000)
+            wx.removeStorageSync('platformToken')
             setTimeout(() => {
               wx.redirectTo({
                 url: '/pages/index/index',
@@ -194,7 +195,7 @@ Page({
             }, 1500)
           }
           else {
-            PopUp.Toast(response.data,2,500)
+            PopUp.Toast(response.message,2,500)
           }
         } catch (error) {
           // 处理请求失败的情况
@@ -253,6 +254,7 @@ Page({
         }
       }else if(response.code===401){
         PopUp.Toast(response.message,2,1000)
+        wx.removeStorageSync('platformToken')
         setTimeout(() => {
           wx.redirectTo({
             url: '/pages/index/index',

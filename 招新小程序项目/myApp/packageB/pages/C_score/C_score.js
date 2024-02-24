@@ -1,5 +1,6 @@
 // pages/C_score/C_score.js
 import { NewerInterview } from '../../../utils/request/api'
+import PopUp from '../../../utils/tools/PopUp'
 Page({
   /* 页面的初始数据*/
   data: {
@@ -60,19 +61,22 @@ Page({
           turnsResult: turnsResult
         });
         console.log(message)
+      }else if(code === 401){
+     PopUp.Toast(message,3,500)
+        wx.removeStorageSync('platformToken')
+       setTimeout(()=>{
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+       },1000)
       } else {
-        wx.showToast({
-          title: '成绩获取失败',
-          icon: 'none'
-        });
+        PopUp.Toast('成绩获取失败',2,500)
       }
     } catch (error) {
       // 处理请求失败的情况
       console.error('请求失败:', error);
-      wx.showToast({
-        title: '成绩请求失败',
-        icon: 'none'
-      });
+      PopUp.Toast('成绩请求失败',2,500)
+      
     }
   },
 
