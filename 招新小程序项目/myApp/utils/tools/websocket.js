@@ -103,7 +103,7 @@ const connectWebSocket = function (onMessageCallback) {
           wx.reLaunch({
             url: '/pages/index/index',
           })
-        }, 1000)
+        }, 2000)
     });
 
     /**

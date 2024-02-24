@@ -228,17 +228,17 @@ Page({
    * @description Hub页跳转-按钮防抖
    */
   goToHub() {
-    // clearTimeout(timer)
+    clearTimeout(timer)
     // 火箭起飞
     this.setData({
       isFly: true
     })
     // 页面跳转 
-    // timer = setTimeout(function(){
+    timer = setTimeout(function(){
     wx.navigateTo({
       url: '../hub/hub',
     })
-    // }, 1000)
+    }, 1000)
   },
 
   /**

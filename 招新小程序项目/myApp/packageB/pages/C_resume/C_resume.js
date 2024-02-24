@@ -175,7 +175,7 @@ Page({
               this.setData({
                 formSubmitted: true
               });
-              PopUp.Toast(response.message,1,500)
+              PopUp.Toast(response.message,1,1000)
             }, 500);
             setTimeout(() => {
               wx.navigateTo({
@@ -183,7 +183,7 @@ Page({
               });
             }, 1500);
           } else if (response.code === 111) {  //已过报名时间
-            PopUp.Toast(response.message,2,500)
+            PopUp.Toast(response.message,2,1000)
           } else if(response.code === 401){
             console.log(response.code)
             PopUp.Toast(response.message,2,1000)
