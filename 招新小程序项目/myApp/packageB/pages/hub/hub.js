@@ -103,7 +103,7 @@ Page({
 
     setTimeout(() => {
       wx.navigateTo({
-        url: '../C_resume/C_resume',
+        url: '../C_register/C_register',
       })
     }, 500)
 
