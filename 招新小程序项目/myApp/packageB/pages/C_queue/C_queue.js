@@ -36,6 +36,7 @@ Page({
        PopUp.Toast(result.message,2,2000)
       }else if(result.code == 401){
         PopUp.Toast(result.message,2,2000)
+        wx.removeStorageSync('platformToken')
         setTimeout(()=>{
         wx.redirectTo({
           url: '/pages/index/index',

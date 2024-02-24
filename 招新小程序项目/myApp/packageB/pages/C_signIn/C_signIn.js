@@ -235,12 +235,13 @@ Page({
       }else if(result.code == 205){
         PopUp.Toast(result.message,2,2000)
       }else if(result.code == 401){
-        PopUp.Toast(result.message,2,2000)
+        PopUp.Toast(result.message,2,500)
+         wx.removeStorageSync('platformToken')
         setTimeout(()=>{
         wx.redirectTo({
           url: '/pages/index/index',
         })
-        },2000)
+        },1000)
       }else{
         PopUp.Toast(result.message,2,2000)
       }

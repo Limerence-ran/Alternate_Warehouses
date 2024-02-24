@@ -91,13 +91,14 @@ Page({
           }else if(response.code == 401){
             //登录失效
             setTimeout(() => {
-              PopUp.Toast(response.message, 2, 1500);
+              PopUp.Toast(response.message, 3, 500);
             }, 500);
+            wx.removeStorageSync('platformToken')
             setTimeout(() => {
               wx.redirectTo({
                 url: '/pages/index/index'
               })
-            }, 2000);
+            }, 1000);
           }else{
               PopUp.Toast(response.message, 2, 1500);
           }
@@ -136,6 +137,7 @@ Page({
         // console.log(Array)
       }else if(response.code == 401){
         //登录失效
+        wx.removeStorageSync('platformToken')
         setTimeout(() => {
           PopUp.Toast(response.message, 2, 1500);
         }, 500);
