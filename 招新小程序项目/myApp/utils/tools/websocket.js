@@ -88,10 +88,12 @@ const connectWebSocket = function (onMessageCallback) {
      */
     socketTask.onClose(function (res) {
       console.log('WebSocket连接已关闭', res);
-      // 情况一：切屏断开
+      // 特殊情况一：切屏断开
       if (res.reason === 'interrupted') {
         // 进行重连
-        reconnect(); // 执行重新连接操作
+        setTimeout(() => {
+          reconnect(); // 执行重新连接操作
+        }, 2000)
       } else {
         PopUp.Toast('请重新登录', 2, 2000);
         socketOpen = false;

@@ -5,7 +5,9 @@
 		<block wx:if="{{contentRoute==='home'}}">
 			<van-icon name="apps-o" size="30px" bind:tap="menu" />
 		</block>
-		<block wx:elif="{{contentRoute==='hub'}}"></block>
+		<block wx:elif="{{contentRoute==='hub'}}">
+		
+		</block>
 		<block wx:elif="{{contentRoute==='index'}}"></block>
 		<block wx:else>
 			<van-icon name="arrow-left" size="30px" bind:tap="gotoHub" />

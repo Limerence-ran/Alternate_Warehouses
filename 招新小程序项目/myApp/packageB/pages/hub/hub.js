@@ -178,6 +178,6 @@ Page({
       wx.navigateTo({
         url: '../Visualization/Visualization',
       })
-    }, 500)
+    }, 1500)
   },
 })

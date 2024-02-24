@@ -1,12 +1,30 @@
 /* packageB/pages/Introduction/Introduction.wxss */
-
-.logo-font{
-	text-align: center;
-	font-weight: bolder;
-	font-size: 20px;
-	font-family: -apple-system,sans-serif;
-	color: rgb(91,8,195);
+.studio_container{
+  margin-top: -50rpx;
+  margin-bottom: 60rpx;
 }
+
+.title_font{
+  margin-left: 1em;
+  font-size: 13px;
+  font-weight: bolder;
+  word-break: break-all;
+  margin-bottom: 20rpx;
+}
+
+.grid_font_main{
+  color: #646566;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.grid_font{
+  margin-top: 8px;
+  color: #646566;
+  font-size: 10px;
+  word-break: break-all;
+}
+
 // 地球样式
 .earth-container{
 width: 100%;
@@ -15,6 +33,7 @@ background-color: white;
 display: flex;
 justify-content: center;
 align-items: center;
+scale: 0.8;
 }
 
 .section-banner {
