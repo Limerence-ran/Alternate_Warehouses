@@ -55,7 +55,7 @@ Component({
         })
       } else if (index == 2) {
         wx.redirectTo({
-          url: '/packageA/pages/C_resume/C_resume'
+          url: '/packageB/pages/C_resume/C_resume'
         })
       }
     }
