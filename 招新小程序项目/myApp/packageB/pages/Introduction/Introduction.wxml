@@ -91,10 +91,10 @@
 <view style="width: 100%;margin-top: -65px;">
 	<swiper style="width:100%;height:170rpx;margin:auto;" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}" >
 		<swiper-item>
-			<image src="../../../utils/photos/65th.png" style="width:100%;height:100%;background-size:100% 100%;background-repeat: no-repeat;image-rendering: crisp-edges;" mode="" />
+			<image src="./image/65th.png" style="width:100%;height:100%;background-size:100% 100%;background-repeat: no-repeat;image-rendering: crisp-edges;" mode="" />
 		</swiper-item>
 		<swiper-item>
-			<image src="../../../utils/photos/QGcamp.png" style="width:100%;height:100%;background-size:100% 100%;background-repeat: no-repeat;image-rendering: crisp-edges;" mode="" />
+			<image src="./image/QGcamp.png" style="width:100%;height:100%;background-size:100% 100%;background-repeat: no-repeat;image-rendering: crisp-edges;" mode="" />
 		</swiper-item>
 	</swiper>
 </view>

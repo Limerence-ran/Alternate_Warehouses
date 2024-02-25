@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    wssInitInfo: app.globalData.wssInitInfo || ''
+    wssInitInfo: app.globalData.wssInitInfo || '',
+    identity: app.globalData.identity
   },
 
   /**
@@ -81,12 +82,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-  },
+  onShareAppMessage() {},
 
   /**
- * @description 团队介绍页跳转
- */
+   * @description 团队介绍页跳转
+   */
   goToIntroduction() {
     setTimeout(() => {
       wx.navigateTo({
@@ -95,10 +95,13 @@ Page({
     }, 500)
   },
   /**
- * @description 简历信息页跳转
- */
+   * @description 简历信息页跳转
+   */
   goToC_resume: async function () {
-    const { code, message } = this.data.wssInitInfo
+    const {
+      code,
+      message
+    } = this.data.wssInitInfo
     app.globalData.activeIndex = 2;
 
     setTimeout(() => {
@@ -110,12 +113,15 @@ Page({
 
   },
   /**
- * @description 面试预约页跳转
- */
+   * @description 面试预约页跳转
+   */
   goToC_bookInterview() {
-    const { code, message } = app.globalData.wssInitInfo
+    const {
+      code,
+      message
+    } = app.globalData.wssInitInfo
     console.log(code)
-    if (code == 103) {//未预约
+    if (code == 103) { //未预约
       app.globalData.activeIndex = 0;
       setTimeout(() => {
         wx.navigateTo({
@@ -127,10 +133,13 @@ Page({
     }
   },
   /**
- * @description 面试签到页跳转
- */
+   * @description 面试签到页跳转
+   */
   goToC_signIn() {
-    const { code, message } = app.globalData.wssInitInfo
+    const {
+      code,
+      message
+    } = app.globalData.wssInitInfo
     if (code == 104) { //未签到
       app.globalData.activeIndex = 0;
       setTimeout(() => {
@@ -143,10 +152,13 @@ Page({
     }
   },
   /**
- * @description 面试队列页跳转
- */
+   * @description 面试队列页跳转
+   */
   goToC_queue() {
-    const { code, message } = app.globalData.wssInitInfo
+    const {
+      code,
+      message
+    } = app.globalData.wssInitInfo
     console.log(code)
     if (code == 105 || code == 102 || code == 103 || code == 104) {
       PopUp.Toast(message, 2, 1500)
@@ -160,8 +172,8 @@ Page({
     }
   },
   /**
-  * @description 面试结果页跳转
-  */
+   * @description 面试结果页跳转
+   */
   goToC_score() {
     app.globalData.activeIndex = 1;
     setTimeout(() => {
@@ -170,14 +182,38 @@ Page({
       })
     }, 500)
   },
+
+  /*管理端*/
   /**
- * @description 数据可视化页跳转
- */
+   * @description 面试创建页跳转
+   */
+  goToB_createInterview() {
+    setTimeout(() => {
+      wx.navigateTo({
+        url: '../../../packageA/pages/B_createInterview/B_createInterview',
+      })
+    }, 500)
+  },
+
+  /**
+   * @description 面试管理化页跳转
+   */
+  goToB_viewQueue() {
+    setTimeout(() => {
+      wx.navigateTo({
+        url: '../../../packageA/pages/B_viewQueue/B_viewQueue',
+      })
+    }, 500)
+  },
+
+  /**
+   * @description 数据可视化页跳转
+   */
   goToVisualization() {
     setTimeout(() => {
       wx.navigateTo({
         url: '../Visualization/Visualization',
       })
-    }, 1500)
+    }, 500)
   },
 })
