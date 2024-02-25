@@ -31,7 +31,7 @@
   </view>
 </view>
 <!-- 主页面显示内容 -->
-<view hidden="{{!loadingComplete}}">
+<view hidden="{{!loadingComplete}}" style="overflow: hidden;">
   <!-- 顶部tab栏 -->
   <titletabbar style="width: 100%;padding: 0;margin: 0;" contentRoute='home'></titletabbar>
   <!-- 主体页面 -->
@@ -208,7 +208,7 @@
       </van-divider>
     </view>
     <!-- 首页页脚 -->
-    <view class="footer-content" style="padding-top: 70px;">
+    <view class="footer-content" style="padding-top: 70px;margin-bottom: 10px;">
       <!-- 发射按钮 -->
       <view style="padding: 100px 0;">
         <view class="button" bindtap="handleTap">

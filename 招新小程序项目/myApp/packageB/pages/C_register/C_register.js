@@ -154,7 +154,7 @@ Page({
       gender: this.data.indexSex,
       flunk: this.data.indexMajor, //0挂科，1没挂
       intention: parseInt(this.data.indexDir) + 1,
-      college: this.data.indexAcademy,
+      college: this.data.arrayAcademy[this.data.indexAcademy],
     };
     this.setData({
       ...data

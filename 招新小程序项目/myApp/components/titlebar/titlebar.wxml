@@ -3,7 +3,7 @@
 	<!-- 便捷工具台 -->
 	<view class="utils">
 		<block wx:if="{{contentRoute==='home'}}">
-			<van-icon name="apps-o" size="30px" bind:tap="menu" />
+			<van-icon name="guide-o" size="30px" bind:tap="gotoHub" />
 		</block>
 		<block wx:elif="{{contentRoute==='hub'}}">
 		

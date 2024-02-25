@@ -2,6 +2,7 @@
   "usingComponents": {
     "titletabbar": "../../../components/titlebar/titlebar",
     "van-grid": "@vant/weapp/grid/index",
+    "van-icon": "@vant/weapp/icon/index",
     "van-grid-item": "@vant/weapp/grid-item/index"
   },
   "navigationStyle": "custom"
