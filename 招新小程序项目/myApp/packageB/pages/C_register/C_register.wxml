@@ -1,7 +1,7 @@
 <!--pages/C_register/C_register.wxml-->
-<van-skeleton title row="3" wx:if="{{!isHide}}"/>
+<van-skeleton  title row="7" wx:if="{{isHide}}"/>
 <!-- 数据内容 -->
-<form catchsubmit="formSubmit" catchreset="formReset" wx:else="">
+<form catchsubmit="formSubmit" catchreset="formReset" wx:if="{{!isHide}}">
   <view class="box">
     <view class="level nav">
       <view class="dot"></view>

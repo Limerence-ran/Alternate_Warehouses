@@ -222,7 +222,7 @@ Page({
       console.log('response', response);
       let data = response.data;
       this.setData({
-        isHide: data
+        isHide: !this.data.isHide
       });
     } catch (error) {
       // 处理请求失败的情况
@@ -244,6 +244,9 @@ Page({
         let result = await PopUp.Confirm('已经报名成功，是否重新填报报名信息？');
         if (result) {
           // on confirm
+          this.setData({
+            isHide: !this.data.isHide
+          });
         } else {
           setTimeout(() => {
             wx.redirectTo({

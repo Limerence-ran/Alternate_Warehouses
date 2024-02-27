@@ -8,10 +8,12 @@ Page({
     socket: null,
     type: '', //init初始化，flush刷新人数，signIn 签到 
     response: {},
-    name:'',
-    place:'',
-    mySigned:'',//我的派号
-    now:''//现在面到的序号
+    name: '',
+    place: '',
+    mySigned: '', //我的派号
+    now: '', //现在面到的序号
+    start: '', //面试开始时间
+    end: '' //面试结束时间
   },
 
   /*生命周期函数--监听页面加载*/
@@ -19,41 +21,51 @@ Page({
     wx.setNavigationBarTitle({
       title: 'QG面试',
     });
-   try {
-    socket.request('flush', 'flush', (res) => {
-      console.log('flush',res)
-      const result = JSON.parse(res);
-      if(result.code == 200){
+    try {
+      socket.request('flush', 'flush', (res) => {
+        console.log('flush', res)
+        const result = JSON.parse(res);
+        if (result.code == 200) {
 
-        const {groupName,name,interviewPeriodVos} = result.data;
-        this.setData({
-          name:name,
-          place:interviewPeriodVos[0].place,
-          mySigned:interviewPeriodVos[0].mySigned,
-          now:interviewPeriodVos[0].now
-        })
-      }else if(result.code == 205){
-       PopUp.Toast(result.message,2,2000)
-      }else if(result.code == 401){
-        PopUp.Toast(result.message,2,2000)
-        wx.removeStorageSync('platformToken')
-        setTimeout(()=>{
-        wx.redirectTo({
-          url: '/pages/index/index',
-        })
-        },2000)
-      }else{
-        PopUp.Toast(result.message,2,2000)
-      }
+          const {
+            groupName,
+            name,
+            place,
+            mySigned,
+            now,
+            start,
+            end,
+          } = result.data;
+          this.setData({
+            name: name,
+            place: place,
+            mySigned: mySigned,
+            now: now,
+            start: start,
+            end: end,
+          })
+        } else if (result.code == 205) {
+          PopUp.Toast(result.message, 2, 2000)
+        } else if (result.code == 401) {
+          PopUp.Toast(result.message, 2, 2000)
+          wx.removeStorageSync('platformToken')
+          setTimeout(() => {
+            wx.redirectTo({
+              url: '/pages/index/index',
+            })
+          }, 2000)
+        } else {
+          PopUp.Toast(result.message, 2, 2000)
+        }
+      });
+    } catch {
+      console.log('无法更新')
+    }
+    // 注册消息监听器
+    socket.registerOnMessageCallback(function (response) {
+      // 处理收到的消息
+      console.log('Received message:', response);
     });
-  } catch {
-    console.log('无法更新')
-  }
-// 注册消息监听器
-socket.registerOnMessageCallback(function(response) {
-  // 处理收到的消息
-  console.log('Received message:', response);
-});
 
   },
 
@@ -62,17 +74,18 @@ socket.registerOnMessageCallback(function(response) {
       socket.request('flush', 'flush', (res) => {
         const result = JSON.parse(res);
         console.log(result)
-        if(result.code == 200){
-          const interviewPeriodVos = result.data.interviewPeriodVos;
+        if (result.code == 200) {
+          const now = result.data.now;
           this.setData({
-            now:interviewPeriodVos[0].now
+            now: now
           })
-          PopUp.Toast(result.message,1,2000);
+          console.log(result);
+          PopUp.Toast(result.message, 1, 2000);
 
-        }else if(result.code == 205){
-          PopUp.Toast(result.message,2,2000)
-        }else{
-          PopUp.Toast('更新失败',2,2000)
+        } else if (result.code == 205) {
+          PopUp.Toast(result.message, 2, 2000)
+        } else {
+          PopUp.Toast('更新失败', 2, 2000)
         }
         console.log('收到更新的信息', res);
       });

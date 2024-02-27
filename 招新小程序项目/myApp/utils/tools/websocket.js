@@ -89,7 +89,7 @@ const connectWebSocket = function (onMessageCallback) {
     socketTask.onClose(function (res) {
       console.log('WebSocket连接已关闭', res);
       // 特殊情况一：切屏断开
-      if (res.reason === 'interrupted') {
+      if (res.reason !== "abnormal closure") {
         // 进行重连
         setTimeout(() => {
           reconnect(); // 执行重新连接操作

@@ -1,10 +1,12 @@
 // pages/C_bookInterview/C_bookInterview.js
 import Dialog from '@vant/weapp/dialog/dialog';
 import PopUp from '../../../utils/tools/PopUp'
-import { NewerInterview } from '../../../utils/request/api'
+import {
+  NewerInterview
+} from '../../../utils/request/api'
 import formatTimestamp from '../../../utils/tools/time'
 import socket from '../../../utils/tools/websocket'
-const app =getApp()
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -12,14 +14,13 @@ Page({
   data: {
     isStart: false,
     active: 0,
-    name:'',
-    groupName:'',
-    place:'',
-    total:'',//当前场次预约面试的人数
-    timeArr: [
-    ],
-    selected: -1,  // 初始化为-1，表示无选中项
-    avatarUrl:app.globalData.avatarUrl
+    name: '',
+    groupName: '',
+    place: '',
+    total: '', //当前场次预约面试的人数
+    timeArr: [],
+    selected: -1, // 初始化为-1，表示无选中项
+    avatarUrl: app.globalData.avatarUrl
   },
   onChange(event) {
     console.log(event)
@@ -31,30 +32,31 @@ Page({
     //   icon: 'none',
     // });
   },
-  onOpen:async function(event) {
+  onOpen: async function (event) {
 
   },
-  
-  onClose() {
-  },
+
+  onClose() {},
   Select: async function (event) {
     console.log('event', event)
-    const { index } = event.currentTarget.dataset;
-  const id = this.data.timeArr[index].id;
-  const time = this.data.timeArr[index].start + ' 到 ' + this.data.timeArr[index].end;
-  const place = this.data.timeArr[index].place;
-  const total = this.data.timeArr[index].total;
-  const msg = '时间：' + time + '\n地点：' + place + '\n已预约面试的人数：' + total;
+    const {
+      index
+    } = event.currentTarget.dataset;
+    const id = this.data.timeArr[index].id;
+    const time = this.data.timeArr[index].start + ' 到 ' + this.data.timeArr[index].end;
+    const place = this.data.timeArr[index].place;
+    const total = this.data.timeArr[index].total;
+    const msg = '时间：' + time + '\n地点：' + place + '\n已预约面试的人数：' + total;
     console.log(time)
     Dialog.confirm({
-      title: '确认预约场次' + id + '?',
-      message: msg,
-      messageAlign: 'left',
-    })
+        title: '确认预约场次' + id + '?',
+        message: msg,
+        messageAlign: 'left',
+      })
       .then(async () => {
         // on confirm
         try {
-          const response = await NewerInterview.bookTime(id,false);
+          const response = await NewerInterview.bookTime(id, false);
           console.log('response', response);
           if (response.code == 200) {
             setTimeout(() => {
@@ -65,7 +67,7 @@ Page({
                 url: '../C_signIn/C_signIn'
               })
             }, 2000);
-          }else if(response.code == 205){
+          } else if (response.code == 205) {
             setTimeout(() => {
               PopUp.Toast(response.message, 2, 1500);
             }, 500);
@@ -74,11 +76,11 @@ Page({
                 url: '../C_signIn/C_signIn'
               })
             }, 2000);
-          }else if(response.code == 107){
+          } else if (response.code == 107) {
             setTimeout(() => {
               PopUp.Toast(response.message, 3, 1500);
             }, 500);
-          }else if(response.code == 108){
+          } else if (response.code == 108) {
             //重复预约
             setTimeout(() => {
               PopUp.Toast(response.message, 2, 1500);
@@ -88,7 +90,7 @@ Page({
                 url: '../C_signIn/C_signIn'
               })
             }, 2000);
-          }else if(response.code == 401){
+          } else if (response.code == 401) {
             //登录失效
             setTimeout(() => {
               PopUp.Toast(response.message, 3, 500);
@@ -99,8 +101,8 @@ Page({
                 url: '/pages/index/index'
               })
             }, 1000);
-          }else{
-              PopUp.Toast(response.message, 2, 1500);
+          } else {
+            PopUp.Toast(response.message, 2, 1500);
           }
         } catch {
           PopUp.Toast('预约失败！', 2, 1500);
@@ -121,21 +123,34 @@ Page({
     try {
       const response = await NewerInterview.getInterviewInfo();
       if (response.code === 200) {
-        const {data,message} = response;
-        const {name,groupName,interviewPeriodVos} = data;
+        const {
+          data,
+          message
+        } = response;
+        const {
+          name,
+          groupName,
+          interviewPeriodVos
+        } = data;
         const Array = interviewPeriodVos.map(item => {
           const startTime = formatTimestamp(item.start);
           const endDay = formatTimestamp(item.end);
           const endTime = endDay.slice(5);
-          return { id: item.id,start:startTime,end:endTime,total:item.total,place:item.place}
+          return {
+            id: item.id,
+            start: startTime,
+            end: endTime,
+            total: item.total,
+            place: item.place
+          }
         });
         this.setData({
-          name:name,
-          groupName:groupName,
-          timeArr:Array
+          name: name,
+          groupName: groupName,
+          timeArr: Array
         })
         // console.log(Array)
-      }else if(response.code == 401){
+      } else if (response.code == 401) {
         //登录失效
         wx.removeStorageSync('platformToken')
         setTimeout(() => {

@@ -4,28 +4,30 @@ import {
 } from "../../../utils/request/api";
 import socket from '../../../utils/tools/websocket'
 import QQMapWX from '../../../utils/libs/qqmap-wx-jssdk'
-import distance from '../../../utils/tools/Haversine'//判断距离是否超过1千米
+import distance from '../../../utils/tools/Haversine' //判断距离是否超过1千米
 const app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    place:'',
-    groupName:'',
-    name:'',
+    place: '',
+    groupName: '',
+    name: '',
     steps: [{
-      text: '定位成功  2023-03-11 12：30',
-      desc: '广东工业大学工学一号馆',
-    },
-    {
-      text: '签到成功 2023-03-11 12：30',
-      desc: '',
-    },
+        text: '定位成功  2023-03-11 12：30',
+        desc: '广东工业大学工学一号馆',
+      },
+      {
+        text: '签到成功 2023-03-11 12：30',
+        desc: '',
+      },
     ],
     latitude: 0,
     longitude: 0,
-    address:''
+    address: '',
+    start:'',
+    end:''
   },
   currentTime: function () {
     var now = new Date();
@@ -57,7 +59,8 @@ Page({
           console.log(res)
           that.setData({
             latitude: res.latitude,
-            longitude: res.longitude
+            longitude: res.longitude,
+
           });
           var qqmapsdk = new QQMapWX({
             key: 'MWRBZ-DFZCZ-JPBXP-ZRVVD-6WBHE-SFBZ4'
@@ -74,17 +77,17 @@ Page({
               console.log('成功', res);
               var standardAddress = res.result.formatted_addresses;
               var address = standardAddress.standard_address;
-              console.log(address);//获取到了地址信息
+              console.log(address); //获取到了地址信息
               // 获取用户地址信息成功后，可以将目标地点的经纬度信息传给下一步的搜索方法
-              let time =that.currentTime();
+              let time = that.currentTime();
               that.setData({
                 steps: [
-                  ...that.data.steps,
                   {
                     text: '重新定位成功 ' + time,
                     desc: address
-                  }
-                ]
+                  },
+                  ...that.data.steps
+                ],
               });
             },
             fail: function (res) {
@@ -95,92 +98,100 @@ Page({
       });
 
     }, 2500)
-   
+
   },
   signUp: async function () {
     //简化代码
     const result = await PopUp.Confirm('是否确认签到？');
-    const that =this;
-        if (result) {
+    const that = this;
+    if (result) {
       console.log('签到？', result);
-      try {
-        socket.request('signIn', 'signIn', (res) => {
-          console.log('收到更新的信息', res);
-          const response = JSON.parse(res);
-          let time = this.currentTime();
-          if (response.code === 200) {
-            PopUp.Toast(response.message, 1, 2000);
-            this.setData({
-              steps: [
-                ...this.data.steps,
-                {
-                  text: '签到成功 ' + time,
-                  desc:this.data.address
-                }
-              ]
+      /**
+       * @description 订阅消息模板授权
+       */
+      wx.requestSubscribeMessage({
+        tmplIds: ['LGKdqAx3HKjLYXYPA4L1FGGuauHTBcOc1E-Ku16Go6k'],
+        success(errMsg) {
+          console.log(errMsg);
+          try {
+            socket.request('signIn', 'signIn', (res) => {
+              console.log('收到更新的信息', res);
+              const response = JSON.parse(res);
+              let time = that.currentTime();
+              if (response.code === 200) {
+                PopUp.Toast(response.message, 1, 2000);
+                that.setData({
+                  steps: [
+                    ...that.data.steps,
+                    {
+                      text: '签到成功 ' + time,
+                      desc: that.data.address
+                    }
+                  ]
+                });
+                setTimeout(() => {
+                  wx.redirectTo({
+                    url: '../C_queue/C_queue'
+                  })
+                }, 3000)
+              } else if (response.code === 112) {
+                PopUp.Toast(response.message, 2, 2000);
+                that.setData({
+                  steps: [
+                    ...that.data.steps,
+                    {
+                      text: ' 签到失败 ' + time,
+                    }
+                  ]
+                });
+              } else if (response.code === 109) {
+                PopUp.Toast(response.message, 2, 2000)
+                that.setData({
+                  steps: [
+                    ...that.data.steps,
+                    {
+                      text: response.message + ' ' + time,
+                    }
+                  ]
+                });
+                setTimeout(() => {
+                  wx.redirectTo({
+                    url: '../C_queue/C_queue',
+                  })
+                }, 3000)
+              } else if (response.code === 103) {
+                PopUp.Toast(response.message, 2, 2000)
+                that.setData({
+                  steps: [
+                    ...that.data.steps,
+                    {
+                      text: response.message + ' ' + time,
+                    }
+                  ]
+                });
+              } else {
+                PopUp.Toast(response.message, 2, 2000)
+                that.setData({
+                  steps: [
+                    ...that.data.steps,
+                    {
+                      text: response.message + ' ' + time,
+                    }
+                  ]
+                });
+              }
             });
-            setTimeout(() => {
-              wx.redirectTo({
-                url: '../C_queue/C_queue'
-              })
-            }, 3000)
-          } else if (response.code === 205) {
-            PopUp.Toast(response.message, 2, 2000);
-            this.setData({
-              steps: [
-                ...this.data.steps,
-                {
-                  text: ' 签到失败 ' + time,
-                }
-              ]
-            });
-            setTimeout(()=>{
-              wx.redirectTo({
-                url: '../C_queue/C_queue',
-              })
-               },3000)
-          } else if (response.code === 109) {
-            PopUp.Toast(response.message, 2, 2000)
-            this.setData({
-              steps: [
-                ...this.data.steps,
-                {
-                  text:response.message + ' ' + time,
-                }
-              ]
-            });
-            setTimeout(()=>{
-           wx.redirectTo({
-             url: '../C_queue/C_queue',
-           })
-            },3000)
-          }else if(response.code === 103){
-            PopUp.Toast(response.message,2,2000)
-            this.setData({
-              steps: [
-                ...this.data.steps,
-                {
-                  text:response.message + ' ' + time,
-                }
-              ]
-            });
-          }else {
-            PopUp.Toast(response.message,2,2000)
-            this.setData({
-              steps: [
-                ...this.data.steps,
-                {
-                  text:response.message + ' ' + time,
-                }
-              ]
-            });
+          } catch (error) {
+            // 处理请求失败的情况
+            console.error('请求失败:', error);
+            PopUp.Toast('请求失败', 3, 2000);
           }
-        });
-      } catch (error) {
-        // 处理请求失败的情况
-        console.error('请求失败:', error);
-        PopUp.Toast('请求失败', 3, 2000);
-      }
+        },
+        fail(errMsg, errCode) {
+          console.log(errCode, errMsg);
+          PopUp.Toast('操作取消', 3, 2000);
+        }
+      })
     } else {
       PopUp.Toast('操作取消', 3, 2000);
     }
@@ -195,11 +206,11 @@ Page({
         console.log('response', response);
         if (response.code === 200) {
           PopUp.Toast(response.message, 1, 2000);
-          setTimeout(()=>{
-          wx.navigateTo({
-            url: '/packageB/pages/C_bookInterview/C_bookInterview',
-          })
-          },2000)
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '/packageB/pages/C_bookInterview/C_bookInterview',
+            })
+          }, 2000)
         } else {
           PopUp.Toast(response.message, 3, 2000);
         }
@@ -215,40 +226,44 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // wx.setNavigationBarTitle({
-    //   title: 'QG面试',
-    // });
-   //ws
-   try {
-    socket.request('flush', 'flush', (res) => {
-      console.log('flush',res)
-      const result = JSON.parse(res);
-      if(result.code == 200){
-        app.globalData.freshmanInfo = result.data;
-        console.log(app.globalData.freshmanInfo);
-        const {groupName,name,interviewPeriodVos} = result.data;
-        this.setData({
-          place:interviewPeriodVos[0].place,
-          groupName:groupName,
-          name:name,
-        })
-      }else if(result.code == 205){
-        PopUp.Toast(result.message,2,2000)
-      }else if(result.code == 401){
-        PopUp.Toast(result.message,2,500)
-         wx.removeStorageSync('platformToken')
-        setTimeout(()=>{
-        wx.redirectTo({
-          url: '/pages/index/index',
-        })
-        },1000)
-      }else{
-        PopUp.Toast(result.message,2,2000)
-      }
-    });
-  } catch {
-    console.log('无法更新')
-  }
+    try {
+      socket.request('flush', 'flush', (res) => {
+        console.log('flush', res)
+        const result = JSON.parse(res);
+        if (result.code == 200) {
+          app.globalData.freshmanInfo = result.data;
+          console.log(app.globalData.freshmanInfo);
+          const {
+            groupName,
+            name,
+            place,
+            start,
+            end
+          } = result.data;
+          this.setData({
+            place: place,
+            groupName: groupName,
+            name: name,
+            start:start,
+            end:end
+          })
+        } else if (result.code == 205) {
+          PopUp.Toast(result.message, 2, 2000)
+        } else if (result.code == 401) {
+          PopUp.Toast(result.message, 2, 500)
+          wx.removeStorageSync('platformToken')
+          setTimeout(() => {
+            wx.redirectTo({
+              url: '/pages/index/index',
+            })
+          }, 1000)
+        } else {
+          PopUp.Toast(result.message, 2, 2000)
+        }
+      });
+    } catch {
+      console.log('无法更新')
+    }
     const that = this;
     //定位
     wx.getLocation({
@@ -273,16 +288,14 @@ Page({
             console.log('成功', res);
             var standardAddress = res.result.formatted_addresses;
             var address = standardAddress.standard_address;
-            console.log(address);//获取到了地址信息
+            console.log(address); //获取到了地址信息
             let time = that.currentTime();
             that.setData({
-              address:address,
-              steps: [
-                {
-                  text: '定位成功 ' + time,
-                  desc: address
-                }
-              ]
+              address: address,
+              steps: [{
+                text: '定位成功 ' + time,
+                desc: address
+              }]
             });
           },
           fail: function (res) {

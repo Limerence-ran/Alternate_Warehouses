@@ -97,7 +97,7 @@ Page({
   /**
    * @description 简历信息页跳转
    */
-  goToC_resume: async function () {
+  goToC_register: async function () {
     const {
       code,
       message
@@ -128,8 +128,13 @@ Page({
           url: '../C_bookInterview/C_bookInterview',
         })
       }, 500)
+    } else if (code == 102) {
+      PopUp.Toast('请先报名', 2, 1500)
+    } else if (code == 200) {
+      PopUp.Toast("已完成预约", 2, 1500)
     } else {
-      PopUp.Toast('你已经约过了！', 2, 1500)
+      console.log(code);
+      PopUp.Toast('请检查网络', 2, 1500)
     }
   },
   /**
@@ -147,7 +152,10 @@ Page({
           url: '../C_signIn/C_signIn',
         })
       }, 500)
+    } else if (code == 200) {
+      PopUp.Toast(message, 2, 1500)
     } else {
+      console.log(code);
       PopUp.Toast(message, 2, 1500)
     }
   },

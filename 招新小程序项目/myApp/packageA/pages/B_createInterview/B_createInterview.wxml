@@ -1,3 +1,32 @@
 <!--packageA/pages/B_createInterview/B_createInterview.wxml-->
 <titletabbar></titletabbar>
-<text>packageA/pages/B_createInterview/B_createInterview.wxml</text>
+<view style="width: 100%;height: 140px;">
+    <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+</view>
+
+<!-- 场次卡片 -->
+<view class="card_container" wx:for="{{7}}">
+    <view class="cookie-card">
+        <span class="title">🍪 前端组 面试专场</span>
+        <view style="float:right;width: 20px;height: 20px;">
+            <view class="spinner"></view>
+        </view>
+       
+        <van-divider />
+        <view class="description1">面试时间 : <span class="special_word"> 2024-01-24 22:11至2024-01-30 22:11</span></view>
+        <view class="description2">面试地点 : <span class="special_word"> 东十二楼</span></view>
+        <view class="actions">
+            <view>
+                <van-icon name="fire" color="red" />
+                <span class="data">3人/场 | 3人已报名</span>
+            </view>
+            <view style="display: flex;">
+                <van-button size="mini" type="primary">开放预约</van-button>
+                <span style="display: inline-block;width: 20rpx;"></span>
+                <van-button size="mini" type="info">取消场次</van-button>
+            </view>
+
+        </view>
+    </view>
+</view>
+

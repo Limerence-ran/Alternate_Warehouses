@@ -37,8 +37,8 @@
   background-color: #fff;
   border-radius: 50%;
   /* 设置动画过度事件以及延迟 */
-  transition: 0.5s;
-  transition-delay: 0s;
+  /* transition: 0.5s;
+  transition-delay: 0s; */
   
 }
 .nav-item .circle::before{
@@ -52,15 +52,15 @@
         background: #5b08c3;
         border-radius: 50%;
         filter: blur(40rpx);
-        transition: 0.5s;
         opacity: 0.5;
-        transition-delay: 0.25s;
+        /* transition: 0.5s;
+        transition-delay: 0.25s; */
 }
 .nav-item.active {
   color: #5b08c3;
   /* color:  orange; */
   transform: translateY(-27rpx);
-  transition-delay: 0.15s;
+  /* transition-delay: 0.15s; */
 }
 
 .iconfont {
@@ -79,7 +79,7 @@
   background-color: rgba(250, 250, 250);
   border-radius: 50%;
   z-index: 1;
-  transition: 0.5s;
+  /* transition: 0.5s; */
 }
 
 /* 设置左边半弧 */

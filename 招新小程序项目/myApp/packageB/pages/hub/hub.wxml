@@ -54,7 +54,7 @@
     </span>
   </view>
   <!-- 新生端可见模块 -->
-  <block wx:if="{{identity==='User'}}">
+  <block wx:if="{{identity!=='Admin'}}">
     <!-- 第二张 -->
     <view class="module_name" style="color: #DA4D1D;">
       <image src="../../../utils/svg/resume.svg" mode="" /> | 面试报名
@@ -277,7 +277,7 @@
     </view>
   </block>
   <!-- 管理员权限可见模块 -->
-  <block wx:if="{{identity==='User'}}">
+  <block wx:if="{{identity==='Admin'}}">
     <!-- 第七张 -->
     <view class="module_name" style="color: #DA4D1D;">
       <image src="../../../utils/svg/create.svg" mode="" /> | 面试创建

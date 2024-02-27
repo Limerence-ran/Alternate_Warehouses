@@ -51,6 +51,27 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageA/pages/B_createInterview/B_createInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/C_score/C_score",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

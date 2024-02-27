@@ -2,8 +2,7 @@
   "pages": [
     "pages/index/index"
   ],
-  "subpackages": [
-    {
+  "subpackages": [{
       "root": "packageA",
       "name": "pack1",
       "pages": [
@@ -31,8 +30,13 @@
     "pages/index/index": {
       "network": "all",
       "packages": [
-        "packageA",
         "packageB"
+      ]
+    },
+    "packageB/pages/hub/hub": {
+      "network": "all",
+      "packages": [
+        "packageA"
       ]
     }
   },

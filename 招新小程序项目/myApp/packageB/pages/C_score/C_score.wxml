@@ -21,7 +21,6 @@
               <picker class="right" bindchange="bindPickerChange" value="{{indexTurn}}" range="{{arrayTurn}}">
                 <van-icon name="arrow" class="triangle" />
               </picker>
-             
             </view>
 
           </view>
@@ -43,7 +42,6 @@
     </view>
   </view>
 </view>
-
 <view class="buttombar">
   <buttombar></buttombar>
 </view>
