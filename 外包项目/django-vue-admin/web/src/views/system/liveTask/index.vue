@@ -33,7 +33,7 @@ import { d2CrudPlus } from "d2-crud-plus";
 import log from "@/libs/util.log";
 
 export default {
-  name: "video",
+  name: "liveTask",
   mixins: [d2CrudPlus.crud],
   data() {
     return {};

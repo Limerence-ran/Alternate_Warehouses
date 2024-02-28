@@ -230,7 +230,7 @@ export default {
         }, 300);
         //处理视频播放错误的语法
         flvPlayer.value.on("error", () => {
-          this.$message.error(`视频加载失败，请稍候重试！`);
+          this.$message.error(`直播加载失败，请稍候重试！`);
           return false;
         });
       }

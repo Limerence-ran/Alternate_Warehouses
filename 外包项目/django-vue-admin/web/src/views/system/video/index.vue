@@ -119,6 +119,8 @@ export default {
     //打开更新表单功能
     clickedit(row) {
       this.form.id = row.row.id;
+      this.form.name = row.row.name;
+      this.form.description = row.row.description;
       //更改字段启动弹框
       this.dialogFormVisible = true;
       //返回数据处理
@@ -128,6 +130,14 @@ export default {
     },
     //提交更新表单功能
     async doRowRefresh() {
+      // 检查表单每一项都不为空
+      if (
+        this.form.name == "" ||
+        this.form.description == "" ||
+        this.form.dept_belong_id == ""
+      ) {
+        return this.$message.error("表单不能为空");
+      }
       this.dialogFormVisible = false;
       this.form.dept_belong_id = this.form.dept_belong_id.pop();
       return new Promise((res, rej) => {

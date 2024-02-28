@@ -479,13 +479,13 @@ export const crudOptions = (vm, type = "nr") => {
         {
           text: "片段导出",
           show(index, row) {
-            if (row.url && row.id) {
-              return true;
-            }
-            return false;
+            return true;
           },
-          disabled() {
+          disabled(index, row) {
             //判断菜单按钮权限
+            if (row.id && row.url) {
+              return false;
+            }
             return true;
           },
           type: "warning",

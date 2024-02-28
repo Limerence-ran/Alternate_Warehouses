@@ -54,7 +54,10 @@ export const crudOptions = (vm) => {
           },
           disabled(index, row) {
             //判断菜单按钮权限
-            if (row) return;
+            if (row.task_status === "正在执行") {
+              return false;
+            }
+            return true;
           },
           type: "danger",
           size: "small",
@@ -118,39 +121,34 @@ export const crudOptions = (vm) => {
         form: {
           disabled: true,
         },
+        //查找权限
+        search: {
+          disabled: false,
+        },
         valueBuilder(row, key) {
           switch (row.task_type) {
             // 视频编码检测
-            case "detect_video_codec":
-              row.task_type = "视频编码检测";
+            case "detect_live_codec":
+              row.task_type = "直播编码检测";
               break;
-            // 视频
-            case "video_eval":
-              row.task_type = "视频检测";
-              break;
-            case "ref_video_eval":
-              row.task_type = "有参考检测";
-              break;
-            case "nr_video_eval":
-              row.task_type = "无参考检测";
-              break;
-            case "convert_video_codec":
-              row.task_type = "转码检测";
+            case "nr_live_eval":
+              row.task_type = "直播检测";
               break;
             default:
-              row.task_type = "/";
               break;
           }
-          row.shutter =
-            row.shutter === "detect_video_codec" ? "/" : row.shutter;
         },
       },
-      //视频ID
+      //直播ID
       {
-        title: "视频ID",
-        key: "video",
+        title: "直播ID",
+        key: "live",
         form: {
           disabled: true,
+        },
+        //查找权限
+        search: {
+          disabled: false,
         },
       },
       //任务状态
@@ -163,6 +161,10 @@ export const crudOptions = (vm) => {
         },
         form: {
           disabled: true,
+        },
+        //查找权限
+        search: {
+          disabled: false,
         },
       },
       //创建者

@@ -121,6 +121,14 @@
       :visible.sync="dialogVideoVisible"
       :width="'700px'"
     >
+      <video
+        id="my-playerDiolog"
+        class="video-js vjs-default-skin"
+        controls
+        autoplay
+        muted
+        preload="auto"
+      ></video>
       <div slot="footer" class="dialog-footer">
         <el-button @click="closeVideoDialog">取 消</el-button>
       </div>
@@ -180,11 +188,11 @@ import { crudOptions } from "./crud";
 import { d2CrudPlus } from "d2-crud-plus";
 import { traverse } from "../traverse";
 import videojs from "video.js";
-import "videojs-contrib-hls";
 import { ref } from "vue";
 import log from "@/libs/util.log";
 // 首先定义videoPlayer为null
 const videoPlayer = ref(null);
+const videoPlayerDiolog = ref(null);
 export default {
   name: "videoCheck",
   mixins: [d2CrudPlus.crud],
@@ -234,10 +242,10 @@ export default {
   },
   methods: {
     /**
-     * @description: 创建直播流播放器
+     * @description: 创建videojs播放器
      */
-    createVideo(url) {
-      videoPlayer.value = videojs("my-player", {
+    createVideoJs(url, videoPlayer, id) {
+      videoPlayer.value = videojs(id, {
         bigPlayButton: false,
         textTrackDisplay: false,
         posterImage: true,
@@ -260,9 +268,9 @@ export default {
       });
     },
     /**
-     * @description: 销毁直播流播放器
+     * @description: 销毁videojs播放器
      */
-    destroy() {
+    destroyVideoJs(videoPlayer) {
       if (videoPlayer.value) {
         videoPlayer.value.pause(); //暂停播放数据流
         videoPlayer.value.dispose(); //销毁播放器实例
@@ -448,15 +456,51 @@ export default {
     output(row) {
       // 更改字段启动弹框
       this.dialogVideoVisible = true;
-      console.log(row.row.url);
-      // 播放视频片段
+      // 创建视频播放器
+      const formatType = this.getVideoFormat(row.row.url);
+      if (formatType === "m3u8") {
+        this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
+      } else if (formatType === "mp4") {
+        setTimeout(() => {
+          const video = document.getElementById("my-playerDiolog");
+          video.src = row.row.url;
+          video.play();
+        }, 1000);
+      } else {
+        this.$message.warning("该视频格式暂不支持播放");
+      }
     },
 
     /**
      * @description: 关闭视频弹框
      */
-    closeVideoDialog() {
+    closeVideoDialog(row) {
       this.dialogVideoVisible = false;
+      // 销毁视频播放器
+      // 清除视频
+      const formatType = this.getVideoFormat(this.$route.query.url);
+      if (formatType === "m3u8") {
+        this.destroyVideoJs(videoPlayerDiolog);
+      } else if (formatType === "mp4") {
+        const video = document.getElementById("my-player");
+        video.pause();
+        video.src = "";
+      }
+    },
+
+    /**
+     * @description: 获取视频格式
+     */
+    getVideoFormat(url) {
+      // 动态分流播放m3u8以及mp4格式视频
+      // 获取最后一个`.`的位置
+      const lastIndex = url.lastIndexOf(".");
+      if (lastIndex === -1) {
+        return this.$message.warning("视频格式错误"); // 如果没有找到`.`，则返回报错
+      }
+      // 使用substring方法获取后缀名
+      const extension = url.substring(lastIndex + 1);
+      return extension;
     },
   },
 
@@ -467,7 +511,18 @@ export default {
     if (this.$route.query.type === "ref") {
       this.queryReferenceVideo();
     }
-    this.createVideo(this.$route.query.url);
+    this.videoEval();
+    // 播放视频
+    const formatType = this.getVideoFormat(this.$route.query.url);
+    if (formatType === "m3u8") {
+      this.createVideoJs(this.$route.query.url, videoPlayer, "my-player");
+    } else if (formatType === "mp4") {
+      const video = document.getElementById("my-player");
+      video.src = this.$route.query.url;
+      video.play();
+    } else {
+      this.$message.warning("该视频格式暂不支持播放");
+    }
   },
 
   /**
@@ -480,7 +535,15 @@ export default {
     if (this.stopTaskId) {
       api.stopDetectData({ id: this.stopTaskId }, this.$route.query.type);
     }
-    this.destroy();
+    // 清除视频
+    const formatType = this.getVideoFormat(this.$route.query.url);
+    if (formatType === "m3u8") {
+      this.destroyVideoJs(videoPlayer);
+    } else if (formatType === "mp4") {
+      const video = document.getElementById("my-player");
+      video.pause();
+      video.src = "";
+    }
   },
 };
 </script>
