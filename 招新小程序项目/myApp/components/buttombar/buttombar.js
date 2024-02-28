@@ -35,13 +35,13 @@ Component({
               wx.redirectTo({
                 url: '/packageB/pages/C_bookInterview/C_bookInterview'
               })
-            }, 1000)
+            }, 500)
           } else if (code == 104) { //未签到
             setTimeout(() => {
               wx.redirectTo({
                 url: '/packageB/pages/C_signIn/C_signIn'
               })
-            }, 1000)
+            }, 500)
           } else if (code == 105) { //面试已结束
             PopUp(message, 2, 1000)
           } else if (code == 200) { //已签到
@@ -49,7 +49,7 @@ Component({
               wx.redirectTo({
                 url: '/packageB/pages/C_queue/C_queue'
               })
-            }, 1000)
+            }, 500)
           } else if (code == 102) { //未报名
             PopUp(message, 2, 1000)
           }
@@ -60,7 +60,7 @@ Component({
             wx.reLaunch({
               url: '/pages/index/index',
             })
-          }, 2000)
+          }, 500)
         }
 
       } else if (index == 1) {

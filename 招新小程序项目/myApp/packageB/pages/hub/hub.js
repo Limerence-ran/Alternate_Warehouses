@@ -130,7 +130,7 @@ Page({
       }, 500)
     } else if (code == 102) {
       PopUp.Toast('请先报名', 2, 1500)
-    } else if (code == 200) {
+    } else if (code == 200||code == 104) {
       PopUp.Toast("已完成预约", 2, 1500)
     } else {
       console.log(code);
@@ -170,7 +170,7 @@ Page({
     console.log(code)
     if (code == 105 || code == 102 || code == 103 || code == 104) {
       PopUp.Toast(message, 2, 1500)
-    } else {
+    } else if(code == 200){
       app.globalData.activeIndex = 0;
       setTimeout(() => {
         wx.navigateTo({
