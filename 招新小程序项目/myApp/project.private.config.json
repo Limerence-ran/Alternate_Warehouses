@@ -4,6 +4,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "注册",
+          "pathName": "packageB/pages/C_register/C_register",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "队列",
           "pathName": "packageB/pages/C_queue/C_queue",
           "query": "",
