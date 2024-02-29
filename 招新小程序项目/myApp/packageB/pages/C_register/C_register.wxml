@@ -15,10 +15,9 @@
       <view wx:else>{{name}}</view>
     </view>
     <view class="row">
-      <view> <text class="required">*</text>性别</view>
-      <picker class="right" bindchange="bindPickerChangeSex" value="{{indexSex}}" range="{{arraySex}}" disabled="{{formSubmitted}}">
+      <view><text class="required">*</text>性别</view>
+      <picker class="right"  bindchange="bindPickerChangeSex" value="{{indexSex}}" range="{{arraySex}}" disabled="{{formSubmitted}}">
         <text>{{arraySex[indexSex]}}</text>
-        <text class="triangle">▼</text>
       </picker>
     </view>
     <view class="row">
@@ -39,7 +38,6 @@
       <view> <text class="required">*</text>学院</view>
       <picker class="right" bindchange="bindPickerChangeAcademy" value="{{indexAcademy}}" range="{{arrayAcademy}}" disabled="{{formSubmitted}}">
         <text>{{arrayAcademy[indexAcademy]}}</text>
-        <text class="triangle">▼</text>
       </picker>
     </view>
     <view class="row" >
@@ -60,14 +58,12 @@
       <view> <text class="required">*</text>意向组别</view>
       <picker class="right" bindchange="bindPickerChangeDir" value="{{indexDir}}" range="{{arrayDir}}" disabled="{{formSubmitted}}">
         <text>{{arrayDir[indexDir]}}</text>
-        <text class="triangle">▼</text>
       </picker>
     </view>
     <view class="row">
       <view> <text class="required">*</text>是否挂科</view>
       <picker class="right" bindchange="bindPickerChangeMajor" value="{{indexMajor}}" range="{{arrayMajor}}" disabled="{{formSubmitted}}">
         <text>{{arrayMajor[indexMajor]}}</text>
-        <text class="triangle">▼</text>
       </picker>
     </view>
     <view class="row">

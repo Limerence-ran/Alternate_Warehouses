@@ -1,4 +1,5 @@
 import PopUp from '../../utils/tools/PopUp'
+
 /**
  * @description 
  * @param {*} onMessageCallback 
@@ -8,7 +9,7 @@ const connectWebSocket = function (onMessageCallback) {
   let socketTask = null; // ws的连接实例
   let callbackMap = new Map(); // 用于存储每个请求对应的回调函数
   let heartbeatInterval = null; // 心跳定时器
-
+  let validtoken = false // 判断token是否过期
   /**
    *@description 发送心跳包
    */
@@ -31,9 +32,11 @@ const connectWebSocket = function (onMessageCallback) {
    * @description 开始定时发送心跳包
    */
   function startHeartbeatInterval() {
-    heartbeatInterval = setInterval(() => {
-      sendHeartbeat();
-    }, 30000); // 每30秒发送一次心跳包
+    if (heartbeatInterval === null) {
+      heartbeatInterval = setInterval(() => {
+        sendHeartbeat();
+      }, 30000); // 每30秒发送一次心跳包
+    }
   }
 
   /**
@@ -50,21 +53,24 @@ const connectWebSocket = function (onMessageCallback) {
    * @description ws建立连接 --> 调用connect函数即默认本地存储存在token记录
    */
   function connect() {
-    // 创建ws连接任务
-    socketTask = wx.connectSocket({
-      url: 'wss://qgailab.com/newer/interview',
-      header: {
-        'content-type': 'application/json',
-        'platformToken': wx.getStorageSync("platformToken")
-      },
-      //网络状态
-      success: function (res) {
-        console.log('WebSocket连接打开成功', res);
-      },
-      fail: function (res) {
-        console.log('WebSocket连接打开失败', res);
-      }
-    });
+    // 保持ws的唯一性
+    if (socketTask === null) {
+      // 尚未存在可用ws实例，创建ws连接任务
+      socketTask = wx.connectSocket({
+        url: 'wss://qgailab.com/newer/interview',
+        header: {
+          'content-type': 'application/json',
+          'platformToken': wx.getStorageSync('platformToken')
+        },
+        //网络状态
+        success: function (res) {
+          console.log('WebSocket连接打开成功', res);
+        },
+        fail: function (res) {
+          console.log('WebSocket连接打开失败', res);
+        }
+      });
+    }
 
     /**
      * @description 连接开启
@@ -72,6 +78,7 @@ const connectWebSocket = function (onMessageCallback) {
     socketTask.onOpen(function (res) {
       console.log('WebSocket已连接', res);
       socketOpen = true;
+      validtoken = true;
       // 建立连接后开始定时发送心跳包
       startHeartbeatInterval();
     });
@@ -88,16 +95,13 @@ const connectWebSocket = function (onMessageCallback) {
      */
     socketTask.onClose(function (res) {
       console.log('WebSocket连接已关闭', res);
-      // 特殊情况一：切屏断开
-      if (res.reason !== "abnormal closure") {
-        // 进行重连
-        setTimeout(() => {
-          reconnect(); // 执行重新连接操作
-        }, 2000)
+      if (res.reason !== "abnormal closure" || res.code != 1006) {
+        // 非token过期，进行重连
+        reconnect();
       } else {
         PopUp.Toast('请重新登录', 2, 2000);
-        socketOpen = false;
-        clearHeartbeatInterval()
+        close();
+        validtoken = false // token过期
         try {
           wx.removeStorageSync('platformToken');
           console.log('数据清除成功')
@@ -105,7 +109,7 @@ const connectWebSocket = function (onMessageCallback) {
           PopUp.Toast('未开放本地数据权限', 2, 2000);
           console.log('数据清除失败', e)
         };
-        // 无论是否成功都进行跳转
+        // 过期返回获取新token
         setTimeout(() => {
           wx.reLaunch({
             url: '/pages/index/index',
@@ -154,6 +158,7 @@ const connectWebSocket = function (onMessageCallback) {
     });
   }
 
+
   /**
    *@description ws发送消息
    */
@@ -164,6 +169,7 @@ const connectWebSocket = function (onMessageCallback) {
       });
     } else {
       console.log('WebSocket连接未打开');
+      reconnect()
     }
   }
 
@@ -177,11 +183,13 @@ const connectWebSocket = function (onMessageCallback) {
   }
 
   /**
-   * @description 关闭连接
+   * @description 主动关闭连接
    */
   function close() {
-    socketTask.close();
     clearHeartbeatInterval(); // 清除心跳包定时器
+    socketTask.close();
+    socketOpen = false;
+    socketTask = null;
   }
 
   /**

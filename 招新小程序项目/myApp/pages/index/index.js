@@ -16,18 +16,11 @@ Page({
    * load生命周期函数
    */
   onLoad() {
-    const logined = wx.getStorageSync('platformToken')
-    if (logined) // 登录过
-    {
-      //把新生端Token注入到当前页面
+    setTimeout(() => {
       this.setData({
-        platformToken: logined
+        platformToken: wx.getStorageSync('platformToken')
       })
-      //把新生端Token注入到全局
-      app.globalData.platformToken = logined;
-      // 连接websocket
-      socket.connect();
-    }
+    }, 1000)
   },
 
   /* @description 登录请求-获取新的token

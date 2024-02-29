@@ -16,6 +16,11 @@ App({
   },
 
   onLaunch() {
+    if (wx.getStorageSync('platformToken')!=='') // 登录过
+    {
+      // 连接websocket
+      socket.connect();
+    }
     //获取机型和胶囊信息
     this.getSystemInfomation()
   },

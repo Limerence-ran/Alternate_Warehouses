@@ -63,6 +63,7 @@ Page({
   bindPickerChangeMajor: function (e) {
     this.changePickerValue(e.detail.value, 'indexMajor');
   },
+
   bindPickerChangeAcademy: function (e) {
     this.changePickerValue(e.detail.value, 'indexAcademy');
   },
@@ -222,7 +223,7 @@ Page({
       console.log('response', response);
       let data = response.data;
       this.setData({
-        isHide: !this.data.isHide
+        isHide: data
       });
     } catch (error) {
       // 处理请求失败的情况
@@ -237,10 +238,11 @@ Page({
         this.setData({
           ...data,
           indexDir:parseInt(data.intention) - 1,
-          indexMajor:data.flunk,
-          indexAcademy:data.college,
-          indexSex:data.gender
+          indexMajor:parseInt(data.flunk),
+          indexAcademy:parseInt(data.college),
+          indexSex:parseInt(data.gender)
         })
+        console.log(this.data);
         let result = await PopUp.Confirm('已经报名成功，是否重新填报报名信息？');
         if (result) {
           // on confirm
