@@ -10,17 +10,29 @@ Page({
   data: {
     avatarUrl: app.globalData.avatarUrl, // 头像
     nickName: app.globalData.nickName, // 昵称
+    hastoken:app.globalData.hastoken,
     platformToken: '', //token
+    validtoken: false, //appjs数据监听判断完成
   },
+
   /**
-   * load生命周期函数
+   * @description load生命周期函数
    */
   onLoad() {
-    setTimeout(() => {
-      this.setData({
-        platformToken: wx.getStorageSync('platformToken')
-      })
-    }, 1000)
+    //调用页面实例方法
+    let that = this;
+    app.watch(that.watchBack, 'validtoken')
+  },
+
+  watchBack(message) {
+    console.log('监听到数据变化的值', message)
+    this.setData({
+      platformToken: wx.getStorageSync('platformToken')
+    })
+    this.setData({
+      validtoken: message
+    })
+   
   },
 
   /* @description 登录请求-获取新的token
@@ -45,10 +57,12 @@ Page({
               PopUp.Toast(response.message, 1, 2000);
               //把新生端Token注入到当前页面
               that.setData({
-                platformToken: platformToken
+                platformToken: platformToken,
+                hastoken:true,
+                validtoken:true,
               })
               //连接websocket
-              socket.connect();
+              socket.connect(app.globalData);
             } else {
               // 处理登录失败的情况
               PopUp.Toast('授权失败', 2, 2000);

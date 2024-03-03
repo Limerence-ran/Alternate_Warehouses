@@ -1,5 +1,5 @@
 import { request, requestForFormData, downloadFile } from "@/api/service";
-export const urlPrefix = "/api/live_eval_task";
+export const urlPrefix = "/api/live_eval_task/";
 export const urlStopLiveQUalityDetect = "/api/live_eval/end_nr_live_eval/";
 
 export function GetList(query) {

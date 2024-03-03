@@ -17,7 +17,8 @@ Page({
     name: '',
     groupName: '',
     place: '',
-    total: '', //当前场次预约面试的人数
+    total: '', //当前场次预约面试的上限人数
+    booked: '', //当前场次已经预约面试的人数
     timeArr: [],
     selected: -1, // 初始化为-1，表示无选中项
     avatarUrl: app.globalData.avatarUrl
@@ -27,10 +28,6 @@ Page({
     this.setData({
       active: event.detail.index,
     });
-    // wx.showToast({
-    //   title: `切换到 ${event.detail.title}`,
-    //   icon: 'none',
-    // });
   },
   onOpen: async function (event) {
 
@@ -38,7 +35,6 @@ Page({
 
   onClose() {},
   Select: async function (event) {
-    console.log('event', event)
     const {
       index
     } = event.currentTarget.dataset;
@@ -46,7 +42,8 @@ Page({
     const time = this.data.timeArr[index].start + ' 到 ' + this.data.timeArr[index].end;
     const place = this.data.timeArr[index].place;
     const total = this.data.timeArr[index].total;
-    const msg = '时间：' + time + '\n地点：' + place + '\n已预约面试的人数：' + total;
+    const booked = this.data.timeArr[index].booked;
+    const msg = '时间：' + time + '\n地点：' + place + '\n最大面试的人数：' + total + '\n已预约面试的人数：' + booked;
     console.log(time)
     Dialog.confirm({
         title: '确认预约场次' + id + '?',
@@ -117,9 +114,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    wx.setNavigationBarTitle({
-      title: '预约面试',
-    });
     try {
       const response = await NewerInterview.getInterviewInfo();
       if (response.code === 200) {
@@ -134,14 +128,14 @@ Page({
         } = data;
         const Array = interviewPeriodVos.map(item => {
           const startTime = formatTimestamp(item.start);
-          const endDay = formatTimestamp(item.end);
-          const endTime = endDay.slice(5);
+          const endTime = formatTimestamp(item.end);
           return {
             id: item.id,
             start: startTime,
             end: endTime,
             total: item.total,
-            place: item.place
+            place: item.place,
+            booked: item.booked
           }
         });
         this.setData({

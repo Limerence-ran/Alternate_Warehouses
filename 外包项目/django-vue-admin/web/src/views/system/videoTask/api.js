@@ -1,5 +1,5 @@
 import { request, requestForFormData, downloadFile } from "@/api/service";
-export const urlPrefix = "/api/video_eval_task";
+export const urlPrefix = "/api/video_eval_task/";
 export const urlStopAllQUalityDetect = "/api/video_eval/end_video_eval/";
 
 export function GetList(query) {

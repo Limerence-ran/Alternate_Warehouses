@@ -44,7 +44,6 @@
                 class="video-js vjs-default-skin"
                 controls
                 autoplay
-                muted
                 preload="auto"
               ></video>
             </div>
@@ -165,6 +164,9 @@ $width: 100%;
     height: 30vh;
   }
 }
+.video-js {
+  width: 100%;
+}
 .paramsdiv {
   flex: 0.3;
   width: 100%;
@@ -252,12 +254,26 @@ export default {
         errorDisplay: false,
         controlBar: true,
       });
-      videoPlayer.value.src([
-        {
-          src: url, //你的url地址
-          type: "application/x-mpegURL",
-        },
-      ]);
+      const formatType = this.getVideoFormat(url);
+      if (formatType === "m3u8") {
+        videoPlayer.value.src([
+          {
+            src: url, //你的url地址
+            type: "application/x-mpegURL",
+          },
+        ]);
+      } else if (formatType === "mp4") {
+        videoPlayer.value.src([
+          {
+            src: url, //你的url地址
+            type: "video/mp4",
+          },
+        ]);
+      } else {
+        this.$message.warning("该视频格式暂不支持播放");
+        return;
+      }
+
       setTimeout(function () {
         videoPlayer.value.play();
       }, 300);
@@ -457,18 +473,7 @@ export default {
       // 更改字段启动弹框
       this.dialogVideoVisible = true;
       // 创建视频播放器
-      const formatType = this.getVideoFormat(row.row.url);
-      if (formatType === "m3u8") {
-        this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
-      } else if (formatType === "mp4") {
-        setTimeout(() => {
-          const video = document.getElementById("my-playerDiolog");
-          video.src = row.row.url;
-          video.play();
-        }, 1000);
-      } else {
-        this.$message.warning("该视频格式暂不支持播放");
-      }
+      this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
     },
 
     /**
@@ -477,15 +482,7 @@ export default {
     closeVideoDialog(row) {
       this.dialogVideoVisible = false;
       // 销毁视频播放器
-      // 清除视频
-      const formatType = this.getVideoFormat(this.$route.query.url);
-      if (formatType === "m3u8") {
-        this.destroyVideoJs(videoPlayerDiolog);
-      } else if (formatType === "mp4") {
-        const video = document.getElementById("my-player");
-        video.pause();
-        video.src = "";
-      }
+      this.destroyVideoJs(videoPlayerDiolog);
     },
 
     /**
@@ -513,16 +510,7 @@ export default {
     }
     this.videoEval();
     // 播放视频
-    const formatType = this.getVideoFormat(this.$route.query.url);
-    if (formatType === "m3u8") {
-      this.createVideoJs(this.$route.query.url, videoPlayer, "my-player");
-    } else if (formatType === "mp4") {
-      const video = document.getElementById("my-player");
-      video.src = this.$route.query.url;
-      video.play();
-    } else {
-      this.$message.warning("该视频格式暂不支持播放");
-    }
+    this.createVideoJs(this.$route.query.url, videoPlayer, "my-player");
   },
 
   /**
@@ -536,14 +524,7 @@ export default {
       api.stopDetectData({ id: this.stopTaskId }, this.$route.query.type);
     }
     // 清除视频
-    const formatType = this.getVideoFormat(this.$route.query.url);
-    if (formatType === "m3u8") {
-      this.destroyVideoJs(videoPlayer);
-    } else if (formatType === "mp4") {
-      const video = document.getElementById("my-player");
-      video.pause();
-      video.src = "";
-    }
+    this.destroyVideoJs(videoPlayer);
   },
 };
 </script>

@@ -9,7 +9,8 @@ const connectWebSocket = function (onMessageCallback) {
   let socketTask = null; // ws的连接实例
   let callbackMap = new Map(); // 用于存储每个请求对应的回调函数
   let heartbeatInterval = null; // 心跳定时器
-  let validtoken = false // 判断token是否过期
+  let currentPage = ''; // 当前页面
+  let conText = null; // 保存上下文
   /**
    *@description 发送心跳包
    */
@@ -52,7 +53,15 @@ const connectWebSocket = function (onMessageCallback) {
   /**
    * @description ws建立连接 --> 调用connect函数即默认本地存储存在token记录
    */
-  function connect() {
+  function connect(context) {
+    conText = context
+    if (wx.getStorageSync('platformToken') === '') // 没登录过
+    {
+      context['hastoken'] = false;
+      redirect()
+      return
+    }
+    context['hastoken'] = true;
     // 保持ws的唯一性
     if (socketTask === null) {
       // 尚未存在可用ws实例，创建ws连接任务
@@ -64,21 +73,22 @@ const connectWebSocket = function (onMessageCallback) {
         },
         //网络状态
         success: function (res) {
-          console.log('WebSocket连接打开成功', res);
+          console.log('WebSocket创建成功', res);
         },
         fail: function (res) {
-          console.log('WebSocket连接打开失败', res);
+          console.log('WebSocket创建失败', res);
         }
       });
+    } else {
+      return
     }
-
     /**
      * @description 连接开启
      */
     socketTask.onOpen(function (res) {
       console.log('WebSocket已连接', res);
       socketOpen = true;
-      validtoken = true;
+      context['validtoken'] = true;
       // 建立连接后开始定时发送心跳包
       startHeartbeatInterval();
     });
@@ -95,13 +105,23 @@ const connectWebSocket = function (onMessageCallback) {
      */
     socketTask.onClose(function (res) {
       console.log('WebSocket连接已关闭', res);
-      if (res.reason !== "abnormal closure" || res.code != 1006) {
-        // 非token过期，进行重连
+      if (res.code === 1000 && res.reason === '') {
+        console.log('主动断开成功');
+        return
+      } else if (res.reason !== "abnormal closure" || res.code != 1006) {
+        // 非token过期，进行关闭重连
+        close()
         reconnect();
+        console.log('重新连接中');
       } else {
+        /* 可能为token过期，经典报错为：
+        {
+          reason:"abnormal closure",
+          code:1006
+        }*/
         PopUp.Toast('请重新登录', 2, 2000);
         close();
-        validtoken = false // token过期
+        context['validtoken'] = false // token过期
         try {
           wx.removeStorageSync('platformToken');
           console.log('数据清除成功')
@@ -109,12 +129,8 @@ const connectWebSocket = function (onMessageCallback) {
           PopUp.Toast('未开放本地数据权限', 2, 2000);
           console.log('数据清除失败', e)
         };
-        // 过期返回获取新token
-        setTimeout(() => {
-          wx.reLaunch({
-            url: '/pages/index/index',
-          })
-        }, 2000)
+        // 过期重定向获取新token
+        redirect()
       }
 
     });
@@ -168,7 +184,7 @@ const connectWebSocket = function (onMessageCallback) {
         data: msg
       });
     } else {
-      console.log('WebSocket连接未打开');
+      console.log('WebSocket连接未打开,连接后再自动发送消息');
       reconnect()
     }
   }
@@ -186,9 +202,10 @@ const connectWebSocket = function (onMessageCallback) {
    * @description 主动关闭连接
    */
   function close() {
+    console.log('触发close函数');
     clearHeartbeatInterval(); // 清除心跳包定时器
-    socketTask.close();
     socketOpen = false;
+    socketTask.close();
     socketTask = null;
   }
 
@@ -196,11 +213,30 @@ const connectWebSocket = function (onMessageCallback) {
    *@description 重新连接
    */
   function reconnect() {
-    close(); // 关闭当前连接
     // 延迟一定时间后再次发起连接
     setTimeout(() => {
-      connect(); // 重新发起连接
+      connect(conText); // 重新发起连接
     }, 3000); // 例如延迟3秒后再次发起连接
+  }
+
+  /**
+   * @description 重定向index函数
+   */
+  function redirect() {
+    setTimeout(() => {
+      if (getCurrentPages().length === 0) {
+        redirect()
+      } else {
+        currentPage = getCurrentPages()[getCurrentPages().length - 1].route
+        if (currentPage === 'pages/index/index') {
+          return
+        }
+        //进行跳转
+        wx.reLaunch({
+          url: '/pages/index/index',
+        })
+      }
+    }, 100)
   }
 
   // 函数返回方法集

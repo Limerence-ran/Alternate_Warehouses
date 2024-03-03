@@ -256,3 +256,34 @@
     </view>
   </view>
 </block>
+
+<van-overlay show="{{ show }}" bind:click="onClickHide">
+  <view class="wrapper">
+    <image lazy-load src="../../../utils/photos/tip.png" style="width: 100%;height: 240rpx;position: absolute;bottom: 0;" mode=""/>
+    <view class="container center">
+      <view class="rope center">
+        <view class="legs center">
+          <view class="boot-l"></view>
+          <view class="boot-r"></view>
+        </view>
+        <view class="costume center">
+          <view class="spider">
+            <view class="s1 center"></view>
+            <view class="s2 center"></view>
+            <view class="s3"></view>
+            <view class="s4"></view>
+          </view>
+          <view class="belt center"></view>
+          <view class="hand-r"></view>
+          <view class="hand-l"></view>
+          <view class="neck center"></view>
+          <view class="mask center">
+            <view class="eye-l"></view>
+            <view class="eye-r"></view>
+          </view>
+          <view class="cover center"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</van-overlay>

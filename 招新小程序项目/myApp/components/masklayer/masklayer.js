@@ -11,9 +11,21 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    show: false,
   },
 
+
+  onClickShow() {
+    this.setData({ show: true });
+  },
+
+  onClickHide() {
+    this.setData({ show: false });
+  },
+
+  noop() {},
+
+  
   /**
    * 组件的方法列表
    */
