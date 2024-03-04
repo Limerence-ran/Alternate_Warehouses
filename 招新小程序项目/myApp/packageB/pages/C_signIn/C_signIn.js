@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isHide: false, //接口隐藏
     place: '',
     groupName: '',
     name: '',
@@ -26,9 +27,13 @@ Page({
     latitude: 0,
     longitude: 0,
     address: '',
-    start:'',
-    end:''
+    start: '',
+    end: ''
   },
+
+  /**
+   * @description 获取当前时间
+   */
   currentTime: function () {
     var now = new Date();
     var year = now.getFullYear();
@@ -45,6 +50,11 @@ Page({
     var timeString = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes;
     return timeString;
   },
+
+
+  /**
+   * @description 获取当前地址
+   */
   location: function () {
     PopUp.Loading(true, '定位中');
     setTimeout(() => {
@@ -81,8 +91,7 @@ Page({
               // 获取用户地址信息成功后，可以将目标地点的经纬度信息传给下一步的搜索方法
               let time = that.currentTime();
               that.setData({
-                steps: [
-                  {
+                steps: [{
                     text: '重新定位成功 ' + time,
                     desc: address
                   },
@@ -100,6 +109,10 @@ Page({
     }, 2500)
 
   },
+
+  /**
+   * @description 签到ws发送
+   */
   signUp: async function () {
     //简化代码
     const result = await PopUp.Confirm('是否确认签到？');
@@ -196,7 +209,11 @@ Page({
       PopUp.Toast('操作取消', 3, 2000);
     }
   },
-  //取消预约
+
+
+  /**
+   * @description ws取消预约
+   */
   Cancel: async function () {
     const result = await PopUp.Confirm('是否确认取消预约？');
     if (result) {
@@ -222,10 +239,30 @@ Page({
       PopUp.Toast('操作取消', 3, 2000);
     }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
+ async onLoad(options) {
+    // 智慧接口
+    try {
+      const response = await NewerInterview.fool();
+      console.log('response', response);
+      let data = response.data;
+      this.setData({
+        isHide: data
+      });
+      // 每次审核前记得通知后台并设置为!data
+      if (!data) {
+        return
+      }
+    } catch (error) {
+      // 处理请求失败的情况
+      console.error('请求失败:', error);
+      PopUp.Toast('权限关闭', 2, 1000)
+    }
+
+    //发起flush获取信息
     try {
       socket.request('flush', 'flush', (res) => {
         console.log('flush', res)
@@ -244,8 +281,8 @@ Page({
             place: place,
             groupName: groupName,
             name: name,
-            start:start,
-            end:end
+            start: start,
+            end: end
           })
         } else if (result.code == 205) {
           PopUp.Toast(result.message, 2, 2000)
@@ -265,6 +302,7 @@ Page({
       console.log('无法更新')
     }
     const that = this;
+
     //定位
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度

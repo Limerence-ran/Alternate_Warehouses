@@ -40,7 +40,8 @@ Page({
     loading: false,
     // 检查表单对象
     checkClass: {},
-    isHide: false
+    isHide: false, //智慧权限
+    isRight: false, //确认
   },
 
   /**
@@ -257,7 +258,7 @@ Page({
         isHide: data
       });
       // 每次审核前记得通知后台并设置为!data
-      if (data) {
+      if (!data) {
         return
       }
     } catch (error) {
@@ -285,7 +286,7 @@ Page({
           let that = this
           setTimeout(() => {
             that.setData({
-              isHide: !this.data.isHide
+              isRight: true
             });
           }, 1500)
         } else {
@@ -303,6 +304,14 @@ Page({
           wx.reLaunch({
             url: '/pages/index/index',
           })
+        }, 1500)
+      } else if (response.code === 205) {
+        // 确定显示
+        let that = this
+        setTimeout(() => {
+          that.setData({
+            isRight: true
+          });
         }, 1500)
       } else {
         PopUp.Toast(response.message, 2, 1000)

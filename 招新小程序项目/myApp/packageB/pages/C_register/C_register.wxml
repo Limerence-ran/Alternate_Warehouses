@@ -1,7 +1,7 @@
 <!--pages/C_register/C_register.wxml-->
 <titletabbar></titletabbar>
 <!-- 接口隐藏动画 -->
-<block wx:if="{{!isHide}}">
+<block wx:if="{{!isHide||!isRight}}">
   <view class="scene">
     <view class="forest">
       <view class="tree tree1">
@@ -114,130 +114,170 @@
     </view>
   </view>
 </block>
- <!-- 数据内容 -->
-<block wx:if="{{isHide}}">
+<!-- 数据内容 -->
+<block wx:if="{{isHide&&isRight}}">
   <form catchsubmit="formSubmit" catchreset="formReset">
-    <view class="box">
-      <view class="level nav">
-        <view class="dot"></view>
-        <view class="title">基本信息</view>
-      </view>
-      <view class="row">
-        <view><text class="required">*</text>姓名</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="name" placeholder="请输入姓名" value="{{name}}" maxlength="10" />
+    <!-- 卡片一 -->
+    <view class="fontbutton">
+      <span class="fontspan">必填信息</span>
+    </view>
+    <view class="e-card playing">
+      <view class="image"></view>
+      <view class="wave"></view>
+      <view class="wave"></view>
+      <view class="wave"></view>
+      <view class="infotop">
+        <!-- 必填信息 -->
+        <view class="row">
+          <view>姓名</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="name" placeholder="请输入姓名" value="{{name}}" maxlength="10" />
+          </view>
+          <view wx:else>{{name}}</view>
         </view>
-        <view wx:else>{{name}}</view>
-      </view>
-      <view class="row">
-        <view><text class="required">*</text>性别</view>
-        <picker class="right" bindchange="bindPickerChangeSex" value="{{indexSex}}" range="{{arraySex}}" disabled="{{formSubmitted}}">
-          <text>{{arraySex[indexSex]}}</text>
-          <van-icon name="arrow" />
-        </picker>
-      </view>
-      <view class="row">
-        <view><text class="required">*</text>年龄</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="age" placeholder="请输入年龄" value="{{age}}" type="number" maxlength="2" required />
+        <view class="row">
+          <view>性别</view>
+          <picker class="right" bindchange="bindPickerChangeSex" value="{{indexSex}}" range="{{arraySex}}" disabled="{{formSubmitted}}">
+            <text>{{arraySex[indexSex]}}</text>
+            <van-icon name="arrow" />
+          </picker>
         </view>
-        <view wx:else>{{age}}</view>
-      </view>
-      <view class="row">
-        <view> <text class="required">*</text>学号</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="studentId" placeholder="请输入学号" value="{{studentId}}" maxlength="10" required />
+        <view class="row">
+          <view>年龄</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="age" placeholder="请输入年龄" value="{{age}}" type="number" maxlength="2" required />
+          </view>
+          <view wx:else>{{age}}</view>
         </view>
-        <view wx:else>{{studentId}}</view>
-      </view>
-      <view class="row">
-        <view> <text class="required">*</text>学院</view>
-        <picker class="right" bindchange="bindPickerChangeAcademy" value="{{indexAcademy}}" range="{{arrayAcademy}}" disabled="{{formSubmitted}}">
-          <text>{{arrayAcademy[indexAcademy]}}</text>
-          <van-icon name="arrow" />
-        </picker>
-      </view>
-      <view class="row">
-        <view> <text class="required">*</text>专业班级</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="major" placeholder="例：计算机类1班" value="{{major}}" maxlength="20" required />
+        <view class="row">
+          <view> 学号</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="studentId" placeholder="请输入学号" value="{{studentId}}" maxlength="10" required />
+          </view>
+          <view wx:else>{{studentId}}</view>
         </view>
-        <view wx:else>{{major}}</view>
-      </view>
-      <view class="row">
-        <view> <text class="required">*</text>手机号</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="phone" placeholder="请输入手机号码" value="{{phone}}" maxlength="11" required />
+        <view class="row">
+          <view> 学院</view>
+          <picker class="right" bindchange="bindPickerChangeAcademy" value="{{indexAcademy}}" range="{{arrayAcademy}}" disabled="{{formSubmitted}}">
+            <text>{{arrayAcademy[indexAcademy]}}</text>
+            <van-icon name="arrow" />
+          </picker>
         </view>
-        <view wx:else>{{phone}}</view>
-      </view>
-      <view class="row">
-        <view> <text class="required">*</text>意向组别</view>
-        <picker class="right" bindchange="bindPickerChangeDir" value="{{indexDir}}" range="{{arrayDir}}" disabled="{{formSubmitted}}">
-          <text>{{arrayDir[indexDir]}}</text>
-          <van-icon name="arrow" />
-        </picker>
-      </view>
-      <view class="row">
-        <view> <text class="required">*</text>是否挂科</view>
-        <picker class="right" bindchange="bindPickerChangeMajor" value="{{indexMajor}}" range="{{arrayMajor}}" disabled="{{formSubmitted}}">
-          <text>{{arrayMajor[indexMajor]}}</text>
-          <van-icon name="arrow" />
-        </picker>
-      </view>
-      <view class="row">
-        <view><text class="required">*</text>绩点排名</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="gpa" placeholder="例：100" value="{{gpa}}" />
+        <view class="row">
+          <view> 专业班级</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="major" placeholder="例：计算机类1班" value="{{major}}" maxlength="20" required />
+          </view>
+          <view wx:else>{{major}}</view>
         </view>
-        <view wx:else>{{gpa}}</view>
-      </view>
-      <view class="row">
-        <view>宿舍</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="dormitory" placeholder="例：西15-626" value="{{dormitory}}" maxlength="11" />
-        </view>
-        <view wx:else>{{dormitory}}</view>
-      </view>
-      <view class="row">
-        <view>英语成绩</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="english" value="{{english}}" maxlength="5" />
-        </view>
-        <view wx:else>{{english}}</view>
-      </view>
-      <view class="row">
-        <view>C语言理论成绩</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="ctheory" value="{{ctheory}}" maxlength="5" />
-        </view>
-        <view wx:else>{{ctheory}}</view>
-      </view>
-      <view class="row">
-        <view>c语言实验成绩</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="cexperiment" value="{{cexperiment}}" maxlength="5" />
-        </view>
-        <view wx:else>{{cexperiment}}</view>
-      </view>
-      <view class="row">
-        <view>其他职位</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="organization" placeholder="例：其他团队、班委等" value="{{organization}}" />
-        </view>
-        <view wx:else>{{organization}}</view>
-      </view>
-      <view class="row end">
-        <view>座右铭</view>
-        <view class="right" wx:if="{{!formSubmitted}}">
-          <input name="motto" placeholder="请输入座右铭" value="{{motto}}" />
-        </view>
-        <view wx:else>{{motto}}</view>
       </view>
     </view>
+    <!-- 图片一 -->
+    <image src="./image/recruit1.png" style="width: 100%;height: 150px;" mode="" />
+    <!-- 卡片二 -->
+    <view class="e-card playing">
+      <view class="image"></view>
+      <view class="wave"></view>
+      <view class="wave"></view>
+      <view class="wave"></view>
+      <view class="infotop">
+        <view class="row">
+          <view> 手机号</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="phone" placeholder="请输入手机号码" value="{{phone}}" maxlength="11" required />
+          </view>
+          <view wx:else>{{phone}}</view>
+        </view>
+        <view class="row">
+          <view> 意向组别</view>
+          <picker class="right" bindchange="bindPickerChangeDir" value="{{indexDir}}" range="{{arrayDir}}" disabled="{{formSubmitted}}">
+            <text>{{arrayDir[indexDir]}}</text>
+            <van-icon name="arrow" />
+          </picker>
+        </view>
+        <view class="row">
+          <view> 是否挂科</view>
+          <picker class="right" bindchange="bindPickerChangeMajor" value="{{indexMajor}}" range="{{arrayMajor}}" disabled="{{formSubmitted}}">
+            <text>{{arrayMajor[indexMajor]}}</text>
+            <van-icon name="arrow" />
+          </picker>
+        </view>
+        <view class="row">
+          <view>绩点排名</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="gpa" placeholder="例：100" value="{{gpa}}" />
+          </view>
+          <view wx:else>{{gpa}}</view>
+        </view>
+        <view class="row">
+          <view>C语言理论成绩</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="ctheory" value="{{ctheory}}" maxlength="5" />
+          </view>
+          <view wx:else>{{ctheory}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 图片二 -->
+    <image src="./image/recruit2.png" style="width: 100%;height: 150px;" mode="" />
+    <!-- 卡片三 -->
+    <view class="fontbutton">
+      <span class="fontspan">选填信息</span>
+    </view>
+    <view class="e-card playing">
+      <view class="image"></view>
+      <view class="wave"></view>
+      <view class="wave"></view>
+      <view class="wave"></view>
+      <view class="infotop">
+
+        <view class="row">
+          <view>宿舍</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="dormitory" placeholder="例：西15-626" value="{{dormitory}}" maxlength="11" />
+          </view>
+          <view wx:else>{{dormitory}}</view>
+        </view>
+        <view class="row">
+          <view>英语成绩</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="english" value="{{english}}" maxlength="5" />
+          </view>
+          <view wx:else>{{english}}</view>
+        </view>
+        <view class="row">
+          <view>c语言实验成绩</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="cexperiment" value="{{cexperiment}}" maxlength="5" />
+          </view>
+          <view wx:else>{{cexperiment}}</view>
+        </view>
+        <view class="row">
+          <view>其他职位</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="organization" placeholder="例：其他团队、班委等" value="{{organization}}" />
+          </view>
+          <view wx:else>{{organization}}</view>
+        </view>
+        <view class="row end">
+          <view>座右铭</view>
+          <view class="right" wx:if="{{!formSubmitted}}">
+            <input name="motto" placeholder="请输入座右铭" value="{{motto}}" />
+          </view>
+          <view wx:else>{{motto}}</view>
+        </view>
+      </view>
+    </view>
+
+
     <van-toast id="van-toast"></van-toast>
     <van-dialog id="van-dialog" />
-    <view class="submitBtn" type="" formType="submit" wx:if="{{!formSubmitted}}">我想加入QG工作室!</view>
+    <view wx:if="{{!formSubmitted}}">
+      <button type="" formType="submit" wx:if="{{!formSubmitted}}" style="padding: 0;margin: 0;">
+        <view class="btn" formType="submit"><span class="animation"></span>我想加入QG工作室!<span class="animation"></span>
+        </view>
+      </button>
+
+    </view>
   </form>
 </block>
-

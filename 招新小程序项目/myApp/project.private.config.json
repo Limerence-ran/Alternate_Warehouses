@@ -4,6 +4,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "packageB/pages/C_bookInterview/C_bookInterview",
+          "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageB/pages/C_resume/C_resume",
+          "pathName": "packageB/pages/C_resume/C_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "packageB/pages/C_register/C_register",
           "pathName": "packageB/pages/C_register/C_register",
           "query": "",
