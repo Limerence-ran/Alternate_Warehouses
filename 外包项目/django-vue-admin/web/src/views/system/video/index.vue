@@ -256,6 +256,8 @@ export default {
       //处理文件未上传的逻辑
       if (!fileContent) {
         return this.$message.error("请先选择文件");
+      } else if (!row.name || !row.dept_belong_id || !row.description) {
+        return this.$message.error("请填写完整信息");
       }
       //将文件加入到flie字段
       row["file"] = fileContent.raw;

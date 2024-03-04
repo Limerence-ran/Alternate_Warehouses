@@ -22,11 +22,14 @@
       </block>
       <block wx:else>
         <!-- 三级判断：用户信息授权 -->
-        <block wx:if='{{platformToken}}'>
+        <block wx:if='{{hastoken&&validtoken}}'>
           <button class="weui-input avatar-wrapper" bindtap="goToHome">Let's go!</button>
         </block>
-        <block wx:else>
+        <block wx:elif="{{!hastoken|| !validtoken}}">
           <button id="authorize" type="primary" bindtap="login" class="weui-input">授权个人信息</button>
+        </block>
+        <block wx:else>
+          <button id="authorize" type="primary" bindtap="login" class="weui-input" disabled="flase">小程序维护中</button>
         </block>
       </block>
     </block>

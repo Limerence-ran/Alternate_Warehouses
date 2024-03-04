@@ -4,62 +4,6 @@
     "miniprogram": {
       "list": [
         {
-          "name": "注册",
-          "pathName": "packageB/pages/C_register/C_register",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "队列",
-          "pathName": "packageB/pages/C_queue/C_queue",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "简历",
-          "pathName": "packageA/pages/B_resume/B_resume",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "hub",
-          "pathName": "packageB/pages/hub/hub",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "签到",
-          "pathName": "packageB/pages/C_signIn/C_signIn",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "报名",
-          "pathName": "packageB/pages/C_resume/C_resume",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "packageB/pages/home/home",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "packageB/pages/Introduction/Introduction",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "",
           "pathName": "packageA/pages/B_createInterview/B_createInterview",
           "query": "",
@@ -67,24 +11,20 @@
           "scene": null
         },
         {
-          "name": "",
-          "pathName": "packageB/pages/C_score/C_score",
+          "name": "报名",
+          "pathName": "packageA/pages/B_viewQueue/B_viewQueue",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "",
-          "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
+          "name": "管理端",
+          "pathName": "packageB/pages/C_register/C_register",
           "query": "",
           "launchMode": "default",
           "scene": null
         }
       ]
     }
-  },
-  "setting": {
-    "urlCheck": false,
-    "compileHotReLoad": false
   }
 }

@@ -1,12 +1,12 @@
 // pages/home/home.js
 import PopUp from '../../../utils/tools/PopUp'
-//防抖标识符
-let timer = null
+let goToHubTimer = null; //goToHub防抖标识
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    show: true,
     isStop: false, //动画暂停键
     loadingComplete: false, //加载状态
     isFly: false, //火箭起飞状态
@@ -74,6 +74,10 @@ Page({
     phoneHeight: 0 //设备可用高度
   },
 
+  onClickHide() {
+    this.setData({ show: false });
+  },
+
   /**
    * view自动上滑函数--监听页面滚动
    */
@@ -113,7 +117,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // console.log(options)
     if (options.param1 == 'User') {
       console.log('已报名的新生')
     } else if (options.param1 == 'Tourist') {
@@ -151,7 +154,10 @@ Page({
       })
     }, 3100)
   },
-  //获取设备信息
+
+  /**
+   * @description 获取设备信息
+   */
   getPhoneInfo() {
     wx.getSystemInfo({
       success: (res) => {
@@ -165,7 +171,6 @@ Page({
       }
     })
   },
-
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -228,18 +233,21 @@ Page({
    * @description Hub页跳转-按钮防抖
    */
   goToHub() {
-    clearTimeout(timer)
+    if (goToHubTimer) {
+      clearTimeout(goToHubTimer)
+    }
     // 火箭起飞
     this.setData({
       isFly: true
     })
     // 页面跳转 
-    timer = setTimeout(function(){
-    wx.navigateTo({
-      url: '../hub/hub',
-    })
-    }, 1000)
+    goToHubTimer =setTimeout(function(){
+      wx.navigateTo({
+        url: '../hub/hub',
+      })
+    },1000)
   },
+
 
   /**
    * @description 暂停平板动画

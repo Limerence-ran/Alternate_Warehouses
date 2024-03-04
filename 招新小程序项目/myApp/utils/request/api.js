@@ -19,7 +19,7 @@ const Api = {
   getScore: 'getScore',
   //统计接口
   //fool
-  fool: 'fool'
+  fool: 'fool2'
 }
 
 // 放各类请求

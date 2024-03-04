@@ -1,5 +1,9 @@
 <!--components/masklayer/masklayer.wxml-->
 <!-- 遮罩层 -->
-<view style="width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.1);position: absolute;z-index: 9999;">
+<van-button type="primary" bind:click="onClickShow">嵌入内容</van-button>
+<van-overlay show="{{ show }}" bind:click="onClickHide">
+  <view class="wrapper">
+    <view class="block" catch:tap="noop" />
+  </view>
+</van-overlay>
 
-</view>

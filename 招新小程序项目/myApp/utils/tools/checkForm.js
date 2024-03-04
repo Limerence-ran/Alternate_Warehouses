@@ -30,8 +30,6 @@ return true
       else return false;
   }
 
-  
-
   // 限制手机
   numberPhone(value) {
       // let reg = /^\d{11}$/;

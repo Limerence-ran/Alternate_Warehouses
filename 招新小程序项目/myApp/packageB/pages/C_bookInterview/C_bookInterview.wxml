@@ -22,7 +22,7 @@
           <button type="primary" size="big" class="delete-btn" bind:tap="Select" data-index="{{index}}" >预约</button>
         </view>
         <view class="content">
-          <text class="title">{{item.start + ' —— ' + item.end}}</text>
+          <text class="title">{{item.start + ' — ' + item.end}}</text>
         </view>
       </van-swipe-cell>
     </view>

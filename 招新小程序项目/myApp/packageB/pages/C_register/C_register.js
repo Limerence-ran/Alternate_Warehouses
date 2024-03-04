@@ -23,27 +23,29 @@ Page({
     showPickerPop: false,
     name: "",
     english: "",
-    age: "",
-    club: "",
+    age: "", //
+    organization: "",
     dormitory: "",
     motto: "",
     studentId: "",
     phone: "",
-    gpa: "",
+    gpa: "", //
     major: "",
-    cExperiment: "",
-    cTheory: "",
-    gender:'',
-    flunk:'',
-    college:'',
+    cexperiment: "", //
+    ctheory: "", //
+    gender: '', //
+    flunk: '', //
+    college: '', //
     formSubmitted: false, // 控制表单是否已经提交
     loading: false,
     // 检查表单对象
     checkClass: {},
-    isHide: true
+    isHide: false
   },
 
-  // 公共函数，用于更改选择器的值
+  /**
+   * @description 修改选择器的值-公共函数
+   */
   changePickerValue(value, key) {
     const data = {};
     data[key] = value;
@@ -51,115 +53,140 @@ Page({
     this.setData(data);
   },
 
+  /**
+   * @description 修改性别index
+   * @param {*} e 
+   */
   bindPickerChangeSex: function (e) {
     this.changePickerValue(e.detail.value, 'indexSex');
   },
 
+  /**
+   * @description 修改意向小组index
+   * @param {*} e 
+   */
   bindPickerChangeDir: function (e) {
     console.log(e.detail.value)
     this.changePickerValue(e.detail.value, 'indexDir');
   },
 
+  /**
+   * @description 修改挂科状态index
+   * @param {*} e 
+   */
   bindPickerChangeMajor: function (e) {
     this.changePickerValue(e.detail.value, 'indexMajor');
   },
 
+  /**
+   * @description 修改学院index
+   * @param {*} e 
+   */
   bindPickerChangeAcademy: function (e) {
     this.changePickerValue(e.detail.value, 'indexAcademy');
   },
+
+  /**
+   * @description 显示级联选择器
+   */
   showPicker: function () {
     this.setData({
       showPickerPop: true
     })
   },
 
-
+  /**
+   * @description 表单必填项校验
+   */
   checkEmpty: function () {
-
+    console.log(this.data);
     let nameVal = this.data.name.trim();
-    let ageVal = this.data.age.trim();
+    let ageVal = this.data.age + ''.trim();
     let studentIdVal = this.data.studentId.trim();
-  
     let majorVal = this.data.major.trim();
     let phoneVal = this.data.phone.trim();
-    let gpaVal = this.data.gpa.trim();
+    let gpaVal = this.data.gpa + ''.trim();
     let {
       checkClass
     } = this.data;
     if (!nameVal) {
-      PopUp.Toast('请输入姓名',3,500)
+      PopUp.Toast('请输入姓名', 3, 500)
       return false;
     };
     if (!checkClass.chinese(nameVal)) {
-      PopUp.Toast('姓名格式不正确，请检查',3,500)
+      PopUp.Toast('姓名格式不正确，请检查', 3, 500)
       return false;
     };
 
     if (!ageVal) {
-      PopUp.Toast('请输入年龄',3,500)
+      PopUp.Toast('请输入年龄', 3, 500)
       return false;
     };
     if (!checkClass.age(ageVal)) {
-      
-      PopUp.Toast('年龄格式不正确，请检查',3,500)
+
+      PopUp.Toast('年龄格式不正确，请检查', 3, 500)
       return false;
     };
 
     if (!studentIdVal) {
-      PopUp.Toast('请输入学号',3,500)
+      PopUp.Toast('请输入学号', 3, 500)
       return false;
     };
     if (!checkClass.numberNum(studentIdVal)) {
-      PopUp.Toast('学号格式不正确',3,500)
+      PopUp.Toast('学号格式不正确', 3, 500)
       return false;
     };
     if (!majorVal) {
-      PopUp.Toast('请输入专业班级',3,500)
+      PopUp.Toast('请输入专业班级', 3, 500)
       return false;
     };
     if (!phoneVal) {
-      PopUp.Toast('请输入手机号',3,500)
+      PopUp.Toast('请输入手机号', 3, 500)
       return false;
     };
     if (!checkClass.numberPhone(phoneVal)) {
-      PopUp.Toast('手机号格式不正确，请检查',3,500)
+      PopUp.Toast('手机号格式不正确，请检查', 3, 500)
       return false;
     };
 
     if (!gpaVal) {
-      PopUp.Toast('请输入绩点排名',3,500)
+      PopUp.Toast('请输入绩点排名', 3, 500)
       return false;
     };
     if (!checkClass.number(gpaVal)) {
-      PopUp.Toast('绩点格式不正确，请检查',3,500)
+      PopUp.Toast('绩点格式不正确，请检查', 3, 500)
       return false;
     };
     return true; // 验证通过，返回true
   },
 
+  /**
+   * @description 表单提交
+   * @param {*} e 
+   */
   formSubmit: async function (e) {
-    console.log(e);
     const data = {
       name: e.detail.value.name,
       english: e.detail.value.english,
-      age: e.detail.value.age,
-      organization: e.detail.value.club,
+      age: +e.detail.value.age,
+      organization: e.detail.value.organization,
       dormitory: e.detail.value.dormitory,
       motto: e.detail.value.motto,
       studentId: e.detail.value.studentId,
       phone: e.detail.value.phone,
-      gpa: e.detail.value.gpa, //rank绩点string改成绩点排名gpa int
+      gpa: +e.detail.value.gpa, //rank绩点string改成绩点排名gpa int
       major: e.detail.value.major,
-      cExperiment: e.detail.value.cExperiment,
-      ctheory: e.detail.value.cTheory,
-      gender: this.data.indexSex,
-      flunk: this.data.indexMajor, //0挂科，1没挂
-      intention: parseInt(this.data.indexDir) + 1,
+      cexperiment: e.detail.value.cexperiment,
+      ctheory: e.detail.value.ctheory,
+      gender: this.data.arraySex[this.data.indexSex],
+      flunk: +this.data.indexMajor, //0挂科，1没挂
+      intention: +this.data.indexDir + 1,
       college: this.data.arrayAcademy[this.data.indexAcademy],
     };
     this.setData({
       ...data
     });
+    //校验数值是否为空
     let isEmpty = this.checkEmpty();
     console.log('isEmpty', isEmpty);
     if (isEmpty) {
@@ -167,57 +194,61 @@ Page({
       if (result) {
         // on confirm
         try {
-          console.log('data', data);
           const response = await NewerInterview.submitInfo(data);
           console.log('response', response);
-          console.log(response.code)
           if (response.code === 200) {
             setTimeout(() => {
               this.setData({
                 formSubmitted: true
               });
             }, 500);
-            PopUp.Toast(response.message,1,1000)
+            PopUp.Toast(response.message, 1, 1000)
             setTimeout(() => {
               wx.navigateTo({
                 url: '../hub/hub'
               });
             }, 1500);
-          } else if (response.code === 111) {  //已过报名时间
-            PopUp.Toast(response.message,2,1000)
-          } else if(response.code === 401){
+          } else if (response.code === 111) { //已过报名时间
+            PopUp.Toast(response.message, 2, 1000)
+          } else if (response.code === 401) {
             console.log(response.code)
-            PopUp.Toast(response.message,2,1000)
+            PopUp.Toast(response.message, 2, 1000)
             wx.removeStorageSync('platformToken')
             setTimeout(() => {
               wx.redirectTo({
                 url: '/pages/index/index',
               })
             }, 1500)
-          }
-          else {
-            PopUp.Toast(response.message,2,500)
+          } else {
+            PopUp.Toast(response.message, 2, 500)
           }
         } catch (error) {
           // 处理请求失败的情况
           console.error('请求失败:', error);
-          PopUp.Toast('请求失败',2,1000)
+          PopUp.Toast('请求失败', 2, 1000)
         }
       }
     }
   },
 
   /**
+   * @description 根据字符串查找数组下标
+   * @param {*} options 
+   */
+  findIndex: function (str, arrayTarget) {
+    return arrayTarget.indexOf(str);
+
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    wx.setNavigationBarTitle({
-      title: '报名QG工作室'
-    });
     let checkClass = new checkForm();
     this.setData({
       checkClass
     });
+    // 智慧接口
     try {
       const response = await NewerInterview.fool();
       console.log('response', response);
@@ -225,47 +256,56 @@ Page({
       this.setData({
         isHide: data
       });
+      // 每次审核前记得通知后台并设置为!data
+      if (data) {
+        return
+      }
     } catch (error) {
       // 处理请求失败的情况
       console.error('请求失败:', error);
-      PopUp.Toast('请求失败',2,1000)
-
+      PopUp.Toast('权限关闭', 2, 1000)
     }
+    // 报名历史判断
     try {
       const response = await NewerInterview.getResume();
       if (response.code === 200 && response.data) {
-         let data = response.data;
+        let data = response.data;
+        console.log(data);
         this.setData({
           ...data,
-          indexDir:parseInt(data.intention) - 1,
-          indexMajor:parseInt(data.flunk),
-          indexAcademy:parseInt(data.college),
-          indexSex:parseInt(data.gender)
+          indexDir: parseInt(data.intention) - 1,
+          indexMajor: parseInt(data.flunk),
+          indexAcademy: this.findIndex(data.college, this.data.arrayAcademy),
+          indexSex: this.findIndex(data.gender, this.data.arraySex)
         })
         console.log(this.data);
-        let result = await PopUp.Confirm('已经报名成功，是否重新填报报名信息？');
+        let result = await PopUp.Confirm(`已经报名成功 , 需要更改信息吗？`);
         if (result) {
-          // on confirm
-          this.setData({
-            isHide: !this.data.isHide
-          });
+          // 确定显示
+          let that = this
+          setTimeout(() => {
+            that.setData({
+              isHide: !this.data.isHide
+            });
+          }, 1500)
         } else {
+          //取消跳转
           setTimeout(() => {
             wx.redirectTo({
               url: '../C_resume/C_resume',
             })
-          }, 500)
+          }, 1500)
         }
-      }else if(response.code===401){
-        PopUp.Toast(response.message,2,1000)
+      } else if (response.code === 401) {
+        PopUp.Toast(response.message, 2, 1000)
         wx.removeStorageSync('platformToken')
         setTimeout(() => {
-          wx.redirectTo({
+          wx.reLaunch({
             url: '/pages/index/index',
           })
         }, 1500)
       } else {
-        PopUp.Toast(response.message,2,1000)
+        PopUp.Toast(response.message, 2, 1000)
         console.log('未报名或者未通过上一轮')
       }
     } catch (error) {

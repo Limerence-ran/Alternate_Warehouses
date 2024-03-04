@@ -6,7 +6,7 @@
 <!-- 功能介绍/模块分流 -->
 <!-- 分割线 -->
 <view class="divider">
-  <van-divider contentPosition="center" border-color="grey" textColor="#5b08c3" fontSize="10" display="block">QG十九🌈，共赴龙年🐉</van-divider>
+  <van-divider contentPosition="center" border-color="grey"  fontSize="10" display="block">QG十九🌈，共赴龙年🐉</van-divider>
 </view>
 <view class="container">
   <!-- 第一张 -->

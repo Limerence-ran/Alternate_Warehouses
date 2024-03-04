@@ -17,7 +17,7 @@ html {
 
 * {
     box-sizing: border-box;
-    font-family: 'Kumbh Sans', sans-serif;
+    font-family: "Kumbh Sans", sans-serif;
 }
 
 /*  wrapper */
@@ -63,6 +63,7 @@ button,
 input,
 select {
     -webkit-appearance: none;
+    appearance: none;
     outline: none;
 }
 
@@ -105,17 +106,19 @@ fieldset {
 img {
     max-width: 100%;
 }
-.login-code{
+.login-code {
     max-width: 400px;
 }
-.el-input-group__append, .el-input-group__prepend{
+.el-input-group__append,
+.el-input-group__prepend {
     padding: 0;
 }
-.page-login--logo{
+.page-login--logo {
     margin: 0 auto;
     top: 10px;
-    left: 52%;
+    left: 45%;
     position: absolute;
+    transform: scale(0.8);
 }
 /*-- //Reset-Code --*/
 
@@ -123,7 +126,7 @@ img {
 .w3l-form-info {
     padding-top: 2em;
 }
-.w3l-signinform{
+.w3l-signinform {
     padding: 40px 40px;
     min-height: 100vh;
     background-size: cover;
@@ -133,9 +136,9 @@ img {
     -ms-background-size: cover;
     position: relative;
     z-index: 1;
-    align-items:center;
+    align-items: center;
 }
-.w3l-signinform::before{
+.w3l-signinform::before {
     content: "";
     position: absolute;
     top: 0;
@@ -144,7 +147,6 @@ img {
     right: 0;
     z-index: -1;
 }
-
 
 .btn-block {
     display: block;
@@ -166,18 +168,17 @@ img {
     cursor: pointer;
     font-size: 18px;
     font-weight: 600;
-    border-radius:6px;
-    -webkit-border-radius:6px;
-    -moz-border-radius:6px;
-    -ms-border-radius:6px;
-    -o-border-radius:6px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
     border: none;
     text-transform: capitalize;
 }
 
-
 .btn-primary:hover {
-    background-color:#eac803;
+    background-color: #eac803;
 }
 
 .form-row.bottom {
@@ -189,7 +190,7 @@ img {
     display: none;
 }
 
-.form-row .form-check input[type="checkbox"]+label:before {
+.form-row .form-check input[type="checkbox"] + label:before {
     border-radius: 3px;
     border: 1px solid #e2e2e2;
     color: transparent;
@@ -204,13 +205,13 @@ img {
     line-height: 20px;
 }
 
-.form-row .form-check input[type="checkbox"]:checked+label:before {
+.form-row .form-check input[type="checkbox"]:checked + label:before {
     background-color: #ffd900;
     border-color: #ffd900;
     color: #232005;
 }
 
-.form-row .form-check input[type="checkbox"]+label {
+.form-row .form-check input[type="checkbox"] + label {
     cursor: pointer;
     color: #000;
 }
@@ -310,7 +311,6 @@ h3.agileits {
     margin: 0 auto;
 }
 
-
 h5 {
     text-align: center;
     margin: 10px 0px;
@@ -326,7 +326,7 @@ h5 {
     font-size: 14px;
     line-height: 28px;
     color: #fff;
-    opacity:0.9;
+    opacity: 0.9;
 }
 
 .footer p a {
@@ -350,7 +350,7 @@ p.continue span {
 
 p.continue span:before {
     position: absolute;
-    content: '';
+    content: "";
     height: 1px;
     background: #fff;
     width: 89%;
@@ -360,7 +360,7 @@ p.continue span:before {
 
 p.continue span:after {
     position: absolute;
-    content: '';
+    content: "";
     height: 1px;
     background: #fff;
     width: 89%;
@@ -379,7 +379,7 @@ p.continue span:after {
 }
 
 ::placeholder {
-    color:#fff;
+    color: #fff;
 }
 
 /** Responsive **/
@@ -388,8 +388,8 @@ p.continue span:after {
     .left_grid_info h3 {
         font-size: 2em;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
 }
 
@@ -397,8 +397,8 @@ p.continue span:after {
     .w3_info h2 {
         font-size: 24px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
 
     h1 {
@@ -407,33 +407,29 @@ p.continue span:after {
 }
 
 @media screen and (max-width: 900px) {
-
     .left_grid_info h4 {
         font-size: 1em;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
-
-
 }
 
 @media screen and (max-width: 800px) {
     .w3_info h2 {
         font-size: 23px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
-
 }
 
 @media screen and (max-width: 767px) {
     .w3_info {
         margin-right: auto;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
 }
 
@@ -441,18 +437,17 @@ p.continue span:after {
     .w3_info h2 {
         font-size: 22px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
 }
 
 @media screen and (max-width: 667px) {
-
     .w3l-form-info {
         margin: 20px 0 30px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
 }
 
@@ -460,23 +455,23 @@ p.continue span:after {
     h1 {
         font-size: 37px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
 }
 
-@media screen and (max-width:568px) {
+@media screen and (max-width: 568px) {
     .w3l_form {
         padding: 0em;
     }
     h1 {
         font-size: 34px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
     .w3_info {
-        padding:0;
+        padding: 0;
     }
 }
 
@@ -487,20 +482,20 @@ p.continue span:after {
     .left_grid_info p {
         font-size: 13px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
-    .w3l-signinform{
+    .w3l-signinform {
         padding: 40px 20px;
     }
 }
 
 @media screen and (max-width: 384px) {
-    .w3l-signinform{
+    .w3l-signinform {
         padding: 30px 15px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
     .social-login {
         grid-auto-flow: row;
@@ -511,8 +506,8 @@ p.continue span:after {
     .left_grid_info h3 {
         font-size: 1.5em;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
     .form-row.bottom {
         flex-direction: column;
@@ -527,8 +522,8 @@ p.continue span:after {
     h1 {
         font-size: 25px;
     }
-    .page-login--logo{
-        display:none
+    .page-login--logo {
+        display: none;
     }
     .w3_info h2 {
         font-size: 18px;
