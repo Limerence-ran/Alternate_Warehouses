@@ -1,36 +1,80 @@
 <!--pages/C_bookInterview/C_bookInterview.wxml-->
 <titletabbar></titletabbar>
-<view class="empty" wx:if="{{isStart}}">
-  <van-skeleton title row="4" />
-</view>
-<view class="box" wx:else>
-  <view class="detail">
-    <view>
+<!-- 加载动画 -->
+<block wx:if="{{isStart}}">
+  <view class="empty">
+    <view class="contentloading">
+      <view class="planet">
+        <view class="ring"></view>
+        <view class="cover-ring"></view>
+        <view class="spots">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </view>
+      </view>
+      <view class="p">还没有可预约场次哦</view>
+    </view>
+  </view>
+</block>
+
+<block wx:else>
+  <!-- 用户信息 -->
+  <view class="card">
+    <view class="img">
       <image src="{{avatarUrl}}" mode="" class="user" />
     </view>
-    <view>
-      <text>{{name}}</text>
-      <text>{{groupName}}</text>
+    <view class="info">
+      <span>{{name}}</span>
+      <view>{{groupName}}</view>
+    </view>
+    <view class="loader"></view>
+  </view>
+
+  <image src="./image/bookinterview.png" style="width: 100%;height: 120px;margin:10px 0;" mode="" />
+  <view class="box">
+    <view class="time">
+      <view wx:for="{{timeArr}}" wx:key="id" class="time-tab">
+        <van-swipe-cell right-width="90" bind:open="onOpen" bind:close="onClose" class="{{index === selected ? 'highlight' : ''}}" data-index="{{index}}">
+          <!-- 按钮显示 -->
+          <view slot="right" class="right-content" bind:tap="Select" data-index="{{index}}">
+            <view class="border-el-btn">
+              预约
+              <span class="b1"></span>
+              <span class="b2"></span>
+              <span class="b3"></span>
+              <span class="b4"></span>
+              <span class="b5"></span>
+              <span class="b6"></span>
+              <span class="b7"></span>
+              <span class="b8"></span>
+            </view>
+          </view>
+          <!-- 卡片显示 -->
+          <view class="content">
+            <view class="Btn">
+              <span class="leftContainer">
+                <span class="like">{{item.start}}</span>
+              </span>
+              <span class="likeCount">
+                {{item.end}}
+              </span>
+            </view>
+          </view>
+        </van-swipe-cell>
+      </view>
+
+
     </view>
   </view>
 
-  <view class="time">
-    <view class="time_text">右滑选择预约时间<van-icon name="exchange" /></view>
-    <view wx:for="{{timeArr}}" wx:key="id" class="time-tab">
-      <van-swipe-cell right-width="50" bind:open="onOpen" bind:close="onClose" class="{{index === selected ? 'highlight' : ''}}" data-index="{{index}}">
-        <view slot="right" class="right-content" >
-          <button type="primary" size="big" class="delete-btn" bind:tap="Select" data-index="{{index}}" >预约</button>
-        </view>
-        <view class="content">
-          <text class="title">{{item.start + ' — ' + item.end}}</text>
-        </view>
-      </van-swipe-cell>
-    </view>
-
-   
-  </view> 
-  </view>
-  <van-dialog id="van-dialog" />
-  <view class="buttombar">
-    <buttombar></buttombar>
-  </view>
+</block>
+<van-dialog id="van-dialog" />
+<view class="buttombar">
+  <buttombar></buttombar>
+</view>

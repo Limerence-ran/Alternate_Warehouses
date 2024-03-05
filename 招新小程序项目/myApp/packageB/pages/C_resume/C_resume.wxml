@@ -24,6 +24,10 @@
               <view><text>{{userInfo.studentId}}</text></view>
             </view>
             <view class="text_info_block">
+              <view>学院</view>
+              <view><text>{{userInfo.college}}</text></view>
+            </view>
+            <view class="text_info_block">
               <view>专业</view>
               <view><text>{{userInfo.major}}</text></view>
             </view>
@@ -32,10 +36,6 @@
             <view class="text_info_block">
               <view>年龄</view>
               <view><text>{{userInfo.age}}</text></view>
-            </view>
-            <view class="text_info_block">
-              <view>学院</view>
-              <view><text>{{userInfo.college}}</text></view>
             </view>
             <view class="text_info_block">
               <view>电话</view>
@@ -60,7 +60,7 @@
               <view><text>{{userInfo.english}}</text></view>
             </view>
             <view class="text_info_block">
-              <view>C实验成绩</view>
+              <view>C语言实验成绩</view>
               <view><text>{{userInfo.cexperiment==null?'':userInfo.cexperiment}}</text></view>
             </view>
           </view>
@@ -70,7 +70,7 @@
               <view><text>{{userInfo.gpa}}</text></view>
             </view>
             <view class="text_info_block">
-              <view>C理论成绩</view>
+              <view>C语言理论成绩</view>
               <view><text>{{userInfo.ctheory}}</text></view>
             </view>
           </view>

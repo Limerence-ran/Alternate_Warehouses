@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "condition": {
@@ -27,4 +28,123 @@
       ]
     }
   }
+=======
+{
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "packageB/pages/C_bookInterview/C_bookInterview",
+          "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageB/pages/C_resume/C_resume",
+          "pathName": "packageB/pages/C_resume/C_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageB/pages/C_register/C_register",
+          "pathName": "packageB/pages/C_register/C_register",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/C_register/C_register",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageA/pages/B_viewQueue/B_viewQueue",
+          "pathName": "packageA/pages/B_viewQueue/B_viewQueue",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "队列",
+          "pathName": "packageB/pages/C_queue/C_queue",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "简历",
+          "pathName": "packageA/pages/B_resume/B_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "hub",
+          "pathName": "packageB/pages/hub/hub",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "签到",
+          "pathName": "packageB/pages/C_signIn/C_signIn",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "报名",
+          "pathName": "packageB/pages/C_resume/C_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/Introduction/Introduction",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageA/pages/B_createInterview/B_createInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/C_score/C_score",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "setting": {
+    "urlCheck": false,
+    "compileHotReLoad": false
+  }
+>>>>>>> 59e0b82ddc26c347a8ca70311c5e774d157fac7c
 }

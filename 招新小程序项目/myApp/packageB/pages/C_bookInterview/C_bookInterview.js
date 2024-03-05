@@ -23,6 +23,8 @@ Page({
     selected: -1, // 初始化为-1，表示无选中项
     avatarUrl: app.globalData.avatarUrl
   },
+
+
   onChange(event) {
     console.log(event)
     this.setData({
@@ -43,10 +45,10 @@ Page({
     const place = this.data.timeArr[index].place;
     const total = this.data.timeArr[index].total;
     const booked = this.data.timeArr[index].booked;
-    const msg = '时间：' + time + '\n地点：' + place + '\n最大面试的人数：' + total + '\n已预约面试的人数：' + booked;
+    const msg = '时间：\n' + time + '\n地点：' + place + '\n最大面试的人数：' + total + '\n已预约面试的人数：' + booked;
     console.log(time)
     Dialog.confirm({
-        title: '确认预约场次' + id + '?',
+        title: '确认预约场次'  + '?',
         message: msg,
         messageAlign: 'left',
       })
@@ -55,6 +57,7 @@ Page({
         try {
           const response = await NewerInterview.bookTime(id, false);
           console.log('response', response);
+          //成功
           if (response.code == 200) {
             setTimeout(() => {
               PopUp.Toast(response.data, 1, 1500);
@@ -65,15 +68,12 @@ Page({
               })
             }, 2000);
           } else if (response.code == 205) {
+            //面试人数已满
             setTimeout(() => {
               PopUp.Toast(response.message, 2, 1500);
             }, 500);
-            setTimeout(() => {
-              wx.redirectTo({
-                url: '../C_signIn/C_signIn'
-              })
-            }, 2000);
           } else if (response.code == 107) {
+            //面试时间段已过
             setTimeout(() => {
               PopUp.Toast(response.message, 3, 1500);
             }, 500);
@@ -102,12 +102,12 @@ Page({
             PopUp.Toast(response.message, 2, 1500);
           }
         } catch {
-          PopUp.Toast('预约失败！', 2, 1500);
+          PopUp.Toast('预约失败', 2, 1500);
         }
       })
       .catch(() => {
         // on cancel
-        PopUp.Toast('取消操作成功！', 1, 1500);
+        PopUp.Toast('取消操作成功', 1, 1500);
       });
   },
   /**
@@ -143,7 +143,7 @@ Page({
           groupName: groupName,
           timeArr: Array
         })
-        // console.log(Array)
+        console.log(Array)
       } else if (response.code == 401) {
         //登录失效
         wx.removeStorageSync('platformToken')
