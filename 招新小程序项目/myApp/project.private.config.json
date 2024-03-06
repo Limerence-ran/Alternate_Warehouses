@@ -4,6 +4,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "packageA/pages/B_viewQueue/B_viewQueue",
+          "pathName": "packageA/pages/B_viewQueue/B_viewQueue",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "packageB/pages/C_bookInterview/C_bookInterview",
           "pathName": "packageB/pages/C_bookInterview/C_bookInterview",
           "query": "",

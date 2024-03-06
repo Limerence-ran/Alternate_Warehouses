@@ -1,5 +1,4 @@
 import PopUp from '../tools/PopUp';
-
 const baseUrl = 'https://qgailab.com/newer/newers/';
 
 const Request = (options) => {
@@ -18,6 +17,7 @@ const Request = (options) => {
     'content-type': "application/json",
     'platformToken': wx.getStorageSync("platformToken")
   };
+  
   return new Promise((resolve, reject) => {
     if (showLoading) { // 根据传入的showLoading参数判断是否显示加载提示
       PopUp.Loading(true, '加载中');

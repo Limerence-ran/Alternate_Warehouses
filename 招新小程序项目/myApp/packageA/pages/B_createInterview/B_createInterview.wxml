@@ -1,32 +1,527 @@
 <!--packageA/pages/B_createInterview/B_createInterview.wxml-->
 <titletabbar></titletabbar>
-<view style="width: 100%;height: 140px;">
-    <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+<van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="AI" intention='1'>
+        <!-- 加载动画 -->
+        <block wx:if="{{!isStart}}">
+            <view class="empty" style="overflow: hidden;">
+                <view class="contentloading">
+                    <view class="planet">
+                        <view class="ring"></view>
+                        <view class="cover-ring"></view>
+                        <view class="spots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </view>
+                    </view>
+                    <view class="p">这里空空如也呢</view>
+                </view>
+            </view>
+        </block>
+        <!-- 场次卡片 -->
+        <block wx:else>
+            <!-- 图片 -->
+            <view style="width: 100%;height: 140px;">
+                <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+            </view>
+            <view class="card_container" wx:for="{{timeArr}}" wx:key="id">
+                <view class="cookie-card" bind:tap="">
+                    <span class="title">🍪 招新面试专场</span>
+                    <view style="float:right;width: 20px;height: 20px;">
+                        <view class="spinner"></view>
+                    </view>
+
+                    <van-divider />
+                    <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
+                    <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
+                    <view class="actions">
+                        <view>
+                            <van-icon name="fire" color="red" />
+                            <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
+                        </view>
+                          <view style="display: flex;">
+                            <block wx:if="{{item.status===-1}}">
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===0}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">结束队列</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===1}}">
+                                <van-button size="mini" type="danger" disabled>已冻结</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">重启场次</van-button>
+                            </block>
+                            <block wx:else>
+                                <van-button size="mini" type="danger" disabled>场次异常</van-button>
+                            </block>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </block>
+    </van-tab>
+    <van-tab title="前端" intention='2'>
+        <!-- 加载动画 -->
+        <block wx:if="{{!isStart}}">
+            <view class="empty" style="overflow: hidden;">
+                <view class="contentloading">
+                    <view class="planet">
+                        <view class="ring"></view>
+                        <view class="cover-ring"></view>
+                        <view class="spots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </view>
+                    </view>
+                    <view class="p">这里空空如也呢</view>
+                </view>
+            </view>
+        </block>
+        <!-- 场次卡片 -->
+        <block wx:else>
+            <!-- 图片 -->
+            <view style="width: 100%;height: 140px;">
+                <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+            </view>
+            <view class="card_container" wx:for="{{timeArr}}" wx:key="id">
+                <view class="cookie-card">
+                    <span class="title">🍪 招新面试专场</span>
+                    <view style="float:right;width: 20px;height: 20px;">
+                        <view class="spinner"></view>
+                    </view>
+
+                    <van-divider />
+                    <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
+                    <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
+                    <view class="actions">
+                        <view>
+                            <van-icon name="fire" color="red" />
+                            <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
+                        </view>
+                        <view style="display: flex;">
+                            <block wx:if="{{item.status===-1}}">
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===0}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">结束队列</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===1}}">
+                                <van-button size="mini" type="danger" disabled>已冻结</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">重启场次</van-button>
+                            </block>
+                            <block wx:else>
+                                <van-button size="mini" type="danger" disabled>场次异常</van-button>
+                            </block>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </block>
+    </van-tab>
+    <van-tab title="后台" intention='3'>
+        <!-- 加载动画 -->
+        <block wx:if="{{!isStart}}">
+            <view class="empty" style="overflow: hidden;">
+                <view class="contentloading">
+                    <view class="planet">
+                        <view class="ring"></view>
+                        <view class="cover-ring"></view>
+                        <view class="spots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </view>
+                    </view>
+                    <view class="p">这里空空如也呢</view>
+                </view>
+            </view>
+        </block>
+        <!-- 场次卡片 -->
+        <block wx:else>
+            <!-- 图片 -->
+            <view style="width: 100%;height: 140px;">
+                <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+            </view>
+            <view class="card_container" wx:for="{{timeArr}}" wx:key="id">
+                <view class="cookie-card">
+                    <span class="title">🍪 招新面试专场</span>
+                    <view style="float:right;width: 20px;height: 20px;">
+                        <view class="spinner"></view>
+                    </view>
+
+                    <van-divider />
+                    <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
+                    <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
+                    <view class="actions">
+                        <view>
+                            <van-icon name="fire" color="red" />
+                            <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
+                        </view>
+                          <view style="display: flex;">
+                            <block wx:if="{{item.status===-1}}">
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===0}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">结束队列</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===1}}">
+                                <van-button size="mini" type="danger" disabled>已冻结</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">重启场次</van-button>
+                            </block>
+                            <block wx:else>
+                                <van-button size="mini" type="danger" disabled>场次异常</van-button>
+                            </block>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </block>
+    </van-tab>
+    <van-tab title="移动" intention='4'>
+        <!-- 加载动画 -->
+        <block wx:if="{{!isStart}}">
+            <view class="empty" style="overflow: hidden;">
+                <view class="contentloading">
+                    <view class="planet">
+                        <view class="ring"></view>
+                        <view class="cover-ring"></view>
+                        <view class="spots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </view>
+                    </view>
+                    <view class="p">这里空空如也呢</view>
+                </view>
+            </view>
+        </block>
+        <!-- 场次卡片 -->
+        <block wx:else>
+            <!-- 图片 -->
+            <view style="width: 100%;height: 140px;">
+                <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+            </view>
+            <view class="card_container" wx:for="{{timeArr}}" wx:key="id">
+                <view class="cookie-card">
+                    <span class="title">🍪 招新面试专场</span>
+                    <view style="float:right;width: 20px;height: 20px;">
+                        <view class="spinner"></view>
+                    </view>
+
+                    <van-divider />
+                    <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
+                    <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
+                    <view class="actions">
+                        <view>
+                            <van-icon name="fire" color="red" />
+                            <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
+                        </view>
+                          <view style="display: flex;">
+                            <block wx:if="{{item.status===-1}}">
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===0}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">结束队列</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===1}}">
+                                <van-button size="mini" type="danger" disabled>已冻结</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">重启场次</van-button>
+                            </block>
+                            <block wx:else>
+                                <van-button size="mini" type="danger" disabled>场次异常</van-button>
+                            </block>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </block>
+    </van-tab>
+    <van-tab title="嵌入式" intention='5'>
+        <!-- 加载动画 -->
+        <block wx:if="{{!isStart}}">
+            <view class="empty" style="overflow: hidden;">
+                <view class="contentloading">
+                    <view class="planet">
+                        <view class="ring"></view>
+                        <view class="cover-ring"></view>
+                        <view class="spots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </view>
+                    </view>
+                    <view class="p">这里空空如也呢</view>
+                </view>
+            </view>
+        </block>
+        <!-- 场次卡片 -->
+        <block wx:else>
+            <!-- 图片 -->
+            <view style="width: 100%;height: 140px;">
+                <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+            </view>
+            <view class="card_container" wx:for="{{timeArr}}" wx:key="id">
+                <view class="cookie-card">
+                    <span class="title">🍪 招新面试专场</span>
+                    <view style="float:right;width: 20px;height: 20px;">
+                        <view class="spinner"></view>
+                    </view>
+
+                    <van-divider />
+                    <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
+                    <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
+                    <view class="actions">
+                        <view>
+                            <van-icon name="fire" color="red" />
+                            <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
+                        </view>
+                          <view style="display: flex;">
+                            <block wx:if="{{item.status===-1}}">
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===0}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">结束队列</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===1}}">
+                                <van-button size="mini" type="danger" disabled>已冻结</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">重启场次</van-button>
+                            </block>
+                            <block wx:else>
+                                <van-button size="mini" type="danger" disabled>场次异常</van-button>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </van-tab>
+    <van-tab title="图形" intention='6'>
+        <!-- 加载动画 -->
+        <block wx:if="{{!isStart}}">
+            <view class="empty" style="overflow: hidden;">
+                <view class="contentloading">
+                    <view class="planet">
+                        <view class="ring"></view>
+                        <view class="cover-ring"></view>
+                        <view class="spots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </view>
+                    </view>
+                    <view class="p">这里空空如也呢</view>
+                </view>
+            </view>
+        </block>
+        <!-- 场次卡片 -->
+        <block wx:else>
+            <!-- 图片 -->
+            <view style="width: 100%;height: 140px;">
+                <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+            </view>
+            <view class="card_container" wx:for="{{timeArr}}" wx:key="id">
+                <view class="cookie-card">
+                    <span class="title">🍪 招新面试专场</span>
+                    <view style="float:right;width: 20px;height: 20px;">
+                        <view class="spinner"></view>
+                    </view>
+
+                    <van-divider />
+                    <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
+                    <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
+                    <view class="actions">
+                        <view>
+                            <van-icon name="fire" color="red" />
+                            <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
+                        </view>
+                          <view style="display: flex;">
+                            <block wx:if="{{item.status===-1}}">
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===0}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">结束队列</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===1}}">
+                                <van-button size="mini" type="danger" disabled>已冻结</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">重启场次</van-button>
+                            </block>
+                            <block wx:else>
+                                <van-button size="mini" type="danger" disabled>场次异常</van-button>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </van-tab>
+    <van-tab title="设计" intention='7'>
+        <!-- 加载动画 -->
+        <block wx:if="{{!isStart}}">
+            <view class="empty" style="overflow: hidden;">
+                <view class="contentloading">
+                    <view class="planet">
+                        <view class="ring"></view>
+                        <view class="cover-ring"></view>
+                        <view class="spots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </view>
+                    </view>
+                    <view class="p">这里空空如也呢</view>
+                </view>
+            </view>
+        </block>
+        <!-- 场次卡片 -->
+        <block wx:else>
+            <!-- 图片 -->
+            <view style="width: 100%;height: 140px;">
+                <image src="./image/top.png" mode="" style="width: 100%;height: 170px;" />
+            </view>
+            <view class="card_container" wx:for="{{timeArr}}" wx:key="id">
+                <view class="cookie-card">
+                    <span class="title">🍪 招新面试专场</span>
+                    <view style="float:right;width: 20px;height: 20px;">
+                        <view class="spinner"></view>
+                    </view>
+
+                    <van-divider />
+                    <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
+                    <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
+                    <view class="actions">
+                        <view>
+                            <van-icon name="fire" color="red" />
+                            <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
+                        </view>
+                          <view style="display: flex;">
+                            <block wx:if="{{item.status===-1}}">
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===0}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">结束队列</van-button>
+                            </block>
+                            <block wx:elif="{{item.status===1}}">
+                                <van-button size="mini" type="danger" disabled>已冻结</van-button>
+                                <span style="display: inline-block;width: 20rpx;"></span>
+                                <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">重启场次</van-button>
+                            </block>
+                            <block wx:else>
+                                <van-button size="mini" type="danger" disabled>场次异常</van-button>
+                            </block>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </block>
+    </van-tab>
+</van-tabs>
+<view class="loader" bind:tap="showPopup"></view>
+<view class="loaderimage">
+    <image src="../../../utils/svg/up.svg" style="width:30px;height:30px;" mode="" />
 </view>
+<view class="loaderfont">点击创建面试场次</view>
+<!-- 弹出层 -->
+<van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 90%;padding-top:10%" bind:close="onClose" safe-area-inset-top="{{true}}">
+    <view class="popupcontainer">
+        <van-collapse accordion value="{{ activeName }}" bind:change="onpopChange">
+            <!-- 开始时间 -->
+            <van-collapse-item title="面试开始时间" name="1">
+                <van-datetime-picker title="选择完整时间" type="datetime" value="{{ currentstartDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:input="onstartInput" bind:confirm="onstartconfirm" />
+            </van-collapse-item>
+            <!-- 结束时间 -->
+            <van-collapse-item title="面试结束时间" name="2">
+                <van-datetime-picker title="选择完整时间" type="datetime" value="{{ currentendDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:input="onendInput" bind:confirm="onendconfirm" />
+            </van-collapse-item>
+        </van-collapse>
+        <van-cell-group>
+            <!-- 地点 -->
+            <van-field label="地点" value="{{ value }}" placeholder="请输入面试地点" border="{{ false }}" bind:change="onPlaceChange" />
+            <!-- 面试人数 -->
+            <van-field label="人数" value="{{ value }}" type="number" placeholder="请输入最大人数" border="{{ true }}" bind:change="onTotalChange" />
+        </van-cell-group>
+        <van-button type="primary" block bind:click='onFormSubmmit'>确认创建</van-button>
 
-<!-- 场次卡片 -->
-<view class="card_container" wx:for="{{7}}">
-    <view class="cookie-card">
-        <span class="title">🍪 前端组 面试专场</span>
-        <view style="float:right;width: 20px;height: 20px;">
-            <view class="spinner"></view>
-        </view>
-       
-        <van-divider />
-        <view class="description1">面试时间 : <span class="special_word"> 2024-01-24 22:11至2024-01-30 22:11</span></view>
-        <view class="description2">面试地点 : <span class="special_word"> 东十二楼</span></view>
-        <view class="actions">
-            <view>
-                <van-icon name="fire" color="red" />
-                <span class="data">3人/场 | 3人已报名</span>
-            </view>
-            <view style="display: flex;">
-                <van-button size="mini" type="primary">开放预约</van-button>
-                <span style="display: inline-block;width: 20rpx;"></span>
-                <van-button size="mini" type="info">取消场次</van-button>
-            </view>
-
-        </view>
     </view>
-</view>
-
+</van-popup>

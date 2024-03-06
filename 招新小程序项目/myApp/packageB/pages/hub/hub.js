@@ -176,20 +176,6 @@ Page({
   },
 
   /**
-   * @description 面试管理化页跳转
-   */
-  goToB_viewQueue() {
-    if (timer) {
-      clearTimeout(timer)
-    }
-    timer = setTimeout(() => {
-      wx.navigateTo({
-        url: '../../../packageA/pages/B_viewQueue/B_viewQueue',
-      })
-    }, 500)
-  },
-
-  /**
    * @description 数据可视化页跳转
    */
   goToVisualization() {

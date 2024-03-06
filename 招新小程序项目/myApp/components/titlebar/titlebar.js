@@ -1,5 +1,6 @@
 // components/titlebar/titlebar.js
 const app = getApp()
+let timer //防抖定时器
 Component({
   /**
    * 组件的属性列表-定制高复用头部导航栏
@@ -27,9 +28,22 @@ Component({
   methods: {
     gotoHub() {
       // return
-      wx.redirectTo({
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = wx.redirectTo({
         url: '/packageB/pages/hub/hub',
       })
+    },
+    gotoB_viewQueue() {
+      // return
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = wx.redirectTo({
+        url: '/packageA/pages/B_createInterview/B_createInterview',
+      })
     }
+
   }
 })
