@@ -1,0 +1,16 @@
+.update-ipt {
+  border-radius: 5px;
+  background-color: var(--input-text) !important;
+}
+
+.update-ipt input {
+  background-color: var(--input-text);
+}
+
+.update-ipt input:hover {
+  background-color: var(--input-text);
+}
+
+.update-ipt:hover {
+  background-color: var(--input-text);
+}

@@ -1,0 +1,15 @@
+.update-text {
+  background-color: var(--input-text) !important;
+}
+
+.update-text input {
+  background-color: var(--input-text);
+}
+
+.update-text input:hover {
+  background-color: var(--input-text);
+}
+
+.update-text:hover {
+  background-color: var(--input-text);
+}

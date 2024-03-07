@@ -1,0 +1,56 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+/*包含以下四种的链接*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  margin: 0px;
+  padding: 0px;
+  /*消除默认点击蓝色边框效果*/
+  outline: none;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+:root {
+  --theme: #3B86FF;
+  /* 色彩规范 */
+  --leftbar: #2C3243;
+  --tips-text: #BFBFBF;
+  --main-text: #222631;
+  /* 字体 */
+  --theme-family: 'Noto Sans S Chinese';
+}
+
+#root,
+body,
+html {
+  height: 100%;
+  width: 100%;
+  color: var(--main-text);
+}

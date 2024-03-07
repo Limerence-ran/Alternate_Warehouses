@@ -1,0 +1,96 @@
+@import '~antd/dist/antd.css';
+
+@mixin Nav {
+    height: 50px;
+    width: 100%;
+    display: block;
+    // text-align: center;
+    line-height: 50px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+/*包含以下四种的链接*/
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+p {
+    margin: 0;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    margin: 0px;
+    padding: 0px;
+    /*消除默认点击蓝色边框效果*/
+    outline: none;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+:root {
+    --theme: #3B86FF;
+    /* 色彩规范 */
+    --leftbar: #2C3243;
+    --tips-text: #BFBFBF;
+    --main-text: #222631;
+    --input-text: rgba(240, 241, 242);
+
+    /* 字体 */
+    --theme-family: 'Noto Sans S Chinese';
+    /* 背景色 */
+    --theme-bgc: #f0f1f2;
+}
+
+
+#root,
+body,
+html {
+    height: 100%;
+    width: 100%;
+    color: var(--main-text);
+}
+
+
+// 组件样式修改
+.ant-btn {
+    border-radius: 4px!important;
+    border: none !important;
+    background: #F0F1F2;
+}
+
+
+.ant-input-group-wrapper {
+    background: #F0F1F2;
+    border-radius: 5px;
+}
+
+.ant-input-search>.ant-input-group>.ant-input-group-addon:last-child .ant-input-search-button {
+    background: #F0F1F2;
+}
+
+.ant-table-container table>thead>tr:first-child th:last-child {
+    min-width: 210px !important;
+}
+
+.ant-list-items .ant-list-item {
+    flex-wrap: wrap !important;
+    max-width: 450px !important;
+}
