@@ -11,6 +11,7 @@ const connectWebSocket = function (onMessageCallback) {
   let heartbeatInterval = null; // 心跳定时器
   let currentPage = ''; // 当前页面
   let conText = null; // 保存上下文
+  let adminType = null; //管理员专用通道
   /**
    *@description 发送心跳包
    */
@@ -64,9 +65,13 @@ const connectWebSocket = function (onMessageCallback) {
     context['hastoken'] = true;
     // 保持ws的唯一性
     if (socketTask === null) {
+      let url = 'wss://qgailab.com/newer/interview'
+      if (wx.getStorageSync('identity') === "Admin") {
+        url = 'wss://qgailab.com/newer/interviewer'
+      }
       // 尚未存在可用ws实例，创建ws连接任务
       socketTask = wx.connectSocket({
-        url: 'wss://qgailab.com/newer/interview',
+        url: url,
         header: {
           'content-type': 'application/json',
           'platformToken': wx.getStorageSync('platformToken')
@@ -109,7 +114,7 @@ const connectWebSocket = function (onMessageCallback) {
       if (res.code === 1000 && res.reason === '') {
         console.log('主动断开成功');
         return
-      } else if (res.reason !== "abnormal closure" || res.code != 1006) {
+      } else if (res.reason !== "abnormal closure" || res.code !== 1006) {
         // 非token过期，进行关闭重连
         close()
         reconnect();
@@ -148,20 +153,49 @@ const connectWebSocket = function (onMessageCallback) {
         reconnect(); // 执行重新连接操作
       } else {
         // 数据处理
-        const result = res.data.split('|');
-        const type = result[0];
-        const data = result[1];
-        console.log('data', data)
-        const response = JSON.parse(data);
+        let result
+        let type
+        let data
+        let response
+        if (wx.getStorageSync('identity') === "Admin" && !res.data.includes('manager|')) {
+          data = res.data;
+          type = adminType;
+          console.log('data', data)
+          response = JSON.parse(data);
+        } else {
+          result = res.data.split('|');
+          type = result[0];
+          data = result[1];
+          console.log('data', data)
+          response = JSON.parse(data);
+        }
+        // 主动接受的消息-进行标记
+        if (type === 'next') {
+          let newdata = JSON.parse(data)
+          newdata.type = 'next'
+          data = newdata
+          console.log(data, "成功处理next的data")
+          response = data;
+        } else if (type === 'manager') {
+          let newdata = JSON.parse(data)
+          newdata.type = 'manager'
+          data = newdata
+          console.log(data, "成功处理manager的data")
+          response = data;
+        }
         // 执行外部传入的消息处理回调函数
         if (onMessageCallback) {
           onMessageCallback(response);
+          console.log('处理完了');
         }
-        const app = getApp()
-        // 数据注入全局
-        app.globalData.wssInitInfo = {
-          code: response.code,
-          message: response.message
+        // 管理员无需全局注入
+        if (wx.getStorageSync('identity') !== "Admin") {
+          const app = getApp()
+          // 数据注入全局
+          app.globalData.wssInitInfo = {
+            code: response.code,
+            message: response.message
+          }
         }
         // 根据消息类型找到对应的回调函数
         const callback = callbackMap.get(type);
@@ -173,6 +207,8 @@ const connectWebSocket = function (onMessageCallback) {
         }
       }
     });
+
+
   }
 
 
@@ -194,6 +230,7 @@ const connectWebSocket = function (onMessageCallback) {
    *@description 发送请求并处理返回的信息
    */
   function request(msg, type, callback) {
+    adminType = type
     // 将回调函数存储到 Map 中
     callbackMap.set(type, callback);
     send(msg, type);

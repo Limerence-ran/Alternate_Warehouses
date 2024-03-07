@@ -6,11 +6,12 @@ import {
 import PopUp from '../../utils/tools/PopUp'
 import socket from '../../utils/tools/websocket'
 const app = getApp()
+let timer
 Page({
   data: {
     avatarUrl: app.globalData.avatarUrl, // 头像
     nickName: app.globalData.nickName, // 昵称
-    hastoken:app.globalData.hastoken,
+    hastoken: app.globalData.hastoken,
     platformToken: '', //token
     validtoken: false, //appjs数据监听判断完成
   },
@@ -32,7 +33,7 @@ Page({
     this.setData({
       validtoken: message
     })
-   
+
   },
 
   /* @description 登录请求-获取新的token
@@ -49,6 +50,7 @@ Page({
                 permissions,
                 platformToken
               } = response.data;
+              //读取权限
               wx.setStorageSync('identity', permissions);
               //把新生端Token存储到本地
               wx.setStorageSync('platformToken', platformToken);
@@ -58,8 +60,8 @@ Page({
               //把新生端Token注入到当前页面
               that.setData({
                 platformToken: platformToken,
-                hastoken:true,
-                validtoken:true,
+                hastoken: true,
+                validtoken: true,
               })
               //连接websocket
               socket.connect(app.globalData);
@@ -113,7 +115,10 @@ Page({
    * @description home页跳转
    */
   goToHome() {
-    setTimeout(() => {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
       wx.redirectTo({
         url: '../../packageB/pages/home/home',
       })

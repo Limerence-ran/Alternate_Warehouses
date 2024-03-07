@@ -1,4 +1,125 @@
 <!--packageA/pages/B_viewQueue/B_viewQueue.wxml-->
-<titletabbar></titletabbar>
-<text>packageA/pages/B_viewQueue/B_viewQueue.wxml</text>
+<titletabbar contentRoute='B_viewQueue'></titletabbar>
 
+<!-- 主要内容 -->
+<block>
+  <!-- 队列信息展示 -->
+  <view class="queue_container">
+    <view class="container scroll-1">
+      <block wx:if="{{newerInterviewQueueStatuses.length===0}}">
+        <view class="notification">
+          <view class="notiglow"></view>
+          <view class="notiborderglow"></view>
+          <view class="notititle">面试者姓名</view>
+          <view class="notibody">面试者学院</view>
+          <view class="notibody">面试者专业</view>
+          <view class="notibody">当前还没有签到的新生哦</view>
+          <view class="imgcard">
+            <image src="./image/man.svg" mode="" />
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="card" wx:for="{{newerInterviewQueueStatuses}}" wx:key="key">
+          <view class="notification">
+            <view class="notiglow"></view>
+            <view class="notiborderglow"></view>
+            <view class="notititle">{{item.name}}</view>
+            <view class="notibody">学院：{{item.college}}</view>
+            <view class="notibody">专业：{{item.major}}</view>
+            <view class="notibody">排队序号：{{item.signed}}</view>
+            <view class="imgcard">
+              <block wx:if="{{item.gender==='男'}}">
+                <image src="./image/man.svg" mode="" />
+              </block>
+              <block wx:else>
+                <image src="./image/woman.svg" mode="" />
+              </block>
+            </view>
+            <view style="display: flex;">
+              <block wx:if="{{item.passed===3}}">
+                <van-button size="mini" disabled type="info" style="z-index: 99;position: absolute; bottom: 5rpx;right: 230rpx;" bind:click="isStrange" data-periodid="{{item.wid}}">面试中</van-button>
+                <span style="display: inline-block;width: 20rpx;"></span>
+                <van-button size="mini" type="primary" style="z-index: 99;position: absolute; bottom: 5rpx;right: 120rpx;" bind:click="isStrange" data-passed="4" data-wid="{{item.wid}}">完成</van-button>
+                <span style="display: inline-block;width: 20rpx;"></span>
+                <van-button size="mini" type="danger" style="z-index: 99;position: absolute; bottom: 5rpx;right: 10rpx;" bind:click="isStrange" data-passed="-1" data-wid="{{item.wid}}">设置异常</van-button>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <movable-area>
+    <view class="main">
+      <view class="up">
+        <!-- 关闭场次 -->
+        <view class="card1" data-status="1" bind:tap="changeStatus">
+          <image src="./image/strange.svg" class="iconclass" mode="" />
+        </view>
+        <!-- 叫号下一个 -->
+        <view class="card2" data-wid="{{periodid}}" bind:tap="nextOne">
+          <image src="./image/next.svg" class="iconclass" mode="" />
+        </view>
+      </view>
+      <view class="down">
+        <!-- 队列总人数 -->
+        <view class="card3">
+          <image src="./image/total.svg" class="iconclass" mode="" />
+        </view>
+        <!-- 开启签到 -->
+        <view class="card4" data-status="2" bind:tap="changeStatus">
+          <image src="./image/more.svg" class="iconclass" mode="" />
+        </view>
+      </view>
+    </view>
+    <movable-view direction="all" out-of-bounds x="20" y="20">
+      <!-- 侧边说明面板 -->
+      <view class="cardview">
+        <view class="circleview"></view>
+        <view class="circleview"></view>
+        <view class="card-innerview">
+          <view class="innericon">
+            <image src="./image/strange.svg" class="innericonclass" mode="" />
+            <span>结束面试</span>
+          </view>
+          <view class="innericon">
+            <image src="./image/next.svg" class="innericonclass" mode="" />
+            <span>叫号</span>
+          </view>
+          <view class="innericon">
+            <image src="./image/total.svg" class="innericonclass" mode="" />
+            <span>人数：{{total===null?0:total}}</span>
+          </view>
+          <view class="innericon">
+            <image src="./image/more.svg" class="innericonclass" mode="" />
+            <span>开放签到</span>
+          </view>
+        </view>
+      </view>
+    </movable-view>
+  </movable-area>
+</block>
+<!-- 动画 -->
+<view class="piggy-wrapper">
+  <view class="piggy-wrap">
+    <view class="piggy">
+      <view class="nose"></view>
+      <view class="mouth"></view>
+      <view class="ear"></view>
+      <view class="tail">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </view>
+      <view class="eye"></view>
+      <view class="hole"></view>
+    </view>
+  </view>
+  <view class="coin-wrap">
+    <view class="coin">$</view>
+  </view>
+  <view class="legs"></view>
+  <view class="legs back"></view>
+</view>

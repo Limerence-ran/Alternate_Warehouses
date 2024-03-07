@@ -5,8 +5,6 @@ import {
 const Api = {
   // 登录接口
   loginUrl: 'login',
-  //导师端设置接口
-
   // 新生面试接口
   formUrl: 'enroll',
   resumeUrl: 'newersInfo',
@@ -17,8 +15,7 @@ const Api = {
   bookTime: 'reserve',
   getInterviewInfo: 'getInterviewInfo', //查询场次
   getScore: 'getScore',
-  //统计接口
-  //fool
+  //智慧接口
   fool: 'fool2'
 }
 
@@ -72,7 +69,7 @@ const NewerInterview = {
       method: 'POST'
     })
   },
-  bookTime: (id,showLoading) => {
+  bookTime: (id, showLoading) => {
     return Request({
       url: Api.bookTime,
       method: 'POST',
@@ -101,15 +98,6 @@ const NewerInterview = {
     })
   }
 }
-
-const TuTorInterview = {
-
-}
-const CountView = {
-
-}
 module.exports = {
   NewerInterview,
-  TuTorInterview,
-  CountView
 };

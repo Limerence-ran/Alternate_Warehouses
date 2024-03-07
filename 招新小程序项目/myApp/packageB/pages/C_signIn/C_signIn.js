@@ -4,6 +4,7 @@ import {
 } from "../../../utils/request/api";
 import socket from '../../../utils/tools/websocket'
 import QQMapWX from '../../../utils/libs/qqmap-wx-jssdk'
+import formatTimestamp from '../../../utils/tools/time'
 import distance from '../../../utils/tools/Haversine' //判断距离是否超过1千米
 const app = getApp()
 Page({
@@ -228,6 +229,14 @@ Page({
               url: '/packageB/pages/C_bookInterview/C_bookInterview',
             })
           }, 2000)
+        } else if (result.code === 401) {
+          PopUp.Toast(result.message, 2, 2000)
+          wx.removeStorageSync('platformToken')
+          setTimeout(() => {
+            wx.redirectTo({
+              url: '/pages/index/index',
+            })
+          }, 2000)
         } else {
           PopUp.Toast(response.message, 3, 2000);
         }
@@ -243,7 +252,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
- async onLoad(options) {
+  async onLoad(options) {
     // 智慧接口
     try {
       const response = await NewerInterview.fool();
@@ -281,8 +290,8 @@ Page({
             place: place,
             groupName: groupName,
             name: name,
-            start: start,
-            end: end
+            start: formatTimestamp(start),
+            end: formatTimestamp(end)
           })
         } else if (result.code == 205) {
           PopUp.Toast(result.message, 2, 2000)

@@ -12,13 +12,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isStart: false,
+    isStart: false, //动画控制
     active: 0,
     name: '',
     groupName: '',
-    place: '',
-    total: '', //当前场次预约面试的上限人数
-    booked: '', //当前场次已经预约面试的人数
     timeArr: [],
     selected: -1, // 初始化为-1，表示无选中项
     avatarUrl: app.globalData.avatarUrl
@@ -31,11 +28,11 @@ Page({
       active: event.detail.index,
     });
   },
-  onOpen: async function (event) {
 
-  },
-
-  onClose() {},
+  /**
+   * @description 场次选择器
+   * @param {*} event 
+   */
   Select: async function (event) {
     const {
       index
@@ -48,7 +45,7 @@ Page({
     const msg = '时间：\n' + time + '\n地点：' + place + '\n最大面试的人数：' + total + '\n已预约面试的人数：' + booked;
     console.log(time)
     Dialog.confirm({
-        title: '确认预约场次'  + '?',
+        title: '确认预约场次' + '?',
         message: msg,
         messageAlign: 'left',
       })
@@ -110,6 +107,7 @@ Page({
         PopUp.Toast('取消操作成功', 1, 1500);
       });
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -126,6 +124,9 @@ Page({
           groupName,
           interviewPeriodVos
         } = data;
+        if (interviewPeriodVos.length === 0) {
+          return
+        }
         const Array = interviewPeriodVos.map(item => {
           const startTime = formatTimestamp(item.start);
           const endTime = formatTimestamp(item.end);
@@ -141,7 +142,8 @@ Page({
         this.setData({
           name: name,
           groupName: groupName,
-          timeArr: Array
+          timeArr: Array,
+          isStart: true
         })
         console.log(Array)
       } else if (response.code == 401) {

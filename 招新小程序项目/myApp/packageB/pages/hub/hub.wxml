@@ -6,7 +6,7 @@
 <!-- 功能介绍/模块分流 -->
 <!-- 分割线 -->
 <view class="divider">
-  <van-divider contentPosition="center" border-color="grey"  fontSize="10" display="block">QG十九🌈，共赴龙年🐉</van-divider>
+  <van-divider contentPosition="center" border-color="grey" fontSize="10" display="block">QG十九🌈，共赴龙年🐉</van-divider>
 </view>
 <view class="container">
   <!-- 第一张 -->
@@ -280,7 +280,7 @@
   <block wx:if="{{identity==='Admin'}}">
     <!-- 第七张 -->
     <view class="module_name" style="color: #DA4D1D;">
-      <image src="../../../utils/svg/create.svg" mode="" /> | 面试创建
+      <image src="../../../utils/svg/manage.svg" mode="" /> | 面试管理
     </view>
     <!-- 创建面试 -->
     <view class="card card2" bindtap="goToB_createInterview">
@@ -322,51 +322,8 @@
       <span class="buttonspan">
       </span>
     </view>
-    <!-- 第八张 -->
-    <view class="module_name" style="color: #756d16;">
-      <image src="../../../utils/svg/manage.svg" mode="" /> | 面试管理
-    </view>
-    <!-- 面试管理 -->
-    <view class="card card3" bindtap="goToB_viewQueue">
-      <view class="hview">Schedule</view>
-      <image class="ispan fas fa-arrow-right" src="../../../utils/svg/rightarrow.svg" mode="" />
-      <view class="pview">QG STUDIO.</view>
-      <view class="pic"></view>
-      <view class="ulview">
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-        <view class="liview"></view>
-      </view>
-      <view class="social">
-        <image src="../../../utils/svg/bytedance.svg" class="ispan fab fa-instagram" mode="" />
-        <image src="../../../utils/svg/facebook.svg" class="ispan fab fa-instagram" mode="" />
-        <image src="../../../utils/svg/github.svg" class="ispan fab fa-instagram" mode="" />
-        <image src="../../../utils/svg/twiter.svg" class="ispan fab fa-instagram" mode="" />
-      </view>
-      <span class="buttonspan">
-      </span>
-    </view>
-    <!-- 第九张 -->
+
+    <!-- 最后一张 -->
     <view class="module_name" style="color: #4f3174;">
       <image src="../../../utils/svg/visualization.svg" mode="" /> | 数据可视化
     </view>

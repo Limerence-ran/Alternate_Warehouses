@@ -22,7 +22,7 @@ function processModule(code, name, hashTip) {
       } else if (code === 101 || code === 113 || code === 102) {
         PopUp.Toast(hashTip[code], 2, 1500)
       } else {
-        PopUp.Toast('已完成报名', 2, 1500)
+        PopUp.Toast('已完成预约', 2, 1500)
       }
       break;
 

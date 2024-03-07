@@ -23,13 +23,13 @@ Component({
       console.log('导航到页面', index)
       app.globalData.activeIndex = index;
       console.log("app.globalData.activeIndex", app.globalData.activeIndex)
+      console.log(app.globalData.wssInitInfo);
+      const {
+        code,
+        message
+      } = app.globalData.wssInitInfo
       if (index == 0) {
         try {
-          console.log(app.globalData.wssInitInfo);
-          const {
-            code,
-            message
-          } = app.globalData.wssInitInfo
           if (code == 103) { //未预约
             setTimeout(() => {
               wx.redirectTo({
@@ -42,16 +42,16 @@ Component({
                 url: '/packageB/pages/C_signIn/C_signIn'
               })
             }, 500)
-          } else if (code == 105) { //面试已结束
-            PopUp(message, 2, 1000)
+          } else if (code == 105 || code == 508) { //面试已结束
+            PopUp.Toast(message, 2, 1000)
           } else if (code == 200) { //已签到
             setTimeout(() => {
               wx.redirectTo({
                 url: '/packageB/pages/C_queue/C_queue'
               })
             }, 500)
-          } else if (code == 102) { //未报名
-            PopUp(message, 2, 1000)
+          } else if (code == 102 || code == 101 || code == 113) { //未报名//没通过上一轮//笔试没通过
+            PopUp.Toast(message, 2, 1000)
           }
         } catch (err) {
           console.log(err);
@@ -68,6 +68,14 @@ Component({
           url: '/packageB/pages/C_score/C_score'
         })
       } else if (index == 2) {
+        if (code == 101) {
+          PopUp.Toast(message, 2, 3000)
+          setTimeout(function () {
+            wx.redirectTo({
+              url: '/packageB/pages/C_register/C_register'
+            })
+          }, 3000)
+        }
         wx.redirectTo({
           url: '/packageB/pages/C_resume/C_resume'
         })
