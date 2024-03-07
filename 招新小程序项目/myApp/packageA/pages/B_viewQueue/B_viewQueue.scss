@@ -1,4 +1,9 @@
 /* packageA/pages/B_viewQueue/B_viewQueue.wxss */
+movable-area {
+  width: 100%;
+  height: 250px;
+}
+
 .queue_container {
   width: 100%;
   white-space: nowrap;
@@ -36,21 +41,18 @@
 
 .container .card {
   flex: 0 0 80%;
-  overflow: hidden;
   border-radius: 8px;
   background-color: rgb(20, 20, 20, 0.9);
   scroll-snap-align: start;
 }
-
-
 
 .notification {
   display: flex;
   flex-direction: column;
   isolation: isolate;
   position: relative;
-  width: 18rem;
-  height: 8rem;
+  width: 300px;
+  height: 120px;
   background: #29292c;
   border-radius: 1rem;
   overflow: hidden;
@@ -672,6 +674,26 @@
   height: 40px;
 }
 
+.innericon {
+  width: 80%;
+  height: 20px;
+  margin: 5px auto;
+  line-height: 20px;
+  font-size: 12px;
+  line-height: 10px;
+  vertical-align: middle;
+}
+
+.innericon span {
+  margin-left:0.5em  ;
+}
+
+.innericonclass {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
 .font {
   font-size: 14px;
   margin-top: 5px;
@@ -683,7 +705,7 @@
   width: 100px;
   height: 150px;
   transition: all 0.2s;
-  position: absolute;
+  position: fixed;
   top: 40%;
   right: 5%;
   cursor: pointer;
@@ -692,10 +714,14 @@
 .card-innerview {
   width: inherit;
   height: inherit;
-  background: rgba(255,255,255,.05);
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  background: rgba(255, 255, 255, .05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(10px);
   border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .cardview:hover {

@@ -35,7 +35,6 @@
                     <view style="float:right;width: 20px;height: 20px;">
                         <view class="spinner"></view>
                     </view>
-
                     <van-divider />
                     <view class="description1">面试时间 : <span class="special_word"> {{item.start}}至{{item.end}}</span></view>
                     <view class="description2">面试地点 : <span class="special_word"> {{item.place}}</span></view>
@@ -44,14 +43,14 @@
                             <van-icon name="fire" color="red" />
                             <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
                         </view>
-                          <view style="display: flex;">
+                        <view style="display: flex;">
                             <block wx:if="{{item.status===-1}}">
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
                             </block>
-                            <block wx:elif="{{item.status===0}}">
-                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                            <block wx:elif="{{item.status===0||item.status===2}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-status="{{item.status}}" data-periodid="{{item.id}}">查看详情</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
@@ -121,8 +120,8 @@
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
                             </block>
-                            <block wx:elif="{{item.status===0}}">
-                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                            <block wx:elif="{{item.status===0||item.status===2}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-status="{{item.status}}" data-periodid="{{item.id}}">查看详情</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
@@ -186,14 +185,14 @@
                             <van-icon name="fire" color="red" />
                             <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
                         </view>
-                          <view style="display: flex;">
+                        <view style="display: flex;">
                             <block wx:if="{{item.status===-1}}">
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
                             </block>
-                            <block wx:elif="{{item.status===0}}">
-                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                            <block wx:elif="{{item.status===0||item.status===2}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-status="{{item.status}}" data-periodid="{{item.id}}">查看详情</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
@@ -257,14 +256,14 @@
                             <van-icon name="fire" color="red" />
                             <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
                         </view>
-                          <view style="display: flex;">
+                        <view style="display: flex;">
                             <block wx:if="{{item.status===-1}}">
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
                             </block>
-                            <block wx:elif="{{item.status===0}}">
-                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                            <block wx:elif="{{item.status===0||item.status===2}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-status="{{item.status}}" data-periodid="{{item.id}}">查看详情</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
@@ -328,14 +327,14 @@
                             <van-icon name="fire" color="red" />
                             <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
                         </view>
-                          <view style="display: flex;">
+                        <view style="display: flex;">
                             <block wx:if="{{item.status===-1}}">
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
                             </block>
-                            <block wx:elif="{{item.status===0}}">
-                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                            <block wx:elif="{{item.status===0||item.status===2}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-status="{{item.status}}" data-periodid="{{item.id}}">查看详情</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
@@ -398,14 +397,14 @@
                             <van-icon name="fire" color="red" />
                             <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
                         </view>
-                          <view style="display: flex;">
+                        <view style="display: flex;">
                             <block wx:if="{{item.status===-1}}">
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
                             </block>
-                            <block wx:elif="{{item.status===0}}">
-                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                            <block wx:elif="{{item.status===0||item.status===2}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-status="{{item.status}}" data-periodid="{{item.id}}">查看详情</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
@@ -468,14 +467,14 @@
                             <van-icon name="fire" color="red" />
                             <span class="data">{{item.total}}人/场 | {{item.booked}}人已预约</span>
                         </view>
-                          <view style="display: flex;">
+                        <view style="display: flex;">
                             <block wx:if="{{item.status===-1}}">
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="0">开放预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="danger" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="1">冻结场次</van-button>
                             </block>
-                            <block wx:elif="{{item.status===0}}">
-                                <van-button size="mini" type="info" bind:click="viewInfo" data-periodid="{{item.id}}">查看详情</van-button>
+                            <block wx:elif="{{item.status===0||item.status===2}}">
+                                <van-button size="mini" type="info" bind:click="viewInfo" data-status="{{item.status}}" data-periodid="{{item.id}}">查看详情</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>
                                 <van-button size="mini" type="primary" bind:click="changeStatus" data-periodid="{{item.id}}" data-status="-1">暂停预约</van-button>
                                 <span style="display: inline-block;width: 20rpx;"></span>

@@ -20,8 +20,7 @@
 </block>
 <block wx:else>
   <view class="box">
-    <van-notice-bar left-icon="volume-o" scrollable="{{ true }}" background="#5b08c3" color="#fff" class="custom-class" text="请已经预约的新生尽快来到面试地点签到，避免错过面试时间😀" />
-
+    <van-notice-bar left-icon="volume-o" scrollable="{{ true }}" background="#5b08c3" color="#fff" class="custom-class" text="请已经预约的新生提前来到面试地点签到，避免错过面试时间😀" />
     <view class="title">
       <view>面试者：<text>{{name}}</text></view>
       <view>面试组别：<text>{{groupName}}</text></view>
@@ -43,12 +42,8 @@
     <view class="message">
       <van-steps steps="{{ steps }}" direction="vertical" active-color="#5b08c3" />
     </view>
-
   </view>
-  <view class="cancel" bind:tap="Cancel">
-    <button class="btn"> 取消预约</button>
-    <view class="line"></view>
-  </view>
+  <view class="one-div" bind:tap="Cancel"></view>
 </block>
 <view class="buttombar">
   <buttombar></buttombar>

@@ -113,7 +113,7 @@ const connectWebSocket = function (onMessageCallback) {
       if (res.code === 1000 && res.reason === '') {
         console.log('主动断开成功');
         return
-      } else if (res.reason !== "abnormal closure" || res.code != 1006) {
+      } else if (res.reason !== "abnormal closure" || res.code !== 1006) {
         // 非token过期，进行关闭重连
         close()
         reconnect();
@@ -155,20 +155,39 @@ const connectWebSocket = function (onMessageCallback) {
         let result
         let type
         let data
-        if (wx.getStorageSync('identity') === "Admin") {
+        let response
+        if (wx.getStorageSync('identity') === "Admin" && !res.data.includes('manager|')) {
           data = res.data;
           type = adminType;
+          console.log('data', data)
+          response = JSON.parse(data);
         } else {
           result = res.data.split('|');
           type = result[0];
           data = result[1];
+          console.log('data', data)
+          response = JSON.parse(data);
         }
-        console.log('data', data)
-        const response = JSON.parse(data);
+        // 主动接受的消息-进行标记
+        if (type === 'next') {
+          let newdata = JSON.parse(data)
+          newdata.type = 'next'
+          data = newdata
+          console.log(data, "成功处理next的data")
+          response = data;
+        } else if (type === 'manager') {
+          let newdata = JSON.parse(data)
+          newdata.type = 'manager'
+          data = newdata
+          console.log(data, "成功处理manager的data")
+          response = data;
+        }
         // 执行外部传入的消息处理回调函数
         if (onMessageCallback) {
           onMessageCallback(response);
+          console.log('处理完了');
         }
+        // 管理员无需全局注入
         if (wx.getStorageSync('identity') !== "Admin") {
           const app = getApp()
           // 数据注入全局
@@ -187,6 +206,8 @@ const connectWebSocket = function (onMessageCallback) {
         }
       }
     });
+
+
   }
 
 

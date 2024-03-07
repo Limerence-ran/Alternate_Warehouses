@@ -29,18 +29,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    try {
-      socket.request('init', 'init', (res) => {
-        const response = JSON.parse(res);
-        app.globalData.wssInitInfo = {
-          code: response.code,
-          message: response.message
-        }
-        console.log(app.globalData.wssInitInfo)
-      });
-    } catch (error) {
-      // 处理请求失败的情况
-      PopUp.Toast('请求失败', 3, 2000);
+    if (wx.getStorageSync('identity') !== "Admin") {
+      try {
+        socket.request('init', 'init', (res) => {
+          console.log(res);
+          const response = JSON.parse(res);
+          app.globalData.wssInitInfo = {
+            code: response.code,
+            message: response.message
+          }
+          console.log(app.globalData.wssInitInfo)
+        });
+      } catch (error) {
+        // 处理请求失败的情况
+        PopUp.Toast('请求失败', 3, 2000);
+      }
     }
   },
 

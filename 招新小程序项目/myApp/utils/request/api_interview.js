@@ -21,7 +21,7 @@ const Interview = {
   interviewSetInterviewStatus:(options) => {
     console.log('设置异常', options)
     return Request({
-      url: Api.callNext,
+      url: Api.setInterviewStatus,
       method: 'POST',
       data: options
     })

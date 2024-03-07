@@ -4,7 +4,12 @@
     <view class="result-ct-shadow">
       <view class="result-ct">
         <view class="result-real-ct">
-          <header class="title">成绩通知</header>
+          <view class="notification">
+            <view class="ribbon">
+              <view class="ribbon-content">Level up!</view>
+              <view class="start">我的成绩单</view>
+            </view>
+          </view>
           <view class="name-wrapper">
             <text>姓名</text>
             <input type="text" disabled="{{true}}" class="name-ipt" value="{{name_value}}" />
@@ -15,7 +20,6 @@
           </view>
           <view class="turn-wrapper">
             <text>考试轮次</text>
-            <!-- <van-picker columns="{{ columns }}" default-index="{{ 2 }}" bind:change="onChange" /> -->
             <view class="turn">
               <text> {{arrayTurn[indexTurn]}}</text>
               <picker class="right" bindchange="bindPickerChange" value="{{indexTurn}}" range="{{arrayTurn}}">
@@ -31,15 +35,34 @@
             <view class="pass-wrapper" wx:if="{{isThrough}}" hidden="{{indexTurn==null||isThrough==null}}">
               <text class="pass">通过</text>
             </view>
-            <view wx:else  class="noPass-wrapper" hidden="{{indexTurn==null||isThrough==null}}">
+            <view wx:else class="noPass-wrapper" hidden="{{indexTurn==null||isThrough==null}}">
               <text class="noPass">未通过</text>
               <text class="comfort">*希望你的编程之路不止于此！</text>
             </view>
           </view>
-         
+
         </view>
       </view>
     </view>
+  </view>
+</view>
+<!-- 动画展示 -->
+<view class="main">
+  <view class="mario_bin"></view>
+  <view class="mario_run">
+    <view class="mario_run1"></view>
+  </view>
+  <view class="walls">
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
+    <view class="wall"></view>
   </view>
 </view>
 <view class="buttombar">

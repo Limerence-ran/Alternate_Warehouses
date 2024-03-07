@@ -18,7 +18,7 @@ Page({
     indexDir: 0,
     arrayAcademy: ['计算机学院', '自动化学院', '信息工程学院', '物理与光电工程学院', '外国语学院', '机电工程学院', '土木与交通工程学院', '轻工化工学院', '材料与能源学院', '管理学院', '环境科学与工程学院', '艺术与设计学院', '法学院', '继续教育学院', '数学与统计学院', '马克思主义学院', '建筑与城市规划学院', '经济与贸易学院', '生物医药学院', '集成电路学院', '国际教育学院', '生态环境与资源学院', '先进制造学院'],
     indexAcademy: 0,
-    arrayMajor: ['是', '否'],
+    arrayMajor: ['否', '是'],
     indexMajor: 0,
     showPickerPop: false,
     name: "",
@@ -180,7 +180,7 @@ Page({
       cexperiment: e.detail.value.cexperiment,
       ctheory: e.detail.value.ctheory,
       gender: this.data.arraySex[this.data.indexSex],
-      flunk: +this.data.indexMajor, //0挂科，1没挂
+      flunk: +this.data.indexMajor, //0没挂，1挂科
       intention: +this.data.indexDir + 1,
       college: this.data.arrayAcademy[this.data.indexAcademy],
     };
@@ -288,14 +288,14 @@ Page({
             that.setData({
               isRight: true
             });
-          }, 1500)
+          }, 1000)
         } else {
           //取消跳转
           setTimeout(() => {
             wx.redirectTo({
               url: '../C_resume/C_resume',
             })
-          }, 1500)
+          }, 1000)
         }
       } else if (response.code === 401) {
         PopUp.Toast(response.message, 2, 1000)
@@ -312,7 +312,7 @@ Page({
           that.setData({
             isRight: true
           });
-        }, 1500)
+        }, 1000)
       } else {
         PopUp.Toast(response.message, 2, 1000)
         console.log('未报名或者未通过上一轮')

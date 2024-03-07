@@ -3,6 +3,7 @@ import socket from './utils/tools/websocket'
 App({
   globalData: {
     validtoken: null, //进行token合法性校验
+    nextdata: null, //next主动接受的信息
     hastoken: null, //进行token存在性判断
     message: '',
     userInfo: null,

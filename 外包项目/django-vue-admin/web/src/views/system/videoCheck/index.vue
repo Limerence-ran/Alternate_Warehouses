@@ -194,7 +194,7 @@ import { ref } from "vue";
 import log from "@/libs/util.log";
 // 首先定义videoPlayer为null
 const videoPlayer = ref(null);
-const videoPlayerDiolog = ref(null);
+let videoPlayerDiolog = ref(null);
 export default {
   name: "videoCheck",
   mixins: [d2CrudPlus.crud],
@@ -482,7 +482,7 @@ export default {
     closeVideoDialog(row) {
       this.dialogVideoVisible = false;
       // 销毁视频播放器
-      this.destroyVideoJs(videoPlayerDiolog);
+      // this.destroyVideoJs(videoPlayerDiolog);
     },
 
     /**

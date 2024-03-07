@@ -130,7 +130,7 @@ export const crudOptions = (vm, type = "nr") => {
     //评分
     {
       title: "评分",
-      key: "nr_score",
+      key: "eval_score",
       width: 120,
       search: {
         disabled: true,
@@ -219,7 +219,7 @@ export const crudOptions = (vm, type = "nr") => {
     //评分
     {
       title: "评分",
-      key: "nr_score",
+      key: "eval_score",
       width: 120,
       search: {
         disabled: true,
@@ -418,7 +418,7 @@ export const crudOptions = (vm, type = "nr") => {
     //评分
     {
       title: "评分",
-      key: "nr_score",
+      key: "eval_score",
       width: 120,
       search: {
         disabled: true,

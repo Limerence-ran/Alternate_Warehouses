@@ -16,7 +16,7 @@ const Api = {
   getInterviewInfo: 'getInterviewInfo', //查询场次
   getScore: 'getScore',
   //智慧接口
-  fool: 'fool'
+  fool: 'fool2'
 }
 
 // 放各类请求

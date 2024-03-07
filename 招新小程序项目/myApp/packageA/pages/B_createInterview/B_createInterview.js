@@ -21,7 +21,7 @@ Page({
     currentstartDate: new Date(2024, 3, 1).getTime(),
     currentendDate: new Date(2024, 3, 1).getTime(),
     //折叠
-    activeName: '1',
+    activeName: '',
     //人数
     total: 0,
     //地点
@@ -52,14 +52,14 @@ Page({
     console.log(value);
     this.setData({
       currentstartDate: value.detail,
-      activeName: '2',
+      activeName: '',
     });
   },
   onendconfirm(value) {
     console.log(value);
     this.setData({
       currentendDate: value.detail,
-      activeName: '1',
+      activeName: '',
     });
   },
 
@@ -103,6 +103,9 @@ Page({
    */
   onChange(event) {
     let intention = parseInt(event.detail.index) + 1
+    this.setData({
+      active: event.detail.index
+    })
     //发送请求
     this.requestGroup(intention)
     wx.showToast({
@@ -168,6 +171,9 @@ Page({
           show: false
         });
         PopUp.Toast(response.message, 1, 1500);
+        this.setData({
+          active: this.data.active
+        })
         this.requestGroup(this.data.active + 1)
       } else if (response.code == 401) {
         //登录失效
@@ -197,14 +203,17 @@ Page({
   async changeStatus(e) {
     console.log(e)
     let option = {
-      periodId: parseInt(e.target.dataset.periodid),
-      status: parseInt(e.target.dataset.status)
+      periodId: parseInt(e.target.dataset.periodid ?? e.currentTarget.dataset.periodId),
+      status: parseInt(e.target.dataset.status ?? e.currentTarget.dataset.status)
     }
     try {
       const response = await TuTorInterview.changeInterview(option);
       if (response.code === 200) {
         PopUp.Toast(response.message, 1, 1500);
-        this.onLoad()
+        this.setData({
+          active: this.data.active
+        })
+        this.requestGroup(this.data.active + 1)
       } else if (response.code == 401) {
         //登录失效
         wx.removeStorageSync('platformToken')
@@ -292,10 +301,11 @@ Page({
     if (Timer) {
       clearTimeout(Timer)
     }
-    let periodid = e.target.dataset.periodid
+    let periodid = e.target.dataset.periodid ?? e.currentTarget.dataset.periodid
+    let status = e.target.dataset.status ?? e.currentTarget.dataset.status
     // 页面跳转 
     Timer = wx.navigateTo({
-      url: '../B_viewQueue/B_viewQueue?periodid=' + periodid,
+      url: '../B_viewQueue/B_viewQueue?periodid=' + periodid + '&status=' + status,
     })
   },
 

@@ -1,6 +1,8 @@
 // pages/C_queue/C_queue.js
 import PopUp from '../../../utils/tools/PopUp'
 import socket from '../../../utils/tools/websocket'
+import Dialog from '@vant/weapp/dialog/dialog';
+import formatTimestamp from '../../../utils/tools/time'
 const app = getApp();
 Page({
   /* 页面的初始数据*/
@@ -18,15 +20,13 @@ Page({
 
   /*生命周期函数--监听页面加载*/
   onLoad: async function (options) {
-    wx.setNavigationBarTitle({
-      title: 'QG面试',
-    });
+    let that = this
+    //发送第一次更新
     try {
       socket.request('flush', 'flush', (res) => {
         console.log('flush', res)
         const result = JSON.parse(res);
-        if (result.code == 200) {
-
+        if (result.code == 200 || result.code == 506) {
           const {
             groupName,
             name,
@@ -36,16 +36,14 @@ Page({
             start,
             end,
           } = result.data;
-          this.setData({
+          that.setData({
             name: name,
             place: place,
             mySigned: mySigned,
             now: now,
-            start: start,
-            end: end,
+            start: formatTimestamp(start),
+            end: formatTimestamp(end),
           })
-        } else if (result.code == 205) {
-          PopUp.Toast(result.message, 2, 2000)
         } else if (result.code == 401) {
           PopUp.Toast(result.message, 2, 2000)
           wx.removeStorageSync('platformToken')
@@ -61,27 +59,75 @@ Page({
     } catch {
       console.log('无法更新')
     }
-    // 注册消息监听器
-    socket.registerOnMessageCallback(function (response) {
+    // 注册消息拦截器
+    socket.registerOnMessageCallback(function (res) {
       // 处理收到的消息
-      console.log('Received message:', response);
+      console.log('Received message:', res);
+      if (res.type === 'next') {
+        try {
+          console.log('next', res)
+          const result = res;
+          if (result.code == 200 || result.code == 506) {
+            that.setData({
+              now: result.data,
+            })
+            if (result.data === that.data.mySigned) {
+              this.tip()
+            }
+          } else if (result.code == 401) {
+            PopUp.Toast(result.message, 2, 2000)
+            wx.removeStorageSync('platformToken')
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '/pages/index/index',
+              })
+            }, 2000)
+          } else {
+            PopUp.Toast(result.message, 2, 2000)
+          };
+        } catch (e) {
+          console.log('无法更新', e)
+        }
+      } else {
+        return
+      }
     });
-
   },
 
+  /**
+   * @description 面试到提醒
+   */
+  tip: function () {
+    Dialog.confirm({
+        title: '排队提醒',
+        message: "到你面试了哦",
+        messageAlign: 'center',
+      })
+      .then(async () => {
+        // on confirm
+        PopUp.Toast('冲冲冲', 1, 1500);
+      })
+      .catch(() => {
+        // on cancel
+        PopUp.Toast('记得报道哦', 1, 1500);
+      });
+  },
+
+  /**
+   * @description 主动更新
+   */
   reflesh: async function () {
     try {
       socket.request('flush', 'flush', (res) => {
         const result = JSON.parse(res);
         console.log(result)
-        if (result.code == 200) {
+        if (result.code == 200 || result.code == 506) {
           const now = result.data.now;
           this.setData({
             now: now
           })
           console.log(result);
           PopUp.Toast(result.message, 1, 2000);
-
         } else if (result.code == 205) {
           PopUp.Toast(result.message, 2, 2000)
         } else {
@@ -93,6 +139,10 @@ Page({
       console.log('无法更新')
     }
   },
+
+  /**
+   * @description 取消签到
+   */
   cancelSignIn: async function () {
     const result = await PopUp.Confirm('是否确认取消签到？');
     console.log(result)
@@ -147,9 +197,6 @@ Page({
    */
   onUnload() {
 
-    // if (socket) {
-    //   socket.close()
-    // }
   },
 
   /**
