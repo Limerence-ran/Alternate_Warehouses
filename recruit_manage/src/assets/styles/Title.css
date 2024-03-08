@@ -1,0 +1,14 @@
+.data-title {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: var(--theme-bgc);
+  border-radius: 8px;
+  z-index: 999;
+}

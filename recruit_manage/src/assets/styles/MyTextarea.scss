@@ -1,0 +1,20 @@
+.update-text {
+    // width: 300px !important;
+    background-color: var(--input-text) !important;
+
+    input {
+        background-color: var(--input-text);
+
+        &:hover {
+            background-color: var(--input-text);
+
+        }
+
+
+    }
+
+    &:hover {
+        background-color: var(--input-text);
+
+    }
+}

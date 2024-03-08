@@ -1,0 +1,110 @@
+#detail-wrapper {
+  width: 100%;
+  min-height: calc(100% - 50px);
+  background-color: #fff;
+  padding: 20px;
+}
+
+#detail-wrapper header {
+  font-size: 24px;
+  color: var(--theme);
+  font-weight: 500;
+}
+
+#detail-wrapper #detail-main {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 1000px;
+}
+
+#detail-wrapper #detail-main #detail-ct {
+  width: 70%;
+  min-width: 850px;
+}
+
+#detail-wrapper #detail-main #detail-ct #warn-word {
+  color: #E65656;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #basic-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #basic-wrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 30%;
+  height: 10%;
+  margin-bottom: 20px;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #basic-wrapper span {
+  width: 55%;
+  height: 30px;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #other-wrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #other-wrapper > div > div {
+  width: 65%;
+  height: 2vw;
+  min-height: 40px;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #self-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #self-wrapper > div {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #self-wrapper > div > div {
+  width: 80%;
+  height: 8vw;
+  min-height: 80px;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #bigIntro-wrapper {
+  width: 100%;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #bigIntro-wrapper > div {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#detail-wrapper #detail-main #detail-ct #detail #bigIntro-wrapper > div > div {
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+  text-indent: 2em;
+}
+
+#detail-wrapper #detail-main #detail-ct .com-btn {
+  text-align: center;
+  height: 50px;
+}

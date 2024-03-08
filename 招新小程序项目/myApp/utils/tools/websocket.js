@@ -101,6 +101,7 @@ const connectWebSocket = function (onMessageCallback) {
     /**
      * @description 连接异常
      */
+  
     socketTask.onError(function (res) {
       console.log('WebSocket连接出错', res);
     });

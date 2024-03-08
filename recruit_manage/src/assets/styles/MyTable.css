@@ -1,0 +1,16 @@
+.column {
+  background-color: #fff;
+}
+
+.ant-table-thead tr > th:first-child {
+  background-color: var(--theme) !important;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td,
+.ant-table tfoot > tr > th,
+.ant-table tfoot > tr > td {
+  position: relative;
+  padding: 9px 16px;
+  overflow-wrap: break-word;
+}

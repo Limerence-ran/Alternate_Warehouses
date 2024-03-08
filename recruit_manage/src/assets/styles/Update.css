@@ -1,0 +1,89 @@
+#update-wrapper {
+  width: 100%;
+  min-height: calc(100% - 50px);
+  background-color: #fff;
+  padding: 20px;
+}
+
+#update-wrapper header {
+  font-size: 24px;
+  color: var(--theme);
+  font-weight: 500;
+}
+
+#update-wrapper #update-main {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+}
+
+#update-wrapper #update-main #update-ct {
+  width: 70%;
+}
+
+#update-wrapper #update-main #update-ct #warn-word {
+  color: #E65656;
+}
+
+#update-wrapper #update-main #update-ct #update #basic-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+#update-wrapper #update-main #update-ct #update #basic-wrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 30%;
+  height: 10%;
+  margin-bottom: 20px;
+}
+
+#update-wrapper #update-main #update-ct #update #other-wrapper > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#update-wrapper #update-main #update-ct #update #self-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+#update-wrapper #update-main #update-ct #update #self-wrapper > div {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+#update-wrapper #update-main #update-ct #update #bigIntro-wrapper {
+  width: 100%;
+}
+
+#update-wrapper #update-main #update-ct #update #bigIntro-wrapper > div {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#update-wrapper #update-main #update-ct #update #bigIntro-wrapper > div textarea {
+  height: auto !important;
+  min-height: 200px !important;
+  text-indent: 2em;
+}
+
+#update-wrapper #update-main #update-ct .com-btn {
+  text-align: center;
+  height: 50px;
+}

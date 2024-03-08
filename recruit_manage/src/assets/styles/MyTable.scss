@@ -1,0 +1,28 @@
+.column {
+    background-color: #fff;
+}
+
+.ant-table-thead {
+    tr>th {
+        &:first-child {
+            background-color: var(--theme) !important;
+
+        }
+    }
+
+}
+
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td,
+.ant-table tfoot>tr>th,
+.ant-table tfoot>tr>td {
+    position: relative;
+    padding: 9px 16px;
+    overflow-wrap: break-word;
+}
+.ant-table-container table > thead > tr:first-child th:first-child{
+    border-top-left-radius: 0!important;
+}
+.ant-table-container table > thead > tr:first-child th:last-child{
+    border-top-right-radius: 0!important;
+}
