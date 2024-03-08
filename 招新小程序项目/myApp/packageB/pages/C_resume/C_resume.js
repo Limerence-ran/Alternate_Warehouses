@@ -12,7 +12,8 @@ Page({
   data: {
     shakeAnimation: {},
     avatarUrl: app.globalData.avatarUrl,
-    userInfo: null
+    userInfo: null,
+    isHide: false, //智慧权限
   },
   initInfo: async function () {
     try {
@@ -22,15 +23,15 @@ Page({
         this.setData({
           userInfo: data
         });
-      }else if(response.code === 401){
-        PopUp.Toast(response.message,2,1000)
+      } else if (response.code === 401) {
+        PopUp.Toast(response.message, 2, 1000)
         setTimeout(() => {
           wx.redirectTo({
             url: '/pages/index/index',
           })
         }, 1500)
       } else {
-        PopUp.Toast(response.message,2,1000)
+        PopUp.Toast(response.message, 2, 1000)
       }
     } catch (error) {
       // 处理请求失败的情况
@@ -46,11 +47,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    wx.setNavigationBarTitle({
-      title: '个人简历',
-    });
+    // 智慧接口
+    try {
+      const response = await NewerInterview.fool();
+      console.log('response', response);
+      let data = response.data;
+      this.setData({
+        isHide: data
+      });
+      // 每次审核前记得通知后台并设置为!data
+      if (!data) {
+        return
+      }
+    } catch (error) {
+      // 处理请求失败的情况
+      console.error('请求失败:', error);
+      PopUp.Toast('权限关闭', 2, 1000)
+    }
     this.initInfo();
-
     const animation = wx.createAnimation({
       duration: 100,
       timingFunction: 'ease',

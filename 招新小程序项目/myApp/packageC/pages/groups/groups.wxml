@@ -1,0 +1,21 @@
+<!--packageC/pages/groups/groups.wxml-->
+<titletabbar contentRoute='introduction'></titletabbar>
+<view class="e-card playing">
+  <view class="image">
+    <image src="{{content[id-1].url}}" mode="" />
+  </view>
+  <view class="wave"></view>
+  <view class="wave"></view>
+  <view class="wave"></view>
+  <view class="infotop">
+    {{content[id-1].name}} Designer
+    <view class="name">{{content[id-1].description}}</view>
+  </view>
+</view>
+<view class="card">
+  <view class="card__tags">
+    <view class="tag">
+      <view class="tag__name" wx:for="{{content[id-1].word}}" wx:key="key">{{item}}</view>
+    </view>
+  </view>
+</view>

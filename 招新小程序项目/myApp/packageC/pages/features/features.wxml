@@ -1,0 +1,157 @@
+<!--packageC/pages/features/features.wxml-->
+<titletabbar contentRoute='introduction'></titletabbar>
+<view class="containercard scroll-1">
+  <!-- QG工作室介绍 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">QG工作室介绍</span>
+      <view class="card__describe">
+        QG Studio Introduction
+      </view>
+    </view>
+  </view>
+  <!-- 小平科技创新团队 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">小平科技创新团队</span>
+      <view class="card__describe">
+        Xiaoping Science and Technology Innovation Team
+      </view>
+    </view>
+  </view>
+  <!-- 社会影响力 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">社会影响力</span>
+      <view class="card__describe">
+        Social Influence
+      </view>
+    </view>
+  </view>
+  <!-- 大厂之路 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">大厂之路</span>
+      <view class="card__describe">
+        The Road to Famous Enterprise
+      </view>
+    </view>
+  </view>
+  <!-- 项目资源 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">项目资源</span>
+      <view class="card__describe">
+        Project Resources
+      </view>
+    </view>
+  </view>
+  <!-- 招新宣讲会 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">招新宣讲会</span>
+      <view class="card__describe">
+        Recruitment Session
+      </view>
+    </view>
+  </view>
+  <!-- 新生训练营 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">新生训练营</span>
+      <view class="card__describe">
+        Boot Camp
+      </view>
+    </view>
+  </view>
+  <!-- 技术交流会 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">技术交流会</span>
+      <view class="card__describe">
+        Technical Exchange Meeting
+      </view>
+    </view>
+  </view>
+  <!-- 康乐活动 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">康乐活动</span>
+      <view class="card__describe">
+        Recreational Activities
+      </view>
+    </view>
+  </view>
+  <!-- 毕业生合照 -->
+  <view class="card">
+    <view class="card__image"></view>
+    <view class="card__content">
+      <span class="card__title">毕业生合照</span>
+      <view class="card__describe">
+        Photo of Graduates
+      </view>
+    </view>
+  </view>
+</view>
+<view class="container">
+  <view class="cube">
+    <view style="--x:-1; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+    <view style="--x:0; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+    <view style="--x:1; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+  </view>
+  <view class="cube">
+    <view style="--x:-1; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+    <view style="--x:0; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+    <view style="--x:1; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+  </view>
+  <view class="cube">
+    <view style="--x:-1; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+    <view style="--x:0; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+    <view style="--x:1; --y:0;">
+      <span style="--i:3;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:1;"></span>
+    </view>
+  </view>
+</view>

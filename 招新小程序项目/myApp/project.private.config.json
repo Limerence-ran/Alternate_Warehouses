@@ -4,6 +4,41 @@
     "miniprogram": {
       "list": [
         {
+          "name": "packageB/pages/C_signIn/C_signIn",
+          "pathName": "packageB/pages/C_signIn/C_signIn",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageB/pages/C_resume/C_resume",
+          "pathName": "packageB/pages/C_resume/C_resume",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageC/pages/groups/groups",
+          "pathName": "packageC/pages/groups/groups",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageC/pages/features/features",
+          "pathName": "packageC/pages/features/features",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageC/pages/tutor/tutor",
+          "pathName": "packageC/pages/tutor/tutor",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "packageA/pages/B_viewQueue/B_viewQueue",
           "pathName": "packageA/pages/B_viewQueue/B_viewQueue",
           "query": "",

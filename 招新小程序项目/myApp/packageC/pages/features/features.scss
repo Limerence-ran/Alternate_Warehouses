@@ -1,0 +1,212 @@
+/* packageC/pages/features/features.wxss */
+@keyframes animate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  transform: skewY(-20deg);
+  animation: animate 5s linear infinite;
+  margin: 40% auto;
+
+  .cube {
+    position: relative;
+    z-index: 2;
+
+    &:nth-child(2) {
+      z-index: 1;
+      translate: -60px -60px;
+    }
+
+    &:nth-child(3) {
+      z-index: 3;
+      translate: 60px 60px;
+    }
+
+    view {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      translate: calc(-70px * var(--x)) calc(-60px * var(--y));
+
+      span {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: #dcdcdc;
+        z-index: calc(1 * var(--i));
+        transition: 1.5s;
+
+        &:hover {
+          transition: 0s;
+          background: #ef4149;
+          filter: drop-shadow(0 0 30px #ef4149);
+
+          &:before,
+          &:after {
+            transition: 0s;
+            background: #ef4149;
+          }
+        }
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: -40px;
+          width: 40px;
+          height: 100%;
+          background: #fff;
+          transform-origin: right;
+          transform: skewY(45deg);
+          transition: 1.5s;
+        }
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: -40px;
+          left: 0px;
+          width: 100%;
+          height: 40px;
+          background: #f2f2f2;
+          transform-origin: bottom;
+          transform: skewX(45deg);
+          transition: 1.5s;
+        }
+      }
+    }
+  }
+}
+
+
+.scroll-1::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-1::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #888;
+}
+
+.containercard {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+}
+
+.containercard {
+  display: flex;
+  overflow-x: scroll;
+  padding: 24px;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+  scroll-padding-top: 24px;
+  border-radius: 8px;
+  gap: 20px;
+}
+
+.containercard .card {
+  flex: 0 0 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #141414;
+  scroll-snap-align: start;
+}
+
+.card .card__image {
+  flex: 1;
+  height: 140px;
+}
+
+.card:nth-child(1) .card__image {
+  background-image: linear-gradient(to right top,
+      #051937,
+      #004d7a,
+      #008793,
+      #00bf72,
+      #a8eb12);
+}
+
+.card:nth-child(2) .card__image {
+  background-image: linear-gradient(to right top,
+      #dc09a5,
+      #ce00b4,
+      #ba00c5,
+      #9c00d8,
+      #6f12eb);
+}
+
+.card:nth-child(3) .card__image {
+  background-image: linear-gradient(to right top,
+      #dc1009,
+      #e55f00,
+      #e49200,
+      #dac000,
+      #c7eb12);
+}
+
+.card:nth-child(4) .card__image {
+  background-image: linear-gradient(to right top,
+      #e66465, #9198e5);
+}
+
+.card:nth-child(5) .card__image {
+  background-image: linear-gradient(to right top,
+      #9fe1fa, #f4edc9);
+}
+
+.card:nth-child(6) .card__image {
+  background-image: linear-gradient(to right top,
+      rgb(238, 163, 175), rgb(149, 214, 240));
+}
+
+.card:nth-child(7) .card__image {
+  background-image: linear-gradient(to right top,
+      rgb(238, 113, 113), rgb(246, 215, 148));
+}
+
+.card:nth-child(8) .card__image {
+  background-image: linear-gradient(to right top,
+      rgb(253, 218, 255) 8.2%, rgb(223, 173, 252) 19.6%, rgb(173, 205, 252) 36.8%, rgb(173, 252, 244) 73.2%, rgb(202, 248, 208));
+}
+
+.card:nth-child(9) .card__image {
+  background-image: linear-gradient(to right top,
+  rgba(40, 91, 212, 0.73) -3%, rgba(171, 53, 163, 0.45) 49.3%, rgba(255, 204, 112, 0.37) 97.7%);
+}
+
+.card:nth-child(10) .card__image {
+  background-image: linear-gradient(to right top,
+  rgb(181, 239, 249) 10.5%, rgb(254, 254, 254) 86.8%);
+}
+
+.card .card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.card .card__content .card__title {
+  font-size: 32px;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.card .card__content .card__describe {
+  color: #fff;
+  font-size: 16px;
+}

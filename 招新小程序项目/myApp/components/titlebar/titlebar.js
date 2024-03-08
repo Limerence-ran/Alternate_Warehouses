@@ -43,6 +43,15 @@ Component({
       timer = wx.redirectTo({
         url: '/packageA/pages/B_createInterview/B_createInterview',
       })
+    },
+    gotoIntroduction() {
+      // return
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = wx.redirectTo({
+        url: '/packageB/pages/Introduction/Introduction',
+      })
     }
 
   }

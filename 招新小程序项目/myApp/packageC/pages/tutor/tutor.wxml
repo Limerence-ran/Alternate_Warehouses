@@ -1,0 +1,56 @@
+<!--packageC/pages/tutor/tutor.wxml-->
+<titletabbar contentRoute='introduction'></titletabbar>
+<view class="scroll-snap-card">
+  <view class="slide red">
+    <view class="tip">往上滑动 一览导师风采</view>
+  </view>
+  <view class="slide blue">
+    <view class="card">
+      <view class="profileImage">
+        <image src="./image/tutor_xie.png" style="height: 100%;width: 100%;" mode="" />
+      </view>
+      <view class="textContainer">
+        <view class="name">谢光强博士</view>
+        <view class="title">职位</view>
+        <view class="profile">
+          谢光强，博士，广东工业大学计算机学院教授，创新创业学院常务副院长，全国家用自动控制器标准化技术委员会变频控制器分技术委员会副主任委员、第十三届广东省政协委员、中国计算机学会（CCF）高级会员、CCF计算机应用专委会执行委员、CCF教育专委会执行委员、CCF青年计算机科技论坛（YOCSEF）广州2022-2023副主席、中国人工智能学会知识工程与分布智能专业委员会委员、中国人工智能学会科普工作委员会委员、广东省“数字政府”改革建设专家委员会专家</view>
+        <view class="title">简介</view>
+        <view class="profile">
+          2005年创建QG科技创新团队、第一指导教师</view>
+        <view class="profile"> 个人共获各类省、市、校奖项40多项</view>
+        <view class="profile">获得广东省教育教学成果奖（高等教育）一等奖</view>
+        <view class="profile">广东工业大学“学生最喜爱的教师”、“十佳授课教师”、“师德标兵”</view>
+        <view class="profile"> 主持和参加国家自然基金等各类科研项目30余项</view>
+        <view class="profile"> 已申请专利和软件著作权近60项</view>
+        <view class="profile">指导学生获各类科技竞赛奖项240余项（国家级33项、省级131项）</view>
+        <view class="title">科研方向</view>
+        <view class="profile">
+          分布式人工智能、数据挖掘、差分隐私、无人驾驶、工业软件</view>
+      </view>
+    </view>
+  </view>
+  <view class="slide green">
+    <view class="card">
+      <view class="profileImage">
+        <image src="./image/tutor_li.png" style="height: 100%;width: 100%;" mode="" />
+      </view>
+      <view class="textContainer">
+        <view class="name">李杨</view>
+        <view class="title">职位</view>
+        <view class="profile">
+          广东工业大学副教授、硕士生导师</view>
+        <view class="title">简介</view>
+        <view class="profile">
+          在差分隐私保护和多智能体一致性领域有多年持续深入的工作，主持国家自然科学基金1项、省市级和企业合作项目多项</view>
+        <view class="profile"> 在SCI一区、二区及学校TOP期刊发表论文多篇，发表了国内首篇差分隐私保护的综述性论文《差分隐私保护研究综述》</view>
+        <view class="profile">作为作者之一与浙江大学的陈为教授和清华大学的唐杰教授等合作撰写的《大数据技术前沿》一书，独立完成书中第八章的大数据安全技术内容</view>
+        <view class="profile">曾作为主讲嘉宾为中关村大数据联盟“大数据100分”论坛作题目为《差分隐私保护方法浅谈》的报告</view>
+        <view class="profile"> 曾作为访问学者在美国密苏里科技大学IDEAS智能交通实验室访问一年，获得了密苏里科技大学“2019年访问学者贡献奖”</view>
+        <view class="profile"> 作为副主编出版的《数据科学与数学建模》已经在双一流高校作为本科教材使用</view>
+        <view class="profile">曾获广东工业大学“十佳青年教师”、“先进科技工作者”等称号，指导学生获全国高校绿色计算机大赛“一等奖”、“挑战杯”国赛一等奖等各类高水平创新比赛奖项30余项</view>
+        <view class="title">科研方向</view>
+        <view class="profile">信息安全、差分隐私保护、多智能体系统、机器学习</view>
+      </view>
+    </view>
+  </view>
+</view>

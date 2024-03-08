@@ -24,6 +24,14 @@
         "pages/C_signIn/C_signIn",
         "pages/Introduction/Introduction"
       ]
+    },{
+      "root": "packageC",
+      "name": "pack3",
+      "pages": [
+        "pages/tutor/tutor",
+        "pages/features/features",
+        "pages/groups/groups"
+      ]
     }
   ],
   "preloadRule": {
@@ -36,7 +44,8 @@
     "packageB/pages/hub/hub": {
       "network": "all",
       "packages": [
-        "packageA"
+        "packageA",
+        "packageC"
       ]
     }
   },
