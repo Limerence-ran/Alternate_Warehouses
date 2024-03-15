@@ -48,7 +48,11 @@
               ></video>
             </div>
             <div class="paramsdiv">
-              <el-table :data="tableData" style="width: 100%" stripe="true">
+              <el-table
+                :data="tableData"
+                style="width: 100%; height: 200px; overflow: scroll"
+                stripe="true"
+              >
                 <el-table-column
                   prop="name"
                   label="视频参数"
@@ -132,6 +136,31 @@
         <el-button @click="closeVideoDialog">取 消</el-button>
       </div>
     </el-dialog>
+    <!-- 新增参考信息对话框 -->
+    <el-dialog
+      title="参考文件信息"
+      :visible.sync="dialogEvalVisible"
+      :width="'700px'"
+    >
+      <el-table
+        :data="tableEvalData"
+        style="width: 100%; height: 200px; overflow: scroll"
+        stripe="true"
+      >
+        <el-table-column
+          prop="name"
+          label="视频参数"
+          align="center"
+          width="180"
+        >
+        </el-table-column>
+        <el-table-column prop="value" label="参数值" width="180" align="center">
+        </el-table-column>
+      </el-table>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="closeEvalDialog">取 消</el-button>
+      </div>
+    </el-dialog>
   </d2-container>
 </template>
 
@@ -213,6 +242,44 @@ export default {
           name: "分辨率",
           value: <el-tag size="small">暂无数据</el-tag>,
         },
+        {
+          name: "封装格式",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+        {
+          name: "帧速",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+      ],
+      tableEvalData: [
+        {
+          name: "ID",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+        {
+          name: "地址",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+        {
+          name: "文件名",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+        {
+          name: "MD5",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+        {
+          name: "类型",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+        {
+          name: "最近更新时间",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
+        {
+          name: "最近更新用户",
+          value: <el-tag size="small">暂无数据</el-tag>,
+        },
       ],
       // 视频地址
       videoUrl: this.$route.query.url,
@@ -226,6 +293,8 @@ export default {
       dialogFormVisible: false,
       // video对话框开关
       dialogVideoVisible: false,
+      // 参考信息对话框开关
+      dialogEvalVisible: false,
       // 部门选择器
       deptoptions: [],
       // 表单宽度
@@ -236,8 +305,6 @@ export default {
         dept_belong_id: "",
         description: "",
       },
-      // 视频播放器
-      player: null,
       //终止任务用id
       stopTaskId: null,
     };
@@ -273,23 +340,23 @@ export default {
         this.$message.warning("该视频格式暂不支持播放");
         return;
       }
-
       setTimeout(function () {
         videoPlayer.value.play();
-      }, 300);
+      }, 500);
       //处理videojs视频播放错误的语法
       videoPlayer.value.on("error", () => {
         this.$message.error(`视频加载失败，请稍候重试！`);
         return false;
       });
     },
+
     /**
      * @description: 销毁videojs播放器
      */
     destroyVideoJs(videoPlayer) {
       if (videoPlayer.value) {
         videoPlayer.value.pause(); //暂停播放数据流
-        videoPlayer.value.dispose(); //销毁播放器实例
+        videoPlayer.value.dispose(); //销毁videojs播放器
         videoPlayer.value = null;
       }
     },
@@ -361,7 +428,7 @@ export default {
       } else {
         // 数据查询成功-直接进行前端展示
         // 数据解构
-        const { codec_name, bit_rate, width, height } =
+        const { codec_name, bit_rate, width, height, format_name, frame_rate } =
           codeParams.data.data[0].codec;
         // 数据注入
         if (codec_name)
@@ -374,6 +441,12 @@ export default {
               {width} * {height}
             </el-tag>
           );
+        if (format_name)
+          this.tableData[3].value = (
+            <el-tag size="medium">{format_name}</el-tag>
+          );
+        if (frame_rate)
+          this.tableData[4].value = <el-tag size="small">{frame_rate}</el-tag>;
       }
     },
 
@@ -388,6 +461,9 @@ export default {
      * @description 参考文件管理
      */
     async createReferenceFile() {
+      if (this.$route.query.type !== "nr") {
+        await this.queryReferenceVideo();
+      }
       // 开启对话框
       this.form.video = this.$route.query.id;
       // 更改字段启动弹框
@@ -400,6 +476,39 @@ export default {
         return;
       } else {
         this.dialogFormVisible = false;
+        // 展示参考视频信息
+        this.dialogEvalVisible = true;
+        // 数据注入
+        if (this.referenceVideoInfo.video);
+        this.tableEvalData[0].value = (
+          <el-tag size="small">{this.referenceVideoInfo.video}</el-tag>
+        );
+        if (this.referenceVideoInfo.url);
+        this.tableEvalData[1].value = (
+          <el-tag size="small">{this.referenceVideoInfo.url}</el-tag>
+        );
+        if (this.referenceVideoInfo.name);
+        this.tableEvalData[2].value = (
+          <el-tag size="small">{this.referenceVideoInfo.name}</el-tag>
+        );
+        if (this.referenceVideoInfo.md5sum);
+        this.tableEvalData[3].value = (
+          <el-tag size="medium">{this.referenceVideoInfo.md5sum}</el-tag>
+        );
+        if (this.referenceVideoInfo.mime_type);
+        this.tableEvalData[4].value = (
+          <el-tag size="small">{this.referenceVideoInfo.mime_type}</el-tag>
+        );
+        if (this.referenceVideoInfo.update_datetime);
+        this.tableEvalData[5].value = (
+          <el-tag size="small">
+            {this.referenceVideoInfo.update_datetime}
+          </el-tag>
+        );
+        if (this.referenceVideoInfo.modifier_name);
+        this.tableEvalData[6].value = (
+          <el-tag size="small">{this.referenceVideoInfo.modifier_name}</el-tag>
+        );
         return this.$message.warning("已上传参考视频");
       }
     },
@@ -432,20 +541,25 @@ export default {
       const { code, data } = await api.refFileSearch(this.$route.query.id);
       if (code === 2000 && data.total === 0) {
         // 不存在参考文件
+        this.referenceVideo = false;
       } else if (code === 2000 && data.total !== 0) {
         // 存在参考文件
         this.referenceVideo = true;
         this.referenceVideoInfo = {
           url: data.data[0].url,
           name: data.data[0].name,
-          id: data.data[0].id,
+          video: data.data[0].video,
+          md5sum: data.data[0].md5sum,
+          mime_type: data.data[0].mime_type,
+          update_datetime: data.data[0].update_datetime,
+          modifier_name: data.data[0].modifier_name,
         };
-        console.log(this.referenceVideoInfo);
       } else {
         //请求失败
         this.$message.warning("请检查网络");
       }
     },
+
     /**
      * @description: 获取crud配置
      */
@@ -453,6 +567,7 @@ export default {
       console.log(this);
       return crudOptions(this, this.$route.query.type);
     },
+
     /**
      *@description: 获取视频任务结果
      * @param {*} query
@@ -482,7 +597,14 @@ export default {
     closeVideoDialog(row) {
       this.dialogVideoVisible = false;
       // 销毁视频播放器
-      // this.destroyVideoJs(videoPlayerDiolog);
+      this.destroyVideoJs(videoPlayerDiolog);
+    },
+
+    /**
+     * @description: 关闭信息弹框
+     */
+    closeEvalDialog(row) {
+      this.dialogEvalVisible = false;
     },
 
     /**
@@ -505,9 +627,7 @@ export default {
    * @description 页面创建时的处理
    */
   mounted() {
-    if (this.$route.query.type === "ref") {
-      this.queryReferenceVideo();
-    }
+    // 获取视频信息
     this.videoEval();
     // 播放视频
     this.createVideoJs(this.$route.query.url, videoPlayer, "my-player");

@@ -33,7 +33,7 @@
       ref="d2Crud"
       v-bind="_crudProps"
       v-on="_crudListeners"
-      @evaluate="evaluate"
+      @output="output"
     >
       <div slot="header">
         <div id="card">
@@ -112,6 +112,24 @@
         <el-button type="primary" @click="doFileRefresh">确 定</el-button>
       </div>
     </el-dialog>
+    <!-- 新增播放对话框 -->
+    <el-dialog
+      title="视频片段"
+      :visible.sync="dialogVideoVisible"
+      :width="'700px'"
+    >
+      <video
+        id="my-playerDiolog"
+        class="video-js vjs-default-skin"
+        controls
+        autoplay
+        muted
+        preload="auto"
+      ></video>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="closeVideoDialog">取 消</el-button>
+      </div>
+    </el-dialog>
   </d2-container>
 </template>
 
@@ -149,16 +167,26 @@ $width: 100%;
   width: 100%;
   height: 100%;
 }
+.video-js .vjs-tech {
+  width: 100%;
+  height: 100%;
+}
+.video-js {
+  width: 100%;
+}
 </style>
 
 <script>
+import "video.js/dist/video-js.css";
 import * as api from "./api";
 import { crudOptions } from "./crud";
 import { d2CrudPlus } from "d2-crud-plus";
 import flvjs from "flv.js";
+import videojs from "video.js";
 import { ref } from "vue";
 // 首先定义flvPlayer为null
 const flvPlayer = ref(null);
+let videoPlayerDiolog = ref(null);
 export default {
   name: "liveCheck",
   mixins: [d2CrudPlus.crud],
@@ -170,7 +198,7 @@ export default {
           value: <el-tag size="small">暂无数据</el-tag>,
         },
         {
-          name: "帧速",
+          name: "码率",
           value: <el-tag size="small">暂无数据</el-tag>,
         },
         {
@@ -178,11 +206,11 @@ export default {
           value: <el-tag size="small">暂无数据</el-tag>,
         },
         {
-          name: "码率",
+          name: "封装格式",
           value: <el-tag size="small">暂无数据</el-tag>,
         },
         {
-          name: "封装格式",
+          name: "帧速",
           value: <el-tag size="small">暂无数据</el-tag>,
         },
       ],
@@ -192,8 +220,10 @@ export default {
       referenceVideo: true,
       // 参考视频信息
       referenceVideoInfo: {},
-      // 对话框开关
+      // 参考文件对话框开关
       dialogFormVisible: false,
+      // 视频对话框开关
+      dialogVideoVisible: false,
       // 部门选择器
       deptoptions: [],
       // 表单宽度
@@ -204,8 +234,6 @@ export default {
         dept_belong_id: "",
         description: "",
       },
-      // 视频播放器
-      player: null,
       //终止任务用id
       stopTaskId: null,
     };
@@ -249,6 +277,56 @@ export default {
     },
 
     /**
+     * @description: 创建videojs播放器
+     */
+    createVideoJs(url, videoPlayer, id) {
+      videoPlayer.value = videojs(id, {
+        bigPlayButton: false,
+        textTrackDisplay: false,
+        posterImage: true,
+        errorDisplay: false,
+        controlBar: true,
+      });
+      const formatType = this.getVideoFormat(url);
+      if (formatType === "m3u8") {
+        videoPlayer.value.src([
+          {
+            src: url, //你的url地址
+            type: "application/x-mpegURL",
+          },
+        ]);
+      } else if (formatType === "mp4") {
+        videoPlayer.value.src([
+          {
+            src: url, //你的url地址
+            type: "video/mp4",
+          },
+        ]);
+      } else {
+        this.$message.warning("该视频格式暂不支持播放");
+        return;
+      }
+      setTimeout(function () {
+        videoPlayer.value.play();
+      }, 500);
+      //处理videojs视频播放错误的语法
+      videoPlayer.value.on("error", () => {
+        this.$message.error(`视频加载失败，请稍候重试！`);
+        return false;
+      });
+    },
+    /**
+     * @description: 销毁videojs播放器
+     */
+    destroyVideoJs(videoPlayer) {
+      if (videoPlayer.value) {
+        videoPlayer.value.pause(); //暂停播放数据流
+        videoPlayer.value.dispose(); //销毁videojs播放器
+        videoPlayer.value = null;
+      }
+    },
+
+    /**
      * @description: 视频编码格式信息检测
      */
     async liveEval() {
@@ -273,20 +351,21 @@ export default {
         // 数据注入
         if (codec_name)
           this.tableData[0].value = <el-tag size="small">{codec_name}</el-tag>;
-        if (frame_rate)
-          this.tableData[1].value = <el-tag size="small">{frame_rate}</el-tag>;
+        if (bit_rate)
+          this.tableData[1].value = <el-tag size="small">{bit_rate}</el-tag>;
         if (width && height)
           this.tableData[2].value = (
             <el-tag size="small">
               {width} * {height}
             </el-tag>
           );
-        if (bit_rate)
-          this.tableData[3].value = <el-tag size="small">{bit_rate}</el-tag>;
+
         if (format_name)
-          this.tableData[4].value = (
+          this.tableData[3].value = (
             <el-tag size="medium">{format_name}</el-tag>
           );
+        if (frame_rate)
+          this.tableData[4].value = <el-tag size="small">{frame_rate}</el-tag>;
       }
     },
 
@@ -359,9 +438,24 @@ export default {
     },
 
     /**
-     * @description 历史直播视频播放查询
+     * @description: 播放视频片段
+     * @param {*} row
      */
-    async getHistoryLiveUrl() {},
+    output(row) {
+      // 更改字段启动弹框
+      this.dialogVideoVisible = true;
+      // 创建视频播放器
+      this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
+    },
+
+    /**
+     * @description: 关闭视频弹框
+     */
+    closeVideoDialog(row) {
+      this.dialogVideoVisible = false;
+      // 销毁视频播放器
+      this.destroyVideoJs(videoPlayerDiolog);
+    },
 
     /**
      * @description: 获取crud配置

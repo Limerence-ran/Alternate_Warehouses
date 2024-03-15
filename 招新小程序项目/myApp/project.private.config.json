@@ -4,6 +4,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "packageA/pages/B_viewQueue/B_viewQueue",
+          "pathName": "packageA/pages/B_viewQueue/B_viewQueue",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "packageA/pages/B_createInterview/B_createInterview",
+          "pathName": "packageA/pages/B_createInterview/B_createInterview",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "packageB/pages/Introduction/Introduction",
           "pathName": "packageB/pages/Introduction/Introduction",
           "query": "",

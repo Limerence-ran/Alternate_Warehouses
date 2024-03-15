@@ -46,18 +46,18 @@ export const crudOptions = (vm) => {
         {
           text: "片段导出",
           show(index, row) {
-            if (row.url && row.id) {
-              return true;
-            }
-            return false;
+            return true;
           },
-          disabled() {
+          disabled(index, row) {
             //判断菜单按钮权限
-            return !vm.hasPermissions("Search");
+            if (row.id && row.url) {
+              return false;
+            }
+            return true;
           },
           type: "warning",
           size: "small",
-          emit: "evaluate",
+          emit: "output",
           icon: "el-icon-video-play",
           thin: true,
         },
@@ -203,7 +203,7 @@ export const crudOptions = (vm) => {
       //评分
       {
         title: "评分",
-        key: "nr_score",
+        key: "eval_score",
         width: 120,
         search: {
           disabled: true,
