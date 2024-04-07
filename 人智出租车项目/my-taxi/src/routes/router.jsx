@@ -14,6 +14,4 @@ export default [
         path: "/Login",
         element: <Login />,
     },
-   
-
 ];

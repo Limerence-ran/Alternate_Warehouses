@@ -46,6 +46,7 @@ export default {
     },
     //获取页面分页信息
     pageRequest(query) {
+      console.log("query", query);
       return api.GetList(query);
     },
     //停止任务功能

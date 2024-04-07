@@ -129,7 +129,7 @@
             快速选择用户登录（限dev环境）
           </el-button>
           <!-- footer -->
-          <div class="footer">
+          <!-- <div class="footer">
             <p class="page-login--content-footer-locales">
               <a
                 v-for="language in $languages"
@@ -149,7 +149,7 @@
               <a :href="privacyUrl || '#'" target="_blank">隐私</a> |
               <a :href="clauseUrl || '#'" target="_blank">条款</a>
             </p>
-          </div>
+          </div> -->
           <!-- footer -->
         </div>
       </div>

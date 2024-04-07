@@ -14,6 +14,9 @@ export const urlGetLiveStream = "/api/live_eval_task_channel/";
 // 传入历史任务id获取视频片段
 export const urlGetVideoSegment = "/api/live_eval_task_video/";
 
+// 传入任务id导出任务数据
+export const urlExportTaskData = "/api/live_eval_task_result/export_data/";
+
 /**
  * @description 查询直播检测任务结果
  * @param {*} query
@@ -104,5 +107,16 @@ export function GetVideoSegment(params, type = "nr") {
     url: urlRequest,
     params: params,
     method: "get",
+  });
+}
+
+/**
+ * @description 导出任务数据
+ */
+export function exportData(query, type = "nr") {
+  return downloadFile({
+    url: urlExportTaskData,
+    method: "get",
+    params: { ...query },
   });
 }

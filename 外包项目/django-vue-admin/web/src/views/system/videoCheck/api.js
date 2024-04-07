@@ -22,6 +22,16 @@ export const urlStopNrQUalityDetect = "/api/video_eval/end_nr_video_eval/";
 export const urlStopRefQUalityDetect = "/api/video_eval/end_ref_video_eval/";
 export const urlStopAllQUalityDetect = "/api/video_eval/end_video_eval/";
 
+// 传入任务id查询任务进度
+export const urlPrefix = "/api/video_eval_task/";
+
+// 传入任务id导出任务数据
+export const urlExportTaskData = "/api/video_eval_task_result/export_data/";
+export const urlExportNrTaskData =
+  "/api/video_nr_eval_task_result/export_data/";
+export const urlExportRefTaskData =
+  "/api/video_ref_eval_task_result/export_data/";
+
 // 对每一类方法进行有参考任务与无参考任务的请求路径分流
 
 /**
@@ -127,5 +137,33 @@ export function refFileCreate(params) {
     url: urlCreateRefFile,
     method: "post",
     data: params,
+  });
+}
+
+/**
+ * @description 查询任务进度
+ */
+export function getProgress(query) {
+  return request({
+    url: urlPrefix,
+    method: "get",
+    params: { ...query },
+  });
+}
+
+/**
+ * @description 导出任务数据
+ */
+export function exportData(query, type = "nr") {
+  let urlRequest = "";
+  type === "nr"
+    ? (urlRequest = urlExportNrTaskData)
+    : type === "ref"
+    ? (urlRequest = urlExportRefTaskData)
+    : (urlRequest = urlExportTaskData);
+  return downloadFile({
+    url: urlRequest,
+    method: "get",
+    params: { ...query },
   });
 }

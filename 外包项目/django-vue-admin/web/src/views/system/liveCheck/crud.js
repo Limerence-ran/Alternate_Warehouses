@@ -10,6 +10,13 @@ export const crudOptions = (vm) => {
       // tableType: 'vxe-table',
       // rowKey: true,
       rowId: "id",
+      stripe: false,
+      rowStyle: function ({ row, rowIndex }) {
+        //基数白色，偶数灰色
+        return row.task % 2 == 0
+          ? { backgroundColor: " #f5f5f5" }
+          : { backgroundColor: "#ffffff" };
+      },
     },
     selectionRow: {
       align: "center",
@@ -44,7 +51,7 @@ export const crudOptions = (vm) => {
       },
       custom: [
         {
-          text: "片段导出",
+          text: "片段查看",
           show(index, row) {
             return true;
           },

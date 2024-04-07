@@ -4,6 +4,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "packageB/pages/C_score/C_score",
+          "pathName": "packageB/pages/C_score/C_score",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "packageA/pages/B_viewQueue/B_viewQueue",
           "pathName": "packageA/pages/B_viewQueue/B_viewQueue",
           "query": "",

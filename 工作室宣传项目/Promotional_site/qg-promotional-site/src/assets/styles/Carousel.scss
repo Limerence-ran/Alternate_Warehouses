@@ -1,0 +1,389 @@
+// @import url(./StudentsMedia.css);
+// 照片最初始的位置
+
+
+@mixin xjy {
+    width: 300px;
+    opacity: .6;
+    transform: translate(290px, 40px);
+    z-index: 3;
+}
+
+@mixin lq {
+    width: 400px;
+    opacity: 1;
+    // scale: (1.2, 1.2);
+    transform: translate(520px, 20px);
+    z-index: 4;
+}
+
+@mixin hyk {
+    width: 300px;
+    opacity: .6;
+    transform: translate(800px, 40px);
+    z-index: 3;
+}
+
+@mixin zrp {
+    width: 200px;
+    opacity: .4;
+    transform: translate(1000px, 50px);
+    z-index: 2;
+}
+
+@mixin hzt {
+    width: 150px;
+    opacity: .4;
+    transform: translate(570px, 60px);
+    z-index: 1;
+}
+
+@mixin gyg {
+    width: 200px;
+    opacity: .4;
+    transform: translate(100px, 50px);
+    z-index: 2;
+}
+
+#turn-box {
+    // display: flex;
+    // justify-content: space-between;
+    width: 100vw;
+    height: 35%;
+    margin: 20px auto;
+    // background-color: pink;
+    // text-align: center;
+}
+
+.slide {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+    // left: 50%;
+
+    .img-wrapper {
+        width: 1200px;
+        height: 100%;
+        position: relative;
+        // background-color: skyblue;
+
+        ul {
+            position: absolute;
+            // left: 50%;
+            // top: 50%;
+            // transform: translate(-50%, -50%);
+            height: 100%;
+
+            // 点击next要加上的动画类
+            .li-n-1 {
+                animation: one-next .7s ease-out forwards;
+            }
+
+            .li-n-2 {
+                animation: two-next .7s ease-out forwards;
+            }
+
+            .li-n-3 {
+                animation: three-next .7s ease-out forwards;
+            }
+
+            .li-n-4 {
+                animation: four-next .7s ease-out forwards;
+            }
+
+            .li-n-5 {
+                animation: five-next .7s ease-out forwards;
+            }
+
+            .li-n-6 {
+                animation: six-next .7s ease-out forwards;
+            }
+
+            // 点击prev要加上的动画类
+            .li-p-1 {
+                animation: one-prev .7s ease-out forwards;
+            }
+
+            .li-p-2 {
+                animation: two-prev .7s ease-out forwards;
+            }
+
+            .li-p-3 {
+                animation: three-prev .7s ease-out forwards;
+            }
+
+            .li-p-4 {
+                animation: four-prev .7s ease-out forwards;
+            }
+
+            .li-p-5 {
+                animation: five-prev .7s ease-out forwards;
+            }
+
+            .li-p-6 {
+                animation: six-prev .7s ease-out forwards;
+            }
+
+            li {
+                position: absolute;
+                top: 0;
+
+                // xjy
+                &:nth-child(1) {
+                    @include xjy;
+                }
+
+                // lq
+                &:nth-child(2) {
+                    @include lq;
+                }
+
+                // hyk
+                &:nth-child(3) {
+                    @include hyk;
+                }
+
+                // zrp
+                &:nth-child(4) {
+                    @include zrp;
+                }
+
+                // hzt
+                &:nth-child(5) {
+                    @include hzt;
+                }
+
+                // gyg
+                &:nth-child(6) {
+                    @include gyg;
+                }
+
+
+                img {
+                    width: 40%;
+                }
+            }
+        }
+
+
+        .arraw {
+            // opacity: 0;
+
+            span {
+                width: 65px;
+                height: 65px;
+                display: block;
+                position: absolute;
+                top: 50%;
+                margin-top: -55px;
+                z-index: 999;
+                cursor: url(https://qg-newer.oss-cn-shenzhen.aliyuncs.com/images/pointer.cur), pointer;
+                background-size: 100% 100%;
+            }
+
+            .next {
+                background: url(https://qg-newer.oss-cn-shenzhen.aliyuncs.com/images/arrow/right.png) no-repeat;
+
+                right: -30px;
+                // height: 100px;
+
+                &:hover {
+                    animation: ArrowMove .8s forwards;
+                }
+            }
+
+            .prev {
+                background: url(https://qg-newer.oss-cn-shenzhen.aliyuncs.com/images/arrow/left.png) no-repeat;
+
+                left: -30px;
+
+                &:hover {
+                    animation: ArrowMove .8s forwards;
+                }
+            }
+        }
+    }
+
+
+}
+
+
+
+.arraw-in {
+    animation: arraw-in-ani .7s ease-in-out forwards;
+    background-color: blue;
+}
+
+.arraw-out {
+    animation: arraw-out-ani .7s ease-in-out forwards;
+}
+
+@keyframes ArrowMove {
+    0% {
+        transform: scale(1, 1);
+        // transform: translateX(0);
+    }
+
+    100% {
+        transform: scale(1.4, 1.4);
+        // transform: translateX(1vw);
+    }
+}
+
+
+
+@keyframes arraw-in-ani {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes arraw-out-ani {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+// next键动画
+@keyframes one-next {
+    0% {
+        @include xjy;
+    }
+
+    100% {
+        @include gyg;
+    }
+}
+
+@keyframes two-next {
+    0% {
+        @include lq;
+    }
+
+    100% {
+        @include xjy;
+    }
+}
+
+@keyframes three-next {
+    0% {
+        @include hyk;
+    }
+
+    100% {
+        @include lq;
+    }
+}
+
+@keyframes four-next {
+    0% {
+        @include zrp;
+    }
+
+    100% {
+        @include hyk;
+    }
+}
+
+
+@keyframes five-next {
+    0% {
+        @include hzt;
+    }
+
+    100% {
+        @include zrp;
+    }
+}
+
+@keyframes six-next {
+    0% {
+        @include gyg;
+    }
+
+    100% {
+        @include hzt;
+    }
+
+}
+
+// prev键动画
+@keyframes one-prev {
+    0% {
+        @include xjy;
+    }
+
+    100% {
+        @include lq;
+    }
+}
+
+@keyframes two-prev {
+    0% {
+        @include lq;
+    }
+
+    100% {
+        @include hyk;
+    }
+}
+
+@keyframes three-prev {
+    0% {
+        @include hyk;
+    }
+
+    100% {
+        @include zrp;
+    }
+}
+
+@keyframes four-prev {
+    0% {
+        @include zrp;
+    }
+
+    100% {
+        @include hzt;
+    }
+}
+
+
+@keyframes five-prev {
+    0% {
+        @include hzt;
+    }
+
+    100% {
+        @include gyg;
+    }
+}
+
+@keyframes six-prev {
+    0% {
+        @include gyg;
+    }
+
+    100% {
+        @include xjy;
+    }
+
+}
+
+
+// 媒体查询
+@media screen and (max-width: 420px) {
+    #turn-box {
+        // background-color: blue;
+        display: none;
+    }
+}

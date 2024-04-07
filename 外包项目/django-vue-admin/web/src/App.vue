@@ -7,7 +7,7 @@
     <div class="dvadmin-auth">
       <span>Powered by Django-Vue-Admin</span>
       <el-divider direction="vertical"></el-divider>
-      <span>Copyright GDUT</span>
+      <span>Copyright</span>
     </div>
   </div>
 </template>

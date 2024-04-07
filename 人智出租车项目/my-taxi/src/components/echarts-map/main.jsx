@@ -357,7 +357,7 @@ const EchartMap = () => {
                 maptypecontrol: true,
                 zoom: 4,
                 roam: false,
-                viewMode: "3D", //是否启用3d地图
+                viewMode: "2D", //是否启用3d地图
                 showLabel: false,
                 largeMode: false,
                 pitch: 35, //视角高度

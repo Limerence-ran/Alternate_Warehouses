@@ -25,7 +25,7 @@
             <i class="el-icon-delete"></i> 批量删除
           </el-button>
 
-          <el-button
+          <!-- <el-button
             size="small"
             type="warning"
             @click="onExport"
@@ -35,7 +35,7 @@
 
           <importExcel api="api/system/user/" v-permission="'Import'"
             >导入
-          </importExcel>
+          </importExcel> -->
         </el-button-group>
         <crud-toolbar
           :search.sync="crud.searchOptions.show"

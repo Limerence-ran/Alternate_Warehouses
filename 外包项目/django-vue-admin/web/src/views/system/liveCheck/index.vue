@@ -16,6 +16,7 @@
           >
         </div>
         <el-button-group>
+          <el-button type="warning" @click="exportData">结果导出</el-button>
           <el-button type="info" @click="liveEval">编码检测</el-button>
           <el-button type="primary" @click="qualityDetect">质量检测</el-button>
           <el-button type="danger" @click="stopDetect">停止检测</el-button>
@@ -119,7 +120,7 @@
       :width="'700px'"
     >
       <video
-        id="my-playerDiolog"
+        id="myLive-playerDiolog"
         class="video-js vjs-default-skin"
         controls
         autoplay
@@ -240,6 +241,32 @@ export default {
   },
   methods: {
     /**
+     * @description: 结果导出
+     */
+    exportData() {
+      // 请求参数必填项为id值
+      const that = this;
+      this.$confirm("是否导出最新检测数据?", "警告", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(async function () {
+        const result = await api.exportData(
+          {
+            task: parseInt(that.crud.list[0].task),
+          },
+          that.$route.query.type
+        );
+        if (result.code === 2000) {
+          // 下载成功
+          that.$message.success("导出成功");
+        } else {
+          that.$message.error("暂未开放权限");
+        }
+      });
+    },
+
+    /**
      * @description: 创建直播流播放器
      */
     createVideo(url) {
@@ -315,13 +342,14 @@ export default {
         return false;
       });
     },
+
     /**
      * @description: 销毁videojs播放器
      */
     destroyVideoJs(videoPlayer) {
       if (videoPlayer.value) {
         videoPlayer.value.pause(); //暂停播放数据流
-        videoPlayer.value.dispose(); //销毁videojs播放器
+        // videoPlayer.value.dispose(); //销毁videojs播放器
         videoPlayer.value = null;
       }
     },
@@ -444,8 +472,14 @@ export default {
     output(row) {
       // 更改字段启动弹框
       this.dialogVideoVisible = true;
-      // 创建视频播放器
-      this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
+      setTimeout(() => {
+        // 创建视频播放器
+        this.createVideoJs(
+          row.row.url,
+          videoPlayerDiolog,
+          "myLive-playerDiolog"
+        );
+      });
     },
 
     /**
@@ -469,11 +503,25 @@ export default {
      * @param {*} query
      */
     pageRequest(query) {
-      const videoId = this.$route.query.id;
+      const liveId = this.$route.query.id;
       return api.GetDetectResult(
-        { ...query, video: videoId },
+        { ...query, live: liveId },
         this.$route.query.type
       );
+    },
+    /**
+     * @description: 获取视频格式
+     */
+    getVideoFormat(url) {
+      // 动态分流播放m3u8以及mp4格式视频
+      // 获取最后一个`.`的位置
+      const lastIndex = url.lastIndexOf(".");
+      if (lastIndex === -1) {
+        return this.$message.warning("视频格式错误"); // 如果没有找到`.`，则返回报错
+      }
+      // 使用substring方法获取后缀名
+      const extension = url.substring(lastIndex + 1);
+      return extension;
     },
   },
 

@@ -16,6 +16,7 @@
           >
         </div>
         <el-button-group>
+          <el-button type="warning" @click="exportData">结果导出</el-button>
           <el-button type="info" @click="videoEval">编码检测</el-button>
           <el-button type="primary" @click="qualityDetect">质量检测</el-button>
           <el-button type="danger" @click="stopDetect">停止检测</el-button>
@@ -74,7 +75,11 @@
       </div>
     </d2-crud-x>
     <!-- 新增功能对话框 -->
-    <el-dialog title="更新" :visible.sync="dialogFormVisible" :width="'700px'">
+    <el-dialog
+      title="参考文件上传"
+      :visible.sync="dialogFormVisible"
+      :width="'700px'"
+    >
       <el-form :model="form">
         <el-form-item label="数据归属部门" :label-width="formLabelWidth">
           <el-cascader
@@ -158,6 +163,7 @@
         </el-table-column>
       </el-table>
       <div slot="footer" class="dialog-footer">
+        <el-button @click="updateEvalDialog">更 新</el-button>
         <el-button @click="closeEvalDialog">取 消</el-button>
       </div>
     </el-dialog>
@@ -307,9 +313,37 @@ export default {
       },
       //终止任务用id
       stopTaskId: null,
+      // 查询次数-默认3次进行终止
+      taskQueryTime: 0,
     };
   },
   methods: {
+    /**
+     * @description: 结果导出
+     */
+    exportData() {
+      // 请求参数必填项为id值
+      const that = this;
+      this.$confirm("是否导出最新检测数据?", "警告", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(async function () {
+        const result = await api.exportData(
+          {
+            task: parseInt(that.crud.list[0].task),
+          },
+          that.$route.query.type
+        );
+        if (result.code === 2000) {
+          // 下载成功
+          that.$message.success("导出成功");
+        } else {
+          that.$message.error("暂未开放权限");
+        }
+      });
+    },
+
     /**
      * @description: 创建videojs播放器
      */
@@ -374,10 +408,10 @@ export default {
       // 数据返回
       const status = await api.stopDetectData(obj, this.$route.query.type);
       if (status.code === 2000) {
-        this.$message.success("停止检测任务成功");
+        this.$message.success("检测已结束");
         clearInterval(this.interval);
       } else {
-        this.$message.error("停止检测任务失败");
+        this.$message.error("停止检测失败");
       }
     },
 
@@ -397,10 +431,22 @@ export default {
           //拿到任务id
           this.stopTaskId = status.data.task_id;
           this.$message.success("自动发起检测任务,请耐心等待");
-          this.interval = setInterval(() => {
+          this.interval = setInterval(async () => {
+            // 进行任务查询
+            const result = await api.getProgress({ id: that.stopTaskId });
+            if (
+              result.code === 2000 &&
+              that.taskQueryTime < 3 &&
+              result.data.data[0].task_status === "执行成功"
+            ) {
+              that.taskQueryTime = that.taskQueryTime + 1;
+            } else if (result.code === 2000 && that.taskQueryTime >= 3) {
+              // 终止任务
+              that.stopDetect();
+            }
+            // 刷新列表
             that.doRefresh();
-          }, 3000);
-          console.log(this.interval, "定时器id");
+          }, 2500);
         } else {
           this.$message.error("检测任务发起失败,请联系我们");
         }
@@ -466,7 +512,7 @@ export default {
       }
       // 开启对话框
       this.form.video = this.$route.query.id;
-      // 更改字段启动弹框
+      // 更改字段启动表单弹框
       this.dialogFormVisible = true;
       // 返回数据处理
       let deptData = JSON.parse(localStorage.getItem("dept_belong_id"));
@@ -511,6 +557,15 @@ export default {
         );
         return this.$message.warning("已上传参考视频");
       }
+    },
+
+    /**
+     * @description 参考文件更新
+     */
+    updateEvalDialog() {
+      this.dialogFormVisible = true;
+      // 展示参考视频信息
+      this.dialogEvalVisible = false;
     },
 
     /**
@@ -564,7 +619,6 @@ export default {
      * @description: 获取crud配置
      */
     getCrudOptions() {
-      console.log(this);
       return crudOptions(this, this.$route.query.type);
     },
 
@@ -587,8 +641,10 @@ export default {
     output(row) {
       // 更改字段启动弹框
       this.dialogVideoVisible = true;
-      // 创建视频播放器
-      this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
+      setTimeout(() => {
+        // 创建视频播放器
+        this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
+      });
     },
 
     /**
@@ -631,6 +687,8 @@ export default {
     this.videoEval();
     // 播放视频
     this.createVideoJs(this.$route.query.url, videoPlayer, "my-player");
+    // 保险操作：销毁弹窗视频播放器
+    this.destroyVideoJs(videoPlayerDiolog);
   },
 
   /**

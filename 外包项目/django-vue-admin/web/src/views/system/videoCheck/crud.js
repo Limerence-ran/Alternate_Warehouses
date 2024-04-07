@@ -1,6 +1,5 @@
 //定义配置方法
 export const crudOptions = (vm, type = "nr") => {
-  // util.filterParams(vm, ['dept_name', 'role_info{name}', 'dept_name_all'])
   let columns = [];
   //无参考配置
   const nrColumns = [
@@ -443,6 +442,13 @@ export const crudOptions = (vm, type = "nr") => {
       // tableType: 'vxe-table',
       // rowKey: true,
       rowId: "id",
+      stripe: false,
+      rowStyle: function ({ row, rowIndex }) {
+        //基数白色，偶数灰色
+        return row.task % 2 == 0
+          ? { backgroundColor: " #f5f5f5" }
+          : { backgroundColor: "#ffffff" };
+      },
     },
     selectionRow: {
       align: "center",
@@ -477,7 +483,7 @@ export const crudOptions = (vm, type = "nr") => {
       },
       custom: [
         {
-          text: "片段导出",
+          text: "片段查看",
           show(index, row) {
             return true;
           },

@@ -3,43 +3,43 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
-import localeMixin from '@/locales/mixin.js'
-import * as api from '@/views/system/login/api'
-import { checkPlugins } from '@/views/plugins'
+import { mapActions, mapState } from "vuex";
+import localeMixin from "@/locales/mixin.js";
+import * as api from "@/views/system/login/api";
+import { checkPlugins } from "@/views/plugins";
 
 export default {
   mixins: [localeMixin],
-  beforeCreate () {
+  beforeCreate() {
     // 初始化配置
-    this.$store.dispatch('d2admin/settings/init')
+    this.$store.dispatch("d2admin/settings/init");
   },
-  data () {
+  data() {
     return {
-      processTitle: process.env.VUE_APP_TITLE || 'D2Admin',
-      backgroundImage: 'url(' + this.loginBackground + ')',
+      processTitle: process.env.VUE_APP_TITLE || "D2Admin",
+      backgroundImage: "url(" + this.loginBackground + ")",
       // 表单
       formLogin: {
-        username: '',
-        password: '',
-        captcha: ''
+        username: "",
+        password: "",
+        captcha: "",
       },
       // 表单校验
       rules: {
         username: [
           {
             required: true,
-            message: '请输入用户名',
-            trigger: 'blur'
-          }
+            message: "请输入用户名",
+            trigger: "blur",
+          },
         ],
         password: [
           {
             required: true,
-            message: '请输入密码',
-            trigger: 'blur'
-          }
-        ]
+            message: "请输入密码",
+            trigger: "blur",
+          },
+        ],
       },
       captchaKey: null,
       image_base: null,
@@ -47,56 +47,61 @@ export default {
       selectUsersDialogVisible: false,
       users: [
         {
-          name: '超管',
-          username: 'superadmin',
-          password: 'admin123456'
+          name: "超管",
+          username: "superadmin",
+          password: "admin123456",
         },
         {
-          name: '管理员',
-          username: 'admin',
-          password: 'admin123456'
-        }
+          name: "管理员",
+          username: "admin",
+          password: "admin123456",
+        },
       ],
-      isTenant: checkPlugins('dvadmin-tenants-web')
-    }
+      isTenant: checkPlugins("dvadmin-tenants-web"),
+    };
   },
   computed: {
-    ...mapState('d2admin', {
-      siteLogo: state => state.settings.data['login.site_logo'] || require('@/assets/image/dvadmin.png'), // 网站logo地址
-      keepRecord: state => state.settings.data['login.keep_record'],
-      siteName: state => state.settings.data['login.site_name'], // 网站名称
-      copyright: state => state.settings.data['login.copyright'],
-      loginBackground: state => state.settings.data['login.login_background'] || require('@/assets/image/bg.jpg'), // 登录页背景图
-      helpUrl: state => state.settings.data['login.help_url'], // 帮助
-      privacyUrl: state => state.settings.data['login.privacy_url'], // 隐私
-      clauseUrl: state => state.settings.data['login.clause_url'], // 条款
-      captchaState: state => state.settings.data['base.captcha_state'] !== undefined ? state.settings.data['base.captcha_state'] : true, // 验证码
-      isPublic: state => state.settings.data.schema_name === 'public' // 是否超级租户
-    })
+    ...mapState("d2admin", {
+      siteLogo: (state) =>
+        state.settings.data["login.site_logo"] ||
+        require("@/assets/image/dvadmin.png"), // 网站logo地址
+      keepRecord: (state) => state.settings.data["login.keep_record"],
+      siteName: (state) => state.settings.data["login.site_name"], // 网站名称
+      copyright: (state) => state.settings.data["login.copyright"],
+      loginBackground: (state) =>
+        state.settings.data["login.login_background"] ||
+        require("@/assets/image/bg.jpg"), // 登录页背景图
+      helpUrl: (state) => state.settings.data["login.help_url"], // 帮助
+      privacyUrl: (state) => state.settings.data["login.privacy_url"], // 隐私
+      clauseUrl: (state) => state.settings.data["login.clause_url"], // 条款
+      captchaState: (state) =>
+        state.settings.data["base.captcha_state"] !== undefined
+          ? state.settings.data["base.captcha_state"]
+          : true, // 验证码
+      isPublic: (state) => state.settings.data.schema_name === "public", // 是否超级租户
+    }),
   },
-  mounted () {
-  },
-  beforeDestroy () {
-  },
+  mounted() {},
+  beforeDestroy() {},
   methods: {
-    ...mapActions('d2admin/account', ['login']),
+    ...mapActions("d2admin/account", ["login"]),
     /**
      * 获取验证码
      */
-    getCaptcha () {
-      if (this.captchaState !== undefined && !this.captchaState) return
+    getCaptcha() {
+      if (this.captchaState !== undefined && !this.captchaState) return;
       api.getCaptcha().then((ret) => {
-        this.formLogin.captcha = null
-        this.captchaKey = ret.data.key
-        this.image_base = ret.data.image_base
-      })
+        this.formLogin.captcha = null;
+        this.captchaKey = ret.data.key;
+        this.image_base = ret.data.image_base;
+      });
     },
     /**
      * @description 提交表单
      */
     // 提交登录信息
-    submit () {
-      const that = this
+    submit() {
+      const that = this;
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           // 登录
@@ -106,38 +111,38 @@ export default {
             username: that.formLogin.username,
             password: that.$md5(that.formLogin.password),
             captcha: that.formLogin.captcha,
-            captchaKey: that.captchaKey
+            captchaKey: that.captchaKey,
           })
             .then(() => {
               // 重定向对象不存在则返回顶层路径
               // this.$router.replace(this.$route.query.redirect || '/')
-              this.$router.replace('/')
+              this.$router.replace("/video" || "/");
             })
             .catch(() => {
-              this.getCaptcha()
-            })
+              this.getCaptcha();
+            });
         } else {
           // 登录表单校验失败
-          this.$message.error('表单校验失败，请检查')
+          this.$message.error("表单校验失败，请检查");
         }
-      })
+      });
     },
     // 快速登录
-    handleUserBtnClick (user) {
-      this.formLogin.username = user.username
-      this.formLogin.password = user.password
+    handleUserBtnClick(user) {
+      this.formLogin.username = user.username;
+      this.formLogin.password = user.password;
       // this.submit()
-      this.selectUsersDialogVisible = false
+      this.selectUsersDialogVisible = false;
       if (!this.captchaState) {
-        this.submit()
+        this.submit();
       }
-    }
+    },
   },
-  created () {
-    this.$store.dispatch('d2admin/db/databaseClear')
-    this.getCaptcha()
-  }
-}
+  created() {
+    this.$store.dispatch("d2admin/db/databaseClear");
+    this.getCaptcha();
+  },
+};
 </script>
 
 <style lang="scss" scoped>

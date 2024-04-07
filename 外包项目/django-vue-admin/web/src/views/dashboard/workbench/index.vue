@@ -393,6 +393,7 @@ export default {
   },
 };
 </script>
+
 <style scoped lang="scss">
 ::v-deep .d2-container-full__body {
   padding: 0 !important;
