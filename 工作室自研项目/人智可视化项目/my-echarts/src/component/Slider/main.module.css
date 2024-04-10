@@ -1,0 +1,105 @@
+.sidebar {
+    /* position: fixed; */
+    width: 10%;
+    /* background: rgba(142, 181, 231, 1); */
+    top: 90px;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width:none;
+    scrollbar-color: transparent transparent;
+    /* overflow-x: auto; */
+    /* 隐藏滚动条  */
+    scrollbar-width: none;
+    /* scrollbar-width: none; */
+    transition: all .3s ease;
+    z-index: 999;
+    background-color: #fff;
+    border-right: 2px solid #accae3;
+    border-radius: 6px 0px 0 0;
+    /* margin-left: 20PX; */
+}
+
+
+.sidebar::-webkit-scrollbar {
+   display: none;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+ul {
+    list-style: none;
+    width:100%;
+}
+
+
+.icon {
+    margin-right: 0px;
+    transition: all .3s ease;
+}
+
+.menu {
+    list-style: none;
+        width: 100%;
+    margin: 30% 0;
+    /* padding: 0 20px; */
+    transition: all .3s ease;
+}
+
+
+.menu li {
+    width: 100%;
+    height: 35px;
+    
+}
+
+.menu a {
+    /* text-align: center; */
+    width:90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6f6f6f;
+    font-size: 14px;
+    /* padding: 12px 16px 12px 0; */
+    transition: all .3s ease;
+    border-radius: 10px;
+    margin: 24px auto;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.menu>li>a:hover {
+    background: #1775F1;
+    color: #fff;
+}
+
+
+.menu>li>a.active,
+.menu>li>a.subdrop:hover {
+    background: #1775F1;
+    color: #fff;
+    width: 140px;
+}
+
+.divider {
+    margin-top: 24px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #8D8D8D;
+    transition: all .3s ease;
+    white-space: nowrap;
+    text-align: center;
+    
+}
+
+.dropdown a.active,
+.dropdown a:hover {
+    color: #1775F1;
+}
+

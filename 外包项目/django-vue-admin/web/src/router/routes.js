@@ -3,23 +3,23 @@ import { checkPlugins } from "@/views/plugins/index.js";
 // 由于懒加载页面太多的话会造成webpack热更新太慢，所以开发环境不使用懒加载，只有生产环境使用懒加载
 const _import = require("@/libs/util.import." + process.env.NODE_ENV);
 const pluginImport = require("@/libs/util.import.plugin");
+const a = sessionStorage.getItem("is_admin");
 /**
  * 在主框架内显示
  */
 const frameIn = [
   {
     path: "/",
-    redirect: { name: "index" },
+    redirect: { name: "video" },
     component: layoutHeaderAside,
     children: [
-      // 控制台
       {
-        path: "index",
-        name: "index",
+        path: "video",
+        name: "video",
         meta: {
           auth: true,
         },
-        component: _import("dashboard/workbench/index"),
+        component: _import("system/video/index"),
       },
       {
         path: "page1",
@@ -39,7 +39,15 @@ const frameIn = [
         component: () =>
           import("@/layout/header-aside/components/header-user/userinfo"),
       },
-      // dashboard 工作台
+      // 控制台
+      {
+        path: "index",
+        name: "index",
+        meta: {
+          auth: true,
+        },
+        component: _import("dashboard/workbench/index"),
+      }, // dashboard 工作台
       {
         path: "workbench",
         name: "workbench",

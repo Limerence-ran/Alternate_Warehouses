@@ -14,7 +14,10 @@
               center
             >
               <el-form-item prop="avatar" label="头像">
-                <d2p-cropper-uploader :value="userInfo.avatar || '/image/avatar.png'" @input="handleAvatarSuccess"/>
+                <d2p-cropper-uploader
+                  :value="userInfo.avatar || '/image/avatar.png'"
+                  @input="handleAvatarSuccess"
+                />
               </el-form-item>
               <el-form-item prop="username" label="账号">
                 <el-input v-model="userInfo.username" disabled></el-input>
@@ -23,7 +26,11 @@
                 <el-input v-model="userInfo.name" clearable></el-input>
               </el-form-item>
               <el-form-item label="电话号码" required prop="mobile">
-                <el-input v-model="userInfo.mobile" clearable disabled></el-input>
+                <el-input
+                  v-model="userInfo.mobile"
+                  clearable
+                  disabled
+                ></el-input>
               </el-form-item>
               <el-form-item label="邮箱" prop="email">
                 <el-input v-model="userInfo.email" clearable></el-input>
@@ -36,18 +43,34 @@
                 </el-radio-group>
               </el-form-item>
               <el-form-item label="用户名" prop="dept">
-                <el-input :value="userInfo.username" clearable disabled></el-input>
+                <el-input
+                  :value="userInfo.username"
+                  clearable
+                  disabled
+                ></el-input>
               </el-form-item>
               <el-form-item label="所属部门" prop="dept">
-                <el-input :value="userInfo.dept_info && userInfo.dept_info.dept_name" clearable disabled></el-input>
+                <el-input
+                  :value="userInfo.dept_info && userInfo.dept_info.dept_name"
+                  clearable
+                  disabled
+                ></el-input>
               </el-form-item>
               <el-form-item label="当前角色" prop="role">
-                <el-select :value="userInfo.role" multiple placeholder="请选择" disabled size="mini" style="width: 100%;">
+                <el-select
+                  :value="userInfo.role"
+                  multiple
+                  placeholder="请选择"
+                  disabled
+                  size="mini"
+                  style="width: 100%"
+                >
                   <el-option
                     v-for="item in userInfo.role_info"
                     :key="item.id"
                     :label="item.name"
-                    :value="item.id">
+                    :value="item.id"
+                  >
                   </el-option>
                 </el-select>
               </el-form-item>
@@ -116,174 +139,174 @@
   </d2-container>
 </template>
 <script>
-import util from '@/libs/util.js'
-import { request } from '@/api/service'
-import { mapActions } from 'vuex'
+import util from "@/libs/util.js";
+import { request } from "@/api/service";
+import { mapActions } from "vuex";
 export default {
-  name: 'userInfo',
-  data () {
+  name: "userInfo",
+  data() {
     var validatePass = (rule, value, callback) => {
-      const pwdRegex = new RegExp('(?=.*[0-9])(?=.*[a-zA-Z]).{8,30}')
-      if (value === '') {
-        callback(new Error('请输入密码'))
+      const pwdRegex = new RegExp("(?=.*[0-9])(?=.*[a-zA-Z]).{8,30}");
+      if (value === "") {
+        callback(new Error("请输入密码"));
       } else if (value === this.userPasswordInfo.oldPassword) {
-        callback(new Error('原密码与新密码一致'))
+        callback(new Error("原密码与新密码一致"));
       } else if (!pwdRegex.test(value)) {
-        callback(new Error('您的密码复杂度太低(密码中必须包含字母、数字)'))
+        callback(new Error("您的密码复杂度太低(密码中必须包含字母、数字)"));
       } else {
-        if (this.userPasswordInfo.newPassword2 !== '') {
-          this.$refs.userPasswordForm.validateField('newPassword2')
+        if (this.userPasswordInfo.newPassword2 !== "") {
+          this.$refs.userPasswordForm.validateField("newPassword2");
         }
-        callback()
+        callback();
       }
-    }
+    };
     var validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请再次输入密码'))
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
       } else if (value !== this.userPasswordInfo.newPassword) {
-        callback(new Error('两次输入密码不一致!'))
+        callback(new Error("两次输入密码不一致!"));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
-      position: 'left',
-      activeName: 'userInfo',
-      action: util.baseURL() + 'api/system/file/',
+      position: "left",
+      activeName: "userInfo",
+      action: util.baseURL() + "api/system/file/",
       headers: {
-        Authorization: 'JWT ' + util.cookies.get('token')
+        Authorization: "JWT " + util.cookies.get("token"),
       },
       fileList: [],
       userInfo: {
-        name: '',
-        gender: '',
-        mobile: '',
-        avatar: '',
-        email: ''
+        name: "",
+        gender: "",
+        mobile: "",
+        avatar: "",
+        email: "",
       },
       userInforules: {
-        name: [{ required: true, message: '请输入昵称', trigger: 'blur' }],
-        mobile: [{ pattern: /^1[3-9]\d{9}$/, message: '请输入正确手机号' }]
+        name: [{ required: true, message: "请输入昵称", trigger: "blur" }],
+        mobile: [{ pattern: /^1[3-9]\d{9}$/, message: "请输入正确手机号" }],
       },
       userPasswordInfo: {
-        oldPassword: '',
-        newPassword: '',
-        newPassword2: ''
+        oldPassword: "",
+        newPassword: "",
+        newPassword2: "",
       },
       passwordRules: {
         oldPassword: [
           {
             required: true,
-            message: '请输入原密码',
-            trigger: 'blur'
-          }
+            message: "请输入原密码",
+            trigger: "blur",
+          },
         ],
-        newPassword: [{ validator: validatePass, trigger: 'blur' }],
-        newPassword2: [{ validator: validatePass2, trigger: 'blur' }]
-      }
-    }
+        newPassword: [{ validator: validatePass, trigger: "blur" }],
+        newPassword2: [{ validator: validatePass2, trigger: "blur" }],
+      },
+    };
   },
-  mounted () {
-    this.getCurrentUserInfo()
+  mounted() {
+    this.getCurrentUserInfo();
   },
   methods: {
-    ...mapActions('d2admin/account', ['logout']),
+    ...mapActions("d2admin/account", ["logout"]),
     /**
      * 获取当前用户信息
      */
-    getCurrentUserInfo () {
-      const _self = this
+    getCurrentUserInfo() {
+      const _self = this;
       return request({
-        url: '/api/system/user/user_info/',
-        method: 'get',
-        params: {}
+        url: "/api/system/user/user_info/",
+        method: "get",
+        params: {},
       }).then((res) => {
-        _self.userInfo = res.data
-      })
+        _self.userInfo = res.data;
+      });
     },
     /**
      * 更新用户信息
      */
-    updateInfo () {
-      const _self = this
+    updateInfo() {
+      const _self = this;
 
       _self.$refs.userInfoForm.validate((valid) => {
         if (valid) {
-          const userInfo = _self.userInfo
-          delete userInfo.role
+          const userInfo = _self.userInfo;
+          delete userInfo.role;
           request({
-            url: '/api/system/user/update_user_info/',
-            method: 'put',
-            data: userInfo
+            url: "/api/system/user/update_user_info/",
+            method: "put",
+            data: userInfo,
           }).then((res) => {
-            _self.$message.success('修改成功')
-            _self.getCurrentUserInfo()
-          })
+            _self.$message.success("修改成功");
+            _self.getCurrentUserInfo();
+          });
         } else {
           // 校验失败
           // 登录表单校验失败
-          this.$message.error('表单校验失败，请检查')
+          this.$message.error("表单校验失败，请检查");
         }
-      })
+      });
     },
     // 重置
-    resetForm (name) {
-      const _self = this
-      if (name === 'info') {
-        _self.getCurrentUserInfo()
+    resetForm(name) {
+      const _self = this;
+      if (name === "info") {
+        _self.getCurrentUserInfo();
       } else {
-        _self.userPasswordForm = {}
+        _self.userPasswordForm = {};
       }
     },
     // tab切换
-    handleClick (tab, event) {
-      const _self = this
-      if (tab.paneName === 'userInfo') {
-        _self.$refs.userPasswordForm.resetFields()
-        _self.getCurrentUserInfo()
+    handleClick(tab, event) {
+      const _self = this;
+      if (tab.paneName === "userInfo") {
+        _self.$refs.userPasswordForm.resetFields();
+        _self.getCurrentUserInfo();
       } else {
-        _self.$refs.userInfoForm.resetFields()
+        _self.$refs.userInfoForm.resetFields();
       }
     },
     /**
      * 重新设置密码
      */
-    settingPassword () {
-      const _self = this
+    settingPassword() {
+      const _self = this;
 
       _self.$refs.userPasswordForm.validate((valid) => {
         if (valid) {
-          const userId = util.cookies.get('uuid')
+          const userId = util.cookies.get("uuid");
           if (userId) {
-            const params = JSON.parse(JSON.stringify(_self.userPasswordInfo))
-            params.oldPassword = _self.$md5(params.oldPassword)
-            params.newPassword = _self.$md5(params.newPassword)
-            params.newPassword2 = _self.$md5(params.newPassword2)
+            const params = JSON.parse(JSON.stringify(_self.userPasswordInfo));
+            params.oldPassword = _self.$md5(params.oldPassword);
+            params.newPassword = _self.$md5(params.newPassword);
+            params.newPassword2 = _self.$md5(params.newPassword2);
             request({
-              url: '/api/system/user/' + userId + '/change_password/',
-              method: 'put',
-              data: params
+              url: "/api/system/user/" + userId + "/change_password/",
+              method: "put",
+              data: params,
             }).then((res) => {
-              _self.activeName = 'userInfo'
-              _self.$message.success('修改成功')
-              _self.logout({})
-            })
+              _self.activeName = "userInfo";
+              _self.$message.success("修改成功");
+              _self.logout({});
+            });
           }
         } else {
           // 校验失败
           // 登录表单校验失败
-          this.$message.error('表单校验失败，请检查')
+          this.$message.error("表单校验失败，请检查");
         }
-      })
+      });
     },
     /**
      * 头像上传
      * @param res
      * @param file
      */
-    handleAvatarSuccess (res, file) {
-      this.userInfo.avatar = res
-    }
-  }
-}
+    handleAvatarSuccess(res, file) {
+      this.userInfo.avatar = res;
+    },
+  },
+};
 </script>

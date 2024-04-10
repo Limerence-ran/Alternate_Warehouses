@@ -237,6 +237,9 @@ export default {
       },
       //终止任务用id
       stopTaskId: null,
+      stopEvalTaskId: null,
+      // 查询次数-默认3次进行终止
+      taskQueryTime: 0,
     };
   },
   methods: {
@@ -349,7 +352,7 @@ export default {
     destroyVideoJs(videoPlayer) {
       if (videoPlayer.value) {
         videoPlayer.value.pause(); //暂停播放数据流
-        // videoPlayer.value.dispose(); //销毁videojs播放器
+        videoPlayer.value.dispose(); //销毁videojs播放器
         videoPlayer.value = null;
       }
     },
@@ -364,12 +367,37 @@ export default {
       const codeParams = await api.liveEvalData(obj);
       // 数据查询失败-需要发起检测任务
       if (!codeParams.data.data[0].codec) {
+        if (this.interval) {
+          return this.$message.warning("正在执行其他任务,请耐心等待");
+        }
+        const that = this;
         const liveEvalTask = await api.liveEvalTask(obj);
         if (liveEvalTask.code === 2000) {
-          // 发起检测任务后,需要等待检测完成,再进行前端展示
-          return setTimeout(() => {
-            this.liveEval();
-          }, 5000);
+          //拿到任务id
+          this.stopEvalTaskId = liveEvalTask.data.task_id;
+          this.$message.warning("已发起检测任务,请耐心等待");
+          this.interval = setInterval(async () => {
+            // 进行任务查询
+            const result = await api.getProgress({ id: that.stopEvalTaskId });
+            if (result.code === 2000 && that.taskQueryTime < 3) {
+              if (
+                result.data.data[0].task_status === "正在执行" ||
+                result.data.data[0].task_status === "等待中"
+              ) {
+                // 如果任务状态是 "正在执行" 或 "等待中",在这里执行你想要的语句
+              } else {
+                // 如果任务状态不是 "正在执行" 也不是 "等待中",在这里执行你想要的语句
+                that.taskQueryTime = that.taskQueryTime + 1;
+              }
+            } else if (result.code === 2000 && that.taskQueryTime >= 3) {
+              // 终止任务
+              that.stopDetect(that.stopEvalTaskId);
+              // 发起检测任务后,需要等待检测完成,再进行前端展示
+              that.liveEval();
+            }
+          }, 2500);
+        } else {
+          this.$message.error("检测任务发起失败,请检查网络");
         }
       } else {
         // 数据查询成功-直接进行前端展示
@@ -407,6 +435,9 @@ export default {
       if (this.$route.query.type === "ref" && this.referenceVideo === false) {
         return this.$message.warning("请先上传参考文件");
       } else {
+        if (this.interval) {
+          return this.$message.warning("正在执行其他任务,请耐心等待");
+        }
         // 任务发起接口-注意避免重复发起
         const status = await api.startDetectData(obj, this.$route.query.type);
         if (status.code === 2000) {
@@ -420,7 +451,6 @@ export default {
           this.interval = setInterval(() => {
             that.doRefresh();
           }, 3000);
-          console.log(this.interval, "定时器id");
         } else {
           this.$message.error("检测任务发起失败,请联系我们");
         }
@@ -430,18 +460,23 @@ export default {
     /**
      * @description: 停止直播流检测任务
      */
-    async stopDetect() {
+    async stopDetect(task_id) {
       // 依据定时器判断
       if (!this.interval) {
         return this.$message.warning("请先开始检测任务");
       }
+      //过滤点击按钮事件
+      if (typeof task_id !== "number") {
+        task_id = this.stopTaskId;
+      }
       // 请求参数必填项为id值
-      const obj = { id: this.stopTaskId };
+      const obj = { id: task_id };
       // 数据返回
       const status = await api.stopDetectData(obj, this.$route.query.type);
       if (status.code === 2000) {
         this.$message.success("停止检测任务成功");
         clearInterval(this.interval);
+        this.interval = null;
         this.destroy();
       } else {
         this.$message.error("停止检测任务失败");
@@ -470,15 +505,12 @@ export default {
      * @param {*} row
      */
     output(row) {
+      const url = row.row.mp4_url === null ? row.row.url : row.row.mp4_url;
       // 更改字段启动弹框
       this.dialogVideoVisible = true;
       setTimeout(() => {
         // 创建视频播放器
-        this.createVideoJs(
-          row.row.url,
-          videoPlayerDiolog,
-          "myLive-playerDiolog"
-        );
+        this.createVideoJs(url, videoPlayerDiolog, "myLive-playerDiolog");
       });
     },
 
@@ -532,6 +564,8 @@ export default {
     if (flvjs.isSupported()) {
     }
     this.liveEval();
+    // 保险操作：销毁弹窗视频播放器
+    this.destroyVideoJs(videoPlayerDiolog);
   },
 
   /**
@@ -543,6 +577,8 @@ export default {
     // 清除后台任务
     if (this.stopTaskId) {
       api.stopDetectData({ id: this.stopTaskId }, this.$route.query.type);
+    } else if (this.stopEvalTaskId) {
+      api.stopDetectData({ id: this.stopEvalTaskId }, this.$route.query.type);
     }
     // 销毁播放器
     this.destroy();

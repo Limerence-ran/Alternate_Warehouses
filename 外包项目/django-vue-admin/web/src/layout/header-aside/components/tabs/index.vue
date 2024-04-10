@@ -116,7 +116,8 @@ export default {
         { icon: "times", title: "关闭其它", value: "other" },
         { icon: "times-circle", title: "关闭全部", value: "all" },
       ],
-      tagName: "/index",
+      // tagName: "/index",
+      tagName: "/video",
     };
   },
   computed: {
@@ -136,7 +137,8 @@ export default {
      * @param {Object} page 其中一个标签页
      */
     isTabClosable(page) {
-      return page.name !== "index";
+      // return page.name !== "index";
+      return page.name !== "video";
     },
     /**
      * @description 右键菜单功能点击

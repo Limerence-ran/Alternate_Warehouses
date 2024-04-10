@@ -17,6 +17,20 @@ export const urlGetVideoSegment = "/api/live_eval_task_video/";
 // 传入任务id导出任务数据
 export const urlExportTaskData = "/api/live_eval_task_result/export_data/";
 
+// 传入任务id查询任务进度
+export const urlPrefix = "/api/live_eval_task/";
+
+/**
+ * @description 查询任务进度
+ */
+export function getProgress(query) {
+  return request({
+    url: urlPrefix,
+    method: "get",
+    params: { ...query },
+  });
+}
+
 /**
  * @description 查询直播检测任务结果
  * @param {*} query

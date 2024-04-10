@@ -1,0 +1,8 @@
+.addInput::placeholder {
+    color: #fff;
+    /* 将颜色值替换为您希望使用的颜色 */
+    font-size: 13px;
+    font-weight: 400;
+    font-family: cursive;
+     
+}

@@ -127,6 +127,9 @@ export const crudOptions = (vm) => {
         search: {
           disabled: false,
         },
+        valueBuilder(row, key) {
+          row.dept_belong_id = parseInt(row.dept_belong_id);
+        },
         minWidth: 140,
         type: "tree-selector",
         //显示配置
@@ -153,6 +156,7 @@ export const crudOptions = (vm) => {
             pagination: true,
             props: { multiple: false },
           },
+          disabled: true,
         },
         component: {
           name: "foreignKey",
@@ -260,7 +264,7 @@ export const crudOptions = (vm) => {
       //创建者
       {
         title: "创建者",
-        key: "creator",
+        key: "creator_name",
         disabled: "true",
         //排序方式
         sortable: "custom",

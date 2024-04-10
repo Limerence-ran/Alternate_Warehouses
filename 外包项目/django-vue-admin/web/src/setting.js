@@ -19,11 +19,19 @@ export default {
   // 在读取持久化数据失败时默认页面
   page: {
     opened: [
+      // {
+      //   name: "index",
+      //   fullPath: "/index",
+      //   meta: {
+      //     title: "控制台",
+      //     auth: false,
+      //   },
+      // },
       {
-        name: "index",
-        fullPath: "/index",
+        name: "video",
+        fullPath: "/video",
         meta: {
-          title: "控制台",
+          title: "视频管理",
           auth: false,
         },
       },

@@ -61,6 +61,8 @@ router.beforeEach(async (to, from, next) => {
         method: "get",
         params: {},
       });
+      sessionStorage.setItem("is_admin", res.data.role_info[0].key == "admin");
+      //存储权限
       await store.dispatch("d2admin/user/set", res.data, { root: true });
       await store.dispatch("d2admin/account/load");
       store.dispatch("d2admin/settings/init");
@@ -87,7 +89,7 @@ router.beforeEach(async (to, from, next) => {
         });
         console.log("router", router, routes, frameOut);
         // routes.forEach(route => router.addRoute(route))
-
+        console.log(this, Vue);
         const menu = handleAsideMenu(ret);
         const aside = handleAsideMenu(
           ret.filter((value) => value.visible === true)

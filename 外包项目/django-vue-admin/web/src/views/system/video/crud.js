@@ -170,22 +170,26 @@ export const crudOptions = (vm) => {
           value: "id", // 数据字典中value字段的属性名
           label: "name", // 数据字典中label字段的属性名
         },
+        valueBuilder(row, key) {
+          row.dept_belong_id = parseInt(row.dept_belong_id);
+        },
         form: {
-          rules: [
-            // 表单校验规则
-            {
-              required: true,
-              message: "必填项",
-            },
-          ],
-          itemProps: {
-            class: { yxtInput: true },
-          },
-          component: {
-            span: 12,
-            pagination: true,
-            props: { multiple: false },
-          },
+          // rules: [
+          //   // 表单校验规则
+          //   {
+          //     required: true,
+          //     message: "必填项",
+          //   },
+          // ],
+          // itemProps: {
+          //   class: { yxtInput: true },
+          // },
+          // component: {
+          //   span: 12,
+          //   pagination: true,
+          //   props: { multiple: false },
+          // },
+          disabled: true,
         },
         component: {
           name: "foreignKey",
@@ -309,7 +313,7 @@ export const crudOptions = (vm) => {
       //创建者
       {
         title: "创建者",
-        key: "creator",
+        key: "creator_name",
         disabled: "true",
         //排序方式
         sortable: "custom",

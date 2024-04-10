@@ -1,0 +1,82 @@
+.managebox {
+    margin-top: 64px;
+    max-width: 100%;
+    max-height: 100%;
+    height: 604px;
+    background-color: rgb(67,
+            65,
+            65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.users {
+    height: 540px;
+    width: 60%;
+    color: #151212;
+}
+
+.usertitle {
+    height: 20px;
+    padding: 10px 0;
+}
+
+.lists {
+    width: 100%;
+    height: 80%;
+    margin-top: 10px;
+    overflow: auto;
+
+}
+
+.lists::-webkit-scrollbar {
+    display: none;
+}
+
+.lists img {
+    width: 50px;
+    height: 50px;
+
+}
+
+.lists table tr {
+    height: 30px;
+
+}
+
+.userbtn {
+    padding-left: 10px;
+}
+
+
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.table tr {
+    background-color: rgb(138, 130, 130);
+}
+
+.table tr td label {
+    vertical-align: middle;
+}
+
+.pagination {
+    height: 20px;
+    width: 320px;
+}
+
+.pagination button {
+    width: 20px;
+    margin-left: 10px;
+    background-color: rgb(67,
+            65,
+            65);
+}
+
+.pagination .pagebtn {
+    width: 60px;
+}

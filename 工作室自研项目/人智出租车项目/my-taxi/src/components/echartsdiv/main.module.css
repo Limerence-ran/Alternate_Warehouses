@@ -1,0 +1,68 @@
+.card {
+    position: relative;
+    margin-top: 10px;
+    margin-left: -5%;
+    height: 100%;
+    width: 100%;
+    z-index: 1111;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#1c6498, #1c6498) left top,
+        linear-gradient(#1c6498, #1c6498) left top,
+        linear-gradient(#1c6498, #1c6498) right top,
+        linear-gradient(#1c6498, #1c6498) right top,
+        linear-gradient(#1c6498, #1c6498) left bottom,
+        linear-gradient(#1c6498, #1c6498) left bottom,
+        linear-gradient(#1c6498, #1c6498) right bottom,
+        linear-gradient(#1c6498, #1c6498) right bottom;
+    background-repeat: no-repeat;
+    background-size: 2.5px 10px, 10px 2.5px;
+}
+
+.bg {
+    top: 2.4%;
+    left: 1.6%;
+    z-index: 2;
+    background: rgb(8 26 48);
+    backdrop-filter: blur(24px);
+    border-radius: 10px;
+    overflow: hidden;
+    outline: 2px solid rgb(8 26 48);
+}
+
+.blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    border-radius: 20%;
+    background-color: #1c6498;
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-bounce 5s infinite linear;
+}
+
+@keyframes blob-bounce {
+    0% {
+        transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+
+    25% {
+        transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+
+    50% {
+        transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+
+    75% {
+        transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+
+    100% {
+        transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+}

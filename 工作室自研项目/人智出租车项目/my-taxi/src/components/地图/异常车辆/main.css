@@ -1,0 +1,38 @@
+.Table .ant-table-wrapper .ant-table-container table>thead>tr:first-child>*:last-child {
+    background-color: rgb(8,
+            54,
+            92);
+    color: azure;
+    border-radius: 0;
+    border-start-end-radius: 0px;
+    font-family: cursive;
+}
+
+.Table .ant-table-wrapper .ant-table-container table>thead>tr:first-child>*:first-child {
+    background-color: rgb(8,
+            54,
+            92);
+    color: azure;
+    border-radius: 0;
+    border-start-end-radius: 0px;
+    font-family: cursive;
+}
+
+.Table .ant-table-wrapper .ant-table-thead>tr>th {
+    background-color: rgb(8,
+            54,
+            92);
+    color: azure;
+    border-radius: 0;
+    border-start-end-radius: 0px;
+    font-family: cursive;
+    text-align: center;
+}
+.Table .ant-table-wrapper .ant-table-tbody>tr>td{
+    text-align: center;
+    border: none;
+}
+.Table .ant-table-wrapper .ant-table {
+    border-radius: 0;
+ 
+}

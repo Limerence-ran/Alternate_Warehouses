@@ -1,0 +1,43 @@
+.father {
+    padding: 0;
+    margin: auto;
+    height: 100vh;
+    max-height: 900px;
+}
+
+.backimg {
+    /* height: 780px; */
+    /* height: 100%; */
+    /* height: 10vh; */
+    /* max-width: 1980px;
+    min-width: 1080px; */
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* width: 100%; */
+    background-image: url(../../assets/login-back.png);
+    z-index: -999;
+}
+.color {
+    /* position: absolute; */
+    /* width: 100%; */
+    height: 100%;
+    background: rgba(128, 68, 255, 0.65);
+    z-index: 3;
+}
+.color_content {
+    height: calc(100% - 100px);
+    display: flex;
+}
+.color_left {
+    height: 100%;
+    width: 50%;
+    margin: 0 5%;
+    margin-left: 15%;
+}
+.color_right {
+    height: 100%;
+    width: 40%;
+    margin: 0 5%;
+    margin-left: 5%;
+}

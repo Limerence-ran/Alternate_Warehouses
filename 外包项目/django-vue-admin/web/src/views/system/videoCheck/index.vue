@@ -81,13 +81,13 @@
       :width="'700px'"
     >
       <el-form :model="form">
-        <el-form-item label="数据归属部门" :label-width="formLabelWidth">
+        <!-- <el-form-item label="数据归属部门" :label-width="formLabelWidth">
           <el-cascader
             :options="deptoptions"
             :show-all-levels="false"
             v-model="form.dept_belong_id"
           ></el-cascader>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="文件" :label-width="formLabelWidth">
           <el-upload
             class="upload-demo"
@@ -308,11 +308,12 @@ export default {
       // 上传表单内容
       form: {
         file: "",
-        dept_belong_id: "",
+        // dept_belong_id: "",
         description: "",
       },
       //终止任务用id
       stopTaskId: null,
+      stopEvalTaskId: null,
       // 查询次数-默认3次进行终止
       taskQueryTime: 0,
     };
@@ -398,18 +399,23 @@ export default {
     /**
      * @description: 停止视频检测任务
      */
-    async stopDetect() {
+    async stopDetect(task_id) {
       // 依据定时器判断
       if (!this.interval) {
         return this.$message.warning("请先开始检测任务");
       }
+      //过滤点击按钮事件
+      if (typeof task_id !== "number") {
+        task_id = this.stopTaskId;
+      }
       // 请求参数必填项为id值
-      const obj = { id: this.stopTaskId };
+      const obj = { id: task_id };
       // 数据返回
       const status = await api.stopDetectData(obj, this.$route.query.type);
       if (status.code === 2000) {
         this.$message.success("检测已结束");
         clearInterval(this.interval);
+        this.interval = null;
       } else {
         this.$message.error("停止检测失败");
       }
@@ -419,30 +425,38 @@ export default {
      * @description: 开始视频检测任务
      */
     async qualityDetect() {
-      const that = this;
       // 请求参数必填项为id值
       const obj = { id: this.$route.query.id };
       if (this.$route.query.type === "ref" && this.referenceVideo === false) {
         return this.$message.warning("请先上传参考文件");
       } else {
+        if (this.interval) {
+          return this.$message.warning("正在执行其他任务,请耐心等待");
+        }
         // 任务发起接口-注意避免重复发起
         const status = await api.startDetectData(obj, this.$route.query.type);
         if (status.code === 2000) {
           //拿到任务id
           this.stopTaskId = status.data.task_id;
           this.$message.success("自动发起检测任务,请耐心等待");
+          const that = this;
           this.interval = setInterval(async () => {
             // 进行任务查询
             const result = await api.getProgress({ id: that.stopTaskId });
-            if (
-              result.code === 2000 &&
-              that.taskQueryTime < 3 &&
-              result.data.data[0].task_status === "执行成功"
-            ) {
-              that.taskQueryTime = that.taskQueryTime + 1;
+            if (result.code === 2000 && that.taskQueryTime < 3) {
+              if (
+                result.data.data[0].task_status === "正在执行" ||
+                result.data.data[0].task_status === "等待中"
+              ) {
+                // 如果任务状态是 "正在执行" 或 "等待中",在这里执行你想要的语句
+              } else {
+                // 如果任务状态不是 "正在执行" 也不是 "等待中",在这里执行你想要的语句
+                that.taskQueryTime = that.taskQueryTime + 1;
+              }
             } else if (result.code === 2000 && that.taskQueryTime >= 3) {
+              that.taskQueryTime = 0;
               // 终止任务
-              that.stopDetect();
+              that.stopDetect(that.stopTaskId);
             }
             // 刷新列表
             that.doRefresh();
@@ -463,13 +477,38 @@ export default {
       const codeParams = await api.videoEvalData(obj);
       // 数据查询失败-需要发起检测任务
       if (!codeParams.data.data[0].codec) {
-        this.$message.warning("已发起检测任务,请耐心等待");
+        if (this.interval) {
+          return this.$message.warning("正在执行其他任务,请耐心等待");
+        }
+        const that = this;
         const videoEvalTask = await api.videoEvalTask(obj);
         if (videoEvalTask.code === 2000) {
-          // 发起检测任务后,需要等待检测完成,再进行前端展示
-          return setTimeout(() => {
-            this.videoEval();
+          //拿到任务id
+          this.stopEvalTaskId = videoEvalTask.data.task_id;
+          this.$message.warning("已发起检测任务,请耐心等待");
+          this.interval = setInterval(async () => {
+            // 进行任务查询
+            const result = await api.getProgress({ id: that.stopEvalTaskId });
+            if (result.code === 2000 && that.taskQueryTime < 3) {
+              if (
+                result.data.data[0].task_status === "正在执行" ||
+                result.data.data[0].task_status === "等待中"
+              ) {
+                // 如果任务状态是 "正在执行" 或 "等待中",在这里执行你想要的语句
+              } else {
+                // 如果任务状态不是 "正在执行" 也不是 "等待中",在这里执行你想要的语句
+                that.taskQueryTime = that.taskQueryTime + 1;
+              }
+            } else if (result.code === 2000 && that.taskQueryTime >= 3) {
+              that.taskQueryTime = 0;
+              // 终止任务
+              that.stopDetect(that.stopEvalTaskId);
+              // 发起检测任务后,需要等待检测完成,再进行前端展示
+              that.videoEval();
+            }
           }, 2500);
+        } else {
+          this.$message.error("检测任务发起失败,请检查网络");
         }
       } else {
         // 数据查询成功-直接进行前端展示
@@ -574,7 +613,7 @@ export default {
     // 提交更新表单功能
     async doFileRefresh() {
       this.dialogFormVisible = false;
-      this.form.dept_belong_id = this.form.dept_belong_id.pop();
+      // this.form.dept_belong_id = this.form.dept_belong_id.pop();
       return new Promise((resolve, reject) => {
         api
           .refFileCreate(this.form)
@@ -639,11 +678,12 @@ export default {
      * @param {*} row
      */
     output(row) {
+      const url = row.row.mp4_url === null ? row.row.url : row.row.mp4_url;
       // 更改字段启动弹框
       this.dialogVideoVisible = true;
       setTimeout(() => {
         // 创建视频播放器
-        this.createVideoJs(row.row.url, videoPlayerDiolog, "my-playerDiolog");
+        this.createVideoJs(url, videoPlayerDiolog, "my-playerDiolog");
       });
     },
 
@@ -695,12 +735,14 @@ export default {
    * @description 页面销毁时的处理
    */
   beforeDestroy() {
-    // 清除定时器
-    clearInterval(this.interval);
-    // 清除后台任务
-    if (this.stopTaskId) {
-      api.stopDetectData({ id: this.stopTaskId }, this.$route.query.type);
-    }
+    // // 清除定时器
+    // clearInterval(this.interval);
+    // // 清除后台任务
+    // if (this.stopTaskId) {
+    //   api.stopDetectData({ id: this.stopTaskId }, this.$route.query.type);
+    // } else if (this.stopEvalTaskId) {
+    //   api.stopDetectData({ id: this.stopEvalTaskId }, this.$route.query.type);
+    // }
     // 清除视频
     this.destroyVideoJs(videoPlayer);
   },

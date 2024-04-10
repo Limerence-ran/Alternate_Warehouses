@@ -96,24 +96,6 @@ export const crudOptions = (vm) => {
           disabled: true,
         },
       },
-      //部门名称
-      {
-        title: "部门名称",
-        key: "dept__name",
-        treeNode: true, // 设置为树形列
-        search: {
-          disabled: false,
-          component: {
-            props: {
-              clearable: true,
-            },
-          },
-        },
-        show: false,
-        form: {
-          disabled: true,
-        },
-      },
       //账号
       {
         title: "账号",

@@ -115,15 +115,16 @@ export default {
           })
             .then(() => {
               // 重定向对象不存在则返回顶层路径
+              this.$message.success("登录成功");
               // this.$router.replace(this.$route.query.redirect || '/')
-              this.$router.replace("/video" || "/");
+              this.$router.replace("/video");
             })
-            .catch(() => {
+            .catch((e) => {
               this.getCaptcha();
             });
         } else {
           // 登录表单校验失败
-          this.$message.error("表单校验失败，请检查");
+          this.$message.error("登录失败，请检查");
         }
       });
     },

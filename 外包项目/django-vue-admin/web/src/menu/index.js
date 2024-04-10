@@ -141,6 +141,13 @@ export const handleAsideMenu = function (menuData) {
     parentKey: "parent",
     strict: true,
   });
-  const menu = [{ path: "/index", title: "控制台", icon: "home" }, ...data];
+  const is_admin = sessionStorage.getItem("is_admin");
+  let menu;
+  if (is_admin == "true") {
+    menu = [{ path: "/index", title: "控制台", icon: "home" }, ...data];
+  } else {
+    menu = [...data];
+  }
+
   return supplementPath(menu);
 };

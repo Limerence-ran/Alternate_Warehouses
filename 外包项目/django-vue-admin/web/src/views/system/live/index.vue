@@ -49,13 +49,13 @@
     <!-- 对话框 -->
     <el-dialog title="更新" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="数据归属部门" :label-width="formLabelWidth">
+        <!-- <el-form-item label="数据归属部门" :label-width="formLabelWidth">
           <el-cascader
             :options="deptoptions"
             :show-all-levels="false"
             v-model="form.dept_belong_id"
           ></el-cascader>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="文件名称" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
@@ -130,15 +130,11 @@ export default {
     //提交更新表单功能
     async doRowRefresh() {
       // 检查表单每一项都不为空
-      if (
-        this.form.name == "" ||
-        this.form.description == "" ||
-        this.form.dept_belong_id == ""
-      ) {
+      if (this.form.name == "" || this.form.description == "") {
         return this.$message.error("表单不能为空");
       }
       this.dialogFormVisible = false;
-      this.form.dept_belong_id = this.form.dept_belong_id.pop();
+      // this.form.dept_belong_id = this.form.dept_belong_id.pop();
       return new Promise((res, rej) => {
         api
           .UpdateObj(this.form)

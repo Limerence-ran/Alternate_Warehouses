@@ -1,0 +1,28 @@
+.father {
+    width: 100%;
+    height: 770px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+.backimg {
+    position: absolute;
+    height: 770px;
+    max-width: 1980px;
+    min-width: 1080px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    background-image: url(../../assets/login-back.jpg);
+}
+.backimg_demo {
+    height: 520px;
+    width: 520px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    background-image: url(../../assets/login_demo.png);
+    top: 170px;
+    left: 50px;
+    scale: 1.3;
+}
