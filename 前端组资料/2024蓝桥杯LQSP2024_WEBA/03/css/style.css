@@ -1,0 +1,282 @@
+.tip{
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+.computer {
+    width: 150px;
+    height: 96px;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%) scale(2);
+    perspective: 500px;
+}
+
+.shadow {
+    position: absolute;
+    width: 60px;
+    height: 0px;
+    left: 40px;
+    top: 160px;
+    transform: rotateX(80deg) rotateY(0deg) rotateZ(0deg);
+    box-shadow: 0 0 60px 40px rgba(0, 0, 0, 0.3);
+}
+
+.inner {
+    z-index: 20;
+    position: absolute;
+    width: 150px;
+    height: 96px;
+    left: 0;
+    top: 0;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
+}
+
+.screen {
+    width: 150px;
+    height: 96px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 7px;
+    background: #ddd;
+    transform-style: preserve-3d;
+    transform-origin: 50% 93px;
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0) 100%);
+    background-position: left bottom;
+    background-size: 300px 300px;
+    box-shadow: inset 0 3px 7px rgba(255, 255, 255, 0.5);
+}
+
+.screen .logo {
+    position: absolute;
+    width: 20px;
+    height: 24px;
+    left: 50%;
+    top: 50%;
+    margin: -12px 0 0 -10px;
+    transform: rotateY(180deg) translateZ(0.1px);
+}
+
+.screen .face-one {
+    width: 150px;
+    height: 96px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 7px;
+    background: #d3d3d3;
+    transform: translateZ(2px);
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.screen .face-one .camera {
+    width: 3px;
+    height: 3px;
+    border-radius: 100%;
+    background: #000;
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    margin-left: -1.5px;
+}
+
+.screen .face-one .display {
+    width: 130px;
+    height: 74px;
+    margin: 10px;
+    background-color: #000;
+    background-size: 100% 100%;
+    border-radius: 1px;
+    position: relative;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 1);
+}
+
+.screen .face-one .display .shade {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130px;
+    height: 74px;
+    background: #f0f9ff;
+    background-size: 300px 200px;
+    background-position: 0px 0px;
+}
+
+.screen .face-one span {
+    position: absolute;
+    top: 85px;
+    left: 57px;
+    font-size: 6px;
+    color: #666;
+}
+
+.computerbody {
+    width: 150px;
+    height: 96px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 7px;
+    background: #cbcbcb;
+    transform-style: preserve-3d;
+    transform-origin: 50% bottom;
+    transform: rotateX(-90deg);
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.computerbody .face-one {
+    width: 150px;
+    height: 96px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 7px;
+    transform-style: preserve-3d;
+    background: #dfdfdf;
+    transform: translateZ(-2px);
+    background-image: linear-gradient(30deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.computerbody .touchpad {
+    width: 40px;
+    height: 31px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 4px;
+    margin: -44px 0 0 -18px;
+    background: #cdcdcd;
+    background-image: linear-gradient(30deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100%);
+    box-shadow: inset 0 0 3px #888;
+}
+
+.computerbody .keyboard {
+    width: 130px;
+    height: 45px;
+    position: absolute;
+    left: 7px;
+    top: 41px;
+    border-radius: 4px;
+    transform-style: preserve-3d;
+    background: #cdcdcd;
+    background-image: linear-gradient(30deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100%);
+    box-shadow: inset 0 0 3px #777;
+    padding: 0 0 0 2px;
+}
+
+.keyboard .key {
+    width: 6px;
+    height: 6px;
+    background: #444;
+    float: left;
+    margin: 1px;
+    transform: translateZ(-2px);
+    border-radius: 2px;
+    box-shadow: 0 -2px 0 #222;
+}
+
+.key.space {
+    width: 45px;
+}
+
+.key.f {
+    height: 3px;
+}
+
+.computerbody .pad {
+    width: 5px;
+    height: 5px;
+    background: #333;
+    border-radius: 100%;
+    position: absolute;
+}
+
+.pad.one {
+    left: 20px;
+    top: 20px;
+}
+
+.pad.two {
+    right: 20px;
+    top: 20px;
+}
+
+.pad.three {
+    right: 20px;
+    bottom: 20px;
+}
+
+.pad.four {
+    left: 20px;
+    bottom: 20px;
+}
+.computer-screen {
+    height: 100%;
+    background-color: #000;
+    position: relative;
+  }
+  
+  .loading-bar {
+    width: 0;
+    height: 2px;
+    background-color: #00ff00;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: loading 4s linear forwards;
+  }
+  
+  .loading-text {
+    color: #fff;
+    font-size: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: fade-in 2s linear 2s forwards;
+  }
+  
+  @keyframes loading {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes hide-loading-bar {
+    0% {
+      opacity: 1;
+      height: 10px;
+    }
+    100% {
+      opacity: 0;
+      height: 0;
+    }
+  }
+  /* 添加一个类来触发隐藏动画 */
+.computer-screen.hide-progress .loading-bar {
+    animation: hide-loading-bar 1s linear forwards;
+  }
+  
+.computer-screen.hide-progress .loading-text {
+    animation: fade-out 1s linear forwards;
+}
+

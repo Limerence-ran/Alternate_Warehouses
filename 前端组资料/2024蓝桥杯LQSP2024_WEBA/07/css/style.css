@@ -1,0 +1,29 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 20px;
+  border: .5px solid rgb(179, 34, 37);
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.filters input {
+  width: 1.5rem;
+  border: 0.5px solid gainsboro;
+  border-radius: 5px;
+  padding: .3rem;
+  padding-right: 1rem;
+  margin: 0 5px;
+}
+
+.filters input:focus {
+  border: .5px solid rgb(21, 92, 254);
+}
+
+.filters select {
+  border: 0.5px solid gainsboro;
+  border-radius: 5px;
+  padding: .3rem;
+}

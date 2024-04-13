@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#app,
+.container,
+.email-sidebar {
+    height: 100%;
+}
+.email-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.email-header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.email-header-logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.email-header-title {
+    font-size: 24px;
+}
+
+.email-header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.email-header-button {
+    background-color: #fff;
+    color: #007bff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.email-header-button:hover {
+    background-color: #ddd;
+}
+
+.email-sidebar {
+    background-color: #f8f8f8;
+    padding: 10px;
+    width: 200px;
+    float: left;
+}
+
+.folder-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.folder-list-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+.folder-list-item:last-child {
+    border-bottom: none;
+}
+ul,
+li {
+    list-style: none;
+}
+
+.contacts-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f5f5f5;
+}
+
+.contacts-group {
+    margin-top: 20px;
+}
+
+.contacts-group-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.contact-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-item:hover {
+    background-color: #f0f0f0;
+}
+
+.contacts-group .add-contact {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.add-contact-input {
+    flex-grow: 1;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.add-contact-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.del-contact-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 3px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-contacts {
+    width: 60%;
+    margin-left: 270px;
+    margin-top: 16px;
+}
+.contacts-list {
+    margin-left: 280px;
+    width: 80%;
+}
+
+.add-contact-button:hover {
+    background-color: #0056b3;
+}

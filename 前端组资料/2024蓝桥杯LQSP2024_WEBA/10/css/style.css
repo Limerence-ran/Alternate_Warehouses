@@ -1,0 +1,28 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: monospace;
+}
+#console {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#output {
+  white-space: pre-wrap;
+}
+#startButton {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0074d9;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+#startButton:hover {
+  background-color: #0056b3;
+}

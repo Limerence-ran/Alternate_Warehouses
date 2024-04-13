@@ -1,0 +1,4 @@
+[
+    { "letter": "A", "contacts": [{ "name": "Alice Adams" }, { "name": "Alex Anderson" }] },
+    { "letter": "B", "contacts": [{ "name": "Bob Brown" }] }
+]

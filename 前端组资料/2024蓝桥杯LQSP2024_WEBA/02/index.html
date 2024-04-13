@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>布局切换</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">首页</a>
+        <a href="#">关于我们</a>
+        <a href="#">服务</a>
+        <a href="#">联系我们</a>
+        <div class="icons">
+            <img id="switching" src="./images/icon.svg" alt="">
+            <img src="./images/setting.svg" alt="">
+        </div>
+    </div>
+    <div id="tool">
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="输入关键词搜索...">
+        </div>
+        <div class="quick-nav">
+            <ul class="list">
+                <li class="header">快捷导航</li>
+                <li class="item">蓝桥云课-web课程</li>
+                <li class="item">蓝桥云课-java课程</li>
+                <li class="item">蓝桥云课-测试课程</li>
+                <li class="item">蓝桥云课官网</li>
+                <li class="item">蓝桥云课-个人主页</li>
+                <li class="item">蓝桥云课</li>
+            </ul>
+        </div>
+    </div>
+    <div class="layout-list" id="mode">
+        <figure>
+            <img id="one" class="layout-option  active" src="./images/classic.svg" alt="">
+            <figcaption>经典模式 <img src="./images/select.svg" alt=""></figcaption>
+        </figure>
+        <figure>
+            <img id="two" class="layout-option" src="./images/browse.svg" alt="">
+            <figcaption>浏览模式 <img src="./images/select.svg" alt=""></figcaption>
+        </figure>
+        <figure>
+            <img id="three" class="layout-option" src="./images/tool.svg" alt="">
+            <figcaption>工具模式 <img src="./images/select.svg" alt=""></figcaption>
+        </figure>
+
+    </div>
+    <div id="layoutContainer" class="two-column-layout">
+        <div class="column">
+            <h2>栏目1</h2>
+            <p>这是栏目1的内容。</p>
+        </div>
+        <div class="column">
+            <h2>栏目2</h2>
+            <p>这是栏目2的内容。</p>
+        </div>
+        <div class="column">
+            <h2>栏目3</h2>
+            <p>这是栏目3的内容。</p>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "001",
+    "name": "Blue T-Shirt",
+    "description": "A comfortable and stylish blue t-shirt made from high-quality cotton.",
+    "price": 29.99,
+    "viewed_on": "2024-03-23T10:00:00"
+  },
+  {
+    "id": "001",
+    "name": "Blue T-Shirt",
+    "description": "A comfortable and stylish blue t-shirt made from high-quality cotton.",
+    "price": 29.99,
+    "viewed_on": "2024-03-23T13:00:00"
+  },
+  {
+    "id": "002",
+    "name": "Red Sneakers",
+    "description": "A pair of red sneakers that are perfect for casual wear or working out.",
+    "price": 69.99,
+    "viewed_on": "2024-03-23T19:32:00"
+  },
+  {
+    "id": "003",
+    "name": "Black Leather Wallet",
+    "description": "A sleek and functional black leather wallet with multiple card slots and a coin pocket.",
+    "price": 49.99,
+    "viewed_on": "2024-03-21T13:30:00"
+  },
+  {
+    "id": "001",
+    "name": "Blue T-Shirt",
+    "description": "A comfortable and stylish blue t-shirt made from high-quality cotton.",
+    "price": 29.99,
+    "viewed_on": "2024-03-21T13:00:00"
+  },
+  {
+    "id": "004",
+    "name": "Green Water Bottle",
+    "description": "A durable and eco-friendly green water bottle that can hold up to 500ml of liquid.",
+    "price": 14.99,
+    "viewed_on": "2024-03-20T15:01:00"
+  },
+  {
+    "id": "005",
+    "name": "Silver Watch",
+    "description": "A stylish and modern silver watch that features a chronograph and a date display.",
+    "price": 149.99,
+    "viewed_on": "2024-03-19T19:30:00"
+  },
+  {
+    "id": "006",
+    "name": "Yellow Sunglasses",
+    "description": "A pair of trendy and UV-protected yellow sunglasses that are perfect for any sunny day.",
+    "price": 24.99,
+    "viewed_on": "2024-03-19T22:12:00"
+  },
+  {
+    "id": "007",
+    "name": "Purple Yoga Mat",
+    "description": "A comfortable and slip-resistant purple yoga mat that is perfect for any yoga practice.",
+    "price": 39.99,
+    "viewed_on": "2024-03-17T21:42:00"
+  },
+  {
+    "id": "008",
+    "name": "Brown Leather Shoes",
+    "description": "A pair of classic brown leather shoes that are perfect for any formal occasion.",
+    "price": 99.99,
+    "viewed_on": "2024-03-22T17:02:00"
+  },
+  {
+    "id": "009",
+    "name": "White Noise Machine",
+    "description": "A portable and easy-to-use white noise machine that can help you sleep better and relax.",
+    "price": 59.99,
+    "viewed_on": "2024-03-22T20:02:00"
+  },
+  {
+    "id": "010",
+    "name": "Orange Backpack",
+    "description": "A spacious and stylish orange backpack that is perfect for traveling or commuting.",
+    "price": 79.99,
+    "viewed_on": "2024-03-23T20:02:00"
+  }
+]

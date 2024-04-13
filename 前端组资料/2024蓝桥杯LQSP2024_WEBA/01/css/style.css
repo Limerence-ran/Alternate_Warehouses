@@ -1,0 +1,92 @@
+.cars {
+    position: absolute;
+    z-index: 2;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-direction: column; /* 排成列*/
+    /* TODO: 请为下方属性填空，不要更改其他选择器里的代码 */
+    /* 提示：设置⼦元素为（ flex-wrap ）换⾏ ，在交叉轴上使⽤（ align-content ）两端对⻬分布，在主
+轴上使⽤（ justify-content ）两端对⻬分布。两端对⻬分布效果即⾸个元素放置于起点，末尾元素放
+置于终点，其余元素均匀排列。 */
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+/* 以下代码不需要修改 */
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #d4e3ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.car {
+    width: 90px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.car > img {
+    width: 100%;
+}
+
+.parking-lot-row {
+    width: 640px;
+    height: 220px;
+}
+
+.parking-lot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 660px;
+    border: 4px dashed rgb(130, 130, 130);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.parking-lot-row {
+    display: flex;
+    height: 200px;
+    align-items: center;
+}
+
+.parking-garage {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    border: 2px solid #999;
+    margin: 20px;
+}
+
+.inner-border {
+    border: 2px dashed #999;
+    border-radius: 10px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    z-index: 1;
+}
+
+.parking-space {
+    background-color: #5e92f366;
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    width: 40px;
+    height: 40px;
+}

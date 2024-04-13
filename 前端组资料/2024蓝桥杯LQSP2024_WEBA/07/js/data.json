@@ -1,0 +1,542 @@
+[
+  {
+    "author": "freeCodeCamp",
+    "name": "freeCodeCamp",
+    "stars": 359000,
+    "language": "TypeScript"
+  },
+  {
+    "author": "996icu",
+    "name": "996.ICU",
+    "stars": 265000,
+    "language": ""
+  },
+  {
+    "author": "EbookFoundation",
+    "name": "free-programming-books",
+    "stars": 259000,
+    "language": ""
+  },
+  {
+    "author": "jwasham",
+    "name": "coding-interview-university",
+    "stars": 242000,
+    "language": ""
+  },
+  {
+    "author": "sindresorhus",
+    "name": "awesome",
+    "stars": 232000,
+    "language": ""
+  },
+  {
+    "author": "kamranahmedse",
+    "name": "developer-roadmap",
+    "stars": 223000,
+    "language": "TypeScript"
+  },
+  {
+    "author": "public-apis",
+    "name": "public-apis",
+    "stars": 222000,
+    "language": "Python"
+  },
+  {
+    "author": "donnemartin",
+    "name": "system-design-primer",
+    "stars": 207000,
+    "language": "Python"
+  },
+  {
+    "author": "vuejs",
+    "name": "vue",
+    "stars": 201000,
+    "language": "TypeScript"
+  },
+  {
+    "author": "facebook",
+    "name": "react",
+    "stars": 200000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "codecrafters-io",
+    "name": "build-your-own-x",
+    "stars": 181000,
+    "language": ""
+  },
+  {
+    "author": "tensorflow",
+    "name": "tensorflow",
+    "stars": 170000,
+    "language": "C++"
+  },
+  {
+    "author": "getify",
+    "name": "You-Dont-Know-JS",
+    "stars": 163000,
+    "language": ""
+  },
+  {
+    "author": "twbs",
+    "name": "bootstrap",
+    "stars": 161000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "CyC2018",
+    "name": "CS-Notes",
+    "stars": 160000,
+    "language": ""
+  },
+  {
+    "author": "trekhleb",
+    "name": "javascript-algorithms",
+    "stars": 158000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "ohmyzsh",
+    "name": "ohmyzsh",
+    "stars": 154000,
+    "language": "Shell"
+  },
+  {
+    "author": "vinta",
+    "name": "awesome-python",
+    "stars": 151000,
+    "language": "Python"
+  },
+  {
+    "author": "TheAlgorithms",
+    "name": "Python",
+    "stars": 150000,
+    "language": "Python"
+  },
+  {
+    "author": "flutter",
+    "name": "flutter",
+    "stars": 148000,
+    "language": "Dart"
+  },
+  {
+    "author": "torvalds",
+    "name": "linux",
+    "stars": 144000,
+    "language": "C"
+  },
+  {
+    "author": "github",
+    "name": "gitignore",
+    "stars": 142000,
+    "language": ""
+  },
+  {
+    "author": "microsoft",
+    "name": "vscode",
+    "stars": 141000,
+    "language": "TypeScript"
+  },
+  {
+    "author": "airbnb",
+    "name": "javascript",
+    "stars": 130000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "ossu",
+    "name": "computer-science",
+    "stars": 130000,
+    "language": ""
+  },
+  {
+    "author": "Snailclimb",
+    "name": "JavaGuide",
+    "stars": 130000,
+    "language": "Java"
+  },
+  {
+    "author": "jackfrued",
+    "name": "Python-100-Days",
+    "stars": 129000,
+    "language": "Python"
+  },
+  {
+    "author": "jlevy",
+    "name": "the-art-of-command-line",
+    "stars": 124000,
+    "language": ""
+  },
+  {
+    "author": "ytdl-org",
+    "name": "youtube-dl",
+    "stars": 116000,
+    "language": "Python"
+  },
+  {
+    "author": "awesome-selfhosted",
+    "name": "awesome-selfhosted",
+    "stars": 113000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "labuladong",
+    "name": "fucking-algorithm",
+    "stars": 113000,
+    "language": "Markdown"
+  },
+  {
+    "author": "golang",
+    "name": "go",
+    "stars": 107000,
+    "language": "Go"
+  },
+  {
+    "author": "facebook",
+    "name": "react-native",
+    "stars": 107000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "30-seconds",
+    "name": "30-seconds-of-code",
+    "stars": 106000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "electron",
+    "name": "electron",
+    "stars": 105000,
+    "language": "C++"
+  },
+  {
+    "author": "d3",
+    "name": "d3",
+    "stars": 104000,
+    "language": "JavaScript"
+  },
+  {
+    "author": "facebook",
+    "name": "create-react-app",
+    "stars": 98400,
+    "language": "JavaScript"
+  },
+  {
+    "author": "vercel",
+    "name": "next.js",
+    "stars": 98300,
+    "language": "JavaScript"
+  },
+  {
+    "author": "axios",
+    "name": "axios",
+    "stars": 97900,
+    "language": "JavaScript"
+  },
+  {
+    "author": "justjavac",
+    "name": "free-programming-books-zh_CN",
+    "stars": 97900,
+    "language": ""
+  },
+  {
+    "author": "kubernetes",
+    "name": "kubernetes",
+    "stars": 94700,
+    "language": "Go"
+  },
+  {
+    "author": "avelino",
+    "name": "awesome-go",
+    "stars": 93600,
+    "language": "Go"
+  },
+  {
+    "author": "nodejs",
+    "name": "node",
+    "stars": 92300,
+    "language": "JavaScript"
+  },
+  {
+    "author": "mrdoob",
+    "name": "three.js",
+    "stars": 87800,
+    "language": "JavaScript"
+  },
+  {
+    "author": "microsoft",
+    "name": "TypeScript",
+    "stars": 87200,
+    "language": "TypeScript"
+  },
+  {
+    "author": "denoland",
+    "name": "deno",
+    "stars": 87000,
+    "language": "Rust"
+  },
+  {
+    "author": "microsoft",
+    "name": "terminal",
+    "stars": 86800,
+    "language": "C++"
+  },
+  {
+    "author": "trimstray",
+    "name": "the-book-of-secret-knowledge",
+    "stars": 85700,
+    "language": ""
+  },
+  {
+    "author": "angular",
+    "name": "angular",
+    "stars": 85600,
+    "language": "TypeScript"
+  },
+  {
+    "author": "practical-tutorials",
+    "name": "project-based-learning",
+    "stars": 84800,
+    "language": ""
+  },
+  {
+    "author": "goldbergyoni",
+    "name": "nodebestpractices",
+    "stars": 84500,
+    "language": "JavaScript"
+  },
+  {
+    "author": "microsoft",
+    "name": "PowerToys",
+    "stars": 84000,
+    "language": "C#"
+  },
+  {
+    "author": "yangshun",
+    "name": "tech-interview-handbook",
+    "stars": 84000,
+    "language": "TypeScript"
+  },
+  {
+    "author": "mui",
+    "name": "material-ui",
+    "stars": 83600,
+    "language": "JavaScript"
+  },
+  {
+    "author": "ant-design",
+    "name": "ant-design",
+    "stars": 83600,
+    "language": "TypeScript"
+  },
+  {
+    "author": "puppeteer",
+    "name": "puppeteer",
+    "stars": 81300,
+    "language": "TypeScript"
+  },
+  {
+    "author": "PanJiaChen",
+    "name": "vue-element-admin",
+    "stars": 80100,
+    "language": "Vue"
+  },
+  {
+    "author": "iluwatar",
+    "name": "java-design-patterns",
+    "stars": 78900,
+    "language": "Java"
+  },
+  {
+    "author": "huggingface",
+    "name": "transformers",
+    "stars": 77000,
+    "language": "Python"
+  },
+  {
+    "author": "ryanmcdermott",
+    "name": "clean-code-javascript",
+    "stars": 76900,
+    "language": "JavaScript"
+  },
+  {
+    "author": "animate-css",
+    "name": "animate.css",
+    "stars": 76600,
+    "language": "CSS"
+  },
+  {
+    "author": "rust-lang",
+    "name": "rust",
+    "stars": 75900,
+    "language": "Rust"
+  },
+  {
+    "author": "storybookjs",
+    "name": "storybook",
+    "stars": 75700,
+    "language": "TypeScript"
+  },
+  {
+    "author": "nvbn",
+    "name": "thefuck",
+    "stars": 75000,
+    "language": "Python"
+  },
+  {
+    "author": "tensorflow",
+    "name": "models",
+    "stars": 74900,
+    "language": "Python"
+  },
+  {
+    "author": "Genymobile",
+    "name": "scrcpy",
+    "stars": 74800,
+    "language": "C"
+  },
+  {
+    "author": "MisterBooo",
+    "name": "LeetCodeAnimation",
+    "stars": 72100,
+    "language": "Java"
+  },
+  {
+    "author": "laravel",
+    "name": "laravel",
+    "stars": 71900,
+    "language": "PHP"
+  },
+  {
+    "author": "gothinkster",
+    "name": "realworld",
+    "stars": 71200,
+    "language": "TypeScript"
+  },
+  {
+    "author": "FortAwesome",
+    "name": "Font-Awesome",
+    "stars": 70700,
+    "language": "JavaScript"
+  },
+  {
+    "author": "doocs",
+    "name": "advanced-java",
+    "stars": 68000,
+    "language": "Java"
+  },
+  {
+    "author": "tonsky",
+    "name": "FiraCode",
+    "stars": 67900,
+    "language": "Clojure"
+  },
+  {
+    "author": "django",
+    "name": "django",
+    "stars": 67900,
+    "language": "Python"
+  },
+  {
+    "author": "bitcoin",
+    "name": "bitcoin",
+    "stars": 67600,
+    "language": "C++"
+  },
+  {
+    "author": "vuejs",
+    "name": "awesome-vue",
+    "stars": 67300,
+    "language": ""
+  },
+  {
+    "author": "papers-we-love",
+    "name": "papers-we-love",
+    "stars": 66700,
+    "language": "Shell"
+  },
+  {
+    "author": "mtdvio",
+    "name": "every-programmer-should-know",
+    "stars": 66600,
+    "language": ""
+  },
+  {
+    "author": "opencv",
+    "name": "opencv",
+    "stars": 65600,
+    "language": "C++"
+  },
+  {
+    "author": "gin-gonic",
+    "name": "gin",
+    "stars": 65400,
+    "language": "Go"
+  },
+  {
+    "author": "spring-projects",
+    "name": "spring-boot",
+    "stars": 64800,
+    "language": "Java"
+  },
+  {
+    "author": "typicode",
+    "name": "json-server",
+    "stars": 64800,
+    "language": "JavaScript"
+  },
+  {
+    "author": "moby",
+    "name": "moby",
+    "stars": 64800,
+    "language": "Go"
+  },
+  {
+    "author": "gohugoio",
+    "name": "hugo",
+    "stars": 64400,
+    "language": "Go"
+  },
+  {
+    "author": "sveltejs",
+    "name": "svelte",
+    "stars": 64300,
+    "language": "TypeScript"
+  },
+  {
+    "author": "ripienaar",
+    "name": "free-for-dev",
+    "stars": 64000,
+    "language": "HTML"
+  },
+  {
+    "author": "nvm-sh",
+    "name": "nvm",
+    "stars": 63600,
+    "language": "Shell"
+  },
+  {
+    "author": "tailwindlabs",
+    "name": "tailwindcss",
+    "stars": 63500,
+    "language": "JavaScript"
+  },
+  {
+    "author": "thedaviddias",
+    "name": "Front-End-Checklist",
+    "stars": 63500,
+    "language": ""
+  },
+  {
+    "author": "fatedier",
+    "name": "frp",
+    "stars": 63100,
+    "language": "Go"
+  },
+  {
+    "author": "macrozheng",
+    "name": "mall",
+    "stars": 62900,
+    "language": "Java"
+  }
+]

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>多表单验证</title>
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/element-plus.css" />
+        <script src="./lib/vue.global.prod.js"></script>
+        <script src="./lib/index.full.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <div id="func">{{ submitForm }}</div>
+            <el-tabs type="border-card" v-model="activeName">
+                <el-tab-pane label="基本信息" name="user">
+                    <el-form
+                        id="form1"
+                        label-width="120px"
+                        v-model:model="form"
+                        ref="form1Ref"
+                        :rules="rules"
+                    >
+                        <el-form-item label="姓名：" prop="name">
+                            <el-input v-model="form.name" id="input1" />
+                        </el-form-item>
+                        <el-form-item label="性别：" prop="sex">
+                            <el-radio-group v-model="form.sex" class="ml-4">
+                                <el-radio
+                                    label="男"
+                                    size="large"
+                                    @click.prevent.native="onClickRadio('sex','男')"
+                                    >男</el-radio
+                                >
+                                <el-radio
+                                    label="女"
+                                    size="large"
+                                    @click.prevent.native="onClickRadio('sex','女')"
+                                    >女</el-radio
+                                >
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="年龄：" prop="age">
+                            <el-input v-model="form.age" id="input3" />
+                        </el-form-item>
+                    </el-form>
+                </el-tab-pane>
+                <el-tab-pane label="附加信息" name="place">
+                    <el-form
+                        id="form2"
+                        label-width="200px"
+                        v-model:model="form"
+                        ref="form2Ref"
+                        :rules="rules"
+                    >
+                        <el-form-item
+                            label="是否参加过编程比赛："
+                            prop="isCompetition"
+                        >
+                            <el-radio-group
+                                v-model="form.isCompetition"
+                                class="ml-4"
+                                id="input4"
+                            >
+                                <el-radio
+                                    label="1"
+                                    size="large"
+                                    @click.prevent.native="onClickRadio('isCompetition','1')"
+                                    >是</el-radio
+                                >
+                                <el-radio
+                                    label="0"
+                                    size="large"
+                                    @click.prevent.native="onClickRadio('isCompetition','0')"
+                                    >否</el-radio
+                                >
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item
+                            label="是否有过创业经历："
+                            prop="isEntrepreneurship"
+                        >
+                            <el-radio-group
+                                v-model="form.isEntrepreneurship"
+                                class="ml-4"
+                                id="input5"
+                            >
+                                <el-radio
+                                    label="1"
+                                    size="large"
+                                    @click.prevent.native="onClickRadio('isEntrepreneurship','1')"
+                                    >是</el-radio
+                                >
+                                <el-radio
+                                    label="0"
+                                    size="large"
+                                    @click.prevent.native="onClickRadio('isEntrepreneurship','0')"
+                                    >否</el-radio
+                                >
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="补充说明：" prop="footnote">
+                            <el-input
+                                type="textarea"
+                                style="width: 200px"
+                                v-model="form.footnote"
+                            />
+                        </el-form-item>
+                    </el-form>
+                </el-tab-pane>
+            </el-tabs>
+
+            <el-row>
+                <el-button
+                    id="submit"
+                    type="primary"
+                    size="large"
+                    class="btn-submit"
+                    @click="submitForm"
+                    >提交</el-button
+                >
+            </el-row>
+        </div>
+
+        <script>
+            const { createApp, reactive, toRefs, ref, onMounted } = Vue;
+            const { ElMessage } = ElementPlus;
+
+            const app = Vue.createApp({
+                setup() {
+                    const activeName = ref("user");
+                    const onClickRadio = (key, val) => {
+                        form[key] = form[key] == val ? "" : val;
+                    };
+                    const form = reactive({
+                        name: "",
+                        sex: "",
+                        age: "",
+                        isCompetition: "",
+                        isEntrepreneurship: "",
+                        footnote: "",
+                    });
+
+                    // TODO：待补充代码
+                    // 两个表单校验规则（ rules ）如下，通过 el-form-item 的 prop 进⾏对应 ：
+                    // 姓名：必填。错误提示：请输⼊姓名。规则：输⼊的姓名只能为汉字。错误提示：只能输⼊汉字。
+                    function validateName(rule, value, callback) {
+                        const reg = /[^\u4e00-\u9fa5]/g;
+                        if (value === "") {
+                            callback(new Error("请输入姓名"));
+                        } else if (reg.test(value)) {
+                            callback(new Error("只能输入汉字"));
+                        } else {
+                            callback();
+                        }
+                    }
+                    // 性别：必填。错误提示：请选择性别。
+                    // 年龄：必填。错误提示：请输⼊年龄。
+                    // 是否参加过编程⽐赛：必填。错误提示：请选择是否参加过编程⽐赛。
+                    // 是否有过创业经历：必填。错误提示：请选择是否有过创业经历。
+                    // 检验是否为汉字的正则表达式规则如下:
+                    // const reg = /[^\u4e00-\u9fa5]/g;
+                    const rules = reactive({
+                        name: [
+                            {
+                                validator: validateName,
+                                trigger: "blur",
+                            },
+                            {
+                                required: true,
+                                message: "请输入姓名",
+                                trigger: "blur",
+                            },
+                        ],
+                        sex: [
+                            {
+                                required: true,
+                                message: "请选择性别",
+                                trigger: "change",
+                            },
+                        ],
+                        age: [
+                            {
+                                required: true,
+                                message: "请输入年龄",
+                                trigger: "blur",
+                            },
+                        ],
+                        isCompetition: [
+                            {
+                                required: true,
+                                message: "请选择是否参加过编程⽐赛",
+                                trigger: "change",
+                            },
+                        ],
+                        isEntrepreneurship: [
+                            {
+                                required: true,
+                                message: "请选择是否有过创业经历",
+                                trigger: "change",
+                            },
+                        ],
+                    });
+
+                    const form1Ref = ref(null);
+                    const form2Ref = ref(null);
+                    var msg;
+                    const submitForm = async () => {
+                        msg && msg.close();
+                        let res1 = await form1Ref.value.validate();
+                        let res2 = await form2Ref.value.validate();
+                        if (res1 && res2) {
+                            msg = ElMessage({
+                                message: "提交成功",
+                                type: "success",
+                            });
+                        }
+                    };
+
+                    return {
+                        activeName,
+                        form,
+                        rules,
+                        form1Ref,
+                        form2Ref,
+                        submitForm,
+                        onClickRadio,
+                    };
+                },
+            });
+
+            app.use(ElementPlus).mount("#app");
+        </script>
+    </body>
+</html>

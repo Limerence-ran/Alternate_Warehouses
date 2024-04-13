@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>小蓝驿站</title>
+        <!-- 链接外部样式表 -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- 引入 Vue.js 框架 -->
+        <script src="lib/vue.global.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- 邮箱顶部标题和操作按钮 -->
+            <div class="email-header">
+                <!-- 邮箱标题 -->
+                <div class="email-header-logo">
+                    <h1 class="email-header-title">小蓝驿站</h1>
+                </div>
+                <!-- 邮箱操作按钮，包括撰写邮件、设置和退出 -->
+                <div class="email-header-actions">
+                    <button class="email-header-button">撰写邮件</button>
+                    <button class="email-header-button">设置</button>
+                    <button class="email-header-button">退出</button>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- 邮箱侧边栏 -->
+                <div class="email-sidebar">
+                    <!-- 邮箱文件夹列表 -->
+                    <ul class="folder-list">
+                        <li class="folder-list-item">收件箱</li>
+                        <li class="folder-list-item">草稿箱</li>
+                        <li class="folder-list-item">已发送</li>
+                        <li class="folder-list-item">已删除</li>
+                        <li class="folder-list-item">垃圾邮件</li>
+                        <li class="folder-list-item">广告邮件</li>
+                    </ul>
+                </div>
+                <div>
+                    <!-- 通讯录标题 -->
+                    <div class="contacts-title">通讯录</div>
+                    <!-- 添加联系人区块 -->
+                    <div class="add-contacts">
+                        <!-- 添加联系人标题 -->
+                        <div class="contacts-group-title">添加联系人</div>
+                        <!-- 添加联系人表单 -->
+                        <div class="add-contact">
+                            <!-- 联系人输入框，使用 Vue 的 v-model 进行双向数据绑定 -->
+                            <input
+                                class="add-contact-input"
+                                v-model="newContact"
+                                placeholder="新联系人名字"
+                            />
+                            <!-- 添加按钮，点击后触发 addContact 方法 -->
+                            <button
+                                class="add-contact-button"
+                                @click="addContact"
+                            >
+                                添加
+                            </button>
+                        </div>
+                    </div>
+                    <!-- 联系人列表 -->
+                    <!-- TODO：待补充代码 目标 1  -->
+                    <!-- 1. list 为联系⼈列表, sortedContacts 是将联系⼈列表 list 按照字⺟ A-Z 排序的数据，数据中的 letter 为分组名称（⼤写），数据中的 contacts 为当前分组的联系⼈数组，数据结构如下：
+                        [
+                        {"letter": "A", // 分组名称，⼤写
+                        "contacts": [ // 当前分组联系⼈数组
+                        { "name": "Alice Adams" }, // 联系⼈名字，不区分⼤⼩写
+                        { "name": "Alex Anderson" }
+                        ] },
+                        { "letter": "B",
+                        "contacts": [...]
+                        }
+                        ]
+                        将排序后联系⼈数据 sortedContacts 按照下⾯示例的 DOM 结构，完成渲染。注意： sortedContacts 为动态数据，请注意代码的通⽤性。-->
+                    <ul class="contacts-list">
+                        <!-- 循环遍历数组 -->
+                        <li
+                            class="contacts-group"
+                            v-for="(item, index) in sortedContacts"
+                            :key="index"
+                        >
+                            <!-- 循环遍历数组中的对象 -->
+                            <div class="contacts-group-title">
+                                {{ item.letter }}
+                            </div>
+                            <ul>
+                                <!-- 循环遍历数组中的对象的属性 -->
+                                <li
+                                    class="contact-item"
+                                    v-for="(contact, index) in item.contacts"
+                                    :key="index"
+                                >
+                                    <span class="contact-name">
+                                        {{ contact.name }}</span
+                                    >
+                                    <button
+                                        type="button"
+                                        class="del-contact-button"
+                                    >
+                                        删除
+                                    </button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- TODO：END -->
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // 本题⽬只考察联系⼈的名字为英⽂的情况
+            // 从 Vue 对象中解构出 reactive、computed 和 ref 等方法
+            const { reactive, computed, ref, onMounted } = Vue;
+            // 定义 Vue 应用
+            const app = {
+                setup() {
+                    // 定义并初始化联系人列表
+                    let list = ref([]);
+                    onMounted(async () => {
+                        // 发起请求获取联系人列表-可能存在跨域问题
+                        const res = await fetch("./data.json")
+                            .then((res) => res.json())
+                            .then((data) => data);
+                        list.value = res;
+                    });
+                    // 定义并初始化新联系人名字
+                    const newContact = ref("");
+
+                    // 定义计算属性，对联系人列表进行排序
+                    const sortedContacts = computed(() => {
+                        return list.value.sort((a, b) =>
+                            a.letter.localeCompare(b.letter)
+                        );
+                    });
+                    // 定义添加联系人的方法
+                    const addContact = () => {
+                        // TODO：待补充代码 目标 2
+                        // 完善 addContact 函数，完成联系⼈添加功能。如果分组名称已存在，则直接添加联系⼈到该分组；如果分组名称不存在，则新建⼀个分组名称和联系⼈添加到联系⼈列表中。⽤户数输⼊的可能是⼩写名字，如 marissa ，注意分组名称应该为⼤写 M，⽤户名字不做处理，在列表中仍然显示marissa 。
+
+                        // 判断联系人名字是否为空
+                        if (newContact.value === "") {
+                            return;
+                        }
+
+                        // 判断分组是否已存在-使用联系人的首字母查询对应letter不区分大小写判断
+                        const letter = newContact.value[0].toUpperCase();
+                        const group = list.value.find(
+                            (group) => group.letter === letter
+                        );
+
+                        // 如果分组名字存在，则直接添加联系人到对应分组
+                        if (group) {
+                            group.contacts.push({
+                                name: newContact.value,
+                            });
+                            return;
+                        }
+
+                        // 否则，新建分组并添加联系人
+                        list.value.push({
+                            letter,
+                            contacts: [
+                                {
+                                    name: newContact.value,
+                                },
+                            ],
+                        });
+
+                        // TODO：END
+                        // 添加完成清空联系人输入框
+                        newContact.value = "";
+                    };
+
+                    // 返回应用所需的数据和方法
+                    return {
+                        list,
+                        newContact,
+                        sortedContacts,
+                        addContact,
+                    };
+                },
+            };
+
+            // 创建并挂载 Vue 应用
+            Vue.createApp(app).mount("#app");
+        </script>
+    </body>
+</html>
