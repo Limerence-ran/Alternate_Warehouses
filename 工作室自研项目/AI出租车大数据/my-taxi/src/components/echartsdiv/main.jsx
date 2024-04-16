@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./main.module.css";
-import Liner from "../../components/地图/右侧盒子/右侧三图/车流量折线图";
-import Liner1 from "../../components/地图/右侧盒子/右侧三图/利用率折线图";
-import BarChart from "../../components/地图/右侧盒子/右侧三图/平均收入柱状图";
+import Liner from "../map/rightBox/rightCharts/flowLine";
+import Liner1 from "../map/rightBox/rightCharts/usageLine";
+import BarChart from "../map/rightBox/rightCharts/AverageIncomeBar";
 import Keyboard from "../../components/keyboard/main";
 export default function EchartsDiv(props) {
     return (

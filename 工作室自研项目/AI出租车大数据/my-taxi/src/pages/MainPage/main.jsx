@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import style from "./main.module.css";
-import Page from "../../components/地图/分页/page";
+import FlowRankings from "../../components/map/flowRankings/main";
 import headerIcon from "../../assets/images/Group 9910.png";
-import Map from "../../components/地图/地图/main";
-import CarInfor from "../../components/地图/右侧盒子/车辆信息/main";
-import WrongCap from "../../components/地图/异常车辆/main";
-import SearchCap from "../../components/地图/查询异常车牌号/main";
-import Hot from "../../components/地图/载客热点/main";
+import Map from "../../components/map/middleMap/main";
+import CarInfor from "../../components/map/rightBox/carDetail/main";
+import WrongCap from "../../components/map/abnormalCar/main";
+// import SearchCap from "../../components/map/abnormalSearch/main";
+import PassengerHotSpots from "../../components/map/passengerHotSpots/main";
 import { LeftOutlined, LogoutOutlined } from "@ant-design/icons";
 import EchartMap from "../../components/echarts-map/main";
 import Keyboard from "../../components/keyboard/main";
@@ -14,7 +14,7 @@ import EchartsDiv from "../../components/echartsdiv/main.jsx";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import Rain from "../../components/rain/main";
-import Mymap from "../../components/main";
+
 
 import { useSelector } from "react-redux"; //用于从Redux状态树中选择需要的数据。
 import { useDispatch } from "react-redux"; //用于触发Redux中定义的actions。
@@ -290,10 +290,9 @@ function MainPage() {
                                     blobheight="60%"
                                     bgtop="0.8%"
                                 >
-                                    {/* {carPath ? <Page /> : <SearchCap />}  */}
-                                    {/* <Page /> */}
-                                    {/* <Hot/> */}
                                 </EchartsDiv>
+                                {/* <PassengerHotSpots /> */}
+                                {/* <FlowRankings /> */}
                             </div>
                         </div>
                         <div className={style.bigMap}>
@@ -307,11 +306,13 @@ function MainPage() {
                                 }}
                             >
                                 {/* {carPath ? <Map /> : <WrongCap />}  */}
+                                {/* <Map /> */}
                                 <EchartMap />
                                 {/* <WrongCap /> */}
-                                {/* <Mymap/> */}
+
                             </div>
                         </div>
+
                         <div className={style.column}>
                             <div
                                 style={{
@@ -320,7 +321,7 @@ function MainPage() {
                                     margin: "0% 2% 7% 3%",
                                 }}
                             >
-                                {/* <Echart /> */}
+                              
                                 <EchartsDiv
                                     type="Liner"
                                     cardwidth="106%"

@@ -1,0 +1,24 @@
+.infor{
+    position: relative;
+    width: 120px;
+}
+
+.infor h4{
+
+   font-size: 16px;
+
+}
+.infor p{
+  margin-top: 10px;
+    font-size: 10px;
+  
+}
+
+.infor button{
+    margin-top: 8px;
+    background-color: #fff;
+    opacity: 0.9;
+    color: #000;
+    border-radius: 4px;
+    width: 60%;
+}
