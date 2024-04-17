@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "titletabbar": "../../../components/titlebar/titlebar",
-    "van-button": "@vant/weapp/button/index"
-  },
-  "navigationStyle": "custom"
-}

@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "buttombar":"../../../components/buttombar/buttombar",
-    "titletabbar": "../../../components/titlebar/titlebar",
-    "van-button": "@vant/weapp/button/index",
-    "van-dialog": "@vant/weapp/dialog/index"
-  },
-  "navigationStyle": "custom"
-}

@@ -1,1 +1,0 @@
-.wrapper{width:100%;height:100%;display:flex;flex-direction:column}.wrapper header{height:50px;width:100%;display:flex;border:1px solid black}.wrapper .main-ct{height:calc(100% - 50px);width:100%;display:flex}.wrapper .main-ct aside{width:160px;border:1px solid black}.wrapper .main-ct main{width:100%}
