@@ -11,5 +11,5 @@ QG工作室项目迁移地址说明：
   - 出租车大数据：[https://github.com/Limerence-ran/Taxi_Big_Data.git](https://github.com/Limerence-ran/Taxi_Big_Data.git)
   - 差分隐私可视化：[https://github.com/Limerence-ran/Differential_Privacy_Visualization.git](https://github.com/Limerence-ran/Differential_Privacy_Visualization.git)
 - 外包：
-  - 瑜伽管理：[https://github.com/Limerence-ran/Yoga_Membership_Management_System.git](https://github.com/Limerence-ran/Yoga_Membership_Management_System.git)
+  - 矿物查询系统：[https://github.com/Limerence-ran/Yoga_Membership_Management_System.git](https://github.com/Limerence-ran/Yoga_Membership_Management_System.git)
   - 视频质量检测：[https://github.com/Limerence-ran/Video_Quality_Inspection_Platform.git](https://github.com/Limerence-ran/Video_Quality_Inspection_Platform.git)
